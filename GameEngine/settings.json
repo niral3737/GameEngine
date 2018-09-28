@@ -1,0 +1,6 @@
+{
+	"shaderBasePath" : "assets/shaders/",
+	"vertexShaderFileName" : "vertex01.glsl",
+	"fragmentShaderFileName": "fragment01.glsl",
+	"shaderProgramName": "myShader"
+}

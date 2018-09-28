@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{f7813ca0-2a64-4a7f-aee8-3a9da031f3da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Json">
+      <UniqueIdentifier>{50c09dea-b095-4069-811a-557422269021}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GLFW">
+      <UniqueIdentifier>{d02d18fd-f38e-428c-a46e-1120a7bc980c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UserIO">
+      <UniqueIdentifier>{78697ad4-b3fb-406e-a59c-a6c20379710b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Glad">
+      <UniqueIdentifier>{fc71cb77-e5ac-4c1f-8f7c-be26152571c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mesh">
+      <UniqueIdentifier>{6439534a-848b-4b0c-94ca-4aa7efac993d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlyFileLoader">
+      <UniqueIdentifier>{5434e0ae-593a-4ee3-8392-a64b887852f2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cShaderUtils.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="cShader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="cJsonUtils.cpp">
+      <Filter>Json</Filter>
+    </ClCompile>
+    <ClCompile Include="cGLFWUtils.cpp">
+      <Filter>GLFW</Filter>
+    </ClCompile>
+    <ClCompile Include="cUserIO.cpp">
+      <Filter>UserIO</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>Glad</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cShaderUtils.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>Json</Filter>
+    </ClInclude>
+    <ClInclude Include="cJsonUtils.h">
+      <Filter>Json</Filter>
+    </ClInclude>
+    <ClInclude Include="cGLFWUtils.h">
+      <Filter>GLFW</Filter>
+    </ClInclude>
+    <ClInclude Include="cUserIO.h">
+      <Filter>UserIO</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="settings.json" />
+  </ItemGroup>
+</Project>
