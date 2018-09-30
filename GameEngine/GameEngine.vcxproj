@@ -139,8 +139,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cGLFWUtils.cpp" />
+    <ClCompile Include="cModelDrawInfo.cpp" />
     <ClCompile Include="cShader.cpp" />
     <ClCompile Include="cShaderUtils.cpp" />
+    <ClCompile Include="cVAOMeshUtils.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="cJsonUtils.cpp" />
     <ClCompile Include="main.cpp" />
@@ -148,8 +150,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cGLFWUtils.h" />
+    <ClInclude Include="cModelDrawInfo.h" />
     <ClInclude Include="cShaderUtils.h" />
     <ClInclude Include="cUserIO.h" />
+    <ClInclude Include="cVAOMeshUtils.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="cJsonUtils.h" />
   </ItemGroup>

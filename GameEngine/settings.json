@@ -2,5 +2,9 @@
 	"shaderBasePath" : "assets/shaders/",
 	"vertexShaderFileName" : "vertex01.glsl",
 	"fragmentShaderFileName": "fragment01.glsl",
-	"shaderProgramName": "myShader"
+	"shaderProgramName": "myShader",
+	"meshes":[
+		"bun_res3_xyz.ply",
+		"singleTriangle_xyz.ply"
+	]
 }
