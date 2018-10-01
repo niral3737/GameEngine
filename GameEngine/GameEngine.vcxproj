@@ -139,6 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cGLFWUtils.cpp" />
+    <ClCompile Include="cMeshObject.cpp" />
     <ClCompile Include="cModelDrawInfo.cpp" />
     <ClCompile Include="cShader.cpp" />
     <ClCompile Include="cShaderUtils.cpp" />
@@ -150,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cGLFWUtils.h" />
+    <ClInclude Include="cMeshObject.h" />
     <ClInclude Include="cModelDrawInfo.h" />
     <ClInclude Include="cShaderUtils.h" />
     <ClInclude Include="cUserIO.h" />

@@ -34,6 +34,9 @@
     <Filter Include="VAOMesh">
       <UniqueIdentifier>{6439534a-848b-4b0c-94ca-4aa7efac993d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{b8e72a30-4a80-4e3f-9e52-6ee8afe346b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -63,6 +66,9 @@
     <ClCompile Include="cModelDrawInfo.cpp">
       <Filter>VAOMesh</Filter>
     </ClCompile>
+    <ClCompile Include="cMeshObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cShaderUtils.h">
@@ -85,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="cModelDrawInfo.h">
       <Filter>VAOMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="cMeshObject.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

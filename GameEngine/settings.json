@@ -4,7 +4,17 @@
 	"fragmentShaderFileName": "fragment01.glsl",
 	"shaderProgramName": "myShader",
 	"meshes":[
-		"bun_res3_xyz.ply",
-		"singleTriangle_xyz.ply"
+		{
+		"meshName":"bun_res3_xyz.ply",
+		"positionX" : 1.0,
+		"positionY" : 1.0,
+		"positionZ" : 1.0
+		},
+		{
+		"meshName": "singleTriangle_xyz.ply",
+		"positionX" : 1.0,
+		"positionY" : 1.0,
+		"positionZ" : 1.0
+		}
 	]
 }
