@@ -22,3 +22,8 @@ cMeshObject::cMeshObject()
 
 cMeshObject::~cMeshObject()
 {}
+
+iMeshObject* cMeshObject::create(void)
+{
+	return new cMeshObject();
+}

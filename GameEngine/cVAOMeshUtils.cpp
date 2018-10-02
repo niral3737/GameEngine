@@ -35,19 +35,6 @@ cVAOMeshUtils* cVAOMeshUtils::getInstance(void)
 
 bool cVAOMeshUtils::loadModels(GLuint program)
 {
-	/*std::vector<std::string> meshes = cJsonUtils::getJsonInstance()["meshes"].get<std::vector<std::string>>();
-	for (size_t i = 0; i < meshes.size(); i++)
-	{
-		cModelDrawInfo modelInfo;
-		modelInfo.meshFileName = meshes[i];
-		if (!loadModelIntoVAO(modelInfo, program))
-		{
-			std::cout << "Didn't load the " << modelInfo.meshFileName << std::endl;
-			std::cout << getLastError() << std::endl;
-			return false;
-		}
-	}*/
-
 	std::vector<nlohmann::json> objects = cJsonUtils::getJsonInstance()["meshes"].get<std::vector<nlohmann::json>>();
 	for (size_t i = 0; i < objects.size(); i++)
 	{

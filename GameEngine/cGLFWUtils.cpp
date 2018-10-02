@@ -31,7 +31,7 @@ void cGLFWUtils::setUpGLFW(void)
 		exit(EXIT_FAILURE);
 	}
 
-	glfwSetKeyCallback(window, UserIO::key_callback);
+	glfwSetKeyCallback(window, cUserIO::key_callback);
 	glfwMakeContextCurrent(window);
 	gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
 	glfwSwapInterval(1);

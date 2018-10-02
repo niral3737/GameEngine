@@ -226,6 +226,11 @@ std::string cShaderUtils::getLastError(void)
 	return lastErrorTemp;
 }
 
+GLuint cShaderUtils::getUniformVariableLocation(GLuint program, std::string name)
+{
+	return glGetUniformLocation(program, name.c_str());
+}
+
 #include <iostream>
 
 bool cShaderUtils::mCompileShaderFromSource(cShaderUtils::cShader &shader, std::string &error)

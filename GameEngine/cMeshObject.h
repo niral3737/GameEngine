@@ -5,10 +5,12 @@
 #include <string>
 #include <vector>
 
-class cMeshObject
+#include "iMeshObject.h"
+
+class cMeshObject : public iMeshObject
 {
 public:
-	cMeshObject();
+	
 	~cMeshObject();
 
 	glm::vec3 position;
@@ -23,14 +25,14 @@ public:
 	bool isVisible;
 	bool useVertexColor;
 
-	std::vector< cMeshObject* > vecChildObjectsToDraw;
-
 	inline unsigned int getUniqueId(void)
 	{
 		return this->mUniqueID;
 	}
 
+	static iMeshObject* create(void);
 private:
+	cMeshObject();
 	unsigned int mUniqueID;			// Number that's unique to this instance
 	static unsigned int mNextID; 
 

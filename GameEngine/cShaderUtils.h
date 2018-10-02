@@ -57,6 +57,7 @@ public:
 	unsigned int getIdFromFriendlyName(std::string friendlyName);
 	cShaderProgram* getShaderProgramFromFriendlyName(std::string friendlyName);
 	std::string getLastError(void);
+	GLuint getUniformVariableLocation(GLuint program, std::string name);
 
 private:
 	cShaderUtils();

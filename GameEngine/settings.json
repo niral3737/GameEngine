@@ -3,18 +3,50 @@
 	"vertexShaderFileName" : "vertex01.glsl",
 	"fragmentShaderFileName": "fragment01.glsl",
 	"shaderProgramName": "myShader",
+	"cameraEye": {
+		"x": 0.0,
+		"y": 0.0,
+		"z": 10.0
+	},
+	"cameraAt": {
+		"x": 0.0,
+		"y": 0.0,
+		"z": 0.0
+	},
 	"meshes":[
 		{
 		"meshName":"bun_res3_xyz.ply",
+		"friendlyName": "bunny",
+		"isWireFrame": false,
+		"isVisible": true,
+		"useVertexColor": false,
 		"positionX" : 1.0,
 		"positionY" : 1.0,
-		"positionZ" : 1.0
+		"positionZ" : 1.0,
+		"postRotationX": 0.0,
+		"postRotationY": 0.0,
+		"postRotationZ": 0.0,
+		"objectColorR": 1.0,
+		"objectColorG": 0.0,
+		"objectColorB": 0.0,
+		"scale": 9.0
 		},
 		{
 		"meshName": "singleTriangle_xyz.ply",
+		"friendlyName": "triangle",
+		"isWireFrame": true,
+		"isVisible": true,
+		"useVertexColor": false,
 		"positionX" : 1.0,
 		"positionY" : 1.0,
-		"positionZ" : 1.0
+		"positionZ" : 1.0,
+		"postRotationX": 0.0,
+		"postRotationY": 0.0,
+		"postRotationZ": 0.0,
+		"objectColorR": 0.0,
+		"objectColorG": 1.0,
+		"objectColorB": 0.0,
+		"scale": 0.1
 		}
 	]
 }

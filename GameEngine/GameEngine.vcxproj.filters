@@ -37,6 +37,9 @@
     <Filter Include="Model">
       <UniqueIdentifier>{b8e72a30-4a80-4e3f-9e52-6ee8afe346b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{b330c768-3890-46c5-9e87-4cd5d2b1a392}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -67,6 +70,12 @@
       <Filter>VAOMesh</Filter>
     </ClCompile>
     <ClCompile Include="cMeshObject.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="cMeshObjectFactory.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="cSceneUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -93,6 +102,15 @@
       <Filter>VAOMesh</Filter>
     </ClInclude>
     <ClInclude Include="cMeshObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iMeshObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cMeshObjectFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cSceneUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
