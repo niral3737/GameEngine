@@ -10,16 +10,9 @@
 #include "cVAOMeshUtils.h"
 
 cSceneUtils* cSceneUtils::pSceneUtils = 0;
-glm::vec3 cSceneUtils::cameraEye = glm::vec3(
-	cJsonUtils::getJsonInstance()["cameraEye"]["x"].get<float>(),
-	cJsonUtils::getJsonInstance()["cameraEye"]["y"].get<float>(),
-	cJsonUtils::getJsonInstance()["cameraEye"]["z"].get<float>()
-);
-glm::vec3 cSceneUtils::cameraAt = glm::vec3(
-	cJsonUtils::getJsonInstance()["cameraAt"]["x"].get<float>(),
-	cJsonUtils::getJsonInstance()["cameraAt"]["y"].get<float>(),
-	cJsonUtils::getJsonInstance()["cameraAt"]["z"].get<float>()
-);
+
+glm::vec3 cSceneUtils::cameraEye = glm::vec3(0.0f, 0.0f, 0.0f);
+glm::vec3 cSceneUtils::cameraAt = glm::vec3(0.0f, 0.0f, 0.0f);
 
 cSceneUtils::cSceneUtils()
 {
@@ -67,6 +60,21 @@ void cSceneUtils::loadModelsIntoScene(std::vector<iMeshObject*> &vecObjectsToDra
 
 		vecObjectsToDraw.push_back(meshObject);
 	}
+}
+
+void cSceneUtils::initializeCamera()
+{
+	cSceneUtils::cameraEye = glm::vec3(
+		cJsonUtils::getJsonInstance()["cameraEye"]["x"].get<float>(),
+		cJsonUtils::getJsonInstance()["cameraEye"]["y"].get<float>(),
+		cJsonUtils::getJsonInstance()["cameraEye"]["z"].get<float>()
+	);
+
+	cSceneUtils::cameraAt = glm::vec3(
+		cJsonUtils::getJsonInstance()["cameraAt"]["x"].get<float>(),
+		cJsonUtils::getJsonInstance()["cameraAt"]["y"].get<float>(),
+		cJsonUtils::getJsonInstance()["cameraAt"]["z"].get<float>()
+	);
 }
 
 void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, GLuint shaderProgramID)

@@ -6,7 +6,7 @@
 	"cameraEye": {
 		"x": 0.0,
 		"y": 0.0,
-		"z": 10.0
+		"z": -10.0
 	},
 	"cameraAt": {
 		"x": 0.0,
@@ -60,5 +60,6 @@
 			},
 			"scale": 0.1
 		}
-	]
+	],
+	"soundFile": "./assets/sounds/bhop_song.wav"
 }

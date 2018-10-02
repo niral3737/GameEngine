@@ -14,6 +14,7 @@ public:
 	static cSceneUtils* getInstance(void);
 
 	void loadModelsIntoScene(std::vector<iMeshObject*> &vecObjectsToDraw);
+	static void initializeCamera();
 
 	void drawObject(iMeshObject* pCurrentMesh, glm::mat4x4 &matModel, GLuint shaderProgramID);
 	static glm::vec3 cameraEye;

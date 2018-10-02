@@ -28,9 +28,6 @@
     <Filter Include="Glad">
       <UniqueIdentifier>{fc71cb77-e5ac-4c1f-8f7c-be26152571c9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlyFileLoader">
-      <UniqueIdentifier>{5434e0ae-593a-4ee3-8392-a64b887852f2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="VAOMesh">
       <UniqueIdentifier>{6439534a-848b-4b0c-94ca-4aa7efac993d}</UniqueIdentifier>
     </Filter>
@@ -39,6 +36,9 @@
     </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{b330c768-3890-46c5-9e87-4cd5d2b1a392}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{9a1f29b7-d4e2-420c-ac4f-0aa804bba876}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -76,7 +76,13 @@
       <Filter>Model</Filter>
     </ClCompile>
     <ClCompile Include="cSceneUtils.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="console.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>Sound</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -101,17 +107,23 @@
     <ClInclude Include="cModelDrawInfo.h">
       <Filter>VAOMesh</Filter>
     </ClInclude>
-    <ClInclude Include="cMeshObject.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="cSceneUtils.h">
+      <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="iMeshObject.h">
-      <Filter>Header Files</Filter>
+      <Filter>Model</Filter>
     </ClInclude>
     <ClInclude Include="cMeshObjectFactory.h">
-      <Filter>Header Files</Filter>
+      <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="cSceneUtils.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="cMeshObject.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
