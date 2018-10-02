@@ -51,17 +51,17 @@ void cSceneUtils::loadModelsIntoScene(std::vector<iMeshObject*> &vecObjectsToDra
 		meshObject->isVisible = meshes[i]["isVisible"].get<bool>();
 		meshObject->useVertexColor = meshes[i]["useVertexColor"].get<bool>();
 
-		meshObject->position.x = meshes[i]["positionX"].get<float>();
-		meshObject->position.y = meshes[i]["positionY"].get<float>();
-		meshObject->position.z = meshes[i]["positionZ"].get<float>();
+		meshObject->position.x = meshes[i]["position"]["x"].get<float>();
+		meshObject->position.y = meshes[i]["position"]["y"].get<float>();
+		meshObject->position.z = meshes[i]["position"]["z"].get<float>();
 
-		meshObject->postRotation.x = meshes[i]["postRotationX"].get<float>();
-		meshObject->postRotation.y = meshes[i]["postRotationY"].get<float>();
-		meshObject->postRotation.z = meshes[i]["postRotationZ"].get<float>();
+		meshObject->postRotation.x = meshes[i]["postRotation"]["x"].get<float>();
+		meshObject->postRotation.y = meshes[i]["postRotation"]["y"].get<float>();
+		meshObject->postRotation.z = meshes[i]["postRotation"]["z"].get<float>();
 
-		meshObject->objectColor.r = meshes[i]["objectColorR"].get<float>();
-		meshObject->objectColor.g = meshes[i]["objectColorG"].get<float>();
-		meshObject->objectColor.b = meshes[i]["objectColorB"].get<float>();
+		meshObject->objectColor.r = meshes[i]["objectColor"]["r"].get<float>();
+		meshObject->objectColor.g = meshes[i]["objectColor"]["g"].get<float>();
+		meshObject->objectColor.b = meshes[i]["objectColor"]["b"].get<float>();
 
 		meshObject->scale = meshes[i]["scale"].get<float>();
 

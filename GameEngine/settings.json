@@ -15,38 +15,50 @@
 	},
 	"meshes":[
 		{
-		"meshName":"bun_res3_xyz.ply",
-		"friendlyName": "bunny",
-		"isWireFrame": false,
-		"isVisible": true,
-		"useVertexColor": false,
-		"positionX" : 1.0,
-		"positionY" : 1.0,
-		"positionZ" : 1.0,
-		"postRotationX": 0.0,
-		"postRotationY": 0.0,
-		"postRotationZ": 0.0,
-		"objectColorR": 1.0,
-		"objectColorG": 0.0,
-		"objectColorB": 0.0,
-		"scale": 9.0
+			"meshName":"bun_res3_xyz.ply",
+			"friendlyName": "bunny",
+			"isWireFrame": false,
+			"isVisible": true,
+			"useVertexColor": false,
+			"position" : {
+				"x" : 1.0,
+				"y" : 1.0,
+				"z" : 1.0
+			},
+			"postRotation" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"objectColor" : {
+				"r": 1.0,
+				"g": 0.0,
+				"b": 0.0
+			},
+			"scale": 9.0
 		},
 		{
-		"meshName": "singleTriangle_xyz.ply",
-		"friendlyName": "triangle",
-		"isWireFrame": true,
-		"isVisible": true,
-		"useVertexColor": false,
-		"positionX" : 1.0,
-		"positionY" : 1.0,
-		"positionZ" : 1.0,
-		"postRotationX": 0.0,
-		"postRotationY": 0.0,
-		"postRotationZ": 0.0,
-		"objectColorR": 0.0,
-		"objectColorG": 1.0,
-		"objectColorB": 0.0,
-		"scale": 0.1
+			"meshName": "singleTriangle_xyz.ply",
+			"friendlyName": "triangle",
+			"isWireFrame": true,
+			"isVisible": true,
+			"useVertexColor": false,
+			"position" : {
+				"x" : 1.0,
+				"y" : 1.0,
+				"z" : 1.0
+			},
+			"postRotation" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"objectColor" : {
+				"r": 0.0,
+				"g": 1.0,
+				"b": 0.0
+			},
+			"scale": 0.1
 		}
 	]
 }

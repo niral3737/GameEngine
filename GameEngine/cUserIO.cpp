@@ -36,7 +36,6 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		{
-			std::cout << "W pressed" << std::endl;
 			cSceneUtils::cameraEye.z += cameraSpeed;
 		}
 		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)	// "backwards"
