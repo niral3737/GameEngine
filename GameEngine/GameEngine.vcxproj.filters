@@ -84,6 +84,9 @@
     <ClCompile Include="utils.cpp">
       <Filter>Sound</Filter>
     </ClCompile>
+    <ClCompile Include="cSoundManager.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cShaderUtils.h">
@@ -123,6 +126,9 @@
       <Filter>Sound</Filter>
     </ClInclude>
     <ClInclude Include="utils.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="cSoundManager.h">
       <Filter>Sound</Filter>
     </ClInclude>
   </ItemGroup>

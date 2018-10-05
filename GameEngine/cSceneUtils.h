@@ -6,6 +6,7 @@
 #include <glm/mat4x4.hpp>
 
 #include "iMeshObject.h"
+#include "cMeshObject.h"	
 
 class cSceneUtils
 {
@@ -13,12 +14,16 @@ public:
 	~cSceneUtils();
 	static cSceneUtils* getInstance(void);
 
-	void loadModelsIntoScene(std::vector<iMeshObject*> &vecObjectsToDraw);
+	void loadModelsIntoScene();
 	static void initializeCamera();
 
+	iMeshObject* findObjectByFriendlyName(std::string theNameToFind);
 	void drawObject(iMeshObject* pCurrentMesh, glm::mat4x4 &matModel, GLuint shaderProgramID);
 	static glm::vec3 cameraEye;
 	static glm::vec3 cameraAt;
+	std::vector<iMeshObject*> vecObjectsToDraw;
+	void drawTreesAtRandomPositions();
+	cMeshObject* loadMeshInfoByFriendlyName( std::string friendlyName);
 private:
 	static cSceneUtils* pSceneUtils;
 	cSceneUtils();

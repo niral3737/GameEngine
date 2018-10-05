@@ -48,7 +48,6 @@ bool cVAOMeshUtils::loadModels(GLuint program)
 		}
 	}
 
-	std::cout << "Mesh load successful" << std::endl;
 	return true;
 }
 
@@ -138,7 +137,7 @@ bool cVAOMeshUtils::mLoadModelFromFile(cModelDrawInfo &drawInfo)
 	theFile >> drawInfo.numberOfVertices;
 
 	//	std::cout << "vertices: " << g_numberOfVertices << std::endl;
-	std::cout << "vertices: " << drawInfo.numberOfVertices << std::endl;
+	//std::cout << "vertices: " << drawInfo.numberOfVertices << std::endl;
 
 	// seach for "face"
 	while (theFile >> nextData)
@@ -155,7 +154,7 @@ bool cVAOMeshUtils::mLoadModelFromFile(cModelDrawInfo &drawInfo)
 	theFile >> drawInfo.numberOfTriangles;
 
 	//	std::cout << "triangles: " << g_numberOfTriangles << std::endl;
-	std::cout << "triangles: " << drawInfo.numberOfTriangles << std::endl;
+	//std::cout << "triangles: " << drawInfo.numberOfTriangles << std::endl;
 
 	while (theFile >> nextData)
 	{
@@ -211,7 +210,7 @@ bool cVAOMeshUtils::mLoadModelFromFile(cModelDrawInfo &drawInfo)
 		theFile >> drawInfo.pTriangles[index].z;
 	}//for ( unsigned int index...
 
-	std::cout << "Read from the file OK." << std::endl;
+	//std::cout << "Read from the file OK." << std::endl;
 
 	// Calculating extents...
 

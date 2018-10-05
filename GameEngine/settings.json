@@ -4,9 +4,9 @@
 	"fragmentShaderFileName": "fragment01.glsl",
 	"shaderProgramName": "myShader",
 	"cameraEye": {
-		"x": 0.0,
-		"y": 0.0,
-		"z": -10.0
+		"x": 10.0,
+		"y": 20.0,
+		"z": 30.0
 	},
 	"cameraAt": {
 		"x": 0.0,
@@ -18,12 +18,12 @@
 			"meshName":"bun_res3_xyz.ply",
 			"friendlyName": "bunny",
 			"isWireFrame": false,
-			"isVisible": true,
+			"isVisible": false,
 			"useVertexColor": false,
 			"position" : {
-				"x" : 1.0,
-				"y" : 1.0,
-				"z" : 1.0
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
 			},
 			"postRotation" : {
 				"x" : 0.0,
@@ -38,15 +38,38 @@
 			"scale": 9.0
 		},
 		{
-			"meshName": "singleTriangle_xyz.ply",
-			"friendlyName": "triangle",
-			"isWireFrame": true,
+			"meshName": "axe.ply",
+			"friendlyName": "axe",
+			"isWireFrame": false,
 			"isVisible": true,
 			"useVertexColor": false,
 			"position" : {
-				"x" : 1.0,
-				"y" : 1.0,
-				"z" : 1.0
+				"x" : 0.0,
+				"y" : -1.2,
+				"z" : -7.0
+			},
+			"postRotation" : {
+				"x" : 0.0,
+				"y" : 1.1,
+				"z" : 0.5
+			},
+			"objectColor" : {
+				"r": 1.0,
+				"g": 0.0,
+				"b": 0.0
+			},
+			"scale": 0.6
+		},
+		{
+			"meshName": "tree.ply",
+			"friendlyName": "tree",
+			"isWireFrame": false,
+			"isVisible": true,
+			"useVertexColor": false,
+			"position" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
 			},
 			"postRotation" : {
 				"x" : 0.0,
@@ -58,8 +81,43 @@
 				"g": 1.0,
 				"b": 0.0
 			},
-			"scale": 0.1
+			"scale": 1.0
+		},
+		{
+			"meshName": "ground.ply",
+			"friendlyName": "ground",
+			"isWireFrame": false,
+			"isVisible": true,
+			"useVertexColor": false,
+			"position" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"postRotation" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"objectColor" : {
+				"r": 0.91,
+				"g": 0.45,
+				"b": 0.31
+			},
+			"scale": 1.0
 		}
 	],
-	"soundFile": "./assets/sounds/bhop_song.wav"
+	"soundsBasePath": "./assets/sounds/",
+	"compressedFileExt": ".mp3",
+	"uncompressedFileExt": ".wav",
+	"backgroundSound1": "Fantascape",
+	"backgroundSound2": "Puzzle-Game",
+	"backgroundSound3": "Fantasy_Game_Background",
+	"axeSound": "axe",
+	"appleSound": "apple_bite",
+	"fireSound": "fire",
+	"forestSound": "forest",
+	"splashSound": "splash",
+	"jumpSound": "jump",
+	"punchSound": "punch"
 }

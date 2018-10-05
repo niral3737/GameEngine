@@ -52,7 +52,7 @@ GLuint cShaderUtils::setUpShaders()
 		vertexShader,
 		fragmentShader))
 	{
-		std::cout << "Compiled shaders OK." << std::endl;
+		//std::cout << "Compiled shaders OK." << std::endl;
 	}
 	else
 	{

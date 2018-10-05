@@ -30,7 +30,22 @@ cSceneUtils * cSceneUtils::getInstance(void)
 	return pSceneUtils;
 }
 
-void cSceneUtils::loadModelsIntoScene(std::vector<iMeshObject*> &vecObjectsToDraw)
+iMeshObject* cSceneUtils::findObjectByFriendlyName(std::string theNameToFind)
+{
+	for (unsigned int index = 0; index != vecObjectsToDraw.size(); index++)
+	{
+		cMeshObject* object = (cMeshObject*)vecObjectsToDraw[index];
+		
+		if (object->friendlyName == theNameToFind)
+		{
+			return vecObjectsToDraw[index];
+		}
+	}
+
+	return NULL;	
+}
+
+void cSceneUtils::loadModelsIntoScene()
 {
 	//load models from settings.json
 	std::vector<nlohmann::json> meshes = cJsonUtils::getJsonInstance()["meshes"].get<std::vector<nlohmann::json>>();
@@ -61,6 +76,45 @@ void cSceneUtils::loadModelsIntoScene(std::vector<iMeshObject*> &vecObjectsToDra
 		vecObjectsToDraw.push_back(meshObject);
 	}
 }
+
+cMeshObject* cSceneUtils::loadMeshInfoByFriendlyName( std::string friendlyName)
+{
+	std::vector<nlohmann::json> meshes = cJsonUtils::getJsonInstance()["meshes"].get<std::vector<nlohmann::json>>();
+	for (size_t i = 0; i < meshes.size(); i++)
+	{
+		if (meshes[i]["friendlyName"].get<std::string>() == friendlyName)
+		{
+			cMeshObject* meshObject = (cMeshObject*)cMeshObjectFactory::createMeshObject();
+			meshObject->meshName = meshes[i]["meshName"].get<std::string>();
+			meshObject->friendlyName = meshes[i]["friendlyName"].get<std::string>();
+
+			meshObject->isWireFrame = meshes[i]["isWireFrame"].get<bool>();
+			meshObject->isVisible = meshes[i]["isVisible"].get<bool>();
+			meshObject->useVertexColor = meshes[i]["useVertexColor"].get<bool>();
+
+			meshObject->position.x = meshes[i]["position"]["x"].get<float>();
+			meshObject->position.y = meshes[i]["position"]["y"].get<float>();
+			meshObject->position.z = meshes[i]["position"]["z"].get<float>();
+
+			meshObject->postRotation.x = meshes[i]["postRotation"]["x"].get<float>();
+			meshObject->postRotation.y = meshes[i]["postRotation"]["y"].get<float>();
+			meshObject->postRotation.z = meshes[i]["postRotation"]["z"].get<float>();
+
+			meshObject->objectColor.r = meshes[i]["objectColor"]["r"].get<float>();
+			meshObject->objectColor.g = meshes[i]["objectColor"]["g"].get<float>();
+			meshObject->objectColor.b = meshes[i]["objectColor"]["b"].get<float>();
+
+			meshObject->scale = meshes[i]["scale"].get<float>();
+
+			vecObjectsToDraw.push_back(meshObject);
+			return meshObject;
+		}
+	}
+	return NULL;
+}
+
+void cSceneUtils::drawTreesAtRandomPositions()
+{}
 
 void cSceneUtils::initializeCamera()
 {
