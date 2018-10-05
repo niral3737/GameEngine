@@ -296,68 +296,92 @@ void cSoundManager::printInfo()
 
 void cSoundManager::increaseVolume()
 {
-	float volume = 0.0f;
-	_result = selectedSound->_channel->getVolume(&volume);
-	assert(!_result);
-	volume = (volume >= 1.0f) ? 1.0f : (volume + 0.1f);
-	_result = selectedSound->_channel->setVolume(volume);
-	assert(!_result);
+	if (selectedSound)
+	{
+		float volume = 0.0f;
+		_result = selectedSound->_channel->getVolume(&volume);
+		assert(!_result);
+		volume = (volume >= 1.0f) ? 1.0f : (volume + 0.1f);
+		_result = selectedSound->_channel->setVolume(volume);
+		assert(!_result);
+	}
 }
 void cSoundManager::decreaseVolume()
 {
-	float volume = 0.0f;
-	_result = selectedSound->_channel->getVolume(&volume);
-	assert(!_result);
-	volume = (volume <= 0.0f) ? 0.0f : (volume - 0.1f);
-	_result = selectedSound->_channel->setVolume(volume);
-	assert(!_result);
+	if (selectedSound)
+	{
+		float volume = 0.0f;
+		_result = selectedSound->_channel->getVolume(&volume);
+		assert(!_result);
+		volume = (volume <= 0.0f) ? 0.0f : (volume - 0.1f);
+		_result = selectedSound->_channel->setVolume(volume);
+		assert(!_result);
+	}
 }
 void cSoundManager::increasePan()
 {
-	selectedSound->channelPan = selectedSound->channelPan >= 1.0f ? 1.0f : selectedSound->channelPan + 0.1f;
-	_result = selectedSound->_channel->setPan(selectedSound->channelPan);
-	assert(!_result);
+	if (selectedSound)
+	{
+		selectedSound->channelPan = selectedSound->channelPan >= 1.0f ? 1.0f : selectedSound->channelPan + 0.1f;
+		_result = selectedSound->_channel->setPan(selectedSound->channelPan);
+		assert(!_result);
+	}
 }
 void cSoundManager::decreasePan()
 {
-	selectedSound->channelPan = selectedSound->channelPan <= -1.0f ? -1.0f : selectedSound->channelPan - 0.1f;
-	_result = selectedSound->_channel->setPan(selectedSound->channelPan);
-	assert(!_result);
+	if (selectedSound)
+	{
+		selectedSound->channelPan = selectedSound->channelPan <= -1.0f ? -1.0f : selectedSound->channelPan - 0.1f;
+		_result = selectedSound->_channel->setPan(selectedSound->channelPan);
+		assert(!_result);
+	}
 }
 void cSoundManager::increasePitch()
 {
-	float pitch = 1.0f;
-	_result = selectedSound->_channel->getPitch(&pitch);
-	assert(!_result);
-	pitch = (pitch >= 2.0f) ? 2.0f : (pitch + 0.1f);
-	_result = selectedSound->_channel->setPitch(pitch);
-	assert(!_result);
+	if (selectedSound)
+	{
+		float pitch = 1.0f;
+		_result = selectedSound->_channel->getPitch(&pitch);
+		assert(!_result);
+		pitch = (pitch >= 2.0f) ? 2.0f : (pitch + 0.1f);
+		_result = selectedSound->_channel->setPitch(pitch);
+		assert(!_result);
+	}
 }
 void cSoundManager::decreasePitch()
 {
-	float pitch = 1.0f;
-	_result = selectedSound->_channel->getPitch(&pitch);
-	assert(!_result);
-	pitch = (pitch <= 0.1f) ? 0.1f : (pitch - 0.1f);
-	_result = selectedSound->_channel->setPitch(pitch);
-	assert(!_result);
+	if (selectedSound)
+	{
+		float pitch = 1.0f;
+		_result = selectedSound->_channel->getPitch(&pitch);
+		assert(!_result);
+		pitch = (pitch <= 0.1f) ? 0.1f : (pitch - 0.1f);
+		_result = selectedSound->_channel->setPitch(pitch);
+		assert(!_result);
+	}
 }
 void cSoundManager::increasePlabackSpeed()
 {
-	float frequency = 0.0f;
-	_result = selectedSound->_channel->getFrequency(&frequency);
-	assert(!_result);
-	frequency += 500.0f;
-	_result = selectedSound->_channel->setFrequency(frequency);
-	assert(!_result);
+	if (selectedSound)
+	{
+		float frequency = 0.0f;
+		_result = selectedSound->_channel->getFrequency(&frequency);
+		assert(!_result);
+		frequency += 500.0f;
+		_result = selectedSound->_channel->setFrequency(frequency);
+		assert(!_result);
+	}
 }
 void cSoundManager::decreasePlaybackSpeed()
 {
-	float frequency = 0.0f;
-	_result = selectedSound->_channel->getFrequency(&frequency);
-	assert(!_result);
-	frequency -= 500.0f;
-	_result = selectedSound->_channel->setFrequency(frequency);
-	assert(!_result);
+	if (selectedSound)
+	{
+		float frequency = 0.0f;
+		_result = selectedSound->_channel->getFrequency(&frequency);
+		assert(!_result);
+		frequency -= 500.0f;
+		_result = selectedSound->_channel->setFrequency(frequency);
+		assert(!_result);
+	}
 }
 
