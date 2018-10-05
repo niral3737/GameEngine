@@ -20,9 +20,6 @@ public:
 
 	FMOD_RESULT _result = FMOD_OK;
 	FMOD::System *_system = NULL;
-	/*FMOD::Sound* _sound[10];
-	FMOD::Channel* _channel[10];*/
-	//sSoundInfo soundInfo[10];
 	bool wantCompressed;
 	std::map<std::string, sSoundInfo*> mapSounds;
 	sSoundInfo* selectedSound;
