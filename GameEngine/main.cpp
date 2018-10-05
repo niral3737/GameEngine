@@ -29,6 +29,21 @@ int main(void)
 	cSceneUtils::initializeCamera();
 	cSceneUtils::getInstance()->loadModelsIntoScene();
 
+	cMeshObject* tree1 =  cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("tree");
+	tree1->position = glm::vec3(3.0f, 0.0f, 0.0f);
+	tree1->isVisible = true;
+	cSceneUtils::getInstance()->vecObjectsToDraw.push_back(tree1);
+
+	cMeshObject* tree2 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("tree");
+	tree2->position = glm::vec3(-3.0f, 0.0f, 0.0f);
+	tree2->isVisible = true;
+	cSceneUtils::getInstance()->vecObjectsToDraw.push_back(tree2);
+
+	cMeshObject* tree3 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("tree");
+	tree3->position = glm::vec3(-4.0f, 0.0f, 5.0f);
+	tree3->isVisible = true;
+	cSceneUtils::getInstance()->vecObjectsToDraw.push_back(tree3);
+
 	assert(soundManager->initFmod());
 	soundManager->createAllSounds();
 	soundManager->loadSFX();
@@ -43,7 +58,6 @@ int main(void)
 	GLFWwindow* window = cGLFWUtils::getWindowInstance();
 	while (!glfwWindowShouldClose(window))
 	{
-		soundManager->printInfo();
 		float ratio;
 		int width, height;
 		//glm::mat4x4 mvp;		
@@ -92,6 +106,7 @@ int main(void)
 		}//for ( unsigned int objIndex = 0; 
 		
 		glfwSwapBuffers(window);		// Shows what we drew
+		soundManager->printInfo();
 
 		glfwPollEvents();
 		cUserIO::processAsynKeys(window);

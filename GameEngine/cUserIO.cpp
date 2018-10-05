@@ -90,7 +90,7 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 
 void cUserIO::processAsynKeys(GLFWwindow* window)
 {
-	const float CAMERA_SPEED_SLOW = 0.03f;
+	const float CAMERA_SPEED_SLOW = 0.1f;
 	const float CAMERA_SPEED_FAST = 1.0f;
 
 	cMeshObject* axe = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("axe");
@@ -170,16 +170,6 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 				soundManager->mapSounds["forestSound"]->_channel->setPaused(true);
 			}
 		}
-		//if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)	// "up"
-		//{
-		//	//cSceneUtils::cameraEye.y += cameraSpeed;
-		//	axe->position.y += cameraSpeed;
-		//}
-		//if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)	// "down"
-		//{
-		//	//cSceneUtils::cameraEye.y -= cameraSpeed;
-		//	axe->position.y -= cameraSpeed;
-		//}
 
 	}//if(AreAllModifiersUp(window)
 

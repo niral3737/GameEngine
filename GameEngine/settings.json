@@ -17,7 +17,7 @@
 		{
 			"meshName":"bun_res3_xyz.ply",
 			"friendlyName": "bunny",
-			"isWireFrame": false,
+			"isWireFrame": true,
 			"isVisible": false,
 			"useVertexColor": false,
 			"position" : {
