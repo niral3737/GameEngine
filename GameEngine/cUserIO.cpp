@@ -73,7 +73,7 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 	}
 	if (glfwGetKey(window, GLFW_KEY_8))
 	{
-		soundManager->selectedSound = soundManager->mapSounds["splashSound"];
+		soundManager->selectedSound = soundManager->mapSounds["windSound"];
 	}
 	if (glfwGetKey(window, GLFW_KEY_9))
 	{
@@ -112,32 +112,74 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		{
 			//cSceneUtils::cameraEye.z += cameraSpeed;
 			axe->position.z += cameraSpeed;
+			if (axe->position.z > 0.0f)
+			{
+				bool isPaused = false;
+				soundManager->mapSounds["fireSound"]->_channel->getPaused(&isPaused);
+				if (isPaused)
+				{
+					soundManager->mapSounds["fireSound"]->_channel->setPaused(false);
+				}
+			}
 		}
 		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)	// "backwards"
 		{
 			//cSceneUtils::cameraEye.z -= cameraSpeed;
 			axe->position.z -= cameraSpeed;
+			if (axe->position.z < 2.0f)
+			{
+				soundManager->mapSounds["fireSound"]->_channel->setPaused(true);
+			}
 		}
 		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)	// "left"
 		{
 			//cSceneUtils::cameraEye.x -= cameraSpeed;
-			axe->position.x -= cameraSpeed;
+			axe->position.x += cameraSpeed;
+			if (axe->position.x > -2.0f)
+			{
+				soundManager->mapSounds["windSound"]->_channel->setPaused(true);
+			}
+
+			if (axe->position.x > 4.0f)
+			{
+				bool isPaused = false;
+				soundManager->mapSounds["forestSound"]->_channel->getPaused(&isPaused);
+				if (isPaused)
+				{
+					soundManager->mapSounds["forestSound"]->_channel->setPaused(false);
+				}
+			}
 		}
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)	// "right"
 		{
 			//cSceneUtils::cameraEye.x += cameraSpeed;
-			axe->position.x += cameraSpeed;
+			axe->position.x -= cameraSpeed;
+			
+			if (axe->position.x < -4.0f)
+			{
+				bool isPaused = false;
+				soundManager->mapSounds["windSound"]->_channel->getPaused(&isPaused);
+				if (isPaused)
+				{
+					soundManager->mapSounds["windSound"]->_channel->setPaused(false);
+				}
+			}
+
+			if (axe->position.x < 2.0f)
+			{
+				soundManager->mapSounds["forestSound"]->_channel->setPaused(true);
+			}
 		}
-		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)	// "up"
-		{
-			//cSceneUtils::cameraEye.y += cameraSpeed;
-			axe->position.y += cameraSpeed;
-		}
-		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)	// "down"
-		{
-			//cSceneUtils::cameraEye.y -= cameraSpeed;
-			axe->position.y -= cameraSpeed;
-		}
+		//if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)	// "up"
+		//{
+		//	//cSceneUtils::cameraEye.y += cameraSpeed;
+		//	axe->position.y += cameraSpeed;
+		//}
+		//if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)	// "down"
+		//{
+		//	//cSceneUtils::cameraEye.y -= cameraSpeed;
+		//	axe->position.y -= cameraSpeed;
+		//}
 
 	}//if(AreAllModifiersUp(window)
 

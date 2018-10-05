@@ -4,9 +4,9 @@
 	"fragmentShaderFileName": "fragment01.glsl",
 	"shaderProgramName": "myShader",
 	"cameraEye": {
-		"x": 10.0,
-		"y": 20.0,
-		"z": 30.0
+		"x": 0.0,
+		"y": 0.0,
+		"z": -13.0
 	},
 	"cameraAt": {
 		"x": 0.0,
@@ -64,7 +64,7 @@
 			"meshName": "tree.ply",
 			"friendlyName": "tree",
 			"isWireFrame": false,
-			"isVisible": true,
+			"isVisible": false,
 			"useVertexColor": false,
 			"position" : {
 				"x" : 0.0,
@@ -82,29 +82,6 @@
 				"b": 0.0
 			},
 			"scale": 1.0
-		},
-		{
-			"meshName": "ground.ply",
-			"friendlyName": "ground",
-			"isWireFrame": false,
-			"isVisible": true,
-			"useVertexColor": false,
-			"position" : {
-				"x" : 0.0,
-				"y" : 0.0,
-				"z" : 0.0
-			},
-			"postRotation" : {
-				"x" : 0.0,
-				"y" : 0.0,
-				"z" : 0.0
-			},
-			"objectColor" : {
-				"r": 0.91,
-				"g": 0.45,
-				"b": 0.31
-			},
-			"scale": 1.0
 		}
 	],
 	"soundsBasePath": "./assets/sounds/",
@@ -117,7 +94,7 @@
 	"appleSound": "apple_bite",
 	"fireSound": "fire",
 	"forestSound": "forest",
-	"splashSound": "splash",
+	"windSound": "wind",
 	"jumpSound": "jump",
 	"punchSound": "punch"
 }

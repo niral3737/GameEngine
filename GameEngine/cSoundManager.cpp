@@ -167,16 +167,16 @@ void cSoundManager::createAllSounds()
 	_result = _system->createSound(getSoundFilePath("punchSound").c_str(), FMOD_DEFAULT, 0, &mapSounds["punchSound"]->_sound);
 	assert(!_result);
 
-	mapSounds["splashSound"] = new sSoundInfo();
-	_result = _system->createSound(getSoundFilePath("splashSound").c_str(), FMOD_DEFAULT, 0, &mapSounds["splashSound"]->_sound);
+	mapSounds["windSound"] = new sSoundInfo();
+	_result = _system->createSound(getSoundFilePath("windSound").c_str(), FMOD_LOOP_NORMAL, 0, &mapSounds["windSound"]->_sound);
 	assert(!_result);
 
 	mapSounds["fireSound"] = new sSoundInfo();
-	_result = _system->createSound(getSoundFilePath("fireSound").c_str(), FMOD_DEFAULT, 0, &mapSounds["fireSound"]->_sound);
+	_result = _system->createSound(getSoundFilePath("fireSound").c_str(), FMOD_LOOP_NORMAL, 0, &mapSounds["fireSound"]->_sound);
 	assert(!_result);
 
 	mapSounds["forestSound"] = new sSoundInfo();
-	_result = _system->createSound(getSoundFilePath("forestSound").c_str(), FMOD_DEFAULT, 0, &mapSounds["forestSound"]->_sound);
+	_result = _system->createSound(getSoundFilePath("forestSound").c_str(), FMOD_LOOP_NORMAL, 0, &mapSounds["forestSound"]->_sound);
 	assert(!_result);
 }
 
@@ -217,7 +217,7 @@ void cSoundManager::loadSFX()
 	this->_result = this->_system->playSound(mapSounds["punchSound"]->_sound, 0, true, &mapSounds["punchSound"]->_channel);
 	assert(!this->_result);
 
-	this->_result = this->_system->playSound(mapSounds["splashSound"]->_sound, 0, true, &mapSounds["splashSound"]->_channel);
+	this->_result = this->_system->playSound(mapSounds["windSound"]->_sound, 0, true, &mapSounds["windSound"]->_channel);
 	assert(!this->_result);
 
 	this->_result = this->_system->playSound(mapSounds["fireSound"]->_sound, 0, true, &mapSounds["fireSound"]->_channel);

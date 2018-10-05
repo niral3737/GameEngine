@@ -29,13 +29,6 @@ int main(void)
 	cSceneUtils::initializeCamera();
 	cSceneUtils::getInstance()->loadModelsIntoScene();
 
-	for (size_t i = 0; i < 20; i++)
-	{
-		cMeshObject* tree = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("tree");
-		tree->position = glm::vec3(std::rand() % 20, std::rand() % 20, std::rand() % 20);
-	}
-	
-
 	assert(soundManager->initFmod());
 	soundManager->createAllSounds();
 	soundManager->loadSFX();
