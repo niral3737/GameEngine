@@ -24,6 +24,12 @@ public:
 	bool isWireFrame;
 	bool isVisible;
 	bool useVertexColor;
+	
+
+	//Physics
+	bool isUpdatedByPhysics;
+	glm::vec3 velocity;
+	glm::vec3 acceleration;
 
 	inline unsigned int getUniqueId(void)
 	{

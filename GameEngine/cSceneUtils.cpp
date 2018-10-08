@@ -73,6 +73,16 @@ void cSceneUtils::loadModelsIntoScene()
 
 		meshObject->scale = meshes[i]["scale"].get<float>();
 
+		meshObject->isUpdatedByPhysics = meshes[i]["isUpdatedByPhysics"].get<bool>();
+
+		meshObject->velocity.x = meshes[i]["velocity"]["x"].get<float>();
+		meshObject->velocity.y = meshes[i]["velocity"]["y"].get<float>();
+		meshObject->velocity.z = meshes[i]["velocity"]["z"].get<float>();
+
+		meshObject->acceleration.x = meshes[i]["acceleration"]["x"].get<float>();
+		meshObject->acceleration.y = meshes[i]["acceleration"]["y"].get<float>();
+		meshObject->acceleration.z = meshes[i]["acceleration"]["z"].get<float>();
+
 		vecObjectsToDraw.push_back(meshObject);
 	}
 }
@@ -105,6 +115,16 @@ cMeshObject* cSceneUtils::loadMeshInfoByFriendlyName( std::string friendlyName)
 			meshObject->objectColor.b = meshes[i]["objectColor"]["b"].get<float>();
 
 			meshObject->scale = meshes[i]["scale"].get<float>();
+
+			meshObject->isUpdatedByPhysics = meshes[i]["isUpdatedByPhysics"].get<bool>();
+
+			meshObject->velocity.x = meshes[i]["velocity"]["x"].get<float>();
+			meshObject->velocity.y = meshes[i]["velocity"]["y"].get<float>();
+			meshObject->velocity.z = meshes[i]["velocity"]["z"].get<float>();
+
+			meshObject->acceleration.x = meshes[i]["acceleration"]["x"].get<float>();
+			meshObject->acceleration.y = meshes[i]["acceleration"]["y"].get<float>();
+			meshObject->acceleration.z = meshes[i]["acceleration"]["z"].get<float>();
 
 			vecObjectsToDraw.push_back(meshObject);
 			return meshObject;

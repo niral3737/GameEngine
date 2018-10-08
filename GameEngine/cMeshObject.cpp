@@ -14,6 +14,10 @@ cMeshObject::cMeshObject()
 	this->isWireFrame = false;
 	this->useVertexColor = false;
 
+	this->isUpdatedByPhysics = true;
+	this->velocity = glm::vec3(0.0f);
+	this->acceleration = glm::vec3(0.0f);
+
 	this->mUniqueID = cMeshObject::mNextID;
 	cMeshObject::mNextID++;
 

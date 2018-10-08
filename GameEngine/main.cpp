@@ -13,13 +13,10 @@
 #include "iMeshObject.h"
 #include "cUserIO.h"
 #include "cSoundManager.h"
-
-#include "console.h"
+#include "cPhysics.h"
 
 int main(void)
 {
-	cSoundManager* soundManager = cSoundManager::getInstance();
-	soundManager->askForCompressedFiles();
 
 	cGLFWUtils::setUpGLFW();
 	GLuint program = cShaderUtils::setUpShaders();
@@ -27,20 +24,10 @@ int main(void)
 	cVAOMeshUtils::getInstance()->loadModels(program);
 
 	cSceneUtils::initializeCamera();
+
 	cSceneUtils::getInstance()->loadModelsIntoScene();
 
-	for (size_t i = 0; i < 20; i++)
-	{
-		cMeshObject* tree = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("tree");
-		tree->position = glm::vec3(std::rand() % 20, std::rand() % 20, std::rand() % 20);
-	}
-	
-
-	assert(soundManager->initFmod());
-	soundManager->createAllSounds();
-	soundManager->loadSFX();
-
-	soundManager->playBackgroundMusic();
+	double lastTime = glfwGetTime();
 
 	cShaderUtils::getInstance()->getUniformVariableLocation(program, "objectColour");
 
@@ -50,7 +37,7 @@ int main(void)
 	GLFWwindow* window = cGLFWUtils::getWindowInstance();
 	while (!glfwWindowShouldClose(window))
 	{
-		soundManager->printInfo();
+		//soundManager->printInfo();
 		float ratio;
 		int width, height;
 		//glm::mat4x4 mvp;		
@@ -70,7 +57,9 @@ int main(void)
 		glEnable(GL_CULL_FACE);	// Discared "back facing" triangles
 
 		// Colour and depth buffers are TWO DIFF THINGS.
+		glClearColor(0.4f, 0.7f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		
 
 		//mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
 		matProjection = glm::perspective(0.6f,			// FOV
@@ -101,10 +90,19 @@ int main(void)
 		glfwSwapBuffers(window);		// Shows what we drew
 
 		glfwPollEvents();
+		double currentTime = glfwGetTime();
+		double deltaTime = currentTime - lastTime;
+		lastTime = currentTime;
+
+		cModelDrawInfo modelDrawInfo;
+		modelDrawInfo.meshFileName = "terrain_xyz.ply";
+		cVAOMeshUtils::getInstance()->findDrawInfoByModelName(modelDrawInfo);
+
+		PhysicsUpdate(deltaTime, modelDrawInfo);
 		cUserIO::processAsynKeys(window);
 	}//while (!glfwWindowShouldClose(window))
 
-	soundManager->shutdownFmod();
+	//soundManager->shutdownFmod();
 	glfwDestroyWindow(window);
 	glfwTerminate();
 	exit(EXIT_SUCCESS);

@@ -143,6 +143,7 @@
     <ClCompile Include="cMeshObjectFactory.cpp" />
     <ClCompile Include="cModelDrawInfo.cpp" />
     <ClCompile Include="console.cpp" />
+    <ClCompile Include="cPhysics.cpp" />
     <ClCompile Include="cSceneUtils.cpp" />
     <ClCompile Include="cShader.cpp" />
     <ClCompile Include="cShaderUtils.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="cMeshObjectFactory.h" />
     <ClInclude Include="cModelDrawInfo.h" />
     <ClInclude Include="console.h" />
+    <ClInclude Include="cPhysics.h" />
     <ClInclude Include="cSceneUtils.h" />
     <ClInclude Include="cShaderUtils.h" />
     <ClInclude Include="cUserIO.h" />

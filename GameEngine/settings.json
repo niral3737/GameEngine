@@ -15,54 +15,8 @@
 	},
 	"meshes":[
 		{
-			"meshName":"bun_res3_xyz.ply",
-			"friendlyName": "bunny",
-			"isWireFrame": false,
-			"isVisible": false,
-			"useVertexColor": false,
-			"position" : {
-				"x" : 0.0,
-				"y" : 0.0,
-				"z" : 0.0
-			},
-			"postRotation" : {
-				"x" : 0.0,
-				"y" : 0.0,
-				"z" : 0.0
-			},
-			"objectColor" : {
-				"r": 1.0,
-				"g": 0.0,
-				"b": 0.0
-			},
-			"scale": 9.0
-		},
-		{
-			"meshName": "axe.ply",
-			"friendlyName": "axe",
-			"isWireFrame": false,
-			"isVisible": true,
-			"useVertexColor": false,
-			"position" : {
-				"x" : 0.0,
-				"y" : -1.2,
-				"z" : -7.0
-			},
-			"postRotation" : {
-				"x" : 0.0,
-				"y" : 1.1,
-				"z" : 0.5
-			},
-			"objectColor" : {
-				"r": 1.0,
-				"g": 0.0,
-				"b": 0.0
-			},
-			"scale": 0.6
-		},
-		{
-			"meshName": "tree.ply",
-			"friendlyName": "tree",
+			"meshName":"ship_xyz.ply",
+			"friendlyName": "BlackPearl",
 			"isWireFrame": false,
 			"isVisible": true,
 			"useVertexColor": false,
@@ -77,16 +31,27 @@
 				"z" : 0.0
 			},
 			"objectColor" : {
-				"r": 0.0,
+				"r": 1.0,
 				"g": 1.0,
 				"b": 0.0
 			},
-			"scale": 1.0
+			"scale": 1.0,
+			"isUpdatedByPhysics": true,
+			"velocity": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"acceleration": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
 		},
 		{
-			"meshName": "ground.ply",
-			"friendlyName": "ground",
-			"isWireFrame": false,
+			"meshName":"terrain_xyz.ply",
+			"friendlyName": "terrain",
+			"isWireFrame": true,
 			"isVisible": true,
 			"useVertexColor": false,
 			"position" : {
@@ -100,11 +65,22 @@
 				"z" : 0.0
 			},
 			"objectColor" : {
-				"r": 0.91,
-				"g": 0.45,
-				"b": 0.31
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0
 			},
-			"scale": 1.0
+			"scale": 1.0,
+			"isUpdatedByPhysics": false,
+			"velocity": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"acceleration": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
 		}
 	],
 	"soundsBasePath": "./assets/sounds/",
