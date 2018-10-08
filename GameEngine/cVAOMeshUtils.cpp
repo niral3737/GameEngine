@@ -175,7 +175,7 @@ bool cVAOMeshUtils::mLoadModelFromFile(cModelDrawInfo &drawInfo)
 //	sPlyVertex* pArrayVert = new sPlyVertex[numberOfVertices];	// HEAP
 //	g_pArrayVert = new sPlyVertex[g_numberOfVertices];	// HEAP
 	drawInfo.pVerticesFromFile = new glm::vec3[drawInfo.numberOfVertices];
-	drawInfo.pNormalsFromFile = new glm::vec3[drawInfo.numberOfVertices];
+
 	//	ZeroMemory(); win32
 		// C call... (clears memory to all zeros)
 	//	memset( g_pArrayVert, 0, sizeof( sPlyVertex ) * g_numberOfVertices );
@@ -187,10 +187,6 @@ bool cVAOMeshUtils::mLoadModelFromFile(cModelDrawInfo &drawInfo)
 		theFile >> drawInfo.pVerticesFromFile[index].x;
 		theFile >> drawInfo.pVerticesFromFile[index].y;
 		theFile >> drawInfo.pVerticesFromFile[index].z;
-
-		theFile >> drawInfo.pNormalsFromFile[index].x;
-		theFile >> drawInfo.pNormalsFromFile[index].y;
-		theFile >> drawInfo.pNormalsFromFile[index].z;
 
 		//		theFile >> g_pArrayVert[index].;
 	}//for ( unsigned int index...
@@ -250,17 +246,12 @@ bool cVAOMeshUtils::mLoadDrawInfoIntoVAO(
 	unsigned int shaderProgramID)
 {
 	//sVert_xyz_rgb* pVertices = new sVert_xyz_rgb[g_numberOfVertices];
-	drawInfo.pVerticesToVBO = new sVert_xyz_rgb_n[drawInfo.numberOfVertices];
+	drawInfo.pVerticesToVBO = new sVert_xyz_rgb[drawInfo.numberOfVertices];
 
 	// Copy the data from the PLY format to the vertex buffer format
 	for (unsigned int index = 0; index != drawInfo.numberOfVertices; index++)
 	{
 		drawInfo.pVerticesToVBO[index].xyz = drawInfo.pVerticesFromFile[index];
-
-		glm::vec3 normal = drawInfo.pNormalsFromFile[index];
-		glm::normalize(normal);
-
-		drawInfo.pVerticesToVBO[index].n = normal;
 
 		drawInfo.pVerticesToVBO[index].rgb.r = 1.0f;
 		drawInfo.pVerticesToVBO[index].rgb.g = 1.0f;
@@ -285,7 +276,7 @@ bool cVAOMeshUtils::mLoadDrawInfoIntoVAO(
 	glBindBuffer(GL_ARRAY_BUFFER, drawInfo.vertexBufferID);
 
 	unsigned int vertexBufferSizeInBytes =
-		sizeof(sVert_xyz_rgb_n) * drawInfo.numberOfVertices;
+		sizeof(sVert_xyz_rgb) * drawInfo.numberOfVertices;
 
 	//	vector<sVert_xyz_rgb> vecVerticesON_THE_CPU;
 	//	sVert_xyz_rgb* pVerticesToVBO = new sVert_xyz_rgb[ARRAYSIZE]
@@ -340,45 +331,27 @@ bool cVAOMeshUtils::mLoadDrawInfoIntoVAO(
 
 	GLint vpos_location = glGetAttribLocation(shaderProgramID, "vPosition");
 	GLint vcol_location = glGetAttribLocation(shaderProgramID, "vColour");
-	GLint vnorm_location = glGetAttribLocation(shaderProgramID, "vNormal");
 
 	glEnableVertexAttribArray(vpos_location);
 	glVertexAttribPointer(vpos_location,	// "vPosition"
 		3,				//  vec3 (xyz)
 		GL_FLOAT,
 		GL_FALSE,		// DON'T "normalize"
-		sizeof(sVert_xyz_rgb_n),
-		(void*) offsetof(sVert_xyz_rgb_n, xyz));
-		//sizeof(float) * 6,
-		//(void*)0);
+		sizeof(float) * 6,
+		(void*)0);
 
 	glEnableVertexAttribArray(vcol_location);
 	glVertexAttribPointer(vcol_location,		// cColour
 		3,					// vec3 (rgb)
 		GL_FLOAT,
 		GL_FALSE,
-		sizeof(sVert_xyz_rgb_n), //sizeof(float) * 6,
-		(void*) offsetof(sVert_xyz_rgb_n, rgb));//(void*)(sizeof(float) * 3));
-
-	glEnableVertexAttribArray(vnorm_location);
-	glVertexAttribPointer(vnorm_location,		// 
-		3,					// vec3 (xyz)
-		GL_FLOAT,
-		GL_FALSE,
-		sizeof(sVert_xyz_rgb_n),	//   9  size in bytes
-		(void*) offsetof(sVert_xyz_rgb_n, n));
+		sizeof(float) * 6,
+		(void*)(sizeof(float) * 3));
 
 	// Get rid of everything we don't need.
 
 	// Set the "current" VAO to nothing.
 	glBindVertexArray(0);
-
-	glDisableVertexAttribArray(vpos_location);
-	glDisableVertexAttribArray(vcol_location);
-	glDisableVertexAttribArray(vnorm_location);
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 	return true;
 }
@@ -420,7 +393,7 @@ void cVAOMeshUtils::updateModelVertexInformation(cModelDrawInfo &drawInfo)
 	glBindBuffer(GL_ARRAY_BUFFER, drawInfo.vertexBufferID);
 
 	unsigned int vertexBufferSizeInBytes =
-		sizeof(sVert_xyz_rgb_n) * drawInfo.numberOfVertices;
+		sizeof(sVert_xyz_rgb) * drawInfo.numberOfVertices;
 
 	// ASSUME it's a dynmaic buffer
 //	if ( drawInfo.bVertexBufferIsDynamic )

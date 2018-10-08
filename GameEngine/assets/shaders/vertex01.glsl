@@ -3,17 +3,14 @@
 
 //uniform mat4 MVP;		
 uniform mat4 matModel;		// M
-uniform mat4 matModelInvTrans; // inverse(transpose(matModel))
 uniform mat4 matView;		// V
 uniform mat4 matProj;		// P
 
 in vec3 vColour;		// rgb   	was "attribute"
 in vec3 vPosition;		// xyz		was "attribute"
-in vec3 vNormal;        // nor
 
 out vec3 color;			// exit to fragment
-out vec4 vertPosWorld;  // "World space"
-out vec3 vertNormal;    // "Model space"
+out vec4 vertPosWorld;
 
 void main()
 {
@@ -25,13 +22,5 @@ void main()
 	
 	vertPosWorld = matModel * vec4(posTemp, 1.0);
 	
-	// Transforms the normal into "world space"
-	// Remove all scaling and transformation from model
-	// Leaving ONLY rotation... 
-	vertNormal = vec3( matModelInvTrans * vec4(normalize(vNormal),1.0f) );
-
     color = vColour;
 }
-
-
-

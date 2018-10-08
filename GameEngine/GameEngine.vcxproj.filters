@@ -140,5 +140,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="settings.json" />
+    <None Include="assets\shaders\fragment01.glsl">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="assets\shaders\vertex01.glsl">
+      <Filter>Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

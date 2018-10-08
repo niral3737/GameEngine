@@ -4,11 +4,10 @@
 #include <glm/glm.hpp>
 #include <string>
 
-struct sVert_xyz_rgb_n
+struct sVert_xyz_rgb
 {
-	glm::vec3 xyz {0.0f ,0.0f ,0.0f};
-	glm::vec3 rgb { 0.0f ,0.0f ,0.0f };
-	glm::vec3 n { 0.0f, 0.0f, 0.0f };
+	glm::vec3 xyz{ 0.0f ,0.0f ,0.0f };
+	glm::vec3 rgb{ 0.0f ,0.0f ,0.0f };
 };
 
 class cModelDrawInfo
@@ -19,7 +18,7 @@ public:
 
 	std::string meshFileName;
 
-	unsigned int VAO_ID;					
+	unsigned int VAO_ID;
 
 	unsigned int vertexBufferID;
 	unsigned int vertexBuffer_start_index;
@@ -27,19 +26,18 @@ public:
 
 	unsigned int indexBufferID;
 	unsigned int indexBuffer_start_index;
-	unsigned int numberOfIndices;			
+	unsigned int numberOfIndices;
 	unsigned int numberOfTriangles;
 
 	// This is the vertex information as read from the file
 	glm::vec3* pVerticesFromFile;
-	glm::vec3* pNormalsFromFile;
 	// These are the original triangle values from file,
 	//	but in the 'triangle' (or face) format
 	glm::ivec3 *pTriangles;
 
 	// This is the vertex information being passed to the GPU
 	// (is in format that the shader needs)
-	sVert_xyz_rgb_n* pVerticesToVBO;
+	sVert_xyz_rgb* pVerticesToVBO;
 
 	// This buffer is indices as a 1D array (that the GPU needs)
 	unsigned int* pIndices;		// = new unsigned int[ARRAYSIZE]
@@ -57,6 +55,3 @@ public:
 };
 
 #endif // !_MODEL_DRAW_INFO_HG_
-
-
-
