@@ -117,6 +117,7 @@ cMeshObject* cSceneUtils::loadMeshInfoByFriendlyName( std::string friendlyName)
 			meshObject->scale = meshes[i]["scale"].get<float>();
 
 			meshObject->isUpdatedByPhysics = meshes[i]["isUpdatedByPhysics"].get<bool>();
+			meshObject->dontLight = meshes[i]["dontLight"].get<bool>();
 
 			meshObject->velocity.x = meshes[i]["velocity"]["x"].get<float>();
 			meshObject->velocity.y = meshes[i]["velocity"]["y"].get<float>();
@@ -158,7 +159,8 @@ void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, G
 	if (!currentMesh->isVisible)
 		return;
 
-	applyTranformations(currentMesh, matModel);
+	glm::mat4 matModelInvTrans;
+	applyTranformations(currentMesh, matModel, matModelInvTrans);
 
 	glUseProgram(shaderProgramID);
 
@@ -169,10 +171,14 @@ void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, G
 	GLint useVertexColour_UniLoc = glGetUniformLocation(shaderProgramID, "useVertexColour");
 
 	GLint matModel_location = glGetUniformLocation(shaderProgramID, "matModel");
+	GLint matModelInvTrans_location = glGetUniformLocation(shaderProgramID, "matModelInvTrans");
 	GLint matView_location = glGetUniformLocation(shaderProgramID, "matView");
 	GLint matProj_location = glGetUniformLocation(shaderProgramID, "matProj");
 
+	GLint bDontUseLighting_UniLoc = glGetUniformLocation(shaderProgramID, "bDontUseLighting");
+
 	glUniformMatrix4fv(matModel_location, 1, GL_FALSE, glm::value_ptr(matModel));
+	glUniformMatrix4fv(matModelInvTrans_location, 1, GL_FALSE, glm::value_ptr(matModelInvTrans));
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
@@ -194,6 +200,15 @@ void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, G
 	else
 	{
 		glUniform1f(useVertexColour_UniLoc, (float)GL_FALSE);
+	}
+
+	if (currentMesh->dontLight)
+	{
+		glUniform1f(bDontUseLighting_UniLoc, (float)GL_TRUE);
+	}
+	else
+	{
+		glUniform1f(bDontUseLighting_UniLoc, (float)GL_FALSE);
 	}
 
 	if (currentMesh->isWireFrame)
@@ -234,7 +249,7 @@ void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, G
 	return;
 }
 
-void cSceneUtils::applyTranformations(iMeshObject* pCurrentMesh, glm::mat4x4& matModel)
+void cSceneUtils::applyTranformations(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, glm::mat4& matModelInvTrans)
 {
 	cMeshObject* currentMesh = (cMeshObject*) pCurrentMesh;
 	matModel = glm::mat4x4(1.0f);		// mat4x4_identity(m);
@@ -260,6 +275,7 @@ void cSceneUtils::applyTranformations(iMeshObject* pCurrentMesh, glm::mat4x4& ma
 	matModel = matModel * postRot_Z;
 
 	// And now scale
+	matModelInvTrans = glm::inverse(glm::transpose(matModel));
 
 	float scale = currentMesh->scale;
 	glm::mat4 matScale = glm::scale(glm::mat4(1.0f), glm::vec3(scale, scale, scale));

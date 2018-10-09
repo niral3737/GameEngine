@@ -13,6 +13,7 @@ cMeshObject::cMeshObject()
 	this->isVisible = true;
 	this->isWireFrame = false;
 	this->useVertexColor = false;
+	this->dontLight = false;
 
 	this->isUpdatedByPhysics = true;
 	this->velocity = glm::vec3(0.0f);

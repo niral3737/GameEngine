@@ -24,7 +24,7 @@ public:
 	bool isWireFrame;
 	bool isVisible;
 	bool useVertexColor;
-	
+	bool dontLight;
 
 	//Physics
 	bool isUpdatedByPhysics;

@@ -15,11 +15,12 @@
 	},
 	"meshes":[
 		{
-			"meshName":"ship_xyz.ply",
+			"meshName":"ship_xyz_n.ply",
 			"friendlyName": "BlackPearl",
 			"isWireFrame": false,
 			"isVisible": true,
 			"useVertexColor": false,
+			"dontLight": true,
 			"position" : {
 				"x" : 0.0,
 				"y" : 0.0,
@@ -49,11 +50,12 @@
 			}
 		},
 		{
-			"meshName":"terrain_xyz.ply",
+			"meshName":"terrain_xyz_n.ply",
 			"friendlyName": "terrain",
 			"isWireFrame": true,
 			"isVisible": true,
 			"useVertexColor": false,
+			"dontLight": false,
 			"position" : {
 				"x" : 0.0,
 				"y" : 0.0,
@@ -82,6 +84,54 @@
 				"z": 0.0
 			}
 		}
+	],
+	"maxNumberOfLights": 10,
+	"lights": [
+		{
+			"position": {
+				"x": 500.0,
+				"y": 500.0,
+				"z": 0.0,
+				"w": 1.0
+			},
+			"attenuation":{
+				"const": 0.0,
+				"linear": 0.001,
+				"quad": 0.0,
+				"distanceCutOff": 0.0
+			},
+			"diffuse": {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"a": 1.0
+			},
+			"specular": {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"a": 1.0
+			},
+			"direction": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0,
+				"w": 0.0
+			},
+			"param1": {
+				"lightType": 0.0,
+				"innerAngle": 0.0,
+				"outerAngle": 0.0,
+				"w": 0.0
+			},
+			"param2": {
+				"on": 1.0,
+				"y": 0.0,
+				"z": 0.0,
+				"w": 0.0
+			}
+		}
+		
 	],
 	"soundsBasePath": "./assets/sounds/",
 	"compressedFileExt": ".mp3",

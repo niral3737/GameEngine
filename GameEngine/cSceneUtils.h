@@ -27,7 +27,7 @@ public:
 private:
 	static cSceneUtils* pSceneUtils;
 	cSceneUtils();
-	void applyTranformations(iMeshObject* pCurrentMesh, glm::mat4x4& matModel);
+	void applyTranformations(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, glm::mat4& matModelInvTrans);
 };
 
 #endif // !_SCENE_UTILS_

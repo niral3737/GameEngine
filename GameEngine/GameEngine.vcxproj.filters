@@ -40,6 +40,12 @@
     <Filter Include="Sound">
       <UniqueIdentifier>{9a1f29b7-d4e2-420c-ac4f-0aa804bba876}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader\shaders">
+      <UniqueIdentifier>{f47a1599-7f70-4093-91d7-9db56ea49059}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lights">
+      <UniqueIdentifier>{90983057-7f7c-4a2a-ab2a-3834129e0ea4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -90,6 +96,12 @@
     <ClCompile Include="cPhysics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cLightsManager.cpp">
+      <Filter>Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="cLight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cShaderUtils.h">
@@ -137,8 +149,20 @@
     <ClInclude Include="cPhysics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cLightsManager.h">
+      <Filter>Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="cLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="settings.json" />
+    <None Include="assets\shaders\fragment01.glsl">
+      <Filter>Shader\shaders</Filter>
+    </None>
+    <None Include="assets\shaders\vertex01.glsl">
+      <Filter>Shader\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

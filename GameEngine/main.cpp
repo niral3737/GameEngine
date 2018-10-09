@@ -14,6 +14,7 @@
 #include "cUserIO.h"
 #include "cSoundManager.h"
 #include "cPhysics.h"
+#include "cLightsManager.h"
 
 int main(void)
 {
@@ -28,6 +29,10 @@ int main(void)
 	cSceneUtils::getInstance()->loadModelsIntoScene();
 
 	double lastTime = glfwGetTime();
+
+	cLightsManager* lightsManager = cLightsManager::getInstance();
+
+	lightsManager->loadAllLights(program);
 
 	cShaderUtils::getInstance()->getUniformVariableLocation(program, "objectColour");
 
@@ -73,6 +78,7 @@ int main(void)
 		glUniformMatrix4fv(matView_location, 1, GL_FALSE, glm::value_ptr(matView));
 		glUniformMatrix4fv(matProj_location, 1, GL_FALSE, glm::value_ptr(matProjection));
 
+		lightsManager->copyLightValuesToShader();
 
 		// Draw all the objects in the "scene"
 		for (unsigned int objIndex = 0;
