@@ -13,6 +13,8 @@ public:
 	~cLightsManager();
 
 	std::vector<cLight*> vecLights;
+	cLight* selectedLight;
+	unsigned int selectedLightIndex;
 
 	static cLightsManager* getInstance();
 
@@ -28,6 +30,7 @@ public:
 	// This would do the  nasty glUniformXf() calls
 	// Start of every frame or scene
 	void copyLightValuesToShader(void);
+	void selectNextLight();
 
 private:
 	cLightsManager();

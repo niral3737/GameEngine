@@ -193,7 +193,7 @@
 			"meshName":"sphere.ply",
 			"friendlyName": "sphere",
 			"isWireFrame": true,
-			"isVisible": true,
+			"isVisible": false,
 			"useVertexColor": false,
 			"dontLight": true,
 			"position" : {
@@ -365,15 +365,15 @@
 		{
 			"friendlyName": "light4",
 			"position": {
-				"x": -25.0,
+				"x": -70.0,
 				"y": 50.0,
 				"z": 50.0,
 				"w": 1.0
 			},
 			"attenuation":{
 				"const": 0.0,
-				"linear": 0.01,
-				"quad": 0.00001,
+				"linear": 0.001,
+				"quad": 0.0007,
 				"distanceCutOff": 0.0
 			},
 			"diffuse": {

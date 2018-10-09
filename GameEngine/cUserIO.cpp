@@ -14,9 +14,33 @@
 
 void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int action, int mods)
 {
+	cLightsManager* lightsManager = cLightsManager::getInstance();
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 	{
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_TAB))
+	{
+		lightsManager->selectNextLight();
+		std::cout << lightsManager->selectedLight->friendlyName << " selected" << std::endl;
+	}
+
+	if(mIsCtrlDown(window) && lightsManager->selectedLight){
+		//on/off
+		if (glfwGetKey(window, GLFW_KEY_0))
+		{
+			lightsManager->selectedLight->param2.x = lightsManager->selectedLight->param2.x == 1.0f ? 0.0f : 1.0f;
+		}
+
+		//random color
+		if (glfwGetKey(window, GLFW_KEY_9))
+		{
+			float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+			float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+			float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+			lightsManager->selectedLight->diffuse = glm::vec4(r, g, b, 1.0f);
+		}
 	}
 
 	return;
@@ -51,12 +75,12 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		}
 		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)	// "left"
 		{
-			cSceneUtils::cameraEye.x -= cameraSpeed;
+			cSceneUtils::cameraEye.x += cameraSpeed;
 			//axe->position.x -= cameraSpeed;
 		}
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)	// "right"
 		{
-			cSceneUtils::cameraEye.x += cameraSpeed;
+			cSceneUtils::cameraEye.x -= cameraSpeed;
 			//axe->position.x += cameraSpeed;
 		}
 		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)	// "up"
@@ -98,31 +122,55 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 
 	if (mIsCtrlDown(window))
 	{
-		cLight* light1 = cLightsManager::getInstance()->getLightByFriendlyName("light1");
+		cLight* selectedLight = cLightsManager::getInstance()->selectedLight;
+
+		if (!selectedLight)
+		{
+			return;
+		}
 
 		if (glfwGetKey(window, GLFW_KEY_W))
 		{
-			light1->position.z += 1.0f;
+			selectedLight->position.z += 1.0f;
 		}
 		if (glfwGetKey(window, GLFW_KEY_S))
 		{
-			light1->position.z -= 1.0f;
+			selectedLight->position.z -= 1.0f;
 		}
 		if (glfwGetKey(window, GLFW_KEY_A))
 		{
-			light1->position.x -= 1.0f;
+			selectedLight->position.x += 1.0f;
 		}
 		if (glfwGetKey(window, GLFW_KEY_D))
 		{
-			light1->position.x += 1.0f;
+			selectedLight->position.x -= 1.0f;
 		}
 		if (glfwGetKey(window, GLFW_KEY_Q))
 		{
-			light1->position.y += 1.0f;
+			selectedLight->position.y += 1.0f;
 		}
 		if (glfwGetKey(window, GLFW_KEY_E))
 		{
-			light1->position.y -= 1.0f;
+			selectedLight->position.y -= 1.0f;
+		}
+		//atten linear
+		if (glfwGetKey(window, GLFW_KEY_EQUAL))
+		{
+			selectedLight->atten.y += 0.0001f;
+		}
+		if (glfwGetKey(window, GLFW_KEY_MINUS))
+		{
+			selectedLight->atten.y -= 0.0001f;
+		}
+
+		//atten quad
+		if (glfwGetKey(window, GLFW_KEY_LEFT_BRACKET))
+		{
+			selectedLight->atten.z -= 0.00001f;
+		}
+		if (glfwGetKey(window, GLFW_KEY_RIGHT_BRACKET))
+		{
+			selectedLight->atten.z += 0.00001f;
 		}
 	}
 

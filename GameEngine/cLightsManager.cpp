@@ -6,7 +6,10 @@
 cLightsManager* cLightsManager::instance = NULL;
 
 cLightsManager::cLightsManager()
-{}
+{
+	this->selectedLight = NULL;
+	this->selectedLightIndex = 0;
+}
 
 
 cLightsManager::~cLightsManager()
@@ -95,4 +98,17 @@ void cLightsManager::copyLightValuesToShader()
 			light->atten.x, light->atten.y, light->atten.z, light->atten.w);
 	}
 	
+}
+
+void cLightsManager::selectNextLight()
+{
+	if (selectedLightIndex >= vecLights.size() - 1)
+	{
+		selectedLightIndex = 0;
+	}
+	else
+	{
+		selectedLightIndex++;
+	}
+	selectedLight = vecLights[selectedLightIndex];
 }

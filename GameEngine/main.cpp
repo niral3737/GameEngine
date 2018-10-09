@@ -27,6 +27,14 @@ int main(void)
 	cSceneUtils::initializeCamera();
 
 	cSceneUtils::getInstance()->loadModelsIntoScene();
+	cMeshObject* lightSphere1 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("sphere");
+	lightSphere1->isVisible = true;
+	cMeshObject* lightSphere2 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("sphere");
+	lightSphere2->isVisible = true;
+	cMeshObject* lightSphere3 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("sphere");
+	lightSphere3->isVisible = true;
+	cMeshObject* lightSphere4 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("sphere");
+	lightSphere4->isVisible = true;
 
 	double lastTime = glfwGetTime();
 
@@ -79,6 +87,10 @@ int main(void)
 		glUniformMatrix4fv(matProj_location, 1, GL_FALSE, glm::value_ptr(matProjection));
 
 		lightsManager->copyLightValuesToShader();
+		lightSphere1->position = lightsManager->getLightByFriendlyName("light1")->position;
+		lightSphere2->position = lightsManager->getLightByFriendlyName("light2")->position;
+		lightSphere3->position = lightsManager->getLightByFriendlyName("light3")->position;
+		lightSphere4->position = lightsManager->getLightByFriendlyName("light4")->position;
 
 		// Draw all the objects in the "scene"
 		for (unsigned int objIndex = 0;
