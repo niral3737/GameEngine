@@ -10,8 +10,7 @@
 class cMeshObject : public iMeshObject
 {
 public:
-	
-	~cMeshObject();
+	virtual ~cMeshObject();
 
 	glm::vec3 position;
 	glm::vec3 postRotation;

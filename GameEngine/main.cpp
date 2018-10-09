@@ -14,6 +14,9 @@
 #include "cUserIO.h"
 #include "cPhysics.h"
 #include "cLightsManager.h"
+#include "iEnemy.h"
+#include "cEnemy.h"
+#include "cEnemyFactory.h"
 
 int main(void)
 {
@@ -34,6 +37,13 @@ int main(void)
 	lightSphere3->isVisible = true;
 	cMeshObject* lightSphere4 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("sphere");
 	lightSphere4->isVisible = true;
+
+	cEnemyFactory * enemyFactory = new cEnemyFactory();
+	iEnemy* normalEnemy = enemyFactory->createEnemy(1);
+	cEnemy* enemy = (cEnemy*)normalEnemy;
+	enemy->meshObject = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("house");
+	((cMeshObject*)enemy->meshObject)->position = glm::vec3(0.0f, 0.0f, 0.0f);
+	((cMeshObject*)enemy->meshObject)->isVisible = true;
 
 	double lastTime = glfwGetTime();
 

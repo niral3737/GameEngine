@@ -138,6 +138,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cEnemy.cpp" />
+    <ClCompile Include="cEnemyFactory.cpp" />
+    <ClCompile Include="cEnemyFactoryImpl.cpp" />
     <ClCompile Include="cGLFWUtils.cpp" />
     <ClCompile Include="cLight.cpp" />
     <ClCompile Include="cLightsManager.cpp" />
@@ -158,6 +161,9 @@
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cEnemy.h" />
+    <ClInclude Include="cEnemyFactory.h" />
+    <ClInclude Include="cEnemyFactoryImpl.h" />
     <ClInclude Include="cGLFWUtils.h" />
     <ClInclude Include="cLight.h" />
     <ClInclude Include="cLightsManager.h" />
@@ -170,6 +176,7 @@
     <ClInclude Include="cShaderUtils.h" />
     <ClInclude Include="cUserIO.h" />
     <ClInclude Include="cVAOMeshUtils.h" />
+    <ClInclude Include="iEnemy.h" />
     <ClInclude Include="iMeshObject.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="cJsonUtils.h" />

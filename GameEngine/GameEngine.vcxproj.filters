@@ -102,6 +102,15 @@
     <ClCompile Include="cLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cEnemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cEnemyFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cEnemyFactoryImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cShaderUtils.h">
@@ -153,6 +162,18 @@
       <Filter>Lights</Filter>
     </ClInclude>
     <ClInclude Include="cLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iEnemy.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cEnemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cEnemyFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cEnemyFactoryImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
