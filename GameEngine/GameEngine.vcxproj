@@ -138,8 +138,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cGLColourHelper.cpp" />
     <ClCompile Include="cGLFWUtils.cpp" />
     <ClCompile Include="cLight.cpp" />
+    <ClCompile Include="cLightHelper.cpp" />
     <ClCompile Include="cLightsManager.cpp" />
     <ClCompile Include="cMeshObject.cpp" />
     <ClCompile Include="cMeshObjectFactory.cpp" />
@@ -158,8 +160,10 @@
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cGLColourHelper.h" />
     <ClInclude Include="cGLFWUtils.h" />
     <ClInclude Include="cLight.h" />
+    <ClInclude Include="cLightHelper.h" />
     <ClInclude Include="cLightsManager.h" />
     <ClInclude Include="cMeshObject.h" />
     <ClInclude Include="cMeshObjectFactory.h" />
@@ -179,6 +183,7 @@
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl" />
     <None Include="assets\shaders\vertex01.glsl" />
+    <None Include="savefile.json" />
     <None Include="settings.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

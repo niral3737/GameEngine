@@ -3,12 +3,16 @@
 #include "cSceneUtils.h"
 
 #include <iostream>
+#include <fstream>
+#include <iomanip>
 
 #include "iMeshObject.h"
 #include "cVAOMeshUtils.h"
 #include "cMeshObject.h"
 #include "cLight.h"
 #include "cLightsManager.h"
+#include "cJsonUtils.h"
+#include "json.hpp"
 
 
 void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int action, int mods)
@@ -42,6 +46,40 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 		}
 	}
 
+	//save light values
+	if (glfwGetKey(window, GLFW_KEY_ENTER))
+	{
+		//save all light values
+		std::fstream fs("savefile.json");
+		nlohmann::json json = cJsonUtils::getJsonInstance();
+
+		unsigned int index = 0;
+		for (std::vector<cLight*>::iterator it = lightsManager->vecLights.begin(); it != lightsManager->vecLights.end(); it++)
+		{
+			cLight* light = *it;
+			json["lights"][index]["position"]["x"] = light->position.x;
+			json["lights"][index]["position"]["y"] = light->position.y;
+			json["lights"][index]["position"]["z"] = light->position.z;
+			json["lights"][index]["position"]["w"] = light->position.w;
+
+			json["lights"][index]["attenuation"]["const"] = light->atten.x;
+			json["lights"][index]["attenuation"]["linear"] = light->atten.y;
+			json["lights"][index]["attenuation"]["quad"] = light->atten.z;
+			json["lights"][index]["attenuation"]["distanceCutOff"] = light->atten.w;
+
+			json["lights"][index]["diffuse"]["r"] = light->diffuse.r;
+			json["lights"][index]["diffuse"]["g"] = light->diffuse.b;
+			json["lights"][index]["diffuse"]["b"] = light->diffuse.b;
+			json["lights"][index]["diffuse"]["a"] = light->diffuse.a;
+
+			json["lights"][index]["param2"]["on"] = light->param2.x;
+
+			index++;
+		}
+
+		fs << std::setw(4) << json << std::endl;
+		fs.close();
+	}
 	return;
 }
 
@@ -155,21 +193,21 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		//atten linear
 		if (glfwGetKey(window, GLFW_KEY_EQUAL))
 		{
-			selectedLight->atten.y += 0.0001f;
+			selectedLight->atten.y += 0.01f;
 		}
 		if (glfwGetKey(window, GLFW_KEY_MINUS))
 		{
-			selectedLight->atten.y -= 0.0001f;
+			selectedLight->atten.y -= 0.01f;
 		}
 
 		//atten quad
 		if (glfwGetKey(window, GLFW_KEY_LEFT_BRACKET))
 		{
-			selectedLight->atten.z -= 0.00001f;
+			selectedLight->atten.z -= 0.001f;
 		}
 		if (glfwGetKey(window, GLFW_KEY_RIGHT_BRACKET))
 		{
-			selectedLight->atten.z += 0.00001f;
+			selectedLight->atten.z += 0.001f;
 		}
 	}
 

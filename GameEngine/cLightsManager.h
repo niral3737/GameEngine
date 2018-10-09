@@ -19,6 +19,7 @@ public:
 	static cLightsManager* getInstance();
 
 	void loadAllLights(GLuint program);
+	void loadAllLightsFromSaveFile(GLuint program);
 
 	void turnOnLight(int index);
 	void changeLightType(std::string lightType, int index);

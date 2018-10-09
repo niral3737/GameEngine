@@ -14,6 +14,8 @@
 #include "cUserIO.h"
 #include "cPhysics.h"
 #include "cLightsManager.h"
+#include "cLightHelper.h"
+#include "cLight.h"
 
 int main(void)
 {
@@ -26,20 +28,31 @@ int main(void)
 	cSceneUtils::initializeCamera();
 
 	cSceneUtils::getInstance()->loadModelsIntoScene();
-	cMeshObject* lightSphere1 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("sphere");
+	/*cMeshObject* lightSphere1 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("sphere");
 	lightSphere1->isVisible = true;
 	cMeshObject* lightSphere2 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("sphere");
 	lightSphere2->isVisible = true;
 	cMeshObject* lightSphere3 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("sphere");
 	lightSphere3->isVisible = true;
 	cMeshObject* lightSphere4 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("sphere");
-	lightSphere4->isVisible = true;
+	lightSphere4->isVisible = true;*/
 
 	double lastTime = glfwGetTime();
 
 	cLightsManager* lightsManager = cLightsManager::getInstance();
 
-	lightsManager->loadAllLights(program);
+	std::cout << "Load lights from previously saved file? (Y/y)" << std::endl;
+	char answer;
+	std::cin >> answer;
+
+	if (answer == 'y' || answer == 'Y')
+	{
+		lightsManager->loadAllLightsFromSaveFile(program);
+	}
+	else
+	{
+		lightsManager->loadAllLights(program);
+	}
 
 	cShaderUtils::getInstance()->getUniformVariableLocation(program, "objectColour");
 
@@ -47,6 +60,8 @@ int main(void)
 	GLint matProj_location = glGetUniformLocation(program, "matProj");
 
 	GLFWwindow* window = cGLFWUtils::getWindowInstance();
+
+	cLightHelper* pLightHelper = new cLightHelper();
 	while (!glfwWindowShouldClose(window))
 	{
 		//soundManager->printInfo();
@@ -86,10 +101,63 @@ int main(void)
 		glUniformMatrix4fv(matProj_location, 1, GL_FALSE, glm::value_ptr(matProjection));
 
 		lightsManager->copyLightValuesToShader();
-		lightSphere1->position = lightsManager->getLightByFriendlyName("light1")->position;
+
+		cMeshObject* attenSphere = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("sphere");
+		attenSphere->isVisible = true;
+		attenSphere->dontLight = true;
+
+		glm::mat4 matBall(1.0f);
+
+		const float ACCURACY_OF_DISTANCE = 0.01f;
+		const float INFINITE_DISTANCE = 10000.0f;
+
+		for (std::vector<cLight*>::iterator it = lightsManager->vecLights.begin(); it != lightsManager->vecLights.end(); it++)
+		{
+			cLight* light = *it;
+
+			attenSphere->position = light->position;
+
+			float distance90Percent = pLightHelper->calcApproxDistFromAtten(0.90f, ACCURACY_OF_DISTANCE,
+				INFINITE_DISTANCE, light->atten.x, light->atten.y, light->atten.z);
+			attenSphere->scale = distance90Percent;
+			attenSphere->objectColor = glm::vec3(1.0f, 1.0f, 0.0f);
+			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
+
+			attenSphere->objectColor = glm::vec3(0.0f, 1.0f, 0.0f);	// 50% brightness
+			float distance50Percent =
+				pLightHelper->calcApproxDistFromAtten(0.50f, ACCURACY_OF_DISTANCE,
+					INFINITE_DISTANCE,
+					light->atten.x,
+					light->atten.y,
+					light->atten.z);
+			attenSphere->scale = distance50Percent;
+			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
+
+			attenSphere->objectColor = glm::vec3(1.0f, 0.0f, 0.0f);	// 25% brightness
+			float distance25Percent =
+				pLightHelper->calcApproxDistFromAtten(0.25f, ACCURACY_OF_DISTANCE,
+					INFINITE_DISTANCE,
+					light->atten.x,
+					light->atten.y,
+					light->atten.z);
+			attenSphere->scale = distance25Percent;
+			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
+
+			float distance1Percent =
+				pLightHelper->calcApproxDistFromAtten(0.01f, ACCURACY_OF_DISTANCE,
+					INFINITE_DISTANCE,
+					light->atten.x,
+					light->atten.y,
+					light->atten.z);
+			attenSphere->objectColor = glm::vec3(0.0f, 0.0f, 1.0f);	// 1% brightness
+			attenSphere->scale = distance1Percent;
+			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
+		}
+
+		/*lightSphere1->position = lightsManager->getLightByFriendlyName("light1")->position;
 		lightSphere2->position = lightsManager->getLightByFriendlyName("light2")->position;
 		lightSphere3->position = lightsManager->getLightByFriendlyName("light3")->position;
-		lightSphere4->position = lightsManager->getLightByFriendlyName("light4")->position;
+		lightSphere4->position = lightsManager->getLightByFriendlyName("light4")->position;*/
 
 		// Draw all the objects in the "scene"
 		for (unsigned int objIndex = 0;
