@@ -72,7 +72,7 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 
 	}//if(AreAllModifiersUp(window)
 
-	if (mIsAltDown(window))
+	/*if (mIsAltDown(window))
 	{
 		cMeshObject* pPlayerShip = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("BlackPearl");
 		cSceneUtils::getInstance()->cameraEye = glm::vec3(pPlayerShip->position.x, pPlayerShip->position.y + 20.0f, pPlayerShip->position.z - 130.0f);
@@ -94,35 +94,35 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		{
 			pPlayerShip->acceleration.x = -3.0f;
 		}
-	}
+	}*/
 
 	if (mIsCtrlDown(window))
 	{
-		cLight* mainLight = cLightsManager::getInstance()->getLightByFriendlyName("mainLight");
+		cLight* light1 = cLightsManager::getInstance()->getLightByFriendlyName("light1");
 
 		if (glfwGetKey(window, GLFW_KEY_W))
 		{
-			mainLight->position.z += 1.0f;
+			light1->position.z += 1.0f;
 		}
 		if (glfwGetKey(window, GLFW_KEY_S))
 		{
-			mainLight->position.z -= 1.0f;
+			light1->position.z -= 1.0f;
 		}
 		if (glfwGetKey(window, GLFW_KEY_A))
 		{
-			mainLight->position.x -= 1.0f;
+			light1->position.x -= 1.0f;
 		}
 		if (glfwGetKey(window, GLFW_KEY_D))
 		{
-			mainLight->position.x += 1.0f;
+			light1->position.x += 1.0f;
 		}
 		if (glfwGetKey(window, GLFW_KEY_Q))
 		{
-			mainLight->position.y += 1.0f;
+			light1->position.y += 1.0f;
 		}
 		if (glfwGetKey(window, GLFW_KEY_E))
 		{
-			mainLight->position.y -= 1.0f;
+			light1->position.y -= 1.0f;
 		}
 	}
 

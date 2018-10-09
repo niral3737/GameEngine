@@ -100,11 +100,11 @@ int main(void)
 		double deltaTime = currentTime - lastTime;
 		lastTime = currentTime;
 
-		cModelDrawInfo modelDrawInfo;
+		/*cModelDrawInfo modelDrawInfo;
 		modelDrawInfo.meshFileName = "terrain_xyz_n.ply";
 		cVAOMeshUtils::getInstance()->findDrawInfoByModelName(modelDrawInfo);
 
-		PhysicsUpdate(deltaTime, modelDrawInfo);
+		PhysicsUpdate(deltaTime, modelDrawInfo);*/
 		cUserIO::processAsynKeys(window);
 	}//while (!glfwWindowShouldClose(window))
 

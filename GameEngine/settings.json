@@ -4,9 +4,9 @@
 	"fragmentShaderFileName": "fragment01.glsl",
 	"shaderProgramName": "myShader",
 	"cameraEye": {
-		"x": 10.0,
-		"y": 20.0,
-		"z": 30.0
+		"x": 0.0,
+		"y": 100.0,
+		"z": -230.0
 	},
 	"cameraAt": {
 		"x": 0.0,
@@ -15,16 +15,51 @@
 	},
 	"meshes":[
 		{
-			"meshName":"ship_xyz_n.ply",
-			"friendlyName": "BlackPearl",
+			"meshName":"tenker.ply",
+			"friendlyName": "tenker",
 			"isWireFrame": false,
 			"isVisible": true,
 			"useVertexColor": false,
-			"dontLight": true,
+			"dontLight": false,
 			"position" : {
+				"x" : -10.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"postRotation" : {
 				"x" : 0.0,
 				"y" : 0.0,
 				"z" : 0.0
+			},
+			"objectColor" : {
+				"r": 1.0,
+				"g": 0.0,
+				"b": 0.0
+			},
+			"scale": 1.0,
+			"isUpdatedByPhysics": true,
+			"velocity": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"acceleration": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
+		},
+		{
+			"meshName":"house.ply",
+			"friendlyName": "house",
+			"isWireFrame": false,
+			"isVisible": true,
+			"useVertexColor": false,
+			"dontLight": false,
+			"position" : {
+				"x" : 10.0,
+				"y" : 0.0,
+				"z" : -80.0
 			},
 			"postRotation" : {
 				"x" : 0.0,
@@ -50,10 +85,80 @@
 			}
 		},
 		{
+			"meshName":"eagle.ply",
+			"friendlyName": "eagle",
+			"isWireFrame": false,
+			"isVisible": true,
+			"useVertexColor": false,
+			"dontLight": false,
+			"position" : {
+				"x" : 0.0,
+				"y" : 25.0,
+				"z" : 0.0
+			},
+			"postRotation" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"objectColor" : {
+				"r": 0.0,
+				"g": 1.0,
+				"b": 0.0
+			},
+			"scale": 1.0,
+			"isUpdatedByPhysics": true,
+			"velocity": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"acceleration": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
+		},
+		{
+			"meshName":"BMW.ply",
+			"friendlyName": "BMW",
+			"isWireFrame": false,
+			"isVisible": true,
+			"useVertexColor": false,
+			"dontLight": false,
+			"position" : {
+				"x" : -50.0,
+				"y" : 0.0,
+				"z" : -70.0
+			},
+			"postRotation" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"objectColor" : {
+				"r": 0.0,
+				"g": 0.0,
+				"b": 1.0
+			},
+			"scale": 1.0,
+			"isUpdatedByPhysics": true,
+			"velocity": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"acceleration": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
+		},
+		{
 			"meshName":"terrain_xyz_n.ply",
 			"friendlyName": "terrain",
 			"isWireFrame": true,
-			"isVisible": true,
+			"isVisible": false,
 			"useVertexColor": false,
 			"dontLight": true,
 			"position" : {
@@ -83,6 +188,41 @@
 				"y": 0.0,
 				"z": 0.0
 			}
+		},
+		{
+			"meshName":"sphere.ply",
+			"friendlyName": "sphere",
+			"isWireFrame": true,
+			"isVisible": true,
+			"useVertexColor": false,
+			"dontLight": true,
+			"position" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"postRotation" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"objectColor" : {
+				"r": 1.0,
+				"g": 0.45,
+				"b": 0.75
+			},
+			"scale": 1.0,
+			"isUpdatedByPhysics": false,
+			"velocity": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"acceleration": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
 		}
 	],
 	"maxNumberOfLights": 10,
@@ -90,15 +230,15 @@
 		{
 			"friendlyName": "light1",
 			"position": {
-				"x": 100.0,
-				"y": 100.0,
-				"z": 0.0,
+				"x": 25.0,
+				"y": 25.0,
+				"z": 25.0,
 				"w": 1.0
 			},
 			"attenuation":{
 				"const": 0.0,
 				"linear": 0.001,
-				"quad": 0.0,
+				"quad": 0.001,
 				"distanceCutOff": 0.0
 			},
 			"diffuse": {
@@ -135,15 +275,15 @@
 		{
 			"friendlyName": "light2",
 			"position": {
-				"x": 100.0,
-				"y": 100.0,
-				"z": 0.0,
+				"x": 25.0,
+				"y": 50.0,
+				"z": -100.0,
 				"w": 1.0
 			},
 			"attenuation":{
 				"const": 0.0,
-				"linear": 0.001,
-				"quad": 0.0,
+				"linear": 0.0001,
+				"quad": 0.001,
 				"distanceCutOff": 0.0
 			},
 			"diffuse": {
@@ -180,15 +320,15 @@
 		{
 			"friendlyName": "light3",
 			"position": {
-				"x": 100.0,
-				"y": 100.0,
-				"z": 0.0,
+				"x": -50.0,
+				"y": 10.0,
+				"z": -85.0,
 				"w": 1.0
 			},
 			"attenuation":{
 				"const": 0.0,
-				"linear": 0.001,
-				"quad": 0.0,
+				"linear": 0.00000001,
+				"quad": 0.001,
 				"distanceCutOff": 0.0
 			},
 			"diffuse": {
@@ -225,15 +365,15 @@
 		{
 			"friendlyName": "light4",
 			"position": {
-				"x": 100.0,
-				"y": 100.0,
-				"z": 0.0,
+				"x": -25.0,
+				"y": 50.0,
+				"z": 50.0,
 				"w": 1.0
 			},
 			"attenuation":{
 				"const": 0.0,
-				"linear": 0.001,
-				"quad": 0.0,
+				"linear": 0.01,
+				"quad": 0.00001,
 				"distanceCutOff": 0.0
 			},
 			"diffuse": {
