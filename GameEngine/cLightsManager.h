@@ -10,7 +10,6 @@
 class cLightsManager
 {
 public:
-	cLightsManager();
 	~cLightsManager();
 
 	std::vector<cLight*> vecLights;
@@ -31,6 +30,7 @@ public:
 	void copyLightValuesToShader(void);
 
 private:
+	cLightsManager();
 	static cLightsManager* instance;
 };
 
