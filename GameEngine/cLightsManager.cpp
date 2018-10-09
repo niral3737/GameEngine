@@ -31,6 +31,8 @@ void cLightsManager::loadAllLights(GLuint program)
 
 		loadUniformLocations(light, program, i);
 
+		light->friendlyName = lights[i]["friendlyName"].get<std::string>();
+
 		light->position.x = lights[i]["position"]["x"].get<float>();
 		light->position.y = lights[i]["position"]["y"].get<float>();
 		light->position.z = lights[i]["position"]["z"].get<float>();
@@ -51,6 +53,17 @@ void cLightsManager::loadAllLights(GLuint program)
 		vecLights.push_back(light);
 	}
 
+}
+
+cLight* cLightsManager::getLightByFriendlyName(std::string friendlyName)
+{
+	for (std::vector<cLight*>::iterator it = vecLights.begin(); it != vecLights.end(); it++)
+	{
+		cLight* light = *it;
+		if (light->friendlyName == friendlyName)
+			return light;
+	}
+	return nullptr;
 }
 
 void cLightsManager::loadUniformLocations(cLight* light, GLuint program, size_t index)

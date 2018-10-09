@@ -58,6 +58,7 @@ void cSceneUtils::loadModelsIntoScene()
 		meshObject->isWireFrame = meshes[i]["isWireFrame"].get<bool>();
 		meshObject->isVisible = meshes[i]["isVisible"].get<bool>();
 		meshObject->useVertexColor = meshes[i]["useVertexColor"].get<bool>();
+		meshObject->dontLight = meshes[i]["dontLight"].get<bool>();
 
 		meshObject->position.x = meshes[i]["position"]["x"].get<float>();
 		meshObject->position.y = meshes[i]["position"]["y"].get<float>();
@@ -166,8 +167,8 @@ void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, G
 
 
 	GLint objectColour_UniLoc = glGetUniformLocation(shaderProgramID, "objectColour");
-	GLint lightPos_UniLoc = glGetUniformLocation(shaderProgramID, "lightPos");
-	GLint lightBrightness_UniLoc = glGetUniformLocation(shaderProgramID, "lightBrightness");
+	//GLint lightPos_UniLoc = glGetUniformLocation(shaderProgramID, "lightPos");
+	//GLint lightBrightness_UniLoc = glGetUniformLocation(shaderProgramID, "lightBrightness");
 	GLint useVertexColour_UniLoc = glGetUniformLocation(shaderProgramID, "useVertexColour");
 
 	GLint matModel_location = glGetUniformLocation(shaderProgramID, "matModel");
@@ -187,11 +188,11 @@ void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, G
 		currentMesh->objectColor.g,
 		currentMesh->objectColor.b);
 
-	glm::vec3 g_lightPos = glm::vec3(4.0f, 4.0f, 0.0f);
+	/*glm::vec3 g_lightPos = glm::vec3(4.0f, 4.0f, 0.0f);
 	float g_lightBrightness = 400000.0f;
 
 	glUniform3f(lightPos_UniLoc, g_lightPos.x, g_lightPos.y, g_lightPos.z);
-	glUniform1f(lightBrightness_UniLoc, g_lightBrightness);
+	glUniform1f(lightBrightness_UniLoc, g_lightBrightness);*/
 
 	if (currentMesh->useVertexColor)
 	{

@@ -21,6 +21,7 @@ public:
 
 	void turnOnLight(int index);
 	void changeLightType(std::string lightType, int index);
+	cLight* getLightByFriendlyName(std::string friendlyName);
 
 	// Do all the glGetUniformLocation() calls and store them...
 	void loadUniformLocations(cLight* light, GLuint program, size_t index);

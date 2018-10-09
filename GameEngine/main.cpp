@@ -62,7 +62,7 @@ int main(void)
 		glEnable(GL_CULL_FACE);	// Discared "back facing" triangles
 
 		// Colour and depth buffers are TWO DIFF THINGS.
-		glClearColor(0.4f, 0.7f, 1.0f, 1.0f);
+		//glClearColor(0.4f, 0.7f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
 
@@ -101,7 +101,7 @@ int main(void)
 		lastTime = currentTime;
 
 		cModelDrawInfo modelDrawInfo;
-		modelDrawInfo.meshFileName = "terrain_xyz.ply";
+		modelDrawInfo.meshFileName = "terrain_xyz_n.ply";
 		cVAOMeshUtils::getInstance()->findDrawInfoByModelName(modelDrawInfo);
 
 		PhysicsUpdate(deltaTime, modelDrawInfo);

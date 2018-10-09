@@ -8,82 +8,16 @@
 #include "iMeshObject.h"
 #include "cVAOMeshUtils.h"
 #include "cMeshObject.h"
+#include "cLight.h"
+#include "cLightsManager.h"
 
 
 void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int action, int mods)
 {
-	//cSoundManager* soundManager = cSoundManager::getInstance();
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 	{
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 	}
-
-	//if (key == GLFW_KEY_C && action == GLFW_PRESS)
-	//{
-	//	soundManager->changeBackgroundMusic();
-	//}
-
-	//if (glfwGetKey(window, GLFW_KEY_LEFT_ALT) || glfwGetKey(window, GLFW_KEY_RIGHT_ALT))	// "down"
-	//{
-	//	soundManager->playSFX("axeSound");
-	//}
-
-	//if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) || glfwGetKey(window, GLFW_KEY_RIGHT_CONTROL))	// "down"
-	//{
-	//	soundManager->playSFX("punchSound");
-	//}
-
-	//if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)	// "down"
-	//{
-	//	soundManager->playSFX("jumpSound");
-	//}
-
-	//if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) || glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT))	// "down"
-	//{
-	//	soundManager->playSFX("appleSound");
-	//}
-
-	//if (glfwGetKey(window, GLFW_KEY_1))
-	//{
-	//	soundManager->selectedSound = soundManager->mapSounds["backgroundSound1"];
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_2))
-	//{
-	//	soundManager->selectedSound = soundManager->mapSounds["backgroundSound2"];
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_3))
-	//{
-	//	soundManager->selectedSound = soundManager->mapSounds["backgroundSound3"];
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_4))
-	//{
-	//	soundManager->selectedSound = soundManager->mapSounds["axeSound"];
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_5))
-	//{
-	//	soundManager->selectedSound = soundManager->mapSounds["appleSound"];
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_6))
-	//{
-	//	soundManager->selectedSound = soundManager->mapSounds["jumpSound"];
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_7))
-	//{
-	//	soundManager->selectedSound = soundManager->mapSounds["punchSound"];
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_8))
-	//{
-	//	soundManager->selectedSound = soundManager->mapSounds["splashSound"];
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_9))
-	//{
-	//	soundManager->selectedSound = soundManager->mapSounds["fireSound"];
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_0))
-	//{
-	//	soundManager->selectedSound = soundManager->mapSounds["forestSound"];
-	//}
-
 
 	return;
 }
@@ -159,6 +93,36 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		if (glfwGetKey(window, GLFW_KEY_D))
 		{
 			pPlayerShip->acceleration.x = -3.0f;
+		}
+	}
+
+	if (mIsCtrlDown(window))
+	{
+		cLight* mainLight = cLightsManager::getInstance()->getLightByFriendlyName("mainLight");
+
+		if (glfwGetKey(window, GLFW_KEY_W))
+		{
+			mainLight->position.z += 1.0f;
+		}
+		if (glfwGetKey(window, GLFW_KEY_S))
+		{
+			mainLight->position.z -= 1.0f;
+		}
+		if (glfwGetKey(window, GLFW_KEY_A))
+		{
+			mainLight->position.x -= 1.0f;
+		}
+		if (glfwGetKey(window, GLFW_KEY_D))
+		{
+			mainLight->position.x += 1.0f;
+		}
+		if (glfwGetKey(window, GLFW_KEY_Q))
+		{
+			mainLight->position.y += 1.0f;
+		}
+		if (glfwGetKey(window, GLFW_KEY_E))
+		{
+			mainLight->position.y -= 1.0f;
 		}
 	}
 
