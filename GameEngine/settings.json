@@ -229,6 +229,7 @@
 	"lights": [
 		{
 			"friendlyName": "light1",
+			"useDebugSphere": true,
 			"position": {
 				"x": 25.0,
 				"y": 25.0,
@@ -274,6 +275,7 @@
 		},
 		{
 			"friendlyName": "light2",
+			"useDebugSphere": true,
 			"position": {
 				"x": 25.0,
 				"y": 50.0,
@@ -319,6 +321,7 @@
 		},
 		{
 			"friendlyName": "light3",
+			"useDebugSphere": true,
 			"position": {
 				"x": -50.0,
 				"y": 10.0,
@@ -364,6 +367,7 @@
 		},
 		{
 			"friendlyName": "light4",
+			"useDebugSphere": true,
 			"position": {
 				"x": -70.0,
 				"y": 50.0,

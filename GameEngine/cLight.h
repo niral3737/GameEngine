@@ -17,6 +17,7 @@ public:
 	glm::vec4 param1;	// x = lightType, y = inner angle, z = outer angle, w = TBD
 	glm::vec4 param2;	// x = 0 for off, 1 for on
 	std::string friendlyName;
+	bool useDebugSphere;
 
 	void setLinearAttenuation(float newLinAtten);
 	void setConstAttenuation(float newConstAtten);

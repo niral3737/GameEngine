@@ -24,8 +24,8 @@
             "attenuation": {
                 "const": 0.0,
                 "distanceCutOff": 0.0,
-                "linear": 0.0010000000474974513,
-                "quad": 0.0010000000474974513
+                "linear": -0.26900002360343933,
+                "quad": 0.006000000983476639
             },
             "diffuse": {
                 "a": 1.0,
@@ -54,23 +54,24 @@
             },
             "position": {
                 "w": 1.0,
-                "x": 135.0,
+                "x": 53.0,
                 "y": 25.0,
-                "z": -12.0
+                "z": 13.0
             },
             "specular": {
                 "a": 1.0,
                 "b": 1.0,
                 "g": 1.0,
                 "r": 1.0
-            }
+            },
+            "useDebugSphere": true
         },
         {
             "attenuation": {
                 "const": 0.0,
                 "distanceCutOff": 0.0,
-                "linear": 0.18010000884532928,
-                "quad": 0.010000001639127731
+                "linear": 9.999999747378752e-05,
+                "quad": 0.0010000000474974513
             },
             "diffuse": {
                 "a": 1.0,
@@ -99,16 +100,17 @@
             },
             "position": {
                 "w": 1.0,
-                "x": 24.0,
+                "x": 25.0,
                 "y": 50.0,
-                "z": -88.0
+                "z": -100.0
             },
             "specular": {
                 "a": 1.0,
                 "b": 1.0,
                 "g": 1.0,
                 "r": 1.0
-            }
+            },
+            "useDebugSphere": false
         },
         {
             "attenuation": {
@@ -144,16 +146,17 @@
             },
             "position": {
                 "w": 1.0,
-                "x": -49.0,
+                "x": -50.0,
                 "y": 10.0,
-                "z": -48.0
+                "z": -85.0
             },
             "specular": {
                 "a": 1.0,
                 "b": 1.0,
                 "g": 1.0,
                 "r": 1.0
-            }
+            },
+            "useDebugSphere": false
         },
         {
             "attenuation": {
@@ -189,16 +192,17 @@
             },
             "position": {
                 "w": 1.0,
-                "x": -46.0,
+                "x": -80.0,
                 "y": 50.0,
-                "z": 32.0
+                "z": 50.0
             },
             "specular": {
                 "a": 1.0,
                 "b": 1.0,
                 "g": 1.0,
                 "r": 1.0
-            }
+            },
+            "useDebugSphere": false
         }
     ],
     "maxNumberOfLights": 10,
@@ -422,3 +426,4 @@
     "uncompressedFileExt": ".wav",
     "vertexShaderFileName": "vertex01.glsl"
 }
+

@@ -44,6 +44,12 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 			float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 			lightsManager->selectedLight->diffuse = glm::vec4(r, g, b, 1.0f);
 		}
+
+		//on/off debug sphere
+		if (glfwGetKey(window, GLFW_KEY_BACKSPACE))
+		{
+			lightsManager->selectedLight->useDebugSphere = !lightsManager->selectedLight->useDebugSphere;
+		}
 	}
 
 	//save light values
@@ -73,13 +79,15 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 			json["lights"][index]["diffuse"]["a"] = light->diffuse.a;
 
 			json["lights"][index]["param2"]["on"] = light->param2.x;
-
+			json["lights"][index]["useDebugSphere"] = light->useDebugSphere;
 			index++;
 		}
 
 		fs << std::setw(4) << json << std::endl;
 		fs.close();
+		std::cout << "light setting saved" << std::endl;
 	}
+
 	return;
 }
 

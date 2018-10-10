@@ -54,6 +54,7 @@ void cLightsManager::loadAllLights(GLuint program)
 		light->diffuse.a = lights[i]["diffuse"]["a"].get<float>();
 
 		light->param2.x = lights[i]["param2"]["on"].get<float>();
+		light->useDebugSphere = lights[i]["useDebugSphere"].get<bool>();
 
 		vecLights.push_back(light);
 	}
@@ -91,6 +92,7 @@ void cLightsManager::loadAllLightsFromSaveFile(GLuint program)
 		light->diffuse.a = lights[i]["diffuse"]["a"].get<float>();
 
 		light->param2.x = lights[i]["param2"]["on"].get<float>();
+		light->useDebugSphere = lights[i]["useDebugSphere"].get<bool>();
 
 		vecLights.push_back(light);
 	}

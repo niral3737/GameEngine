@@ -28,14 +28,6 @@ int main(void)
 	cSceneUtils::initializeCamera();
 
 	cSceneUtils::getInstance()->loadModelsIntoScene();
-	/*cMeshObject* lightSphere1 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("sphere");
-	lightSphere1->isVisible = true;
-	cMeshObject* lightSphere2 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("sphere");
-	lightSphere2->isVisible = true;
-	cMeshObject* lightSphere3 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("sphere");
-	lightSphere3->isVisible = true;
-	cMeshObject* lightSphere4 = cSceneUtils::getInstance()->loadMeshInfoByFriendlyName("sphere");
-	lightSphere4->isVisible = true;*/
 
 	double lastTime = glfwGetTime();
 
@@ -102,7 +94,7 @@ int main(void)
 
 		lightsManager->copyLightValuesToShader();
 
-		cMeshObject* attenSphere = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("sphere");
+		cMeshObject* attenSphere = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("sphere");
 		attenSphere->isVisible = true;
 		attenSphere->dontLight = true;
 
@@ -115,12 +107,16 @@ int main(void)
 		{
 			cLight* light = *it;
 
+			if (!light->useDebugSphere)
+				continue;
+
 			attenSphere->position = light->position;
 
+
+			attenSphere->objectColor = glm::vec3(1.0f, 1.0f, 0.0f);
 			float distance90Percent = pLightHelper->calcApproxDistFromAtten(0.90f, ACCURACY_OF_DISTANCE,
 				INFINITE_DISTANCE, light->atten.x, light->atten.y, light->atten.z);
 			attenSphere->scale = distance90Percent;
-			attenSphere->objectColor = glm::vec3(1.0f, 1.0f, 0.0f);
 			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
 
 			attenSphere->objectColor = glm::vec3(0.0f, 1.0f, 0.0f);	// 50% brightness
@@ -143,17 +139,17 @@ int main(void)
 			attenSphere->scale = distance25Percent;
 			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
 
+			attenSphere->objectColor = glm::vec3(0.0f, 0.0f, 1.0f);	// 1% brightness
 			float distance1Percent =
 				pLightHelper->calcApproxDistFromAtten(0.01f, ACCURACY_OF_DISTANCE,
 					INFINITE_DISTANCE,
 					light->atten.x,
 					light->atten.y,
 					light->atten.z);
-			attenSphere->objectColor = glm::vec3(0.0f, 0.0f, 1.0f);	// 1% brightness
 			attenSphere->scale = distance1Percent;
 			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
 		}
-
+		attenSphere->isVisible = false;
 		/*lightSphere1->position = lightsManager->getLightByFriendlyName("light1")->position;
 		lightSphere2->position = lightsManager->getLightByFriendlyName("light2")->position;
 		lightSphere3->position = lightsManager->getLightByFriendlyName("light3")->position;
