@@ -6,7 +6,11 @@ in vec3 color;		// in from the vertex shader
 in vec4 vertPosWorld;
 in vec3 vertNormal;	// "Model space" (only rotation)
 
-uniform vec3 objectColour;
+uniform vec4 objectDiffuse;
+uniform vec4 objectSpecular;
+
+uniform vec3 eyeLocation;
+//uniform vec3 objectColour;
 // Set this to true (1), and the vertex colour is used
 uniform bool useVertexColour;
 uniform bool bDontUseLighting;	
@@ -34,25 +38,25 @@ uniform sLight theLights[NUMBEROFLIGHTS];  	// 80 uniforms
 
 void main()
 {
-	vec3 objectDiffuse = vec3(0.0f,0.0f,0.0f);
+	vec4 materialDiffuse = vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	vec4 materialSpecular = objectSpecular;
 
 	if ( useVertexColour )
 	{
 		//gl_FragColor = vec4(color, 1.0);
-		objectDiffuse = color;
+		materialDiffuse = vec4(color, 1.0f );
 	}
 	else
 	{
 		//gl_FragColor = vec4(objectColour, 1.0);
-		objectDiffuse = objectColour;
+		materialDiffuse = objectDiffuse;
 	}
 
 	// Is this being lit? 
 	if ( bDontUseLighting )
 	{
 		// Just exit early
-		finalOutputColour.rgb = objectDiffuse.rgb;
-		finalOutputColour.a = 1.0f;
+		finalOutputColour = objectDiffuse;
 		return;
 	}
 
@@ -73,38 +77,39 @@ void main()
 		float distanceToLight = length(vLightToVertex);	
 		vec3 lightVector = normalize(vLightToVertex);
 		float dotProduct = dot(lightVector, norm);
+
 		dotProduct = max( 0.0f, dotProduct );	
 		
-		vec3 lightContrib = dotProduct * theLights[index].diffuse.rgb;
+		vec3 lightDiffuseContrib = dotProduct * theLights[index].diffuse.rgb;
+
+		//specular
+		vec3 lightSpecularContrib = vec3(0.0f);
+
+		vec3 reflectVector = reflect( -lightVector, normalize(norm) );
+
+		// Get eye or view vector
+		// The location of the vertex in the world to your eye
+		vec3 eyeVector = normalize(eyeLocation.xyz - vertPosWorld.xyz);
 		
+		// To simplify, we are NOT using the light specular value, just the object’s.
+		float objectSpecularPower = objectSpecular.w; 
+
+		lightSpecularContrib = pow( max(0.0f, dot( eyeVector, reflectVector) ), objectSpecularPower )
+			                   * objectSpecular.rgb;	//* theLights[lightIndex].Specular.rgb
+
 		float attenuation = 1.0f / 
 				( theLights[index].atten.x + 										
 				  theLights[index].atten.y * distanceToLight +						
 				  theLights[index].atten.z * distanceToLight*distanceToLight );  	
 				  
-		lightContrib *= attenuation;
+		lightDiffuseContrib *= attenuation;
+		lightSpecularContrib *= attenuation;
 			
-		finalObjectColour.rgb += ( objectDiffuse.rgb * lightContrib );
+		finalObjectColour.rgb += (materialDiffuse.rgb * lightDiffuseContrib.rgb) 
+		                         + (materialSpecular.rgb * lightSpecularContrib.rgb);
 		// ********************************************************
 	}//for(intindex=0...
 	
 	finalOutputColour.rgb = finalObjectColour.rgb;
 	finalOutputColour.a = 1.0f;
-
-//	// Calculate the distance between the "light" 
-//	// and THIS vertex (in 'world space')
-//	float distToLight = distance(vertPosWorld.xyz, lightPos.xyz);
-//	
-//	
-//	distToLight = abs(distToLight);
-//	
-//	float atten = (1.0f/distToLight) * lightBrightness;
-//	// Clamp output to 1.0f
-//	atten = min( 1.0f, atten );
-//	
-//	// Drop the brightness of the light based on distance
-//	finalOutputColour *= atten;
-//	
-////	finalOutputColour *= 0.001f;
-////	finalOutputColour.r += distToLight;
 }

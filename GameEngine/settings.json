@@ -4,9 +4,9 @@
 	"fragmentShaderFileName": "fragment01.glsl",
 	"shaderProgramName": "myShader",
 	"cameraEye": {
-		"x": 0.0,
-		"y": 100.0,
-		"z": -230.0
+		"x": 32.0,
+		"y": 75.0,
+		"z": 136.0
 	},
 	"cameraAt": {
 		"x": 0.0,
@@ -18,7 +18,7 @@
 			"meshName":"tenker.ply",
 			"friendlyName": "tenker",
 			"isWireFrame": false,
-			"isVisible": true,
+			"isVisible": false,
 			"useVertexColor": false,
 			"dontLight": false,
 			"position" : {
@@ -31,10 +31,17 @@
 				"y" : 0.0,
 				"z" : 0.0
 			},
-			"objectColor" : {
+			"materialDiffuse" : {
 				"r": 1.0,
 				"g": 0.0,
-				"b": 0.0
+				"b": 0.0,
+				"a": 1.0
+			},
+			"materialSpecular" : {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"power": 1.0
 			},
 			"scale": 1.0,
 			"isUpdatedByPhysics": true,
@@ -57,19 +64,26 @@
 			"useVertexColor": false,
 			"dontLight": false,
 			"position" : {
-				"x" : 10.0,
+				"x" : 0.0,
 				"y" : 0.0,
-				"z" : -80.0
+				"z" : 0.0
 			},
 			"postRotation" : {
 				"x" : 0.0,
 				"y" : 0.0,
 				"z" : 0.0
 			},
-			"objectColor" : {
+			"materialDiffuse" : {
 				"r": 1.0,
 				"g": 1.0,
-				"b": 0.0
+				"b": 0.0,
+				"a": 1.0
+			},
+			"materialSpecular" : {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"power": 1.0
 			},
 			"scale": 1.0,
 			"isUpdatedByPhysics": true,
@@ -88,7 +102,7 @@
 			"meshName":"eagle.ply",
 			"friendlyName": "eagle",
 			"isWireFrame": false,
-			"isVisible": true,
+			"isVisible": false,
 			"useVertexColor": false,
 			"dontLight": false,
 			"position" : {
@@ -101,10 +115,17 @@
 				"y" : 0.0,
 				"z" : 0.0
 			},
-			"objectColor" : {
+			"materialDiffuse" : {
 				"r": 0.0,
 				"g": 1.0,
-				"b": 0.0
+				"b": 0.0,
+				"a": 1.0
+			},
+			"materialSpecular" : {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"power": 1.0
 			},
 			"scale": 1.0,
 			"isUpdatedByPhysics": true,
@@ -127,19 +148,26 @@
 			"useVertexColor": false,
 			"dontLight": false,
 			"position" : {
-				"x" : -50.0,
-				"y" : 0.0,
-				"z" : -70.0
+				"x" : 0.0,
+				"y" : 12.0,
+				"z" : 25.0
 			},
 			"postRotation" : {
 				"x" : 0.0,
 				"y" : 0.0,
 				"z" : 0.0
 			},
-			"objectColor" : {
-				"r": 0.0,
+			"materialDiffuse" : {
+				"r": 1.0,
 				"g": 0.0,
-				"b": 1.0
+				"b": 0.0,
+				"a": 1.0
+			},
+			"materialSpecular" : {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"power": 100.0
 			},
 			"scale": 1.0,
 			"isUpdatedByPhysics": true,
@@ -157,10 +185,10 @@
 		{
 			"meshName":"terrain_xyz_n.ply",
 			"friendlyName": "terrain",
-			"isWireFrame": true,
-			"isVisible": false,
+			"isWireFrame": false,
+			"isVisible": true,
 			"useVertexColor": false,
-			"dontLight": true,
+			"dontLight": false,
 			"position" : {
 				"x" : 0.0,
 				"y" : 0.0,
@@ -171,10 +199,17 @@
 				"y" : 0.0,
 				"z" : 0.0
 			},
-			"objectColor" : {
+			"materialDiffuse" : {
 				"r": 1.0,
 				"g": 1.0,
-				"b": 1.0
+				"b": 1.0,
+				"a": 1.0
+			},
+			"materialSpecular" : {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"power": 100.0
 			},
 			"scale": 1.0,
 			"isUpdatedByPhysics": false,
@@ -206,10 +241,17 @@
 				"y" : 0.0,
 				"z" : 0.0
 			},
-			"objectColor" : {
+			"materialDiffuse" : {
 				"r": 1.0,
 				"g": 0.45,
-				"b": 0.75
+				"b": 0.75,
+				"a": 1.0
+			},
+			"materialSpecular" : {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"power": 1.0
 			},
 			"scale": 1.0,
 			"isUpdatedByPhysics": false,
@@ -229,17 +271,17 @@
 	"lights": [
 		{
 			"friendlyName": "light1",
-			"useDebugSphere": true,
+			"useDebugSphere": false,
 			"position": {
-				"x": 25.0,
-				"y": 25.0,
-				"z": 25.0,
+				"x": 1.2,
+				"y": 23.0,
+				"z": 61.3,
 				"w": 1.0
 			},
 			"attenuation":{
 				"const": 0.0,
-				"linear": 0.001,
-				"quad": 0.001,
+				"linear": 0.0385720730,
+				"quad": 0.00001,
 				"distanceCutOff": 0.0
 			},
 			"diffuse": {
@@ -275,7 +317,7 @@
 		},
 		{
 			"friendlyName": "light2",
-			"useDebugSphere": true,
+			"useDebugSphere": false,
 			"position": {
 				"x": 25.0,
 				"y": 50.0,
@@ -321,7 +363,7 @@
 		},
 		{
 			"friendlyName": "light3",
-			"useDebugSphere": true,
+			"useDebugSphere": false,
 			"position": {
 				"x": -50.0,
 				"y": 10.0,
@@ -367,7 +409,7 @@
 		},
 		{
 			"friendlyName": "light4",
-			"useDebugSphere": true,
+			"useDebugSphere": false,
 			"position": {
 				"x": -70.0,
 				"y": 50.0,

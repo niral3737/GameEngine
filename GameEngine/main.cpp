@@ -33,23 +33,25 @@ int main(void)
 
 	cLightsManager* lightsManager = cLightsManager::getInstance();
 
-	std::cout << "Load lights from previously saved file? (Y/y)" << std::endl;
-	char answer;
-	std::cin >> answer;
+	//std::cout << "Load lights from previously saved file? (Y/y)" << std::endl;
+	//char answer;
+	//std::cin >> answer;
 
-	if (answer == 'y' || answer == 'Y')
-	{
-		lightsManager->loadAllLightsFromSaveFile(program);
-	}
-	else
-	{
-		lightsManager->loadAllLights(program);
-	}
+	//if (answer == 'y' || answer == 'Y')
+	//{
+	//	lightsManager->loadAllLightsFromSaveFile(program);
+	//}
+	//else
+	//{
+	lightsManager->loadAllLights(program);
+	//}
 
 	cShaderUtils::getInstance()->getUniformVariableLocation(program, "objectColour");
 
 	GLint matView_location = glGetUniformLocation(program, "matView");
 	GLint matProj_location = glGetUniformLocation(program, "matProj");
+
+	GLint eyeLocation_location = glGetUniformLocation(program, "eyeLocation");
 
 	GLFWwindow* window = cGLFWUtils::getWindowInstance();
 
@@ -89,6 +91,8 @@ int main(void)
 			cSceneUtils::cameraAt,		// At
 			glm::vec3(0.0f, 1.0f, 0.0f));// Up
 
+		glUniform3f(eyeLocation_location, cSceneUtils::cameraEye.x, cSceneUtils::cameraEye.y, cSceneUtils::cameraEye.z);
+
 		glUniformMatrix4fv(matView_location, 1, GL_FALSE, glm::value_ptr(matView));
 		glUniformMatrix4fv(matProj_location, 1, GL_FALSE, glm::value_ptr(matProjection));
 
@@ -113,13 +117,13 @@ int main(void)
 			attenSphere->position = light->position;
 
 
-			attenSphere->objectColor = glm::vec3(1.0f, 1.0f, 0.0f);
+			attenSphere->setDiffuseColour(glm::vec3(1.0f, 1.0f, 0.0f));
 			float distance90Percent = pLightHelper->calcApproxDistFromAtten(0.90f, ACCURACY_OF_DISTANCE,
 				INFINITE_DISTANCE, light->atten.x, light->atten.y, light->atten.z);
 			attenSphere->scale = distance90Percent;
 			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
 
-			attenSphere->objectColor = glm::vec3(0.0f, 1.0f, 0.0f);	// 50% brightness
+			attenSphere->setDiffuseColour(glm::vec3(0.0f, 1.0f, 0.0f));	// 50% brightness
 			float distance50Percent =
 				pLightHelper->calcApproxDistFromAtten(0.50f, ACCURACY_OF_DISTANCE,
 					INFINITE_DISTANCE,
@@ -129,7 +133,7 @@ int main(void)
 			attenSphere->scale = distance50Percent;
 			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
 
-			attenSphere->objectColor = glm::vec3(1.0f, 0.0f, 0.0f);	// 25% brightness
+			attenSphere->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));	// 25% brightness
 			float distance25Percent =
 				pLightHelper->calcApproxDistFromAtten(0.25f, ACCURACY_OF_DISTANCE,
 					INFINITE_DISTANCE,
@@ -139,7 +143,7 @@ int main(void)
 			attenSphere->scale = distance25Percent;
 			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
 
-			attenSphere->objectColor = glm::vec3(0.0f, 0.0f, 1.0f);	// 1% brightness
+			attenSphere->setDiffuseColour(glm::vec3(0.0f, 0.0f, 1.0f));	// 1% brightness
 			float distance1Percent =
 				pLightHelper->calcApproxDistFromAtten(0.01f, ACCURACY_OF_DISTANCE,
 					INFINITE_DISTANCE,

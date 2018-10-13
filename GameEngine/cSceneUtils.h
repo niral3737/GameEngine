@@ -23,9 +23,12 @@ public:
 	static glm::vec3 cameraAt;
 	std::vector<iMeshObject*> vecObjectsToDraw;
 	void drawTreesAtRandomPositions();
-	cMeshObject* loadMeshInfoByFriendlyName( std::string friendlyName);
+	//cMeshObject* loadMeshInfoByFriendlyName( std::string friendlyName);
+	void selectNextMeshObject(bool includeInvisibleObject);
+	iMeshObject* selectedMeshObject;
 private:
 	static cSceneUtils* pSceneUtils;
+	int selectedObjectIndex;
 	cSceneUtils();
 	void applyTranformations(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, glm::mat4& matModelInvTrans);
 };

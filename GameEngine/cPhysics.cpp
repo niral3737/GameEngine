@@ -157,7 +157,7 @@ void PlayerPhysicsUpdate(cMeshObject* playerObject, double deltaTime)
 
 	// Player ship has to have it's velocity tending to go
 	// back to 0, so we need to update the values.
-	float currentVel = 0.0f;
+	double currentVel = 0.0f;
 	if (playerObject->velocity.z > 0.0f)
 	{
 		// Natural deceleration rate, or "friction"

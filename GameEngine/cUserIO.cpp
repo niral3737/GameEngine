@@ -18,6 +18,8 @@
 void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int action, int mods)
 {
 	cLightsManager* lightsManager = cLightsManager::getInstance();
+	cSceneUtils* scenUtils = cSceneUtils::getInstance();
+
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 	{
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
@@ -25,68 +27,63 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 
 	if (glfwGetKey(window, GLFW_KEY_TAB))
 	{
-		lightsManager->selectNextLight();
-		std::cout << lightsManager->selectedLight->friendlyName << " selected" << std::endl;
+		scenUtils->selectNextMeshObject(false);
+		std::cout << ((cMeshObject*)scenUtils->selectedMeshObject)->friendlyName << " selected" << std::endl;
 	}
 
-	if(mIsCtrlDown(window) && lightsManager->selectedLight){
-		//on/off
-		if (glfwGetKey(window, GLFW_KEY_0))
-		{
-			lightsManager->selectedLight->param2.x = lightsManager->selectedLight->param2.x == 1.0f ? 0.0f : 1.0f;
-		}
-
-		//random color
+	if(mIsCtrlDown(window) && scenUtils->selectedMeshObject){
+		
+		//random specular color
 		if (glfwGetKey(window, GLFW_KEY_9))
 		{
 			float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 			float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 			float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-			lightsManager->selectedLight->diffuse = glm::vec4(r, g, b, 1.0f);
+			((cMeshObject*)scenUtils->selectedMeshObject)->setSpecularColour(glm::vec3(r, g, b));
 		}
 
-		//on/off debug sphere
-		if (glfwGetKey(window, GLFW_KEY_BACKSPACE))
-		{
-			lightsManager->selectedLight->useDebugSphere = !lightsManager->selectedLight->useDebugSphere;
-		}
+		////on/off debug sphere
+		//if (glfwGetKey(window, GLFW_KEY_BACKSPACE))
+		//{
+		//	lightsManager->selectedLight->useDebugSphere = !lightsManager->selectedLight->useDebugSphere;
+		//}
 	}
 
-	//save light values
-	if (glfwGetKey(window, GLFW_KEY_ENTER))
-	{
-		//save all light values
-		std::fstream fs("savefile.json");
-		nlohmann::json json = cJsonUtils::getJsonInstance();
+	////save light values
+	//if (glfwGetKey(window, GLFW_KEY_ENTER))
+	//{
+	//	//save all light values
+	//	std::fstream fs("savefile.json");
+	//	nlohmann::json json = cJsonUtils::getJsonInstance();
 
-		unsigned int index = 0;
-		for (std::vector<cLight*>::iterator it = lightsManager->vecLights.begin(); it != lightsManager->vecLights.end(); it++)
-		{
-			cLight* light = *it;
-			json["lights"][index]["position"]["x"] = light->position.x;
-			json["lights"][index]["position"]["y"] = light->position.y;
-			json["lights"][index]["position"]["z"] = light->position.z;
-			json["lights"][index]["position"]["w"] = light->position.w;
+	//	unsigned int index = 0;
+	//	for (std::vector<cLight*>::iterator it = lightsManager->vecLights.begin(); it != lightsManager->vecLights.end(); it++)
+	//	{
+	//		cLight* light = *it;
+	//		json["lights"][index]["position"]["x"] = light->position.x;
+	//		json["lights"][index]["position"]["y"] = light->position.y;
+	//		json["lights"][index]["position"]["z"] = light->position.z;
+	//		json["lights"][index]["position"]["w"] = light->position.w;
 
-			json["lights"][index]["attenuation"]["const"] = light->atten.x;
-			json["lights"][index]["attenuation"]["linear"] = light->atten.y;
-			json["lights"][index]["attenuation"]["quad"] = light->atten.z;
-			json["lights"][index]["attenuation"]["distanceCutOff"] = light->atten.w;
+	//		json["lights"][index]["attenuation"]["const"] = light->atten.x;
+	//		json["lights"][index]["attenuation"]["linear"] = light->atten.y;
+	//		json["lights"][index]["attenuation"]["quad"] = light->atten.z;
+	//		json["lights"][index]["attenuation"]["distanceCutOff"] = light->atten.w;
 
-			json["lights"][index]["diffuse"]["r"] = light->diffuse.r;
-			json["lights"][index]["diffuse"]["g"] = light->diffuse.b;
-			json["lights"][index]["diffuse"]["b"] = light->diffuse.b;
-			json["lights"][index]["diffuse"]["a"] = light->diffuse.a;
+	//		json["lights"][index]["diffuse"]["r"] = light->diffuse.r;
+	//		json["lights"][index]["diffuse"]["g"] = light->diffuse.b;
+	//		json["lights"][index]["diffuse"]["b"] = light->diffuse.b;
+	//		json["lights"][index]["diffuse"]["a"] = light->diffuse.a;
 
-			json["lights"][index]["param2"]["on"] = light->param2.x;
-			json["lights"][index]["useDebugSphere"] = light->useDebugSphere;
-			index++;
-		}
+	//		json["lights"][index]["param2"]["on"] = light->param2.x;
+	//		json["lights"][index]["useDebugSphere"] = light->useDebugSphere;
+	//		index++;
+	//	}
 
-		fs << std::setw(4) << json << std::endl;
-		fs.close();
-		std::cout << "light setting saved" << std::endl;
-	}
+	//	fs << std::setw(4) << json << std::endl;
+	//	fs.close();
+	//	std::cout << "light setting saved" << std::endl;
+	//}
 
 	return;
 }
@@ -167,14 +164,20 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 
 	if (mIsCtrlDown(window))
 	{
-		cLight* selectedLight = cLightsManager::getInstance()->selectedLight;
+		//cLight* selectedLight = cLightsManager::getInstance()->selectedLight;
+		cMeshObject* selectedMeshObject = (cMeshObject*) cSceneUtils::getInstance()->selectedMeshObject;
 
-		if (!selectedLight)
+		/*if (!selectedLight)
+		{
+			return;
+		}*/
+
+		if (!selectedMeshObject)
 		{
 			return;
 		}
 
-		if (glfwGetKey(window, GLFW_KEY_W))
+		/*if (glfwGetKey(window, GLFW_KEY_W))
 		{
 			selectedLight->position.z += 1.0f;
 		}
@@ -197,25 +200,40 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		if (glfwGetKey(window, GLFW_KEY_E))
 		{
 			selectedLight->position.y -= 1.0f;
-		}
+		}*/
 		//atten linear
+		//if (glfwGetKey(window, GLFW_KEY_EQUAL))
+		//{
+		//	selectedLight->atten.y += 0.01f;
+		//}
+		//if (glfwGetKey(window, GLFW_KEY_MINUS))
+		//{
+		//	selectedLight->atten.y -= 0.01f;
+		//}
+
+		////atten quad
+		//if (glfwGetKey(window, GLFW_KEY_LEFT_BRACKET))
+		//{
+		//	selectedLight->atten.z -= 0.001f;
+		//}
+		//if (glfwGetKey(window, GLFW_KEY_RIGHT_BRACKET))
+		//{
+		//	selectedLight->atten.z += 0.001f;
+		//}
+
 		if (glfwGetKey(window, GLFW_KEY_EQUAL))
 		{
-			selectedLight->atten.y += 0.01f;
+			selectedMeshObject->setSpecularPower(selectedMeshObject->getSpecularPower() + 1.0);
+			std::cout << "Specular Power : " << selectedMeshObject->getSpecularPower() << std::endl;
 		}
 		if (glfwGetKey(window, GLFW_KEY_MINUS))
 		{
-			selectedLight->atten.y -= 0.01f;
-		}
-
-		//atten quad
-		if (glfwGetKey(window, GLFW_KEY_LEFT_BRACKET))
-		{
-			selectedLight->atten.z -= 0.001f;
-		}
-		if (glfwGetKey(window, GLFW_KEY_RIGHT_BRACKET))
-		{
-			selectedLight->atten.z += 0.001f;
+			if (selectedMeshObject->getSpecularPower() <= 1.0f)
+			{
+				return;
+			}
+			selectedMeshObject->setSpecularPower(selectedMeshObject->getSpecularPower() - 1.0);
+			std::cout << "Specular Power : " << selectedMeshObject->getSpecularPower() << std::endl;
 		}
 	}
 
