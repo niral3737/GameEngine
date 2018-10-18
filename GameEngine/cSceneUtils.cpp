@@ -16,6 +16,8 @@ glm::vec3 cSceneUtils::cameraAt = glm::vec3(0.0f, 0.0f, 0.0f);
 
 cSceneUtils::cSceneUtils()
 {
+	this->selectedMeshObject = NULL;
+	this->selectedObjectIndex = -1;
 }
 
 cSceneUtils::~cSceneUtils()
@@ -68,9 +70,15 @@ void cSceneUtils::loadModelsIntoScene()
 		meshObject->postRotation.y = meshes[i]["postRotation"]["y"].get<float>();
 		meshObject->postRotation.z = meshes[i]["postRotation"]["z"].get<float>();
 
-		meshObject->objectColor.r = meshes[i]["objectColor"]["r"].get<float>();
-		meshObject->objectColor.g = meshes[i]["objectColor"]["g"].get<float>();
-		meshObject->objectColor.b = meshes[i]["objectColor"]["b"].get<float>();
+		meshObject->materialDiffuse.r = meshes[i]["materialDiffuse"]["r"].get<float>();
+		meshObject->materialDiffuse.g = meshes[i]["materialDiffuse"]["g"].get<float>();
+		meshObject->materialDiffuse.b = meshes[i]["materialDiffuse"]["b"].get<float>();
+		meshObject->materialDiffuse.a = meshes[i]["materialDiffuse"]["a"].get<float>();
+
+		meshObject->materialSpecular.r = meshes[i]["materialSpecular"]["r"].get<float>();
+		meshObject->materialSpecular.g = meshes[i]["materialSpecular"]["g"].get<float>();
+		meshObject->materialSpecular.b = meshes[i]["materialSpecular"]["b"].get<float>();
+		meshObject->materialSpecular.a = meshes[i]["materialSpecular"]["power"].get<float>();
 
 		meshObject->scale = meshes[i]["scale"].get<float>();
 
@@ -88,52 +96,52 @@ void cSceneUtils::loadModelsIntoScene()
 	}
 }
 
-cMeshObject* cSceneUtils::loadMeshInfoByFriendlyName( std::string friendlyName)
-{
-	std::vector<nlohmann::json> meshes = cJsonUtils::getJsonInstance()["meshes"].get<std::vector<nlohmann::json>>();
-	for (size_t i = 0; i < meshes.size(); i++)
-	{
-		if (meshes[i]["friendlyName"].get<std::string>() == friendlyName)
-		{
-			cMeshObject* meshObject = (cMeshObject*)cMeshObjectFactory::createMeshObject();
-			meshObject->meshName = meshes[i]["meshName"].get<std::string>();
-			meshObject->friendlyName = meshes[i]["friendlyName"].get<std::string>();
-
-			meshObject->isWireFrame = meshes[i]["isWireFrame"].get<bool>();
-			meshObject->isVisible = meshes[i]["isVisible"].get<bool>();
-			meshObject->useVertexColor = meshes[i]["useVertexColor"].get<bool>();
-
-			meshObject->position.x = meshes[i]["position"]["x"].get<float>();
-			meshObject->position.y = meshes[i]["position"]["y"].get<float>();
-			meshObject->position.z = meshes[i]["position"]["z"].get<float>();
-
-			meshObject->postRotation.x = meshes[i]["postRotation"]["x"].get<float>();
-			meshObject->postRotation.y = meshes[i]["postRotation"]["y"].get<float>();
-			meshObject->postRotation.z = meshes[i]["postRotation"]["z"].get<float>();
-
-			meshObject->objectColor.r = meshes[i]["objectColor"]["r"].get<float>();
-			meshObject->objectColor.g = meshes[i]["objectColor"]["g"].get<float>();
-			meshObject->objectColor.b = meshes[i]["objectColor"]["b"].get<float>();
-
-			meshObject->scale = meshes[i]["scale"].get<float>();
-
-			meshObject->isUpdatedByPhysics = meshes[i]["isUpdatedByPhysics"].get<bool>();
-			meshObject->dontLight = meshes[i]["dontLight"].get<bool>();
-
-			meshObject->velocity.x = meshes[i]["velocity"]["x"].get<float>();
-			meshObject->velocity.y = meshes[i]["velocity"]["y"].get<float>();
-			meshObject->velocity.z = meshes[i]["velocity"]["z"].get<float>();
-
-			meshObject->acceleration.x = meshes[i]["acceleration"]["x"].get<float>();
-			meshObject->acceleration.y = meshes[i]["acceleration"]["y"].get<float>();
-			meshObject->acceleration.z = meshes[i]["acceleration"]["z"].get<float>();
-
-			vecObjectsToDraw.push_back(meshObject);
-			return meshObject;
-		}
-	}
-	return NULL;
-}
+//cMeshObject* cSceneUtils::loadMeshInfoByFriendlyName( std::string friendlyName)
+//{
+//	std::vector<nlohmann::json> meshes = cJsonUtils::getJsonInstance()["meshes"].get<std::vector<nlohmann::json>>();
+//	for (size_t i = 0; i < meshes.size(); i++)
+//	{
+//		if (meshes[i]["friendlyName"].get<std::string>() == friendlyName)
+//		{
+//			cMeshObject* meshObject = (cMeshObject*)cMeshObjectFactory::createMeshObject();
+//			meshObject->meshName = meshes[i]["meshName"].get<std::string>();
+//			meshObject->friendlyName = meshes[i]["friendlyName"].get<std::string>();
+//
+//			meshObject->isWireFrame = meshes[i]["isWireFrame"].get<bool>();
+//			meshObject->isVisible = meshes[i]["isVisible"].get<bool>();
+//			meshObject->useVertexColor = meshes[i]["useVertexColor"].get<bool>();
+//
+//			meshObject->position.x = meshes[i]["position"]["x"].get<float>();
+//			meshObject->position.y = meshes[i]["position"]["y"].get<float>();
+//			meshObject->position.z = meshes[i]["position"]["z"].get<float>();
+//
+//			meshObject->postRotation.x = meshes[i]["postRotation"]["x"].get<float>();
+//			meshObject->postRotation.y = meshes[i]["postRotation"]["y"].get<float>();
+//			meshObject->postRotation.z = meshes[i]["postRotation"]["z"].get<float>();
+//
+//			meshObject->objectColor.r = meshes[i]["objectColor"]["r"].get<float>();
+//			meshObject->objectColor.g = meshes[i]["objectColor"]["g"].get<float>();
+//			meshObject->objectColor.b = meshes[i]["objectColor"]["b"].get<float>();
+//
+//			meshObject->scale = meshes[i]["scale"].get<float>();
+//
+//			meshObject->isUpdatedByPhysics = meshes[i]["isUpdatedByPhysics"].get<bool>();
+//			meshObject->dontLight = meshes[i]["dontLight"].get<bool>();
+//
+//			meshObject->velocity.x = meshes[i]["velocity"]["x"].get<float>();
+//			meshObject->velocity.y = meshes[i]["velocity"]["y"].get<float>();
+//			meshObject->velocity.z = meshes[i]["velocity"]["z"].get<float>();
+//
+//			meshObject->acceleration.x = meshes[i]["acceleration"]["x"].get<float>();
+//			meshObject->acceleration.y = meshes[i]["acceleration"]["y"].get<float>();
+//			meshObject->acceleration.z = meshes[i]["acceleration"]["z"].get<float>();
+//
+//			vecObjectsToDraw.push_back(meshObject);
+//			return meshObject;
+//		}
+//	}
+//	return NULL;
+//}
 
 void cSceneUtils::drawTreesAtRandomPositions()
 {}
@@ -166,9 +174,9 @@ void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, G
 	glUseProgram(shaderProgramID);
 
 
-	GLint objectColour_UniLoc = glGetUniformLocation(shaderProgramID, "objectColour");
-	//GLint lightPos_UniLoc = glGetUniformLocation(shaderProgramID, "lightPos");
-	//GLint lightBrightness_UniLoc = glGetUniformLocation(shaderProgramID, "lightBrightness");
+	GLint objectDiffuse_UniLoc = glGetUniformLocation(shaderProgramID, "objectDiffuse");
+	GLint objectSpecular_UniLoc = glGetUniformLocation(shaderProgramID, "objectSpecular");
+
 	GLint useVertexColour_UniLoc = glGetUniformLocation(shaderProgramID, "useVertexColour");
 
 	GLint matModel_location = glGetUniformLocation(shaderProgramID, "matModel");
@@ -183,16 +191,16 @@ void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, G
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-	glUniform3f(objectColour_UniLoc,
-		currentMesh->objectColor.r,
-		currentMesh->objectColor.g,
-		currentMesh->objectColor.b);
-
-	/*glm::vec3 g_lightPos = glm::vec3(4.0f, 4.0f, 0.0f);
-	float g_lightBrightness = 400000.0f;
-
-	glUniform3f(lightPos_UniLoc, g_lightPos.x, g_lightPos.y, g_lightPos.z);
-	glUniform1f(lightBrightness_UniLoc, g_lightBrightness);*/
+	glUniform4f(objectDiffuse_UniLoc,
+		currentMesh->materialDiffuse.r,
+		currentMesh->materialDiffuse.g,
+		currentMesh->materialDiffuse.b,
+		currentMesh->materialDiffuse.a);
+	glUniform4f(objectSpecular_UniLoc,
+		currentMesh->materialSpecular.r,
+		currentMesh->materialSpecular.g,
+		currentMesh->materialSpecular.b,
+		currentMesh->materialSpecular.a);
 
 	if (currentMesh->useVertexColor)
 	{
@@ -281,4 +289,46 @@ void cSceneUtils::applyTranformations(iMeshObject* pCurrentMesh, glm::mat4x4& ma
 	float scale = currentMesh->scale;
 	glm::mat4 matScale = glm::scale(glm::mat4(1.0f), glm::vec3(scale, scale, scale));
 	matModel = matModel * matScale;
+}
+
+void cSceneUtils::selectNextMeshObject(bool includeInvisibleObject)
+{
+	bool isAnyVisible = false;
+	for (size_t i = 0; i < vecObjectsToDraw.size(); i++)
+	{
+		if (((cMeshObject*)vecObjectsToDraw[i])->isVisible)
+		{
+			isAnyVisible = true;
+			break;
+		}
+	}
+
+	if (!isAnyVisible)
+	{
+		return;
+	}
+	if (selectedObjectIndex >= vecObjectsToDraw.size() - 1)
+	{
+		selectedObjectIndex = 0;
+	}
+	else
+	{
+		selectedObjectIndex++;
+	}
+
+	if(!includeInvisibleObject){
+		if (!((cMeshObject*)vecObjectsToDraw[selectedObjectIndex])->isVisible)
+		{
+			selectNextMeshObject(includeInvisibleObject);
+		}
+		else
+		{
+			selectedMeshObject = vecObjectsToDraw[selectedObjectIndex];
+			return;
+		}
+	}
+	else
+	{
+		selectedMeshObject = vecObjectsToDraw[selectedObjectIndex];
+	}
 }

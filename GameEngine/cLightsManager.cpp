@@ -1,12 +1,17 @@
 #include "cLightsManager.h"
 
+#include <fstream>
+
 #include "json.hpp"
 #include "cJsonUtils.h"
 
 cLightsManager* cLightsManager::instance = NULL;
 
 cLightsManager::cLightsManager()
-{}
+{
+	this->selectedLight = NULL;
+	this->selectedLightIndex = 0;
+}
 
 
 cLightsManager::~cLightsManager()
@@ -49,6 +54,45 @@ void cLightsManager::loadAllLights(GLuint program)
 		light->diffuse.a = lights[i]["diffuse"]["a"].get<float>();
 
 		light->param2.x = lights[i]["param2"]["on"].get<float>();
+		light->useDebugSphere = lights[i]["useDebugSphere"].get<bool>();
+
+		vecLights.push_back(light);
+	}
+
+}
+
+void cLightsManager::loadAllLightsFromSaveFile(GLuint program)
+{
+	std::ifstream ifs("savefile.json");
+	nlohmann::json j = json::parse(ifs);
+	ifs.close();
+
+	std::vector<nlohmann::json> lights = j["lights"].get<std::vector<nlohmann::json>>();
+	for (size_t i = 0; i < lights.size(); i++)
+	{
+		cLight* light = new cLight();
+
+		loadUniformLocations(light, program, i);
+
+		light->friendlyName = lights[i]["friendlyName"].get<std::string>();
+
+		light->position.x = lights[i]["position"]["x"].get<float>();
+		light->position.y = lights[i]["position"]["y"].get<float>();
+		light->position.z = lights[i]["position"]["z"].get<float>();
+		light->position.w = lights[i]["position"]["w"].get<float>();
+
+		light->setConstAttenuation(lights[i]["attenuation"]["const"].get<float>());
+		light->setLinearAttenuation(lights[i]["attenuation"]["linear"].get<float>());
+		light->setQuadAttenuation(lights[i]["attenuation"]["quad"].get<float>());
+		light->setDistanceCutOff(lights[i]["attenuation"]["distanceCutOff"].get<float>());
+
+		light->diffuse.r = lights[i]["diffuse"]["r"].get<float>();
+		light->diffuse.g = lights[i]["diffuse"]["g"].get<float>();
+		light->diffuse.b = lights[i]["diffuse"]["b"].get<float>();
+		light->diffuse.a = lights[i]["diffuse"]["a"].get<float>();
+
+		light->param2.x = lights[i]["param2"]["on"].get<float>();
+		light->useDebugSphere = lights[i]["useDebugSphere"].get<bool>();
 
 		vecLights.push_back(light);
 	}
@@ -95,4 +139,17 @@ void cLightsManager::copyLightValuesToShader()
 			light->atten.x, light->atten.y, light->atten.z, light->atten.w);
 	}
 	
+}
+
+void cLightsManager::selectNextLight()
+{
+	if (selectedLightIndex >= vecLights.size() - 1)
+	{
+		selectedLightIndex = 0;
+	}
+	else
+	{
+		selectedLightIndex++;
+	}
+	selectedLight = vecLights[selectedLightIndex];
 }

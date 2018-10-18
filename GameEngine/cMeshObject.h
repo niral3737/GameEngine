@@ -2,6 +2,7 @@
 #define _MESH_OBJECT_HG_
 
 #include <glm/vec3.hpp>
+#include <glm/vec4.hpp>
 #include <string>
 #include <vector>
 
@@ -15,7 +16,14 @@ public:
 
 	glm::vec3 position;
 	glm::vec3 postRotation;
-	glm::vec3 objectColor;
+	//glm::vec3 objectColor;
+	glm::vec4 materialDiffuse;
+	void setDiffuseColour(glm::vec3 newDiffuse);
+	void setAlphaTransparency(float newAlpha);
+	glm::vec4 materialSpecular;
+	void setSpecularColour(glm::vec3 colourRGB);
+	void setSpecularPower(float specPower);
+	float getSpecularPower();
 	float scale;
 
 	std::string meshName;

@@ -12,9 +12,10 @@
 #include "cSceneUtils.h"
 #include "iMeshObject.h"
 #include "cUserIO.h"
-#include "cSoundManager.h"
 #include "cPhysics.h"
 #include "cLightsManager.h"
+#include "cLightHelper.h"
+#include "cLight.h"
 
 int main(void)
 {
@@ -32,14 +33,29 @@ int main(void)
 
 	cLightsManager* lightsManager = cLightsManager::getInstance();
 
-	lightsManager->loadAllLights(program);
+	std::cout << "Load from previously saved file? (Y/y)" << std::endl;
+	char answer;
+	std::cin >> answer;
+
+	if (answer == 'y' || answer == 'Y')
+	{
+		lightsManager->loadAllLightsFromSaveFile(program);
+	}
+	else
+	{
+		lightsManager->loadAllLights(program);
+	}
 
 	cShaderUtils::getInstance()->getUniformVariableLocation(program, "objectColour");
 
 	GLint matView_location = glGetUniformLocation(program, "matView");
 	GLint matProj_location = glGetUniformLocation(program, "matProj");
 
+	GLint eyeLocation_location = glGetUniformLocation(program, "eyeLocation");
+
 	GLFWwindow* window = cGLFWUtils::getWindowInstance();
+
+	cLightHelper* pLightHelper = new cLightHelper();
 	while (!glfwWindowShouldClose(window))
 	{
 		//soundManager->printInfo();
@@ -75,10 +91,73 @@ int main(void)
 			cSceneUtils::cameraAt,		// At
 			glm::vec3(0.0f, 1.0f, 0.0f));// Up
 
+		glUniform3f(eyeLocation_location, cSceneUtils::cameraEye.x, cSceneUtils::cameraEye.y, cSceneUtils::cameraEye.z);
+
 		glUniformMatrix4fv(matView_location, 1, GL_FALSE, glm::value_ptr(matView));
 		glUniformMatrix4fv(matProj_location, 1, GL_FALSE, glm::value_ptr(matProjection));
 
 		lightsManager->copyLightValuesToShader();
+
+		cMeshObject* attenSphere = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("sphere");
+		attenSphere->isVisible = true;
+		attenSphere->dontLight = true;
+
+		glm::mat4 matBall(1.0f);
+
+		const float ACCURACY_OF_DISTANCE = 0.01f;
+		const float INFINITE_DISTANCE = 10000.0f;
+
+		for (std::vector<cLight*>::iterator it = lightsManager->vecLights.begin(); it != lightsManager->vecLights.end(); it++)
+		{
+			cLight* light = *it;
+
+			if (!light->useDebugSphere)
+				continue;
+
+			attenSphere->position = light->position;
+
+
+			attenSphere->setDiffuseColour(glm::vec3(1.0f, 1.0f, 0.0f));
+			float distance90Percent = pLightHelper->calcApproxDistFromAtten(0.90f, ACCURACY_OF_DISTANCE,
+				INFINITE_DISTANCE, light->atten.x, light->atten.y, light->atten.z);
+			attenSphere->scale = distance90Percent;
+			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
+
+			attenSphere->setDiffuseColour(glm::vec3(0.0f, 1.0f, 0.0f));	// 50% brightness
+			float distance50Percent =
+				pLightHelper->calcApproxDistFromAtten(0.50f, ACCURACY_OF_DISTANCE,
+					INFINITE_DISTANCE,
+					light->atten.x,
+					light->atten.y,
+					light->atten.z);
+			attenSphere->scale = distance50Percent;
+			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
+
+			attenSphere->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));	// 25% brightness
+			float distance25Percent =
+				pLightHelper->calcApproxDistFromAtten(0.25f, ACCURACY_OF_DISTANCE,
+					INFINITE_DISTANCE,
+					light->atten.x,
+					light->atten.y,
+					light->atten.z);
+			attenSphere->scale = distance25Percent;
+			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
+
+			attenSphere->setDiffuseColour(glm::vec3(0.0f, 0.0f, 1.0f));	// 1% brightness
+			float distance1Percent =
+				pLightHelper->calcApproxDistFromAtten(0.01f, ACCURACY_OF_DISTANCE,
+					INFINITE_DISTANCE,
+					light->atten.x,
+					light->atten.y,
+					light->atten.z);
+			attenSphere->scale = distance1Percent;
+			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
+		}
+		attenSphere->isVisible = false;
+		/*lightSphere1->position = lightsManager->getLightByFriendlyName("light1")->position;
+		lightSphere2->position = lightsManager->getLightByFriendlyName("light2")->position;
+		lightSphere3->position = lightsManager->getLightByFriendlyName("light3")->position;
+		lightSphere4->position = lightsManager->getLightByFriendlyName("light4")->position;*/
 
 		// Draw all the objects in the "scene"
 		for (unsigned int objIndex = 0;
@@ -100,11 +179,11 @@ int main(void)
 		double deltaTime = currentTime - lastTime;
 		lastTime = currentTime;
 
-		cModelDrawInfo modelDrawInfo;
+		/*cModelDrawInfo modelDrawInfo;
 		modelDrawInfo.meshFileName = "terrain_xyz_n.ply";
 		cVAOMeshUtils::getInstance()->findDrawInfoByModelName(modelDrawInfo);
 
-		PhysicsUpdate(deltaTime, modelDrawInfo);
+		PhysicsUpdate(deltaTime, modelDrawInfo);*/
 		cUserIO::processAsynKeys(window);
 	}//while (!glfwWindowShouldClose(window))
 

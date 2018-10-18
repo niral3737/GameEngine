@@ -4,6 +4,12 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+enum eSelectionMode
+{
+	LIGHT_SELECTION,
+	MESH_SELECTION
+};
+
 class cUserIO
 {
 public:
@@ -13,12 +19,14 @@ public:
 		int action,
 		int mods);
 	static void processAsynKeys(GLFWwindow* window);
-
+	static bool isInMeshSelectionMode;
+	static eSelectionMode selectionMode;
 private:
 	static bool mIsShiftDown(GLFWwindow* window);
 	static bool mIsCtrlDown(GLFWwindow* window);
 	static bool mIsAltDown(GLFWwindow* window);
 	static bool mAreAllModifiersUp(GLFWwindow* window);
+	static void mSaveSettings();
 };
 
 #endif // !_USER_IO_HG_

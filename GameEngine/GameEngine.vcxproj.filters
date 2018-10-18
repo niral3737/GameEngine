@@ -46,6 +46,12 @@
     <Filter Include="Lights">
       <UniqueIdentifier>{90983057-7f7c-4a2a-ab2a-3834129e0ea4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{299b0e80-d4e3-4ebd-a716-f4b95dcacd9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{b601b307-a0ea-4ab1-a7e9-2dd51cae23d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -93,14 +99,20 @@
     <ClCompile Include="cSoundManager.cpp">
       <Filter>Sound</Filter>
     </ClCompile>
-    <ClCompile Include="cPhysics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cLightsManager.cpp">
       <Filter>Lights</Filter>
     </ClCompile>
     <ClCompile Include="cLight.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="cLightHelper.cpp">
+      <Filter>Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="cGLColourHelper.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="cPhysics.cpp">
+      <Filter>Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -146,14 +158,20 @@
     <ClInclude Include="cSoundManager.h">
       <Filter>Sound</Filter>
     </ClInclude>
-    <ClInclude Include="cPhysics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="cLightsManager.h">
       <Filter>Lights</Filter>
     </ClInclude>
     <ClInclude Include="cLight.h">
-      <Filter>Header Files</Filter>
+      <Filter>Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="cLightHelper.h">
+      <Filter>Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="cGLColourHelper.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="cPhysics.h">
+      <Filter>Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -164,5 +182,6 @@
     <None Include="assets\shaders\vertex01.glsl">
       <Filter>Shader\shaders</Filter>
     </None>
+    <None Include="savefile.json" />
   </ItemGroup>
 </Project>
