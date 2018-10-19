@@ -21,6 +21,7 @@ public:
 	static void processAsynKeys(GLFWwindow* window);
 	static bool isInMeshSelectionMode;
 	static eSelectionMode selectionMode;
+	static bool includeInvisibleObjects;
 private:
 	static bool mIsShiftDown(GLFWwindow* window);
 	static bool mIsCtrlDown(GLFWwindow* window);

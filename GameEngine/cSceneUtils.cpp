@@ -3,6 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
+#include <fstream>
 #include "json.hpp"
 #include "cJsonUtils.h"
 #include "cMeshObjectFactory.h"
@@ -13,6 +14,8 @@ cSceneUtils* cSceneUtils::pSceneUtils = 0;
 
 glm::vec3 cSceneUtils::cameraEye = glm::vec3(0.0f, 0.0f, 0.0f);
 glm::vec3 cSceneUtils::cameraAt = glm::vec3(0.0f, 0.0f, 0.0f);
+
+bool cSceneUtils::loadFromSaveFile = false;
 
 cSceneUtils::cSceneUtils()
 {
@@ -49,8 +52,19 @@ iMeshObject* cSceneUtils::findObjectByFriendlyName(std::string theNameToFind)
 
 void cSceneUtils::loadModelsIntoScene()
 {
-	//load models from settings.json
-	std::vector<nlohmann::json> meshes = cJsonUtils::getJsonInstance()["meshes"].get<std::vector<nlohmann::json>>();
+	//load models 
+	std::vector<nlohmann::json> meshes;
+	if (loadFromSaveFile)
+	{
+		std::ifstream ifs("savefile.json");
+		nlohmann::json j = json::parse(ifs);
+		ifs.close();
+		meshes = j["meshes"].get<std::vector<nlohmann::json>>();
+	}
+	else
+	{
+		meshes = cJsonUtils::getJsonInstance()["meshes"].get<std::vector<nlohmann::json>>();
+	}
 	for (size_t i = 0; i < meshes.size(); i++)
 	{
 		cMeshObject* meshObject = (cMeshObject*) cMeshObjectFactory::createMeshObject();
@@ -148,16 +162,27 @@ void cSceneUtils::drawTreesAtRandomPositions()
 
 void cSceneUtils::initializeCamera()
 {
+	nlohmann::json json;
+	if (loadFromSaveFile)
+	{
+		std::ifstream ifs("savefile.json");
+		json = json::parse(ifs);
+		ifs.close();
+	}
+	else
+	{
+		json = cJsonUtils::getJsonInstance();
+	}
 	cSceneUtils::cameraEye = glm::vec3(
-		cJsonUtils::getJsonInstance()["cameraEye"]["x"].get<float>(),
-		cJsonUtils::getJsonInstance()["cameraEye"]["y"].get<float>(),
-		cJsonUtils::getJsonInstance()["cameraEye"]["z"].get<float>()
+		json["cameraEye"]["x"].get<float>(),
+		json["cameraEye"]["y"].get<float>(),
+		json["cameraEye"]["z"].get<float>()
 	);
 
 	cSceneUtils::cameraAt = glm::vec3(
-		cJsonUtils::getJsonInstance()["cameraAt"]["x"].get<float>(),
-		cJsonUtils::getJsonInstance()["cameraAt"]["y"].get<float>(),
-		cJsonUtils::getJsonInstance()["cameraAt"]["z"].get<float>()
+		json["cameraAt"]["x"].get<float>(),
+		json["cameraAt"]["y"].get<float>(),
+		json["cameraAt"]["z"].get<float>()
 	);
 }
 

@@ -10,9 +10,9 @@
         "z": 0.0
     },
     "cameraEye": {
-        "x": 0.0,
-        "y": 100.0,
-        "z": -230.0
+        "x": 32.0,
+        "y": 75.0,
+        "z": -136.0
     },
     "compressedFileExt": ".mp3",
     "fireSound": "fire",
@@ -24,8 +24,8 @@
             "attenuation": {
                 "const": 0.0,
                 "distanceCutOff": 0.0,
-                "linear": -0.26900002360343933,
-                "quad": 0.006000000983476639
+                "linear": 0.038572072982788086,
+                "quad": 9.999999747378752e-06
             },
             "diffuse": {
                 "a": 1.0,
@@ -54,9 +54,9 @@
             },
             "position": {
                 "w": 1.0,
-                "x": 53.0,
-                "y": 25.0,
-                "z": 13.0
+                "x": 1.2000000476837158,
+                "y": 23.0,
+                "z": 61.29999923706055
             },
             "specular": {
                 "a": 1.0,
@@ -64,7 +64,7 @@
                 "g": 1.0,
                 "r": 1.0
             },
-            "useDebugSphere": true
+            "useDebugSphere": false
         },
         {
             "attenuation": {
@@ -100,9 +100,9 @@
             },
             "position": {
                 "w": 1.0,
-                "x": 25.0,
+                "x": 33.5,
                 "y": 50.0,
-                "z": -100.0
+                "z": -33.0
             },
             "specular": {
                 "a": 1.0,
@@ -110,7 +110,7 @@
                 "g": 1.0,
                 "r": 1.0
             },
-            "useDebugSphere": false
+            "useDebugSphere": true
         },
         {
             "attenuation": {
@@ -192,7 +192,7 @@
             },
             "position": {
                 "w": 1.0,
-                "x": -80.0,
+                "x": -70.0,
                 "y": 50.0,
                 "z": 50.0
             },
@@ -216,14 +216,21 @@
             "dontLight": false,
             "friendlyName": "tenker",
             "isUpdatedByPhysics": true,
-            "isVisible": true,
+            "isVisible": false,
             "isWireFrame": false,
-            "meshName": "tenker.ply",
-            "objectColor": {
+            "materialDiffuse": {
+                "a": 1.0,
                 "b": 0.0,
                 "g": 0.0,
                 "r": 1.0
             },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "tenker.ply",
             "position": {
                 "x": -10.0,
                 "y": 0.0,
@@ -253,16 +260,23 @@
             "isUpdatedByPhysics": true,
             "isVisible": true,
             "isWireFrame": false,
-            "meshName": "house.ply",
-            "objectColor": {
+            "materialDiffuse": {
+                "a": 1.0,
                 "b": 0.0,
                 "g": 1.0,
                 "r": 1.0
             },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "house.ply",
             "position": {
-                "x": 10.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -80.0
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -286,14 +300,21 @@
             "dontLight": false,
             "friendlyName": "eagle",
             "isUpdatedByPhysics": true,
-            "isVisible": true,
+            "isVisible": false,
             "isWireFrame": false,
-            "meshName": "eagle.ply",
-            "objectColor": {
+            "materialDiffuse": {
+                "a": 1.0,
                 "b": 0.0,
                 "g": 1.0,
                 "r": 0.0
             },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "eagle.ply",
             "position": {
                 "x": 0.0,
                 "y": 25.0,
@@ -323,16 +344,23 @@
             "isUpdatedByPhysics": true,
             "isVisible": true,
             "isWireFrame": false,
-            "meshName": "BMW.ply",
-            "objectColor": {
-                "b": 1.0,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 0.0,
                 "g": 0.0,
-                "r": 0.0
+                "r": 1.0
             },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 100.0,
+                "r": 1.0
+            },
+            "meshName": "BMW.ply",
             "position": {
-                "x": -50.0,
-                "y": 0.0,
-                "z": -70.0
+                "x": 0.0,
+                "y": 12.0,
+                "z": 25.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -353,17 +381,24 @@
                 "y": 0.0,
                 "z": 0.0
             },
-            "dontLight": true,
+            "dontLight": false,
             "friendlyName": "terrain",
             "isUpdatedByPhysics": false,
-            "isVisible": false,
-            "isWireFrame": true,
-            "meshName": "terrain_xyz_n.ply",
-            "objectColor": {
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
                 "b": 1.0,
                 "g": 1.0,
                 "r": 1.0
             },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 100.0,
+                "r": 1.0
+            },
+            "meshName": "terrain_xyz_n.ply",
             "position": {
                 "x": 0.0,
                 "y": 0.0,
@@ -393,23 +428,30 @@
             "isUpdatedByPhysics": false,
             "isVisible": false,
             "isWireFrame": true,
-            "meshName": "sphere.ply",
-            "objectColor": {
-                "b": 0.75,
-                "g": 0.45,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 0.0,
+                "r": 0.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
                 "r": 1.0
             },
+            "meshName": "sphere.ply",
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": 33.5,
+                "y": 50.0,
+                "z": -33.0
             },
             "postRotation": {
                 "x": 0.0,
                 "y": 0.0,
                 "z": 0.0
             },
-            "scale": 1.0,
+            "scale": 312.5,
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,
@@ -426,4 +468,3 @@
     "uncompressedFileExt": ".wav",
     "vertexShaderFileName": "vertex01.glsl"
 }
-

@@ -15,30 +15,54 @@
 #include "json.hpp"
 
 eSelectionMode cUserIO::selectionMode = eSelectionMode::MESH_SELECTION;
+bool cUserIO::includeInvisibleObjects = false;
 
 void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int action, int mods)
 {
-	cSceneUtils* scenUtils = cSceneUtils::getInstance();
+	cSceneUtils* sceneUtils = cSceneUtils::getInstance();
+	cLightsManager* lightManager = cLightsManager::getInstance();
 
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 	{
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_TAB))
+	if (glfwGetKey(window, GLFW_KEY_I) && action == GLFW_PRESS)
 	{
-		scenUtils->selectNextMeshObject(false);
-		std::cout << ((cMeshObject*)scenUtils->selectedMeshObject)->friendlyName << " selected" << std::endl;
+		includeInvisibleObjects = true;
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_M))
+	if (glfwGetKey(window, GLFW_KEY_TAB) && action == GLFW_PRESS)
+	{
+		if(selectionMode == eSelectionMode::MESH_SELECTION){
+			sceneUtils->selectNextMeshObject(includeInvisibleObjects);
+			cMeshObject* selectedObject = (cMeshObject*) sceneUtils->selectedMeshObject;
+			if (selectedObject)
+			{
+				std::cout << selectedObject->friendlyName << " selected" << std::endl;
+			}
+		}
+		else if (selectionMode == eSelectionMode::LIGHT_SELECTION)
+		{
+			lightManager->selectNextLight();
+			cLight* selectedLight = lightManager->selectedLight;
+			if(selectedLight)
+			{
+				std::cout << selectedLight->friendlyName << " selected" << std::endl;
+			}
+		}
+	}
+
+	if (key == GLFW_KEY_M && action == GLFW_PRESS)
 	{
 		selectionMode = eSelectionMode::MESH_SELECTION;
+		std::cout << "Model selection mode" << std::endl;
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_L))
+	if (key == GLFW_KEY_L && action == GLFW_PRESS)
 	{
 		selectionMode = eSelectionMode::LIGHT_SELECTION;
+		std::cout << "Light selection mode" << std::endl;
 	}
 
 	//if(mIsCtrlDown(window) && scenUtils->selectedMeshObject){
@@ -52,11 +76,33 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 	//		((cMeshObject*)scenUtils->selectedMeshObject)->setSpecularColour(glm::vec3(r, g, b));
 	//	}
 
-	//	////on/off debug sphere
-	//	//if (glfwGetKey(window, GLFW_KEY_BACKSPACE))
-	//	//{
-	//	//	lightsManager->selectedLight->useDebugSphere = !lightsManager->selectedLight->useDebugSphere;
-	//	//}
+	if (selectionMode == MESH_SELECTION && sceneUtils->selectedMeshObject)
+	{
+		sceneUtils->selectNextMeshObject(includeInvisibleObjects);
+		cMeshObject* selectedObject = (cMeshObject*) sceneUtils->selectedMeshObject;
+		if (glfwGetKey(window, GLFW_KEY_0) && action == GLFW_PRESS)
+		{
+			selectedObject->isWireFrame = !selectedObject->isWireFrame;
+		}
+		if (glfwGetKey(window, GLFW_KEY_BACKSPACE) && action == GLFW_PRESS)
+		{
+			selectedObject->isVisible = !selectedObject->isVisible;
+		}
+
+	}
+	else if(selectionMode == LIGHT_SELECTION && lightManager->selectedLight){
+
+		cLight* selectedLight = lightManager->selectedLight;
+
+		if (glfwGetKey(window, GLFW_KEY_0) && action == GLFW_PRESS)
+		{
+			selectedLight->useDebugSphere = !selectedLight->useDebugSphere;
+		}
+		if (glfwGetKey(window, GLFW_KEY_BACKSPACE) && action == GLFW_PRESS)
+		{
+			selectedLight->setOn(!selectedLight->getOn());
+		}
+	}
 	//}
 
 	//save settings
@@ -88,32 +134,26 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		{
 			cSceneUtils::cameraEye.z += cameraSpeed;
-			//axe->position.z += cameraSpeed;
 		}
 		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)	// "backwards"
 		{
 			cSceneUtils::cameraEye.z -= cameraSpeed;
-			//axe->position.z -= cameraSpeed;
 		}
 		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)	// "left"
 		{
 			cSceneUtils::cameraEye.x += cameraSpeed;
-			//axe->position.x -= cameraSpeed;
 		}
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)	// "right"
 		{
 			cSceneUtils::cameraEye.x -= cameraSpeed;
-			//axe->position.x += cameraSpeed;
 		}
 		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)	// "up"
 		{
 			cSceneUtils::cameraEye.y += cameraSpeed;
-			//axe->position.y += cameraSpeed;
 		}
 		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)	// "down"
 		{
 			cSceneUtils::cameraEye.y -= cameraSpeed;
-			//axe->position.y -= cameraSpeed;
 		}
 
 	}//if(AreAllModifiersUp(window)
@@ -141,82 +181,131 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 			pPlayerShip->acceleration.x = -3.0f;
 		}
 	}*/
-
-	if (mIsCtrlDown(window))
+	if (mIsAltDown(window))
 	{
-		//cLight* selectedLight = cLightsManager::getInstance()->selectedLight;
-		cMeshObject* selectedMeshObject = (cMeshObject*) cSceneUtils::getInstance()->selectedMeshObject;
-
-		/*if (!selectedLight)
+		cMeshObject* selectedMeshObject = (cMeshObject*)cSceneUtils::getInstance()->selectedMeshObject;
+		cLight* selectedLight = cLightsManager::getInstance()->selectedLight;
+		if (selectionMode == MESH_SELECTION && selectedMeshObject)
 		{
-			return;
-		}*/
-
-		if (!selectedMeshObject)
-		{
-			return;
-		}
-
-		/*if (glfwGetKey(window, GLFW_KEY_W))
-		{
-			selectedLight->position.z += 1.0f;
-		}
-		if (glfwGetKey(window, GLFW_KEY_S))
-		{
-			selectedLight->position.z -= 1.0f;
-		}
-		if (glfwGetKey(window, GLFW_KEY_A))
-		{
-			selectedLight->position.x += 1.0f;
-		}
-		if (glfwGetKey(window, GLFW_KEY_D))
-		{
-			selectedLight->position.x -= 1.0f;
-		}
-		if (glfwGetKey(window, GLFW_KEY_Q))
-		{
-			selectedLight->position.y += 1.0f;
-		}
-		if (glfwGetKey(window, GLFW_KEY_E))
-		{
-			selectedLight->position.y -= 1.0f;
-		}*/
-		//atten linear
-		//if (glfwGetKey(window, GLFW_KEY_EQUAL))
-		//{
-		//	selectedLight->atten.y += 0.01f;
-		//}
-		//if (glfwGetKey(window, GLFW_KEY_MINUS))
-		//{
-		//	selectedLight->atten.y -= 0.01f;
-		//}
-
-		////atten quad
-		//if (glfwGetKey(window, GLFW_KEY_LEFT_BRACKET))
-		//{
-		//	selectedLight->atten.z -= 0.001f;
-		//}
-		//if (glfwGetKey(window, GLFW_KEY_RIGHT_BRACKET))
-		//{
-		//	selectedLight->atten.z += 0.001f;
-		//}
-
-		if (glfwGetKey(window, GLFW_KEY_EQUAL))
-		{
-			selectedMeshObject->setSpecularPower(selectedMeshObject->getSpecularPower() + 1.0);
-			std::cout << "Specular Power : " << selectedMeshObject->getSpecularPower() << std::endl;
-		}
-		if (glfwGetKey(window, GLFW_KEY_MINUS))
-		{
-			if (selectedMeshObject->getSpecularPower() <= 1.0f)
+			if (glfwGetKey(window, GLFW_KEY_W))
 			{
-				return;
+				selectedMeshObject->postRotation.x += glm::radians(1.0f);
 			}
-			selectedMeshObject->setSpecularPower(selectedMeshObject->getSpecularPower() - 1.0);
-			std::cout << "Specular Power : " << selectedMeshObject->getSpecularPower() << std::endl;
+			if (glfwGetKey(window, GLFW_KEY_S))
+			{
+				selectedMeshObject->postRotation.x -= glm::radians(1.0f);
+			}
+			if (glfwGetKey(window, GLFW_KEY_A))
+			{
+				selectedMeshObject->postRotation.z -= glm::radians(1.0f);
+			}
+			if (glfwGetKey(window, GLFW_KEY_D))
+			{
+				selectedMeshObject->postRotation.z += glm::radians(1.0f);
+			}
+			if (glfwGetKey(window, GLFW_KEY_Q))
+			{
+				selectedMeshObject->postRotation.y += glm::radians(1.0f);
+			}
+			if (glfwGetKey(window, GLFW_KEY_E))
+			{
+				selectedMeshObject->postRotation.y -= glm::radians(1.0f);
+			}
 		}
 	}
 
+	if (mIsCtrlDown(window))
+	{
+		cMeshObject* selectedMeshObject = (cMeshObject*)cSceneUtils::getInstance()->selectedMeshObject;
+		cLight* selectedLight = cLightsManager::getInstance()->selectedLight;
+		
+		if (selectionMode == MESH_SELECTION && selectedMeshObject)
+		{
+			if (glfwGetKey(window, GLFW_KEY_W))
+			{
+				selectedMeshObject->position.z += 0.5f;
+			}
+			if (glfwGetKey(window, GLFW_KEY_S))
+			{
+				selectedMeshObject->position.z -= 0.5f;
+			}
+			if (glfwGetKey(window, GLFW_KEY_A))
+			{
+				selectedMeshObject->position.x += 0.5f;
+			}
+			if (glfwGetKey(window, GLFW_KEY_D))
+			{
+				selectedMeshObject->position.x -= 0.5f;
+			}
+			if (glfwGetKey(window, GLFW_KEY_Q))
+			{
+				selectedMeshObject->position.y += 0.5f;
+			}
+			if (glfwGetKey(window, GLFW_KEY_E))
+			{
+				selectedMeshObject->position.y -= 0.5f;
+			}
+			if (glfwGetKey(window, GLFW_KEY_EQUAL))
+			{
+				selectedMeshObject->setSpecularPower(selectedMeshObject->getSpecularPower() + 1.0f);
+			}
+			if (glfwGetKey(window, GLFW_KEY_MINUS))
+			{
+				if (selectedMeshObject->getSpecularPower() <= 1.0f)
+				{
+					return;
+				}
+				selectedMeshObject->setSpecularPower(selectedMeshObject->getSpecularPower() - 1.0f);
+			}
+		}
+		else if (selectionMode == LIGHT_SELECTION && selectedLight)
+		{
+			if (glfwGetKey(window, GLFW_KEY_W))
+			{
+				selectedLight->position.z += 0.5f;
+			}
+			if (glfwGetKey(window, GLFW_KEY_S))
+			{
+				selectedLight->position.z -= 0.5f;
+			}
+			if (glfwGetKey(window, GLFW_KEY_A))
+			{
+				selectedLight->position.x += 0.5f;
+			}
+			if (glfwGetKey(window, GLFW_KEY_D))
+			{
+				selectedLight->position.x -= 0.5f;
+			}
+			if (glfwGetKey(window, GLFW_KEY_Q))
+			{
+				selectedLight->position.y += 0.5f;
+			}
+			if (glfwGetKey(window, GLFW_KEY_E))
+			{
+				selectedLight->position.y -= 0.5f;
+			}
+
+			//atten linear
+			if (glfwGetKey(window, GLFW_KEY_EQUAL))
+			{
+				selectedLight->atten.y += 0.001f;
+			}
+			if (glfwGetKey(window, GLFW_KEY_MINUS))
+			{
+				selectedLight->atten.y -= 0.001f;
+			}
+
+			//atten quad
+			if (glfwGetKey(window, GLFW_KEY_LEFT_BRACKET))
+			{
+				selectedLight->atten.z -= 0.0001f;
+			}
+			if (glfwGetKey(window, GLFW_KEY_RIGHT_BRACKET))
+			{
+				selectedLight->atten.z += 0.0001f;
+			}
+		}
+	}
 }
 
 bool cUserIO::mIsShiftDown(GLFWwindow * window)
@@ -272,10 +361,14 @@ void cUserIO::mSaveSettings()
 
 	//saving the lights
 
-	unsigned int numLights = lightsManager->vecLights.size();
+	size_t numLights = lightsManager->vecLights.size();
 	for (unsigned int index = 0; index != numLights; index++)
 	{
 		cLight* light = lightsManager->vecLights[index];
+
+		json["lights"][index]["friendlyName"] = light->friendlyName;
+		json["lights"][index]["useDebugSphere"] = light->useDebugSphere;
+
 		json["lights"][index]["position"]["x"] = light->position.x;
 		json["lights"][index]["position"]["y"] = light->position.y;
 		json["lights"][index]["position"]["z"] = light->position.z;
@@ -287,17 +380,33 @@ void cUserIO::mSaveSettings()
 		json["lights"][index]["attenuation"]["distanceCutOff"] = light->atten.w;
 
 		json["lights"][index]["diffuse"]["r"] = light->diffuse.r;
-		json["lights"][index]["diffuse"]["g"] = light->diffuse.b;
+		json["lights"][index]["diffuse"]["g"] = light->diffuse.g;
 		json["lights"][index]["diffuse"]["b"] = light->diffuse.b;
 		json["lights"][index]["diffuse"]["a"] = light->diffuse.a;
 
+		json["lights"][index]["specular"]["r"] = light->specular.r;
+		json["lights"][index]["specular"]["g"] = light->specular.g;
+		json["lights"][index]["specular"]["b"] = light->specular.b;
+		json["lights"][index]["specular"]["a"] = light->specular.a;
+
+		json["lights"][index]["direction"]["x"] = light->direction.x;
+		json["lights"][index]["direction"]["y"] = light->direction.y;
+		json["lights"][index]["direction"]["z"] = light->direction.z;
+		json["lights"][index]["direction"]["w"] = light->direction.w;
+
+		json["lights"][index]["param1"]["lightType"] = light->param1.x;
+		json["lights"][index]["param1"]["innerAngle"] = light->param1.y;
+		json["lights"][index]["param1"]["outerAngle"] = light->param1.z;
+		json["lights"][index]["param1"]["w"] = light->param1.w;
+
 		json["lights"][index]["param2"]["on"] = light->param2.x;
-		json["lights"][index]["useDebugSphere"] = light->useDebugSphere;
-		index++;
+		json["lights"][index]["param2"]["y"] = light->param2.y;
+		json["lights"][index]["param2"]["z"] = light->param2.z;
+		json["lights"][index]["param2"]["w"] = light->param2.w;
 	}
 
 	//saving meshobjects
-	unsigned int numObjects = sceneUtils->vecObjectsToDraw.size();
+	size_t numObjects = sceneUtils->vecObjectsToDraw.size();
 	for (unsigned int index = 0; index != numObjects; index++)
 	{
 		cMeshObject* object = (cMeshObject*) sceneUtils->vecObjectsToDraw[index];
@@ -317,12 +426,12 @@ void cUserIO::mSaveSettings()
 		json["meshes"][index]["postRotation"]["z"] = object->postRotation.z;
 
 		json["meshes"][index]["materialDiffuse"]["r"] = object->materialDiffuse.r;
-		json["meshes"][index]["materialDiffuse"]["g"] = object->materialDiffuse.b;
+		json["meshes"][index]["materialDiffuse"]["g"] = object->materialDiffuse.g;
 		json["meshes"][index]["materialDiffuse"]["b"] = object->materialDiffuse.b;
 		json["meshes"][index]["materialDiffuse"]["a"] = object->materialDiffuse.a;
 
 		json["meshes"][index]["materialSpecular"]["r"] = object->materialSpecular.r;
-		json["meshes"][index]["materialSpecular"]["g"] = object->materialSpecular.b;
+		json["meshes"][index]["materialSpecular"]["g"] = object->materialSpecular.g;
 		json["meshes"][index]["materialSpecular"]["b"] = object->materialSpecular.b;
 		json["meshes"][index]["materialSpecular"]["power"] = object->materialSpecular.a;
 

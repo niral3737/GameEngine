@@ -6,6 +6,7 @@
 #include "cJsonUtils.h"
 
 cLightsManager* cLightsManager::instance = NULL;
+bool cLightsManager::loadFromSaveFile = false;
 
 cLightsManager::cLightsManager()
 {
@@ -29,7 +30,16 @@ cLightsManager* cLightsManager::getInstance()
 
 void cLightsManager::loadAllLights(GLuint program)
 {
-	std::vector<nlohmann::json> lights = cJsonUtils::getJsonInstance()["lights"].get<std::vector<nlohmann::json>>();
+	std::vector<nlohmann::json> lights;
+	if (loadFromSaveFile)
+	{
+		std::ifstream ifs("savefile.json");
+		nlohmann::json j = json::parse(ifs);
+		ifs.close();
+		lights = j["lights"].get<std::vector<nlohmann::json>>();
+	}else{
+		lights = cJsonUtils::getJsonInstance()["lights"].get<std::vector<nlohmann::json>>();
+	}
 	for (size_t i = 0; i < lights.size(); i++)
 	{
 		cLight* light = new cLight();
@@ -37,6 +47,7 @@ void cLightsManager::loadAllLights(GLuint program)
 		loadUniformLocations(light, program, i);
 
 		light->friendlyName = lights[i]["friendlyName"].get<std::string>();
+		light->useDebugSphere = lights[i]["useDebugSphere"].get<bool>();
 
 		light->position.x = lights[i]["position"]["x"].get<float>();
 		light->position.y = lights[i]["position"]["y"].get<float>();
@@ -53,51 +64,68 @@ void cLightsManager::loadAllLights(GLuint program)
 		light->diffuse.b = lights[i]["diffuse"]["b"].get<float>();
 		light->diffuse.a = lights[i]["diffuse"]["a"].get<float>();
 
+		light->specular.r = lights[i]["specular"]["r"].get<float>();
+		light->specular.g = lights[i]["specular"]["g"].get<float>();
+		light->specular.b = lights[i]["specular"]["b"].get<float>();
+		light->specular.a = lights[i]["specular"]["a"].get<float>();
+
+		light->direction.x = lights[i]["direction"]["x"].get<float>();
+		light->direction.y = lights[i]["direction"]["y"].get<float>();
+		light->direction.z = lights[i]["direction"]["z"].get<float>();
+		light->direction.w = lights[i]["direction"]["w"].get<float>();
+
+		light->param1.x = lights[i]["param1"]["lightType"].get<float>();
+		light->param1.y = lights[i]["param1"]["innerAngle"].get<float>();
+		light->param1.z = lights[i]["param1"]["outerAngle"].get<float>();
+		light->param1.w = lights[i]["param1"]["w"].get<float>();
+
 		light->param2.x = lights[i]["param2"]["on"].get<float>();
-		light->useDebugSphere = lights[i]["useDebugSphere"].get<bool>();
+		light->param2.y = lights[i]["param2"]["y"].get<float>();
+		light->param2.z = lights[i]["param2"]["z"].get<float>();
+		light->param2.w = lights[i]["param2"]["w"].get<float>();
 
 		vecLights.push_back(light);
 	}
 
 }
 
-void cLightsManager::loadAllLightsFromSaveFile(GLuint program)
-{
-	std::ifstream ifs("savefile.json");
-	nlohmann::json j = json::parse(ifs);
-	ifs.close();
-
-	std::vector<nlohmann::json> lights = j["lights"].get<std::vector<nlohmann::json>>();
-	for (size_t i = 0; i < lights.size(); i++)
-	{
-		cLight* light = new cLight();
-
-		loadUniformLocations(light, program, i);
-
-		light->friendlyName = lights[i]["friendlyName"].get<std::string>();
-
-		light->position.x = lights[i]["position"]["x"].get<float>();
-		light->position.y = lights[i]["position"]["y"].get<float>();
-		light->position.z = lights[i]["position"]["z"].get<float>();
-		light->position.w = lights[i]["position"]["w"].get<float>();
-
-		light->setConstAttenuation(lights[i]["attenuation"]["const"].get<float>());
-		light->setLinearAttenuation(lights[i]["attenuation"]["linear"].get<float>());
-		light->setQuadAttenuation(lights[i]["attenuation"]["quad"].get<float>());
-		light->setDistanceCutOff(lights[i]["attenuation"]["distanceCutOff"].get<float>());
-
-		light->diffuse.r = lights[i]["diffuse"]["r"].get<float>();
-		light->diffuse.g = lights[i]["diffuse"]["g"].get<float>();
-		light->diffuse.b = lights[i]["diffuse"]["b"].get<float>();
-		light->diffuse.a = lights[i]["diffuse"]["a"].get<float>();
-
-		light->param2.x = lights[i]["param2"]["on"].get<float>();
-		light->useDebugSphere = lights[i]["useDebugSphere"].get<bool>();
-
-		vecLights.push_back(light);
-	}
-
-}
+//void cLightsManager::loadAllLightsFromSaveFile(GLuint program)
+//{
+//	std::ifstream ifs("savefile.json");
+//	nlohmann::json j = json::parse(ifs);
+//	ifs.close();
+//
+//	std::vector<nlohmann::json> lights = j["lights"].get<std::vector<nlohmann::json>>();
+//	for (size_t i = 0; i < lights.size(); i++)
+//	{
+//		cLight* light = new cLight();
+//
+//		loadUniformLocations(light, program, i);
+//
+//		light->friendlyName = lights[i]["friendlyName"].get<std::string>();
+//
+//		light->position.x = lights[i]["position"]["x"].get<float>();
+//		light->position.y = lights[i]["position"]["y"].get<float>();
+//		light->position.z = lights[i]["position"]["z"].get<float>();
+//		light->position.w = lights[i]["position"]["w"].get<float>();
+//
+//		light->setConstAttenuation(lights[i]["attenuation"]["const"].get<float>());
+//		light->setLinearAttenuation(lights[i]["attenuation"]["linear"].get<float>());
+//		light->setQuadAttenuation(lights[i]["attenuation"]["quad"].get<float>());
+//		light->setDistanceCutOff(lights[i]["attenuation"]["distanceCutOff"].get<float>());
+//
+//		light->diffuse.r = lights[i]["diffuse"]["r"].get<float>();
+//		light->diffuse.g = lights[i]["diffuse"]["g"].get<float>();
+//		light->diffuse.b = lights[i]["diffuse"]["b"].get<float>();
+//		light->diffuse.a = lights[i]["diffuse"]["a"].get<float>();
+//
+//		light->param2.x = lights[i]["param2"]["on"].get<float>();
+//		light->useDebugSphere = lights[i]["useDebugSphere"].get<bool>();
+//
+//		vecLights.push_back(light);
+//	}
+//
+//}
 
 cLight* cLightsManager::getLightByFriendlyName(std::string friendlyName)
 {

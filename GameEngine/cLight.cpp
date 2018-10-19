@@ -43,3 +43,13 @@ void cLight::setSpecularHighlight(glm::vec3 rgbColour, float power)
 {
 	this->specular = glm::vec4(rgbColour, power);
 }
+
+void cLight::setOn(bool on)
+{
+	this->param2.x = on ? 1.0f : 0.0f;
+}
+
+bool cLight::getOn()
+{
+	return this->param2.x > 0.0f;
+}

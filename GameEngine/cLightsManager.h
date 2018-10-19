@@ -11,6 +11,7 @@ class cLightsManager
 {
 public:
 	~cLightsManager();
+	static bool loadFromSaveFile;
 
 	std::vector<cLight*> vecLights;
 	cLight* selectedLight;

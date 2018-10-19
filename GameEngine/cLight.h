@@ -26,6 +26,8 @@ public:
 	void setDiffuse(glm::vec3 diffuse);
 	void setPosition(glm::vec3 newPosition);
 	void setSpecularHighlight(glm::vec3 rgbColour, float power);
+	void setOn(bool on);
+	bool getOn();
 	// .. and so on
 
 	int position_UniLoc;

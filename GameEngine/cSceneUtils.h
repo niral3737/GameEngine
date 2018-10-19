@@ -26,6 +26,7 @@ public:
 	//cMeshObject* loadMeshInfoByFriendlyName( std::string friendlyName);
 	void selectNextMeshObject(bool includeInvisibleObject);
 	iMeshObject* selectedMeshObject;
+	static bool loadFromSaveFile;
 private:
 	static cSceneUtils* pSceneUtils;
 	int selectedObjectIndex;

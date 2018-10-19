@@ -25,10 +25,6 @@ int main(void)
 
 	cVAOMeshUtils::getInstance()->loadModels(program);
 
-	cSceneUtils::initializeCamera();
-
-	cSceneUtils::getInstance()->loadModelsIntoScene();
-
 	double lastTime = glfwGetTime();
 
 	cLightsManager* lightsManager = cLightsManager::getInstance();
@@ -39,12 +35,13 @@ int main(void)
 
 	if (answer == 'y' || answer == 'Y')
 	{
-		lightsManager->loadAllLightsFromSaveFile(program);
+		lightsManager->loadFromSaveFile = true;
+		cSceneUtils::getInstance()->loadFromSaveFile = true;
 	}
-	else
-	{
-		lightsManager->loadAllLights(program);
-	}
+
+	cSceneUtils::initializeCamera();
+	cSceneUtils::getInstance()->loadModelsIntoScene();
+	lightsManager->loadAllLights(program);
 
 	cShaderUtils::getInstance()->getUniformVariableLocation(program, "objectColour");
 
