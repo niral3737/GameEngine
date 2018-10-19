@@ -4,6 +4,7 @@
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
 #include <fstream>
+#include <iostream>
 #include "json.hpp"
 #include "cJsonUtils.h"
 #include "cMeshObjectFactory.h"
@@ -318,20 +319,6 @@ void cSceneUtils::applyTranformations(iMeshObject* pCurrentMesh, glm::mat4x4& ma
 
 void cSceneUtils::selectNextMeshObject(bool includeInvisibleObject)
 {
-	bool isAnyVisible = false;
-	for (size_t i = 0; i < vecObjectsToDraw.size(); i++)
-	{
-		if (((cMeshObject*)vecObjectsToDraw[i])->isVisible)
-		{
-			isAnyVisible = true;
-			break;
-		}
-	}
-
-	if (!isAnyVisible)
-	{
-		return;
-	}
 	if (selectedObjectIndex >= vecObjectsToDraw.size() - 1)
 	{
 		selectedObjectIndex = 0;
@@ -340,20 +327,44 @@ void cSceneUtils::selectNextMeshObject(bool includeInvisibleObject)
 	{
 		selectedObjectIndex++;
 	}
+	selectedMeshObject = vecObjectsToDraw[selectedObjectIndex];
+	std::cout << ((cMeshObject*)selectedMeshObject)->friendlyName << " selected, isVisible : " << ((cMeshObject*)selectedMeshObject)->isVisible << std::endl;
+	//bool isAnyVisible = false;
+	//for (size_t i = 0; i < vecObjectsToDraw.size(); i++)
+	//{
+	//	if (((cMeshObject*)vecObjectsToDraw[i])->isVisible)
+	//	{
+	//		isAnyVisible = true;
+	//		break;
+	//	}
+	//}
 
-	if(!includeInvisibleObject){
-		if (!((cMeshObject*)vecObjectsToDraw[selectedObjectIndex])->isVisible)
-		{
-			selectNextMeshObject(includeInvisibleObject);
-		}
-		else
-		{
-			selectedMeshObject = vecObjectsToDraw[selectedObjectIndex];
-			return;
-		}
-	}
-	else
-	{
-		selectedMeshObject = vecObjectsToDraw[selectedObjectIndex];
-	}
+	//if (!isAnyVisible)
+	//{
+	//	return;
+	//}
+	//if (selectedObjectIndex >= vecObjectsToDraw.size() - 1)
+	//{
+	//	selectedObjectIndex = 0;
+	//}
+	//else
+	//{
+	//	selectedObjectIndex++;
+	//}
+
+	//if(!includeInvisibleObject){
+	//	if (!((cMeshObject*)vecObjectsToDraw[selectedObjectIndex])->isVisible)
+	//	{
+	//		selectNextMeshObject(includeInvisibleObject);
+	//	}
+	//	else
+	//	{
+	//		selectedMeshObject = vecObjectsToDraw[selectedObjectIndex];
+	//		return;
+	//	}
+	//}
+	//else
+	//{
+	//	selectedMeshObject = vecObjectsToDraw[selectedObjectIndex];
+	//}
 }

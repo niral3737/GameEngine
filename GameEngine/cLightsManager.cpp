@@ -1,5 +1,6 @@
 #include "cLightsManager.h"
 
+#include <iostream>
 #include <fstream>
 
 #include "json.hpp"
@@ -180,4 +181,5 @@ void cLightsManager::selectNextLight()
 		selectedLightIndex++;
 	}
 	selectedLight = vecLights[selectedLightIndex];
+	std::cout << selectedLight->friendlyName << " selected isOn " << selectedLight->getOn() << std::endl;
 }

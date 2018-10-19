@@ -32,24 +32,14 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 		includeInvisibleObjects = true;
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_TAB) && action == GLFW_PRESS)
+	if (key == GLFW_KEY_TAB && action == GLFW_PRESS)
 	{
 		if(selectionMode == eSelectionMode::MESH_SELECTION){
 			sceneUtils->selectNextMeshObject(includeInvisibleObjects);
-			cMeshObject* selectedObject = (cMeshObject*) sceneUtils->selectedMeshObject;
-			if (selectedObject)
-			{
-				std::cout << selectedObject->friendlyName << " selected" << std::endl;
-			}
 		}
 		else if (selectionMode == eSelectionMode::LIGHT_SELECTION)
 		{
 			lightManager->selectNextLight();
-			cLight* selectedLight = lightManager->selectedLight;
-			if(selectedLight)
-			{
-				std::cout << selectedLight->friendlyName << " selected" << std::endl;
-			}
 		}
 	}
 
@@ -78,7 +68,6 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 
 	if (selectionMode == MESH_SELECTION && sceneUtils->selectedMeshObject)
 	{
-		sceneUtils->selectNextMeshObject(includeInvisibleObjects);
 		cMeshObject* selectedObject = (cMeshObject*) sceneUtils->selectedMeshObject;
 		if (glfwGetKey(window, GLFW_KEY_0) && action == GLFW_PRESS)
 		{
