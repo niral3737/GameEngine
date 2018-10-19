@@ -9,6 +9,14 @@ class cLight
 public:
 	cLight();
 	~cLight();
+
+	enum eLightType
+	{					// These numbers are from the shader...
+		DIRECTIONAL_LIGHT,	// = 2
+		POINT_LIGHT,		// = 0
+		SPOT_LIGHT			// = 1
+	};
+
 	glm::vec4 position;
 	glm::vec4 diffuse;
 	glm::vec4 specular;	// rgb = highlight colour, w = power
@@ -28,6 +36,12 @@ public:
 	void setSpecularHighlight(glm::vec3 rgbColour, float power);
 	void setOn(bool on);
 	bool getOn();
+	void setLightType(std::string typeAsString);
+	void setLightType(eLightType lightType);
+	void setSpotConeAngles(float innerAngleDegrees, float outerAngleDegrees);
+	void setRelativeDirection(glm::vec3 relDirection);
+	void setRelativeDirectionByEulerAngles(glm::vec3 directionAngle);
+	void setRelativeDirectionByLookAt(glm::vec3 pointInWorldXYZ);
 	// .. and so on
 
 	int position_UniLoc;
