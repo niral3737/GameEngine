@@ -19,7 +19,6 @@
 
 int main(void)
 {
-
 	cGLFWUtils::setUpGLFW();
 	GLuint program = cShaderUtils::setUpShaders();
 
@@ -113,7 +112,6 @@ int main(void)
 
 			attenSphere->position = light->position;
 
-
 			attenSphere->setDiffuseColour(glm::vec3(1.0f, 1.0f, 0.0f));
 			float distance90Percent = pLightHelper->calcApproxDistFromAtten(0.90f, ACCURACY_OF_DISTANCE,
 				INFINITE_DISTANCE, light->atten.x, light->atten.y, light->atten.z);
@@ -151,10 +149,6 @@ int main(void)
 			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
 		}
 		attenSphere->isVisible = false;
-		/*lightSphere1->position = lightsManager->getLightByFriendlyName("light1")->position;
-		lightSphere2->position = lightsManager->getLightByFriendlyName("light2")->position;
-		lightSphere3->position = lightsManager->getLightByFriendlyName("light3")->position;
-		lightSphere4->position = lightsManager->getLightByFriendlyName("light4")->position;*/
 
 		// Draw all the objects in the "scene"
 		for (unsigned int objIndex = 0;

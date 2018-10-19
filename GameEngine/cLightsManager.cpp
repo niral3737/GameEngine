@@ -143,7 +143,6 @@ void cLightsManager::loadUniformLocations(cLight* light, GLuint program, size_t 
 	std::string theLightsIndex = "theLights[";
 	theLightsIndex += std::to_string(index);
 	theLightsIndex += "].";
-	std::string position = "pos";
 	light->position_UniLoc = glGetUniformLocation(program, (theLightsIndex + "position").c_str());
 	light->diffuse_UniLoc = glGetUniformLocation(program, (theLightsIndex + "diffuse").c_str());
 	light->specular_UniLoc = glGetUniformLocation(program, (theLightsIndex + "specular").c_str());
@@ -165,6 +164,16 @@ void cLightsManager::copyLightValuesToShader()
 		glUniform4f(light->param2_UniLoc, light->param2.x, 0.0f, 0.0f, 0.0f);	// Turns it "on")
 		glUniform4f(light->atten_UniLoc,
 			light->atten.x, light->atten.y, light->atten.z, light->atten.w);
+		glUniform4f(light->direction_UniLoc,
+			light->direction.x,
+			light->direction.y,
+			light->direction.z,
+			light->direction.w);
+		glUniform4f(light->param1_UniLoc,
+			light->param1.x,		// lightType
+			light->param1.y,		// inner angle
+			light->param1.z,		// outer angle
+			light->param1.w);
 	}
 	
 }

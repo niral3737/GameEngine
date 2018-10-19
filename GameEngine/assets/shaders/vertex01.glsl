@@ -21,7 +21,7 @@ void main()
 	
 	// Note these are 'backwards'
 	mat4 MVP = matProj * matView * matModel;
-    gl_Position = MVP * vec4(posTemp, 1.0);
+    gl_Position = MVP * vec4(posTemp, 1.0); // ON SCREEN
 	
 	vertPosWorld = matModel * vec4(posTemp, 1.0);
 	

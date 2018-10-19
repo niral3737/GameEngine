@@ -298,14 +298,14 @@
 			},
 			"direction": {
 				"x": 0.0,
-				"y": 0.0,
+				"y": -1.0,
 				"z": 0.0,
 				"w": 0.0
 			},
 			"param1": {
 				"lightType": 0.0,
-				"innerAngle": 0.0,
-				"outerAngle": 0.0,
+				"innerAngle": 38.0,
+				"outerAngle": 40.0,
 				"w": 0.0
 			},
 			"param2": {

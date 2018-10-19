@@ -65,17 +65,6 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 		std::cout << "Light selection mode" << std::endl;
 	}
 
-	//if(mIsCtrlDown(window) && scenUtils->selectedMeshObject){
-	//	
-	//	//random specular color
-	//	if (glfwGetKey(window, GLFW_KEY_9))
-	//	{
-	//		float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-	//		float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-	//		float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-	//		((cMeshObject*)scenUtils->selectedMeshObject)->setSpecularColour(glm::vec3(r, g, b));
-	//	}
-
 	if (selectionMode == MESH_SELECTION && sceneUtils->selectedMeshObject)
 	{
 		sceneUtils->selectNextMeshObject(includeInvisibleObjects);
@@ -219,11 +208,11 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		cMeshObject* selectedMeshObject = (cMeshObject*)cSceneUtils::getInstance()->selectedMeshObject;
 		cLight* selectedLight = cLightsManager::getInstance()->selectedLight;
 		
-		if (selectionMode == MESH_SELECTION && selectedMeshObject)
+		if (selectionMode == MESH_SELECTION && (cMeshObject*)cSceneUtils::getInstance()->selectedMeshObject)
 		{
 			if (glfwGetKey(window, GLFW_KEY_W))
 			{
-				selectedMeshObject->position.z += 0.5f;
+				((cMeshObject*)cSceneUtils::getInstance()->selectedMeshObject)->position.z += 0.5f;
 			}
 			if (glfwGetKey(window, GLFW_KEY_S))
 			{
