@@ -303,7 +303,7 @@
 				"w": 0.0
 			},
 			"param1": {
-				"lightType": 0.0,
+				"lightType": 1.0,
 				"innerAngle": 38.0,
 				"outerAngle": 40.0,
 				"w": 0.0
