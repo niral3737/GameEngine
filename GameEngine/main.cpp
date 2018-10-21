@@ -16,17 +16,13 @@
 #include "cLightsManager.h"
 #include "cLightHelper.h"
 #include "cLight.h"
+#include "iEquipment.h"
+#include "cEquipmentFactory.h"
 
 int main(void)
 {
 	cGLFWUtils::setUpGLFW();
 	GLuint program = cShaderUtils::setUpShaders();
-
-	cVAOMeshUtils::getInstance()->loadModels(program);
-
-	double lastTime = glfwGetTime();
-
-	cLightsManager* lightsManager = cLightsManager::getInstance();
 
 	std::cout << "Load from previously saved file? (Y/y)" << std::endl;
 	char answer;
@@ -34,13 +30,25 @@ int main(void)
 
 	if (answer == 'y' || answer == 'Y')
 	{
-		lightsManager->loadFromSaveFile = true;
-		cSceneUtils::getInstance()->loadFromSaveFile = true;
+		cVAOMeshUtils::loadFromSaveFile = true;
+		cLightsManager::loadFromSaveFile = true;
+		cSceneUtils::loadFromSaveFile = true;
 	}
+
+	cVAOMeshUtils::getInstance()->loadModels(program);
+
+	double lastTime = glfwGetTime();
+
+	cLightsManager* lightsManager = cLightsManager::getInstance();
 
 	cSceneUtils::initializeCamera();
 	cSceneUtils::getInstance()->loadModelsIntoScene();
 	lightsManager->loadAllLights(program);
+
+	cEquipmentFactory* equipmentFactory = new cEquipmentFactory();
+
+	iEquipment* ball = equipmentFactory->createEquipment(1);
+	iEquipment* cueStick = equipmentFactory->createEquipment(2);
 
 	cShaderUtils::getInstance()->getUniformVariableLocation(program, "objectColour");
 
@@ -151,6 +159,10 @@ int main(void)
 		attenSphere->isVisible = false;
 
 		// Draw all the objects in the "scene"
+
+		cSceneUtils::getInstance()->drawEquipment(ball, program);
+		cSceneUtils::getInstance()->drawEquipment(cueStick, program);
+
 		for (unsigned int objIndex = 0;
 			objIndex != (unsigned int) cSceneUtils::getInstance()->vecObjectsToDraw.size();
 			objIndex++)

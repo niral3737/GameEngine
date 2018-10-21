@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -138,6 +138,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cBall.cpp" />
+    <ClCompile Include="cCueRack.cpp" />
+    <ClCompile Include="cCueStick.cpp" />
+    <ClCompile Include="cEquipmentBuilder.cpp" />
+    <ClCompile Include="cEquipmentFactory.cpp" />
+    <ClCompile Include="cEquipmentFactoryImpl.cpp" />
     <ClCompile Include="cGLColourHelper.cpp" />
     <ClCompile Include="cGLFWUtils.cpp" />
     <ClCompile Include="cLight.cpp" />
@@ -160,6 +166,12 @@
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cBall.h" />
+    <ClInclude Include="cCueRack.h" />
+    <ClInclude Include="cCueStick.h" />
+    <ClInclude Include="cEquipmentBuilder.h" />
+    <ClInclude Include="cEquipmentFactory.h" />
+    <ClInclude Include="cEquipmentFactoryImpl.h" />
     <ClInclude Include="cGLColourHelper.h" />
     <ClInclude Include="cGLFWUtils.h" />
     <ClInclude Include="cLight.h" />
@@ -174,6 +186,8 @@
     <ClInclude Include="cShaderUtils.h" />
     <ClInclude Include="cUserIO.h" />
     <ClInclude Include="cVAOMeshUtils.h" />
+    <ClInclude Include="iCueRackBuilder.h" />
+    <ClInclude Include="iEquipment.h" />
     <ClInclude Include="iMeshObject.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="cJsonUtils.h" />

@@ -11,6 +11,7 @@ class cVAOMeshUtils
 public:
 	~cVAOMeshUtils();
 	static cVAOMeshUtils* getInstance(void);
+	static bool loadFromSaveFile;
 	bool loadModels(GLuint program);
 	// Note: the shader program ID is needed to tie 
 	// the buffer to the vertex layout of the shader

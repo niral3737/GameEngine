@@ -158,9 +158,6 @@ void cSceneUtils::loadModelsIntoScene()
 //	return NULL;
 //}
 
-void cSceneUtils::drawTreesAtRandomPositions()
-{}
-
 void cSceneUtils::initializeCamera()
 {
 	nlohmann::json json;
@@ -329,42 +326,13 @@ void cSceneUtils::selectNextMeshObject(bool includeInvisibleObject)
 	}
 	selectedMeshObject = vecObjectsToDraw[selectedObjectIndex];
 	std::cout << ((cMeshObject*)selectedMeshObject)->friendlyName << " selected, isVisible : " << ((cMeshObject*)selectedMeshObject)->isVisible << std::endl;
-	//bool isAnyVisible = false;
-	//for (size_t i = 0; i < vecObjectsToDraw.size(); i++)
-	//{
-	//	if (((cMeshObject*)vecObjectsToDraw[i])->isVisible)
-	//	{
-	//		isAnyVisible = true;
-	//		break;
-	//	}
-	//}
+}
 
-	//if (!isAnyVisible)
-	//{
-	//	return;
-	//}
-	//if (selectedObjectIndex >= vecObjectsToDraw.size() - 1)
-	//{
-	//	selectedObjectIndex = 0;
-	//}
-	//else
-	//{
-	//	selectedObjectIndex++;
-	//}
-
-	//if(!includeInvisibleObject){
-	//	if (!((cMeshObject*)vecObjectsToDraw[selectedObjectIndex])->isVisible)
-	//	{
-	//		selectNextMeshObject(includeInvisibleObject);
-	//	}
-	//	else
-	//	{
-	//		selectedMeshObject = vecObjectsToDraw[selectedObjectIndex];
-	//		return;
-	//	}
-	//}
-	//else
-	//{
-	//	selectedMeshObject = vecObjectsToDraw[selectedObjectIndex];
-	//}
+void cSceneUtils::drawEquipment(iEquipment* equipment, GLuint shaderProgramID)
+{
+	glm::mat4 matEquip = glm::mat4(1.0f);
+	if (equipment->getMesh() != NULL)
+	{
+		drawObject(equipment->getMesh(), matEquip, shaderProgramID);
+	}
 }

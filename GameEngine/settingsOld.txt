@@ -1,0 +1,252 @@
+{
+			"meshName":"tenker.ply",
+			"friendlyName": "tenker",
+			"isWireFrame": false,
+			"isVisible": false,
+			"useVertexColor": false,
+			"dontLight": false,
+			"position" : {
+				"x" : -10.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"postRotation" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"materialDiffuse" : {
+				"r": 1.0,
+				"g": 0.0,
+				"b": 0.0,
+				"a": 1.0
+			},
+			"materialSpecular" : {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"power": 1.0
+			},
+			"scale": 1.0,
+			"isUpdatedByPhysics": true,
+			"velocity": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"acceleration": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
+		},
+		{
+			"meshName":"house.ply",
+			"friendlyName": "house",
+			"isWireFrame": false,
+			"isVisible": false,
+			"useVertexColor": false,
+			"dontLight": false,
+			"position" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"postRotation" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"materialDiffuse" : {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 0.0,
+				"a": 1.0
+			},
+			"materialSpecular" : {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"power": 1.0
+			},
+			"scale": 1.0,
+			"isUpdatedByPhysics": true,
+			"velocity": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"acceleration": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
+		},
+		{
+			"meshName":"eagle.ply",
+			"friendlyName": "eagle",
+			"isWireFrame": false,
+			"isVisible": false,
+			"useVertexColor": false,
+			"dontLight": false,
+			"position" : {
+				"x" : 0.0,
+				"y" : 25.0,
+				"z" : 0.0
+			},
+			"postRotation" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"materialDiffuse" : {
+				"r": 0.0,
+				"g": 1.0,
+				"b": 0.0,
+				"a": 1.0
+			},
+			"materialSpecular" : {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"power": 1.0
+			},
+			"scale": 1.0,
+			"isUpdatedByPhysics": true,
+			"velocity": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"acceleration": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
+		},
+		{
+			"meshName":"BMW.ply",
+			"friendlyName": "BMW",
+			"isWireFrame": false,
+			"isVisible": false,
+			"useVertexColor": false,
+			"dontLight": false,
+			"position" : {
+				"x" : 0.0,
+				"y" : 12.0,
+				"z" : 25.0
+			},
+			"postRotation" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"materialDiffuse" : {
+				"r": 1.0,
+				"g": 0.0,
+				"b": 0.0,
+				"a": 1.0
+			},
+			"materialSpecular" : {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"power": 100.0
+			},
+			"scale": 1.0,
+			"isUpdatedByPhysics": true,
+			"velocity": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"acceleration": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
+		},
+		{
+			"meshName":"terrain_xyz_n.ply",
+			"friendlyName": "terrain",
+			"isWireFrame": false,
+			"isVisible": true,
+			"useVertexColor": false,
+			"dontLight": false,
+			"position" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"postRotation" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"materialDiffuse" : {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"a": 1.0
+			},
+			"materialSpecular" : {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"power": 100.0
+			},
+			"scale": 1.0,
+			"isUpdatedByPhysics": false,
+			"velocity": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"acceleration": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
+		},
+		{
+			"meshName":"sphere.ply",
+			"friendlyName": "sphere",
+			"isWireFrame": true,
+			"isVisible": true,
+			"useVertexColor": false,
+			"dontLight": false,
+			"position" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"postRotation" : {
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"materialDiffuse" : {
+				"r": 1.0,
+				"g": 0.45,
+				"b": 0.75,
+				"a": 1.0
+			},
+			"materialSpecular" : {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0,
+				"power": 1.0
+			},
+			"scale": 1.0,
+			"isUpdatedByPhysics": false,
+			"velocity": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"acceleration": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
+		}

@@ -114,6 +114,21 @@
     <ClCompile Include="cPhysics.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
+    <ClCompile Include="cBall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cEquipmentFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cCueStick.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cEquipmentFactoryImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cEquipmentBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cShaderUtils.h">
@@ -172,6 +187,24 @@
     </ClInclude>
     <ClInclude Include="cPhysics.h">
       <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="iEquipment.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="cBall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cEquipmentFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cCueStick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cEquipmentFactoryImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cEquipmentBuilder.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

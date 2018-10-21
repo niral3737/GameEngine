@@ -66,7 +66,10 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 		{
 			selectedObject->isVisible = !selectedObject->isVisible;
 		}
-
+		if (glfwGetKey(window, GLFW_KEY_9) && action == GLFW_PRESS)
+		{
+			selectedObject->dontLight = !selectedObject->dontLight;
+		}
 	}
 	else if(selectionMode == LIGHT_SELECTION && lightManager->selectedLight){
 
@@ -79,6 +82,13 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 		if (glfwGetKey(window, GLFW_KEY_BACKSPACE) && action == GLFW_PRESS)
 		{
 			selectedLight->setOn(!selectedLight->getOn());
+		}
+		if (glfwGetKey(window, GLFW_KEY_0) && action == GLFW_PRESS)
+		{
+			float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+			float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+			float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+			selectedLight->diffuse = glm::vec4(r, g, b, 1.0f);
 		}
 	}
 	//}
@@ -234,6 +244,14 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 					return;
 				}
 				selectedMeshObject->setSpecularPower(selectedMeshObject->getSpecularPower() - 1.0f);
+			}
+			if (glfwGetKey(window, GLFW_KEY_PERIOD))
+			{
+				selectedMeshObject->scale = selectedMeshObject->scale * 1.01f;
+			}
+			if (glfwGetKey(window, GLFW_KEY_COMMA))
+			{
+				selectedMeshObject->scale = selectedMeshObject->scale * 0.99f;
 			}
 		}
 		else if (selectionMode == LIGHT_SELECTION && selectedLight)

@@ -11,6 +11,8 @@
 #include "cJsonUtils.h"
 #include "cShaderUtils.h"
 
+bool cVAOMeshUtils::loadFromSaveFile = false;
+
 cVAOMeshUtils::cVAOMeshUtils()
 {
 	return;
@@ -35,7 +37,19 @@ cVAOMeshUtils* cVAOMeshUtils::getInstance(void)
 
 bool cVAOMeshUtils::loadModels(GLuint program)
 {
-	std::vector<nlohmann::json> objects = cJsonUtils::getJsonInstance()["meshes"].get<std::vector<nlohmann::json>>();
+	std::vector<nlohmann::json> objects;
+	if (loadFromSaveFile)
+	{
+		std::ifstream ifs("savefile.json");
+		nlohmann::json j = json::parse(ifs);
+		ifs.close();
+		objects = j["meshes"].get<std::vector<nlohmann::json>>();
+	}
+	else
+	{
+		objects = cJsonUtils::getJsonInstance()["meshes"].get<std::vector<nlohmann::json>>();
+	}
+
 	for (size_t i = 0; i < objects.size(); i++)
 	{
 		cModelDrawInfo modelInfo;

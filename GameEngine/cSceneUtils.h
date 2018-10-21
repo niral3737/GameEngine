@@ -6,7 +6,8 @@
 #include <glm/mat4x4.hpp>
 
 #include "iMeshObject.h"
-#include "cMeshObject.h"	
+#include "cMeshObject.h"
+#include "iEquipment.h"
 
 class cSceneUtils
 {
@@ -22,11 +23,11 @@ public:
 	static glm::vec3 cameraEye;
 	static glm::vec3 cameraAt;
 	std::vector<iMeshObject*> vecObjectsToDraw;
-	void drawTreesAtRandomPositions();
 	//cMeshObject* loadMeshInfoByFriendlyName( std::string friendlyName);
 	void selectNextMeshObject(bool includeInvisibleObject);
 	iMeshObject* selectedMeshObject;
 	static bool loadFromSaveFile;
+	void drawEquipment(iEquipment* equipment, GLuint shaderProgramID);
 private:
 	static cSceneUtils* pSceneUtils;
 	int selectedObjectIndex;
