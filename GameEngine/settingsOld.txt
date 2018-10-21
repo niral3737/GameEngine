@@ -249,4 +249,14 @@
 				"y": 0.0,
 				"z": 0.0
 			}
-		}
+		},
+		"meshFileNames": [
+        "stadium.ply",
+        "sphere.ply",
+        "cue.ply",
+        "poolTable.ply",
+        "cueRack.ply",
+        "poolBalls.ply",
+        "environment.ply",
+        "BMW.ply"
+    ],

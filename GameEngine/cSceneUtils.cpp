@@ -111,52 +111,70 @@ void cSceneUtils::loadModelsIntoScene()
 	}
 }
 
-//cMeshObject* cSceneUtils::loadMeshInfoByFriendlyName( std::string friendlyName)
-//{
-//	std::vector<nlohmann::json> meshes = cJsonUtils::getJsonInstance()["meshes"].get<std::vector<nlohmann::json>>();
-//	for (size_t i = 0; i < meshes.size(); i++)
-//	{
-//		if (meshes[i]["friendlyName"].get<std::string>() == friendlyName)
-//		{
-//			cMeshObject* meshObject = (cMeshObject*)cMeshObjectFactory::createMeshObject();
-//			meshObject->meshName = meshes[i]["meshName"].get<std::string>();
-//			meshObject->friendlyName = meshes[i]["friendlyName"].get<std::string>();
-//
-//			meshObject->isWireFrame = meshes[i]["isWireFrame"].get<bool>();
-//			meshObject->isVisible = meshes[i]["isVisible"].get<bool>();
-//			meshObject->useVertexColor = meshes[i]["useVertexColor"].get<bool>();
-//
-//			meshObject->position.x = meshes[i]["position"]["x"].get<float>();
-//			meshObject->position.y = meshes[i]["position"]["y"].get<float>();
-//			meshObject->position.z = meshes[i]["position"]["z"].get<float>();
-//
-//			meshObject->postRotation.x = meshes[i]["postRotation"]["x"].get<float>();
-//			meshObject->postRotation.y = meshes[i]["postRotation"]["y"].get<float>();
-//			meshObject->postRotation.z = meshes[i]["postRotation"]["z"].get<float>();
-//
-//			meshObject->objectColor.r = meshes[i]["objectColor"]["r"].get<float>();
-//			meshObject->objectColor.g = meshes[i]["objectColor"]["g"].get<float>();
-//			meshObject->objectColor.b = meshes[i]["objectColor"]["b"].get<float>();
-//
-//			meshObject->scale = meshes[i]["scale"].get<float>();
-//
-//			meshObject->isUpdatedByPhysics = meshes[i]["isUpdatedByPhysics"].get<bool>();
-//			meshObject->dontLight = meshes[i]["dontLight"].get<bool>();
-//
-//			meshObject->velocity.x = meshes[i]["velocity"]["x"].get<float>();
-//			meshObject->velocity.y = meshes[i]["velocity"]["y"].get<float>();
-//			meshObject->velocity.z = meshes[i]["velocity"]["z"].get<float>();
-//
-//			meshObject->acceleration.x = meshes[i]["acceleration"]["x"].get<float>();
-//			meshObject->acceleration.y = meshes[i]["acceleration"]["y"].get<float>();
-//			meshObject->acceleration.z = meshes[i]["acceleration"]["z"].get<float>();
-//
-//			vecObjectsToDraw.push_back(meshObject);
-//			return meshObject;
-//		}
-//	}
-//	return NULL;
-//}
+cMeshObject* cSceneUtils::loadMeshInfoByFriendlyName( std::string friendlyName)
+{
+	//load models 
+	std::vector<nlohmann::json> meshes;
+	if (loadFromSaveFile)
+	{
+		std::ifstream ifs("savefile.json");
+		nlohmann::json j = json::parse(ifs);
+		ifs.close();
+		meshes = j["meshes"].get<std::vector<nlohmann::json>>();
+	}
+	else
+	{
+		meshes = cJsonUtils::getJsonInstance()["meshes"].get<std::vector<nlohmann::json>>();
+	}
+	for (size_t i = 0; i < meshes.size(); i++)
+	{
+		if (meshes[i]["friendlyName"].get<std::string>() == friendlyName)
+		{
+			cMeshObject* meshObject = (cMeshObject*)cMeshObjectFactory::createMeshObject();
+			meshObject->meshName = meshes[i]["meshName"].get<std::string>();
+			meshObject->friendlyName = meshes[i]["friendlyName"].get<std::string>();
+
+			meshObject->isWireFrame = meshes[i]["isWireFrame"].get<bool>();
+			meshObject->isVisible = meshes[i]["isVisible"].get<bool>();
+			meshObject->useVertexColor = meshes[i]["useVertexColor"].get<bool>();
+			meshObject->dontLight = meshes[i]["dontLight"].get<bool>();
+
+			meshObject->position.x = meshes[i]["position"]["x"].get<float>();
+			meshObject->position.y = meshes[i]["position"]["y"].get<float>();
+			meshObject->position.z = meshes[i]["position"]["z"].get<float>();
+
+			meshObject->postRotation.x = meshes[i]["postRotation"]["x"].get<float>();
+			meshObject->postRotation.y = meshes[i]["postRotation"]["y"].get<float>();
+			meshObject->postRotation.z = meshes[i]["postRotation"]["z"].get<float>();
+
+			meshObject->materialDiffuse.r = meshes[i]["materialDiffuse"]["r"].get<float>();
+			meshObject->materialDiffuse.g = meshes[i]["materialDiffuse"]["g"].get<float>();
+			meshObject->materialDiffuse.b = meshes[i]["materialDiffuse"]["b"].get<float>();
+			meshObject->materialDiffuse.a = meshes[i]["materialDiffuse"]["a"].get<float>();
+
+			meshObject->materialSpecular.r = meshes[i]["materialSpecular"]["r"].get<float>();
+			meshObject->materialSpecular.g = meshes[i]["materialSpecular"]["g"].get<float>();
+			meshObject->materialSpecular.b = meshes[i]["materialSpecular"]["b"].get<float>();
+			meshObject->materialSpecular.a = meshes[i]["materialSpecular"]["power"].get<float>();
+
+			meshObject->scale = meshes[i]["scale"].get<float>();
+
+			meshObject->isUpdatedByPhysics = meshes[i]["isUpdatedByPhysics"].get<bool>();
+
+			meshObject->velocity.x = meshes[i]["velocity"]["x"].get<float>();
+			meshObject->velocity.y = meshes[i]["velocity"]["y"].get<float>();
+			meshObject->velocity.z = meshes[i]["velocity"]["z"].get<float>();
+
+			meshObject->acceleration.x = meshes[i]["acceleration"]["x"].get<float>();
+			meshObject->acceleration.y = meshes[i]["acceleration"]["y"].get<float>();
+			meshObject->acceleration.z = meshes[i]["acceleration"]["z"].get<float>();
+
+			vecObjectsToDraw.push_back(meshObject);
+			return meshObject;
+		}
+	}
+	return NULL;
+}
 
 void cSceneUtils::initializeCamera()
 {

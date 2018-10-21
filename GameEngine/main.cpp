@@ -90,7 +90,7 @@ int main(void)
 		matProjection = glm::perspective(0.6f,			// FOV
 			ratio,		// Aspect ratio
 			0.1f,			// Near clipping plane
-			1000.0f);	// Far clipping plane
+			10000.0f);	// Far clipping plane
 		matView = glm::lookAt(cSceneUtils::cameraEye,	// Eye
 			cSceneUtils::cameraAt,		// At
 			glm::vec3(0.0f, 1.0f, 0.0f));// Up

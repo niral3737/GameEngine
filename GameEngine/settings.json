@@ -1,119 +1,510 @@
 {
-	"shaderBasePath" : "assets/shaders/",
-	"vertexShaderFileName" : "vertex01.glsl",
-	"fragmentShaderFileName": "fragment01.glsl",
-	"shaderProgramName": "myShader",
-    "cameraEye": {
-        "x": 434.9000244140625,
-        "y": 705.0,
-        "z": 152.77005004882813
+    "appleSound": "apple_bite",
+    "axeSound": "axe",
+    "backgroundSound1": "Fantascape",
+    "backgroundSound2": "Puzzle-Game",
+    "backgroundSound3": "Fantasy_Game_Background",
+    "cameraAt": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
     },
-	"cameraAt": {
-		"x": 0.0,
-		"y": 0.0,
-		"z": 0.0
-	},
+    "cameraEye": {
+        "x": 455.300048828125,
+        "y": 585.949951171875,
+        "z": -322.22998046875
+    },
+    "compressedFileExt": ".mp3",
+    "fireSound": "fire",
+    "forestSound": "forest",
+    "fragmentShaderFileName": "fragment01.glsl",
+    "jumpSound": "jump",
+    "lights": [
+        {
+            "attenuation": {
+                "const": 0.0,
+                "distanceCutOff": 0.0,
+                "linear": 0.03157208487391472,
+                "quad": 9.999999747378752e-06
+            },
+            "diffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "direction": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": -1.0,
+                "z": 0.0
+            },
+            "friendlyName": "light1",
+            "param1": {
+                "innerAngle": 38.0,
+                "lightType": 1.0,
+                "outerAngle": 40.0,
+                "w": 0.0
+            },
+            "param2": {
+                "on": 1.0,
+                "w": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "position": {
+                "w": 1.0,
+                "x": -30.299999237060547,
+                "y": 75.0,
+                "z": 11.799999237060547
+            },
+            "specular": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "useDebugSphere": false
+        },
+        {
+            "attenuation": {
+                "const": 0.0,
+                "distanceCutOff": 0.0,
+                "linear": -0.017900001257658005,
+                "quad": 0.0004000000189989805
+            },
+            "diffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "direction": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "friendlyName": "light2",
+            "param1": {
+                "innerAngle": 0.0,
+                "lightType": 0.0,
+                "outerAngle": 0.0,
+                "w": 0.0
+            },
+            "param2": {
+                "on": 1.0,
+                "w": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "position": {
+                "w": 1.0,
+                "x": -67.5,
+                "y": 135.0,
+                "z": -128.0
+            },
+            "specular": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "useDebugSphere": false
+        },
+        {
+            "attenuation": {
+                "const": 0.0,
+                "distanceCutOff": 0.0,
+                "linear": -0.019999992102384567,
+                "quad": 0.0005000000237487257
+            },
+            "diffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "direction": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "friendlyName": "light3",
+            "param1": {
+                "innerAngle": 0.0,
+                "lightType": 0.0,
+                "outerAngle": 0.0,
+                "w": 0.0
+            },
+            "param2": {
+                "on": 1.0,
+                "w": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "position": {
+                "w": 1.0,
+                "x": 133.5,
+                "y": 176.0,
+                "z": 11.0
+            },
+            "specular": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "useDebugSphere": false
+        },
+        {
+            "attenuation": {
+                "const": 0.0,
+                "distanceCutOff": 0.0,
+                "linear": -0.013000001199543476,
+                "quad": 0.0002999999560415745
+            },
+            "diffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "direction": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "friendlyName": "light4",
+            "param1": {
+                "innerAngle": 0.0,
+                "lightType": 0.0,
+                "outerAngle": 0.0,
+                "w": 0.0
+            },
+            "param2": {
+                "on": 1.0,
+                "w": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "position": {
+                "w": 1.0,
+                "x": -35.0,
+                "y": 156.0,
+                "z": 99.0
+            },
+            "specular": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "useDebugSphere": false
+        },
+        {
+            "attenuation": {
+                "const": 0.0,
+                "distanceCutOff": 0.0,
+                "linear": -0.027000000700354576,
+                "quad": 0.0002099999983329326
+            },
+            "diffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "direction": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "friendlyName": "light5",
+            "param1": {
+                "innerAngle": 0.0,
+                "lightType": 0.0,
+                "outerAngle": 0.0,
+                "w": 0.0
+            },
+            "param2": {
+                "on": 1.0,
+                "w": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "position": {
+                "w": 1.0,
+                "x": -270.5,
+                "y": 88.5,
+                "z": -285.0
+            },
+            "specular": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "useDebugSphere": false
+        },
+        {
+            "attenuation": {
+                "const": 0.0,
+                "distanceCutOff": 0.0,
+                "linear": -0.006999998819082975,
+                "quad": 0.0007999999797903001
+            },
+            "diffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "direction": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "friendlyName": "light6",
+            "param1": {
+                "innerAngle": 0.0,
+                "lightType": 0.0,
+                "outerAngle": 0.0,
+                "w": 0.0
+            },
+            "param2": {
+                "on": 1.0,
+                "w": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "position": {
+                "w": 1.0,
+                "x": -179.0,
+                "y": 134.0,
+                "z": 5.5
+            },
+            "specular": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "useDebugSphere": false
+        },
+        {
+            "attenuation": {
+                "const": 0.0,
+                "distanceCutOff": 0.0,
+                "linear": -0.04999997094273567,
+                "quad": 0.0002999999560415745
+            },
+            "diffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "direction": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "friendlyName": "light7",
+            "param1": {
+                "innerAngle": 0.0,
+                "lightType": 0.0,
+                "outerAngle": 0.0,
+                "w": 0.0
+            },
+            "param2": {
+                "on": 1.0,
+                "w": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "position": {
+                "w": 1.0,
+                "x": 138.5,
+                "y": 108.5,
+                "z": 303.0
+            },
+            "specular": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "useDebugSphere": false
+        },
+        {
+            "attenuation": {
+                "const": 0.0,
+                "distanceCutOff": 0.0,
+                "linear": -0.24000030755996704,
+                "quad": 0.007699994370341301
+            },
+            "diffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "direction": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "friendlyName": "light8",
+            "param1": {
+                "innerAngle": 0.0,
+                "lightType": 0.0,
+                "outerAngle": 0.0,
+                "w": 0.0
+            },
+            "param2": {
+                "on": 1.0,
+                "w": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "position": {
+                "w": 1.0,
+                "x": -32.5,
+                "y": 65.0,
+                "z": 14.0
+            },
+            "specular": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "useDebugSphere": false
+        },
+        {
+            "attenuation": {
+                "const": 0.0,
+                "distanceCutOff": 0.0,
+                "linear": -0.09400001168251038,
+                "quad": 0.0008399998769164085
+            },
+            "diffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "direction": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "friendlyName": "light9",
+            "param1": {
+                "innerAngle": 0.0,
+                "lightType": 0.0,
+                "outerAngle": 0.0,
+                "w": 0.0
+            },
+            "param2": {
+                "on": 1.0,
+                "w": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "position": {
+                "w": 1.0,
+                "x": -219.5,
+                "y": 156.0,
+                "z": 144.5
+            },
+            "specular": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "useDebugSphere": false
+        }
+    ],
+    "maxNumberOfLights": 10,
+    "meshFileNames": [
+        "stadium.ply",
+        "sphere.ply",
+        "cue.ply",
+        "poolTable.ply",
+        "cueRack.ply",
+        "poolBalls.ply",
+        "environment.ply",
+        "BMW.ply"
+    ],
     "meshes": [
         {
-            "meshName": "stadium.ply",
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
             "friendlyName": "stadium",
-            "isWireFrame": false,
-            "isVisible": true,
-            "useVertexColor": false,
-            "dontLight": false,
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "postRotation": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "materialDiffuse": {
-                "r": 1.0,
-                "g": 1.0,
-                "b": 1.0,
-                "a": 1.0
-            },
-            "materialSpecular": {
-                "r": 1.0,
-                "g": 1.0,
-                "b": 1.0,
-                "power": 1.0
-            },
-            "scale": 1.0,
-            "isUpdatedByPhysics": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "meshName": "sphere.ply",
-            "friendlyName": "sphere",
-            "isWireFrame": true,
-            "isVisible": true,
-            "useVertexColor": false,
-            "dontLight": false,
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "postRotation": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "materialDiffuse": {
-                "r": 1.0,
-                "g": 0.45,
-                "b": 0.75,
-                "a": 1.0
-            },
-            "materialSpecular": {
-                "r": 1.0,
-                "g": 1.0,
-                "b": 1.0,
-                "power": 1.0
-            },
-            "scale": 1.0,
-            "isUpdatedByPhysics": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "spotlight",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
             "materialDiffuse": {
                 "a": 1.0,
-                "b": 0.2969,
-                "g": 0.2773,
-                "r": 0.2656
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 7.0,
+                "r": 1.0
+            },
+            "meshName": "stadium.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "scale": 0.9991005659103394,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "sphere",
+            "isUpdatedByPhysics": false,
+            "isVisible": false,
+            "isWireFrame": true,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 0.0,
+                "r": 0.0
             },
             "materialSpecular": {
                 "b": 1.0,
@@ -121,18 +512,354 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "spotlight.ply",
+            "meshName": "sphere.ply",
             "position": {
-                "x": 0.0,
-                "y": 100.0,
-                "z": 0.0
+                "x": 138.5,
+                "y": 108.5,
+                "z": 303.0
             },
             "postRotation": {
                 "x": 0.0,
                 "y": 0.0,
                 "z": 0.0
             },
-            "scale": 1.0,
+            "scale": 664.0625,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "cue0",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 0.6039000153541565,
+                "g": 0.800000011920929,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "cue.ply",
+            "position": {
+                "x": 18.5,
+                "y": 19.5,
+                "z": 4.5
+            },
+            "postRotation": {
+                "x": 1.1519179344177246,
+                "y": -1.6406105756759644,
+                "z": -0.802851676940918
+            },
+            "scale": 0.32408908009529114,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "cue1",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 0.6039000153541565,
+                "g": 0.800000011920929,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "cue.ply",
+            "position": {
+                "x": 12.0,
+                "y": 19.0,
+                "z": -1.5
+            },
+            "postRotation": {
+                "x": 1.1519179344177246,
+                "y": -1.6406105756759644,
+                "z": -0.802851676940918
+            },
+            "scale": 0.32408908009529114,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "poolTable",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 0.0,
+                "g": 0.6000000238418579,
+                "r": 0.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "poolTable.ply",
+            "position": {
+                "x": -15.5,
+                "y": 1.0,
+                "z": 9.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "scale": 1.763267159461975,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "cueRack",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 0.2160000056028366,
+                "g": 0.3059999942779541,
+                "r": 0.4350000023841858
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "cueRack.ply",
+            "position": {
+                "x": -73.0,
+                "y": 4.5,
+                "z": 40.0
+            },
+            "postRotation": {
+                "x": 3.725290298461914e-09,
+                "y": 0.5759586095809937,
+                "z": -0.10471975058317184
+            },
+            "scale": 0.032807108014822006,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "poolBalls",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 0.0,
+                "g": 0.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "poolBalls.ply",
+            "position": {
+                "x": -26.0,
+                "y": 24.0,
+                "z": 14.5
+            },
+            "postRotation": {
+                "x": -1.6057040691375732,
+                "y": -0.017453311011195183,
+                "z": -0.06981317698955536
+            },
+            "scale": 0.4211660921573639,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "environment",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 0.2160000056028366,
+                "g": 0.3059999942779541,
+                "r": 0.4350000023841858
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "environment.ply",
+            "position": {
+                "x": -24.0,
+                "y": -74.0,
+                "z": -18.0
+            },
+            "postRotation": {
+                "x": 3.725290298461914e-09,
+                "y": 0.5759586095809937,
+                "z": -0.10471975058317184
+            },
+            "scale": 12.937545776367188,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "BMW1",
+            "isUpdatedByPhysics": true,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 0.0,
+                "g": 0.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 38.0,
+                "r": 1.0
+            },
+            "meshName": "BMW.ply",
+            "position": {
+                "x": -216.0,
+                "y": -66.0,
+                "z": -188.0
+            },
+            "postRotation": {
+                "x": 0.05235988646745682,
+                "y": -1.0471980571746826,
+                "z": 0.017453281208872795
+            },
+            "scale": 2.9582111835479736,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "BMW2",
+            "isUpdatedByPhysics": true,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 0.0,
+                "r": 0.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 20.0,
+                "r": 1.0
+            },
+            "meshName": "BMW.ply",
+            "position": {
+                "x": -112.0,
+                "y": -76.5,
+                "z": -226.5
+            },
+            "postRotation": {
+                "x": 0.05235988646745682,
+                "y": 2.1467556953430176,
+                "z": 0.017453281208872795
+            },
+            "scale": 2.9582111835479736,
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,
@@ -141,205 +868,11 @@
             }
         }
     ],
-	"maxNumberOfLights": 10,
-	"lights": [
-		{
-			"friendlyName": "light1",
-			"useDebugSphere": false,
-			"position": {
-				"x": 1.2,
-				"y": 23.0,
-				"z": 61.3,
-				"w": 1.0
-			},
-			"attenuation":{
-				"const": 0.0,
-				"linear": 0.0385720730,
-				"quad": 0.00001,
-				"distanceCutOff": 0.0
-			},
-			"diffuse": {
-				"r": 1.0,
-				"g": 1.0,
-				"b": 1.0,
-				"a": 1.0
-			},
-			"specular": {
-				"r": 1.0,
-				"g": 1.0,
-				"b": 1.0,
-				"a": 1.0
-			},
-			"direction": {
-				"x": 0.0,
-				"y": -1.0,
-				"z": 0.0,
-				"w": 0.0
-			},
-			"param1": {
-				"lightType": 1.0,
-				"innerAngle": 38.0,
-				"outerAngle": 40.0,
-				"w": 0.0
-			},
-			"param2": {
-				"on": 1.0,
-				"y": 0.0,
-				"z": 0.0,
-				"w": 0.0
-			}
-		},
-		{
-			"friendlyName": "light2",
-			"useDebugSphere": false,
-			"position": {
-				"x": 25.0,
-				"y": 50.0,
-				"z": -100.0,
-				"w": 1.0
-			},
-			"attenuation":{
-				"const": 0.0,
-				"linear": 0.0001,
-				"quad": 0.001,
-				"distanceCutOff": 0.0
-			},
-			"diffuse": {
-				"r": 1.0,
-				"g": 1.0,
-				"b": 1.0,
-				"a": 1.0
-			},
-			"specular": {
-				"r": 1.0,
-				"g": 1.0,
-				"b": 1.0,
-				"a": 1.0
-			},
-			"direction": {
-				"x": 0.0,
-				"y": 0.0,
-				"z": 0.0,
-				"w": 0.0
-			},
-			"param1": {
-				"lightType": 0.0,
-				"innerAngle": 0.0,
-				"outerAngle": 0.0,
-				"w": 0.0
-			},
-			"param2": {
-				"on": 1.0,
-				"y": 0.0,
-				"z": 0.0,
-				"w": 0.0
-			}
-		},
-		{
-			"friendlyName": "light3",
-			"useDebugSphere": false,
-			"position": {
-				"x": -50.0,
-				"y": 10.0,
-				"z": -85.0,
-				"w": 1.0
-			},
-			"attenuation":{
-				"const": 0.0,
-				"linear": 0.00000001,
-				"quad": 0.001,
-				"distanceCutOff": 0.0
-			},
-			"diffuse": {
-				"r": 1.0,
-				"g": 1.0,
-				"b": 1.0,
-				"a": 1.0
-			},
-			"specular": {
-				"r": 1.0,
-				"g": 1.0,
-				"b": 1.0,
-				"a": 1.0
-			},
-			"direction": {
-				"x": 0.0,
-				"y": 0.0,
-				"z": 0.0,
-				"w": 0.0
-			},
-			"param1": {
-				"lightType": 0.0,
-				"innerAngle": 0.0,
-				"outerAngle": 0.0,
-				"w": 0.0
-			},
-			"param2": {
-				"on": 1.0,
-				"y": 0.0,
-				"z": 0.0,
-				"w": 0.0
-			}
-		},
-		{
-			"friendlyName": "light4",
-			"useDebugSphere": false,
-			"position": {
-				"x": -70.0,
-				"y": 50.0,
-				"z": 50.0,
-				"w": 1.0
-			},
-			"attenuation":{
-				"const": 0.0,
-				"linear": 0.001,
-				"quad": 0.0007,
-				"distanceCutOff": 0.0
-			},
-			"diffuse": {
-				"r": 1.0,
-				"g": 1.0,
-				"b": 1.0,
-				"a": 1.0
-			},
-			"specular": {
-				"r": 1.0,
-				"g": 1.0,
-				"b": 1.0,
-				"a": 1.0
-			},
-			"direction": {
-				"x": 0.0,
-				"y": 0.0,
-				"z": 0.0,
-				"w": 0.0
-			},
-			"param1": {
-				"lightType": 0.0,
-				"innerAngle": 0.0,
-				"outerAngle": 0.0,
-				"w": 0.0
-			},
-			"param2": {
-				"on": 1.0,
-				"y": 0.0,
-				"z": 0.0,
-				"w": 0.0
-			}
-		}
-		
-	],
-	"soundsBasePath": "./assets/sounds/",
-	"compressedFileExt": ".mp3",
-	"uncompressedFileExt": ".wav",
-	"backgroundSound1": "Fantascape",
-	"backgroundSound2": "Puzzle-Game",
-	"backgroundSound3": "Fantasy_Game_Background",
-	"axeSound": "axe",
-	"appleSound": "apple_bite",
-	"fireSound": "fire",
-	"forestSound": "forest",
-	"splashSound": "splash",
-	"jumpSound": "jump",
-	"punchSound": "punch"
+    "punchSound": "punch",
+    "shaderBasePath": "assets/shaders/",
+    "shaderProgramName": "myShader",
+    "soundsBasePath": "./assets/sounds/",
+    "splashSound": "splash",
+    "uncompressedFileExt": ".wav",
+    "vertexShaderFileName": "vertex01.glsl"
 }

@@ -70,6 +70,13 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 		{
 			selectedObject->dontLight = !selectedObject->dontLight;
 		}
+		if (glfwGetKey(window, GLFW_KEY_8) && action == GLFW_PRESS)
+		{
+			float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+			float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+			float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+			selectedObject->materialDiffuse = glm::vec4(r, g, b, 1.0f);
+		}
 	}
 	else if(selectionMode == LIGHT_SELECTION && lightManager->selectedLight){
 
@@ -83,7 +90,7 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 		{
 			selectedLight->setOn(!selectedLight->getOn());
 		}
-		if (glfwGetKey(window, GLFW_KEY_0) && action == GLFW_PRESS)
+		if (glfwGetKey(window, GLFW_KEY_9) && action == GLFW_PRESS)
 		{
 			float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 			float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
@@ -294,11 +301,11 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 			//atten quad
 			if (glfwGetKey(window, GLFW_KEY_LEFT_BRACKET))
 			{
-				selectedLight->atten.z -= 0.0001f;
+				selectedLight->atten.z -= 0.00001f;
 			}
 			if (glfwGetKey(window, GLFW_KEY_RIGHT_BRACKET))
 			{
-				selectedLight->atten.z += 0.0001f;
+				selectedLight->atten.z += 0.00001f;
 			}
 		}
 	}
@@ -356,7 +363,6 @@ void cUserIO::mSaveSettings()
 	json["cameraAt"]["z"] = sceneUtils->cameraAt.z;
 
 	//saving the lights
-
 	size_t numLights = lightsManager->vecLights.size();
 	for (unsigned int index = 0; index != numLights; index++)
 	{
