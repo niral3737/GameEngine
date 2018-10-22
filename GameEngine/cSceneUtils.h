@@ -28,6 +28,9 @@ public:
 	iMeshObject* selectedMeshObject;
 	static bool loadFromSaveFile;
 	void drawEquipment(iEquipment* equipment, GLuint shaderProgramID);
+
+	std::vector<iEquipment*> vecEquipmentsToDraw;
+	iEquipment* findEquipmentByFriendlyName(std::string name);
 private:
 	static cSceneUtils* pSceneUtils;
 	int selectedObjectIndex;

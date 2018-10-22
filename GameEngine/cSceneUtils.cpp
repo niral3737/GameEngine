@@ -354,3 +354,16 @@ void cSceneUtils::drawEquipment(iEquipment* equipment, GLuint shaderProgramID)
 		drawObject(equipment->getMesh(), matEquip, shaderProgramID);
 	}
 }
+
+iEquipment* cSceneUtils::findEquipmentByFriendlyName(std::string name)
+{
+	for (size_t i = 0; i < vecEquipmentsToDraw.size(); i++)
+	{
+		cMeshObject* mesh = (cMeshObject*) vecEquipmentsToDraw[i]->getMesh();
+		if (mesh->friendlyName == name)
+		{
+			return vecEquipmentsToDraw[i];
+		}
+	}
+	return nullptr;
+}

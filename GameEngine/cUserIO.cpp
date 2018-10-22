@@ -13,6 +13,7 @@
 #include "cLightsManager.h"
 #include "cJsonUtils.h"
 #include "json.hpp"
+#include "cCueStick.h"
 
 eSelectionMode cUserIO::selectionMode = eSelectionMode::MESH_SELECTION;
 bool cUserIO::includeInvisibleObjects = false;
@@ -25,11 +26,6 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 	{
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
-	}
-
-	if (glfwGetKey(window, GLFW_KEY_I) && action == GLFW_PRESS)
-	{
-		includeInvisibleObjects = true;
 	}
 
 	if (key == GLFW_KEY_TAB && action == GLFW_PRESS)
@@ -118,6 +114,15 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
 	{
 		cameraSpeed = CAMERA_SPEED_FAST;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_H))
+	{
+		cCueStick* cueStick = (cCueStick*) cSceneUtils::getInstance()->findEquipmentByFriendlyName("cue0");
+		if (cueStick)
+		{
+			cueStick->hitCueBall();
+		}
 	}
 
 	// If no keys are down, move the camera

@@ -4,7 +4,11 @@
 #include "iEquipment.h"
 #include <vector>
 
-class cCueRack : public iEquipment
+#include "iCueRackBuilder.h"
+#include "iMediatorEquipment.h"
+
+class cCueRack : public iEquipment,
+	public iCueRackBuilder
 {
 public:
 	cCueRack();
@@ -13,6 +17,14 @@ public:
 	virtual void move();
 	virtual void addCue(iEquipment* cue);
 	std::vector<iEquipment*> cues;
+
+	virtual iMeshObject* getMesh();
+	virtual void setMesh(iMeshObject* mesh);
+	virtual void setMediator(iMediatorEquipment* mediator);
+
+	iMeshObject* mesh;
+private:
+	iMediatorEquipment* mediator;
 };
 
 #endif // !_CUE_RACK_HG_

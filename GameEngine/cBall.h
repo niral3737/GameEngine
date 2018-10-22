@@ -6,6 +6,7 @@
 
 #include "iEquipment.h"
 #include "iMeshObject.h"
+#include "iMediatorEquipment.h"
 
 class cBall : public iEquipment
 {
@@ -14,12 +15,18 @@ public:
 	virtual ~cBall();
 
 	virtual void move(void);
+	void hit(void);
 	virtual iMeshObject* getMesh();
+	virtual void setMesh(iMeshObject* mesh);
+	virtual void setMediator(iMediatorEquipment* mediator);
 
 	iMeshObject* mesh;
 	int ballNumber;
 	glm::vec3 color;
 	bool isSolid;
+
+private:
+	iMediatorEquipment* mediator;
 };
 
 

@@ -18,6 +18,10 @@
 #include "cLight.h"
 #include "iEquipment.h"
 #include "cEquipmentFactory.h"
+#include "cEquipmentBuilder.h"
+#include "cMediator.h"
+#include "cCueStick.h"
+#include "cCueRack.h"
 
 int main(void)
 {
@@ -45,10 +49,36 @@ int main(void)
 	cSceneUtils::getInstance()->loadModelsIntoScene();
 	lightsManager->loadAllLights(program);
 
-	cEquipmentFactory* equipmentFactory = new cEquipmentFactory();
+	cMediator* mediator = new cMediator();
+
+	cEquipmentFactory* equipmentFactory = new cEquipmentFactory(mediator);
 
 	iEquipment* ball = equipmentFactory->createEquipment(1);
+	mediator->LoadEquipment(ball);
+	cMeshObject* ballMesh = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("cueBall");
+	ball->setMesh(ballMesh);
+
+	cSceneUtils::getInstance()->vecEquipmentsToDraw.push_back(ball);
+
 	iEquipment* cueStick = equipmentFactory->createEquipment(2);
+	mediator->LoadEquipment(cueStick);
+	cMeshObject* cueMesh = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("cue0");
+	cueStick->setMesh(cueMesh);
+
+	cSceneUtils::getInstance()->vecEquipmentsToDraw.push_back(cueStick);
+
+	iEquipment* cueRack = equipmentFactory->createEquipment(3);
+	mediator->LoadEquipment(cueRack);
+	cMeshObject* cueRackMesh = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("cueRack");
+	cueRack->setMesh(cueRackMesh);
+
+	cEquipmentBuilder* builder = new cEquipmentBuilder();
+	builder->buildEquipment(3, cueRack);
+
+	for (size_t i = 0; i < ((cCueRack*)cueRack)->cues.size(); i++)
+	{
+		((cCueRack*)cueRack)->cues[i]->setMesh((cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("cue1"));
+	}
 
 	cShaderUtils::getInstance()->getUniformVariableLocation(program, "objectColour");
 
@@ -102,78 +132,30 @@ int main(void)
 
 		lightsManager->copyLightValuesToShader();
 
-		cMeshObject* attenSphere = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("sphere");
-		attenSphere->isVisible = true;
-		attenSphere->dontLight = true;
-
-		glm::mat4 matBall(1.0f);
-
-		const float ACCURACY_OF_DISTANCE = 0.01f;
-		const float INFINITE_DISTANCE = 10000.0f;
-
-		for (std::vector<cLight*>::iterator it = lightsManager->vecLights.begin(); it != lightsManager->vecLights.end(); it++)
+		for (size_t i = 0; i < cSceneUtils::getInstance()->vecEquipmentsToDraw.size(); i++)
 		{
-			cLight* light = *it;
+			iEquipment* equipment = cSceneUtils::getInstance()->vecEquipmentsToDraw[i];
 
-			if (!light->useDebugSphere)
-				continue;
-
-			attenSphere->position = light->position;
-
-			attenSphere->setDiffuseColour(glm::vec3(1.0f, 1.0f, 0.0f));
-			float distance90Percent = pLightHelper->calcApproxDistFromAtten(0.90f, ACCURACY_OF_DISTANCE,
-				INFINITE_DISTANCE, light->atten.x, light->atten.y, light->atten.z);
-			attenSphere->scale = distance90Percent;
-			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
-
-			attenSphere->setDiffuseColour(glm::vec3(0.0f, 1.0f, 0.0f));	// 50% brightness
-			float distance50Percent =
-				pLightHelper->calcApproxDistFromAtten(0.50f, ACCURACY_OF_DISTANCE,
-					INFINITE_DISTANCE,
-					light->atten.x,
-					light->atten.y,
-					light->atten.z);
-			attenSphere->scale = distance50Percent;
-			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
-
-			attenSphere->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));	// 25% brightness
-			float distance25Percent =
-				pLightHelper->calcApproxDistFromAtten(0.25f, ACCURACY_OF_DISTANCE,
-					INFINITE_DISTANCE,
-					light->atten.x,
-					light->atten.y,
-					light->atten.z);
-			attenSphere->scale = distance25Percent;
-			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
-
-			attenSphere->setDiffuseColour(glm::vec3(0.0f, 0.0f, 1.0f));	// 1% brightness
-			float distance1Percent =
-				pLightHelper->calcApproxDistFromAtten(0.01f, ACCURACY_OF_DISTANCE,
-					INFINITE_DISTANCE,
-					light->atten.x,
-					light->atten.y,
-					light->atten.z);
-			attenSphere->scale = distance1Percent;
-			cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
+			cSceneUtils::getInstance()->drawEquipment(equipment, program);
 		}
-		attenSphere->isVisible = false;
 
-		// Draw all the objects in the "scene"
-
-		cSceneUtils::getInstance()->drawEquipment(ball, program);
-		cSceneUtils::getInstance()->drawEquipment(cueStick, program);
-
-		for (unsigned int objIndex = 0;
-			objIndex != (unsigned int) cSceneUtils::getInstance()->vecObjectsToDraw.size();
-			objIndex++)
+		cSceneUtils::getInstance()->drawEquipment(cueRack, program);
+		for (size_t i = 0; i < ((cCueRack*)cueRack)->cues.size(); i++)
 		{
-			iMeshObject* pCurrentMesh = cSceneUtils::getInstance()->vecObjectsToDraw[objIndex];
+			cSceneUtils::getInstance()->drawEquipment(((cCueRack*)cueRack)->cues[i], program);
+		}
 
-			glm::mat4x4 matModel = glm::mat4(1.0f);			// mat4x4 m, p, mvp;
+		//for (unsigned int objIndex = 0;
+		//	objIndex != (unsigned int) cSceneUtils::getInstance()->vecObjectsToDraw.size();
+		//	objIndex++)
+		//{
+		//	iMeshObject* pCurrentMesh = cSceneUtils::getInstance()->vecObjectsToDraw[objIndex];
 
-			cSceneUtils::getInstance()->drawObject(pCurrentMesh, matModel, program);
+		//	glm::mat4x4 matModel = glm::mat4(1.0f);			// mat4x4 m, p, mvp;
 
-		}//for ( unsigned int objIndex = 0; 
+		//	cSceneUtils::getInstance()->drawObject(pCurrentMesh, matModel, program);
+
+		//}//for ( unsigned int objIndex = 0; 
 		
 		glfwSwapBuffers(window);		// Shows what we drew
 

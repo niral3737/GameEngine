@@ -10,9 +10,9 @@
         "z": 0.0
     },
     "cameraEye": {
-        "x": 455.300048828125,
-        "y": 585.949951171875,
-        "z": -322.22998046875
+        "x": -5.96999979019165,
+        "y": 322.0,
+        "z": -498.0
     },
     "compressedFileExt": ".mp3",
     "fireSound": "fire",
@@ -70,7 +70,7 @@
             "attenuation": {
                 "const": 0.0,
                 "distanceCutOff": 0.0,
-                "linear": -0.017900001257658005,
+                "linear": 0.08710000663995743,
                 "quad": 0.0004000000189989805
             },
             "diffuse": {
@@ -116,7 +116,7 @@
             "attenuation": {
                 "const": 0.0,
                 "distanceCutOff": 0.0,
-                "linear": -0.019999992102384567,
+                "linear": -0.05999993905425072,
                 "quad": 0.0005000000237487257
             },
             "diffuse": {
@@ -444,7 +444,8 @@
         "cueRack.ply",
         "poolBalls.ply",
         "environment.ply",
-        "BMW.ply"
+        "BMW.ply",
+        "cueBall.ply"
     ],
     "meshes": [
         {
@@ -453,8 +454,8 @@
                 "y": 0.0,
                 "z": 0.0
             },
-            "dontLight": false,
-            "friendlyName": "stadium",
+            "dontLight": true,
+            "friendlyName": "cueBall",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -467,21 +468,21 @@
             "materialSpecular": {
                 "b": 1.0,
                 "g": 1.0,
-                "power": 7.0,
+                "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "stadium.ply",
+            "meshName": "cueBall.ply",
             "position": {
                 "x": 0.0,
                 "y": 0.0,
                 "z": 0.0
             },
             "postRotation": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": 1.1519179344177246,
+                "y": -1.6406105756759644,
+                "z": -0.802851676940918
             },
-            "scale": 0.9991005659103394,
+            "scale": 5.984408855438232,
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,
@@ -496,48 +497,6 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "sphere",
-            "isUpdatedByPhysics": false,
-            "isVisible": false,
-            "isWireFrame": true,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 0.0,
-                "r": 0.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "sphere.ply",
-            "position": {
-                "x": 138.5,
-                "y": 108.5,
-                "z": 303.0
-            },
-            "postRotation": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "scale": 664.0625,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
             "friendlyName": "cue0",
             "isUpdatedByPhysics": false,
             "isVisible": true,
@@ -556,16 +515,58 @@
             },
             "meshName": "cue.ply",
             "position": {
-                "x": 18.5,
-                "y": 19.5,
-                "z": 4.5
+                "x": -290.0,
+                "y": 0.0,
+                "z": 41.0
+            },
+            "postRotation": {
+                "x": 1.6406105756759644,
+                "y": -4.799641132354736,
+                "z": -1.832597017288208
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "cue1",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 0.6039000153541565,
+                "g": 0.800000011920929,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "cue.ply",
+            "position": {
+                "x": 122.0,
+                "y": -2.0,
+                "z": 47.0
             },
             "postRotation": {
                 "x": 1.1519179344177246,
-                "y": -1.6406105756759644,
-                "z": -0.802851676940918
+                "y": -2.984508991241455,
+                "z": -0.36651909351348877
             },
-            "scale": 0.32408908009529114,
+            "scale": 0.3516095280647278,
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,
@@ -580,7 +581,7 @@
                 "z": 0.0
             },
             "dontLight": false,
-            "friendlyName": "cue1",
+            "friendlyName": "cue2",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -663,7 +664,7 @@
                 "y": 0.0,
                 "z": 0.0
             },
-            "dontLight": false,
+            "dontLight": true,
             "friendlyName": "cueRack",
             "isUpdatedByPhysics": false,
             "isVisible": true,
@@ -682,14 +683,14 @@
             },
             "meshName": "cueRack.ply",
             "position": {
-                "x": -73.0,
+                "x": 144.5,
                 "y": 4.5,
                 "z": 40.0
             },
             "postRotation": {
-                "x": 3.725290298461914e-09,
-                "y": 0.5759586095809937,
-                "z": -0.10471975058317184
+                "x": 0.08726651221513748,
+                "y": -1.7627838850021362,
+                "z": -0.2617994248867035
             },
             "scale": 0.032807108014822006,
             "useVertexColor": false,

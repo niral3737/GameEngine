@@ -2,6 +2,7 @@
 
 #include "cCueStick.h"
 #include "iCueRackBuilder.h"
+#include "cEquipmentFactory.h"
 
 cEquipmentBuilder::cEquipmentBuilder()
 {}
@@ -16,7 +17,7 @@ void cEquipmentBuilder::buildEquipment(int equipmentType, iEquipment* &equipment
 	{
 		iCueRackBuilder* cueRack = dynamic_cast<iCueRackBuilder*> (equipment);
 
-		cueRack->addCue(new cCueStick());
-		cueRack->addCue(new cCueStick());
+		cEquipmentFactory* equipmentFactory = new cEquipmentFactory();
+		cueRack->addCue(equipmentFactory->createEquipment(2));
 	}
 }

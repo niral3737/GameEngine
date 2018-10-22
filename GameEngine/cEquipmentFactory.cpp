@@ -6,6 +6,11 @@ cEquipmentFactory::cEquipmentFactory()
 	: impl(new cEquipmentFactoryImpl())
 {}
 
+cEquipmentFactory::cEquipmentFactory(iMediatorEquipment * mediator)
+	:impl(new cEquipmentFactoryImpl())
+{
+	impl->setMediator(mediator);
+}
 
 cEquipmentFactory::~cEquipmentFactory()
 {
