@@ -23,7 +23,7 @@ public:
 	static glm::vec3 cameraEye;
 	static glm::vec3 cameraAt;
 	std::vector<iMeshObject*> vecObjectsToDraw;
-	cMeshObject* loadMeshInfoByFriendlyName( std::string friendlyName);
+	//cMeshObject* loadMeshInfoByFriendlyName( std::string friendlyName);
 	void selectNextMeshObject(bool includeInvisibleObject);
 	iMeshObject* selectedMeshObject;
 	static bool loadFromSaveFile;

@@ -22,11 +22,20 @@
 #include "cMediator.h"
 #include "cCueStick.h"
 #include "cCueRack.h"
+#define GLM_ENABLE_EXPERIMENTAL		// To get glm quaternion stuff to compile
+#include <glm/gtx/quaternion.hpp>	// Note strange folder
 
 int main(void)
 {
 	cGLFWUtils::setUpGLFW();
 	GLuint program = cShaderUtils::setUpShaders();
+
+	/*glm::vec3 eularAngles = glm::vec3(0.06f, 0.8f, 0.2f);
+	std::cout << "eular before: " << eularAngles.x << " " << eularAngles.y << " " << eularAngles.z << std::endl;
+	glm::quat qOrientation = glm::quat(eularAngles);
+	std::cout << "quat : " << qOrientation.x << " " << qOrientation.y << " " << qOrientation.z << " " << qOrientation.w << std::endl;
+	glm::vec3 eularAfter = glm::eulerAngles(qOrientation);
+	std::cout << "eular after: " << eularAfter.x << " " << eularAfter.y << " " << eularAfter.z << std::endl;*/
 
 	std::cout << "Load from previously saved file? (Y/y)" << std::endl;
 	char answer;
@@ -53,13 +62,13 @@ int main(void)
 
 	cEquipmentFactory* equipmentFactory = new cEquipmentFactory(mediator);
 
-	iEquipment* ball = equipmentFactory->createEquipment(1);
-	mediator->LoadEquipment(ball);
-	cMeshObject* ballMesh = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("cueBall");
-	ball->setMesh(ballMesh);
+	//iEquipment* ball = equipmentFactory->createEquipment(1);
+	//mediator->LoadEquipment(ball);
+	//cMeshObject* ballMesh = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("cueBall");
+	//ball->setMesh(ballMesh);
 
-	cSceneUtils::getInstance()->vecEquipmentsToDraw.push_back(ball);
-
+	//cSceneUtils::getInstance()->vecEquipmentsToDraw.push_back(ball);
+	
 	iEquipment* cueStick = equipmentFactory->createEquipment(2);
 	mediator->LoadEquipment(cueStick);
 	cMeshObject* cueMesh = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("cue0");
@@ -67,6 +76,7 @@ int main(void)
 
 	cSceneUtils::getInstance()->vecEquipmentsToDraw.push_back(cueStick);
 
+	/*
 	iEquipment* cueRack = equipmentFactory->createEquipment(3);
 	mediator->LoadEquipment(cueRack);
 	cMeshObject* cueRackMesh = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("cueRack");
@@ -78,7 +88,7 @@ int main(void)
 	for (size_t i = 0; i < ((cCueRack*)cueRack)->cues.size(); i++)
 	{
 		((cCueRack*)cueRack)->cues[i]->setMesh((cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("cue1"));
-	}
+	}*/
 
 	cShaderUtils::getInstance()->getUniformVariableLocation(program, "objectColour");
 
@@ -139,11 +149,11 @@ int main(void)
 			cSceneUtils::getInstance()->drawEquipment(equipment, program);
 		}
 
-		cSceneUtils::getInstance()->drawEquipment(cueRack, program);
+		/*cSceneUtils::getInstance()->drawEquipment(cueRack, program);
 		for (size_t i = 0; i < ((cCueRack*)cueRack)->cues.size(); i++)
 		{
 			cSceneUtils::getInstance()->drawEquipment(((cCueRack*)cueRack)->cues[i], program);
-		}
+		}*/
 
 		//for (unsigned int objIndex = 0;
 		//	objIndex != (unsigned int) cSceneUtils::getInstance()->vecObjectsToDraw.size();

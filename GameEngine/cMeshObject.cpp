@@ -30,6 +30,55 @@ cMeshObject::cMeshObject()
 cMeshObject::~cMeshObject()
 {}
 
+glm::quat cMeshObject::getOrientation(void)
+{
+	return this->orientation;
+}
+
+void cMeshObject::setOrientationEulerAngles(glm::vec3 newEulerAngles, bool bIsDegrees)
+{
+	if (bIsDegrees)
+	{
+		newEulerAngles = glm::vec3(glm::radians(newEulerAngles.x),
+			glm::radians(newEulerAngles.y),
+			glm::radians(newEulerAngles.z));
+	}
+
+	this->orientation = glm::quat(glm::vec3(newEulerAngles.x, newEulerAngles.y, newEulerAngles.z));
+}
+
+void cMeshObject::setOrientationEulerAngles(float x, float y, float z, bool bIsDegrees)
+{
+	this->setOrientationEulerAngles(glm::vec3(x, y, z), bIsDegrees);
+}
+
+void cMeshObject::adjustOrientationEulerAngles(glm::vec3 adjEulerAngle, bool bIsDegrees)
+{
+	if (bIsDegrees)
+	{
+		adjEulerAngle = glm::vec3(glm::radians(adjEulerAngle.x),
+			glm::radians(adjEulerAngle.y),
+			glm::radians(adjEulerAngle.z));
+	}
+
+	// Step 1: make a quaternion that represents the angle we want to rotate
+	glm::quat rotationAdjust(adjEulerAngle);
+
+	// Step 2: Multiply this quaternion by the existing quaternion. This "adds" the angle we want.
+	//this->orientation *= rotationAdjust;
+	adjustOrientation(rotationAdjust);
+}
+
+void cMeshObject::adjustOrientationEulerAngles(float x, float y, float z, bool bIsDegrees)
+{
+	this->adjustOrientationEulerAngles(glm::vec3(x, y, z), bIsDegrees);
+}
+
+void cMeshObject::adjustOrientation(glm::quat adjOrient)
+{
+	this->orientation *= adjOrient;
+}
+
 iMeshObject* cMeshObject::create(void)
 {
 	return new cMeshObject();

@@ -189,27 +189,33 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		{
 			if (glfwGetKey(window, GLFW_KEY_W))
 			{
-				selectedMeshObject->postRotation.x += glm::radians(1.0f);
+				//selectedMeshObject->postRotation.x += glm::radians(1.0f);
+				selectedMeshObject->adjustOrientationEulerAngles(1.0f, 0.0f, 0.0f, true);
 			}
 			if (glfwGetKey(window, GLFW_KEY_S))
 			{
-				selectedMeshObject->postRotation.x -= glm::radians(1.0f);
+				//selectedMeshObject->postRotation.x -= glm::radians(1.0f);
+				selectedMeshObject->adjustOrientationEulerAngles(-1.0f, 0.0f, 0.0f, true);
 			}
 			if (glfwGetKey(window, GLFW_KEY_A))
 			{
-				selectedMeshObject->postRotation.z -= glm::radians(1.0f);
+				//selectedMeshObject->postRotation.z -= glm::radians(1.0f);
+				selectedMeshObject->adjustOrientationEulerAngles(0.0f, 0.0f, -1.0f, true);
 			}
 			if (glfwGetKey(window, GLFW_KEY_D))
 			{
-				selectedMeshObject->postRotation.z += glm::radians(1.0f);
+				//selectedMeshObject->postRotation.z += glm::radians(1.0f);
+				selectedMeshObject->adjustOrientationEulerAngles(0.0f, 0.0f, 1.0f, true);
 			}
 			if (glfwGetKey(window, GLFW_KEY_Q))
 			{
-				selectedMeshObject->postRotation.y += glm::radians(1.0f);
+				//selectedMeshObject->postRotation.y += glm::radians(1.0f);
+				selectedMeshObject->adjustOrientationEulerAngles(0.0f, 1.0f, 0.0f, true);
 			}
 			if (glfwGetKey(window, GLFW_KEY_E))
 			{
-				selectedMeshObject->postRotation.y -= glm::radians(1.0f);
+				//selectedMeshObject->postRotation.y -= glm::radians(1.0f);
+				selectedMeshObject->adjustOrientationEulerAngles(0.0f, -1.0f, 0.0f, true);
 			}
 		}
 	}
@@ -428,9 +434,10 @@ void cUserIO::mSaveSettings()
 		json["meshes"][index]["position"]["y"] = object->position.y;
 		json["meshes"][index]["position"]["z"] = object->position.z;
 
-		json["meshes"][index]["postRotation"]["x"] = object->postRotation.x;
-		json["meshes"][index]["postRotation"]["y"] = object->postRotation.y;
-		json["meshes"][index]["postRotation"]["z"] = object->postRotation.z;
+		glm::vec3 eularAngles = glm::eulerAngles(object->getOrientation());
+		json["meshes"][index]["postRotation"]["x"] = eularAngles.x;
+		json["meshes"][index]["postRotation"]["y"] = eularAngles.y;
+		json["meshes"][index]["postRotation"]["z"] = eularAngles.z;
 
 		json["meshes"][index]["materialDiffuse"]["r"] = object->materialDiffuse.r;
 		json["meshes"][index]["materialDiffuse"]["g"] = object->materialDiffuse.g;

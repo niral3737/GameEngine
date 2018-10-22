@@ -10,7 +10,7 @@
         "z": 0.0
     },
     "cameraEye": {
-        "x": -6.0,
+        "x": -5.939999580383301,
         "y": 322.0,
         "z": -498.0
     },
@@ -437,15 +437,11 @@
     ],
     "maxNumberOfLights": 10,
     "meshFileNames": [
-        "stadium.ply",
         "sphere.ply",
-        "cue.ply",
-        "poolTable.ply",
-        "cueRack.ply",
-        "poolBalls.ply",
+        "ering.ply",
         "environment.ply",
-        "BMW.ply",
-        "cueBall.ply"
+        "box.ply",
+        "cue.ply"
     ],
     "meshes": [
         {
@@ -455,7 +451,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "cueBall",
+            "friendlyName": "sphere",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -471,16 +467,142 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "cueBall.ply",
+            "meshName": "sphere.ply",
             "position": {
                 "x": 0.0,
                 "y": 0.0,
                 "z": 0.0
             },
             "postRotation": {
-                "x": 1.1519179344177246,
-                "y": -1.6406105756759644,
-                "z": -0.802851676940918
+                "x": -1.9896740913391113,
+                "y": -1.5009809732437134,
+                "z": 2.338740348815918
+            },
+            "scale": 5.984408855438232,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "ring",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 0.0,
+                "g": 0.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "ering.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": -1.9896740913391113,
+                "y": -1.5009809732437134,
+                "z": 2.338740348815918
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "environment",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "environment.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": -1.9896740913391113,
+                "y": -1.5009809732437134,
+                "z": 2.338740348815918
+            },
+            "scale": 5.984408855438232,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "box",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "box.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": -1.9896740913391113,
+                "y": -1.5009809732437134,
+                "z": 2.338740348815918
             },
             "scale": 5.984408855438232,
             "useVertexColor": false,
@@ -515,352 +637,16 @@
             },
             "meshName": "cue.ply",
             "position": {
-                "x": -290.0,
+                "x": 109.0,
                 "y": 0.0,
                 "z": 41.0
             },
             "postRotation": {
-                "x": 1.6406105756759644,
-                "y": -4.799641132354736,
-                "z": -1.832597017288208
+                "x": -2.593468189239502,
+                "y": 0.3211260735988617,
+                "z": -0.10003017634153366
             },
             "scale": 1.0,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "cue2",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 0.6039000153541565,
-                "g": 0.800000011920929,
-                "r": 1.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "cue.ply",
-            "position": {
-                "x": 18.5,
-                "y": 19.5,
-                "z": 4.5
-            },
-            "postRotation": {
-                "x": 1.1519179344177246,
-                "y": -1.6406105756759644,
-                "z": -0.802851676940918
-            },
-            "scale": 0.32408908009529114,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "cue1",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 0.6039000153541565,
-                "g": 0.800000011920929,
-                "r": 1.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "cue.ply",
-            "position": {
-                "x": 12.0,
-                "y": 19.0,
-                "z": -1.5
-            },
-            "postRotation": {
-                "x": 1.1519179344177246,
-                "y": -1.6406105756759644,
-                "z": -0.802851676940918
-            },
-            "scale": 0.32408908009529114,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "poolTable",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 0.0,
-                "g": 0.6000000238418579,
-                "r": 0.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "poolTable.ply",
-            "position": {
-                "x": -15.5,
-                "y": 1.0,
-                "z": 9.0
-            },
-            "postRotation": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "scale": 1.763267159461975,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "cueRack",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 0.2160000056028366,
-                "g": 0.3059999942779541,
-                "r": 0.4350000023841858
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "cueRack.ply",
-            "position": {
-                "x": -73.0,
-                "y": 4.5,
-                "z": 40.0
-            },
-            "postRotation": {
-                "x": 3.725290298461914e-09,
-                "y": 0.5759586095809937,
-                "z": -0.10471975058317184
-            },
-            "scale": 0.032807108014822006,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "poolBalls",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 0.0,
-                "g": 0.0,
-                "r": 1.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "poolBalls.ply",
-            "position": {
-                "x": -26.0,
-                "y": 24.0,
-                "z": 14.5
-            },
-            "postRotation": {
-                "x": -1.6057040691375732,
-                "y": -0.017453311011195183,
-                "z": -0.06981317698955536
-            },
-            "scale": 0.4211660921573639,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "environment",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 0.2160000056028366,
-                "g": 0.3059999942779541,
-                "r": 0.4350000023841858
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "environment.ply",
-            "position": {
-                "x": -24.0,
-                "y": -74.0,
-                "z": -18.0
-            },
-            "postRotation": {
-                "x": 3.725290298461914e-09,
-                "y": 0.5759586095809937,
-                "z": -0.10471975058317184
-            },
-            "scale": 12.937545776367188,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "BMW1",
-            "isUpdatedByPhysics": true,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 0.0,
-                "g": 0.0,
-                "r": 1.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 38.0,
-                "r": 1.0
-            },
-            "meshName": "BMW.ply",
-            "position": {
-                "x": -216.0,
-                "y": -66.0,
-                "z": -188.0
-            },
-            "postRotation": {
-                "x": 0.05235988646745682,
-                "y": -1.0471980571746826,
-                "z": 0.017453281208872795
-            },
-            "scale": 2.9582111835479736,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "BMW2",
-            "isUpdatedByPhysics": true,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 0.0,
-                "r": 0.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 20.0,
-                "r": 1.0
-            },
-            "meshName": "BMW.ply",
-            "position": {
-                "x": -112.0,
-                "y": -76.5,
-                "z": -226.5
-            },
-            "postRotation": {
-                "x": 0.05235988646745682,
-                "y": 2.1467556953430176,
-                "z": 0.017453281208872795
-            },
-            "scale": 2.9582111835479736,
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,
