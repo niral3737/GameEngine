@@ -139,6 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cBall.cpp" />
+    <ClCompile Include="cCamera.cpp" />
     <ClCompile Include="cCueRack.cpp" />
     <ClCompile Include="cCueStick.cpp" />
     <ClCompile Include="cEquipmentBuilder.cpp" />
@@ -168,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cBall.h" />
+    <ClInclude Include="cCamera.h" />
     <ClInclude Include="cCueRack.h" />
     <ClInclude Include="cCueStick.h" />
     <ClInclude Include="cEquipmentBuilder.h" />

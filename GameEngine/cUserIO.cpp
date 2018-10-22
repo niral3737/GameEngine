@@ -14,9 +14,12 @@
 #include "cJsonUtils.h"
 #include "json.hpp"
 #include "cCueStick.h"
+#include "cCamera.h"
 
 eSelectionMode cUserIO::selectionMode = eSelectionMode::MESH_SELECTION;
 bool cUserIO::includeInvisibleObjects = false;
+
+bool cUserIO::isMouseInsideWindow = false;
 
 void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int action, int mods)
 {
@@ -110,6 +113,8 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 	const float CAMERA_SPEED_SLOW = 0.03f;
 	const float CAMERA_SPEED_FAST = 1.0f;
 
+	const float CAMERA_TURN_SPEED = 0.1f;
+
 	float cameraSpeed = CAMERA_SPEED_SLOW;
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
 	{
@@ -125,6 +130,9 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		}
 	}
 
+	cCamera* camera = cCamera::getInstance();
+
+	float cameraMoveSpeed = camera->movementSpeed;
 	// If no keys are down, move the camera
 	if (mAreAllModifiersUp(window))
 	{
@@ -133,30 +141,50 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		{
-			cSceneUtils::cameraEye.z += cameraSpeed;
+			//cSceneUtils::cameraEye.z += cameraSpeed;
+			camera->moveForwardZ(+cameraMoveSpeed);
 		}
 		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)	// "backwards"
 		{
-			cSceneUtils::cameraEye.z -= cameraSpeed;
+			//cSceneUtils::cameraEye.z -= cameraSpeed;
+			camera->moveForwardZ(-cameraMoveSpeed);
 		}
 		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)	// "left"
 		{
-			cSceneUtils::cameraEye.x += cameraSpeed;
+			//cSceneUtils::cameraEye.x += cameraSpeed;
+			camera->moveLeftRightX(-cameraMoveSpeed);
 		}
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)	// "right"
 		{
-			cSceneUtils::cameraEye.x -= cameraSpeed;
+			//cSceneUtils::cameraEye.x -= cameraSpeed;
+			camera->moveLeftRightX(+cameraMoveSpeed);
 		}
 		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)	// "up"
 		{
-			cSceneUtils::cameraEye.y += cameraSpeed;
+			//cSceneUtils::cameraEye.y += cameraSpeed;
+			camera->moveUpDownY(-cameraMoveSpeed);
 		}
 		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)	// "down"
 		{
-			cSceneUtils::cameraEye.y -= cameraSpeed;
+			//cSceneUtils::cameraEye.y -= cameraSpeed;
+			camera->moveUpDownY(+cameraMoveSpeed);
 		}
 
 	}//if(AreAllModifiersUp(window)
+
+	if (mIsShiftDown(window))
+	{
+		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)	// "up"
+		{
+			camera->rollCWCCW(-CAMERA_TURN_SPEED);
+			//			::g_pFlyCamera->MoveUpDown_Y( +cameraSpeed );
+		}
+		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)	// "down"
+		{
+			camera->rollCWCCW(+CAMERA_TURN_SPEED);
+			//			::g_pFlyCamera->MoveUpDown_Y( -cameraSpeed );
+		}
+	}
 
 	/*if (mIsAltDown(window))
 	{
@@ -355,6 +383,82 @@ bool cUserIO::mAreAllModifiersUp(GLFWwindow * window)
 	return true;
 }
 
+void cUserIO::processAsynMouse(GLFWwindow * window)
+{
+	double x, y;
+	glfwGetCursorPos(window, &x, &y);
+
+	cCamera* camera = cCamera::getInstance();
+
+	camera->setMouseXY(x, y);
+
+	const float MOUSE_SENSITIVITY = 0.1f;
+
+	std::cout << camera->getMouseX() << ", " << camera->getMouseY() << std::endl;
+
+		// Mouse left (primary?) button pressed? 
+		// AND the mouse is inside the window...
+	if ((glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
+		&& cUserIO::isMouseInsideWindow)
+	{
+		// Mouse button is down so turn the camera
+		camera->yawLeftRight(-camera->getDeltaMouseX() * MOUSE_SENSITIVITY);
+
+		camera->pitchUpDown(camera->getDeltaMouseY() * MOUSE_SENSITIVITY);
+
+	}
+
+	// Adjust the mouse speed
+	if (cUserIO::isMouseInsideWindow)
+	{
+		const float MOUSE_WHEEL_SENSITIVITY = 0.1f;
+
+		// Adjust the movement speed based on the wheel position
+		camera->movementSpeed = camera->getMouseWheel() * MOUSE_WHEEL_SENSITIVITY;
+	}
+
+	return;
+}
+
+void cUserIO::cursor_enter_callback(GLFWwindow* window, int entered)
+{
+	if (entered)
+	{
+		cUserIO::isMouseInsideWindow = true;
+		std::cout << "Mouse moved indide window" << std::endl;
+	}
+	else
+	{
+		cUserIO::isMouseInsideWindow = false;
+		std::cout << "Mouse moved outside window" << std::endl;
+	}
+	return;
+}//cursor_enter_callback(...
+
+// Mouse (cursor) callback
+void cUserIO::cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+{
+
+	return;
+}
+
+
+void cUserIO::mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+{
+
+	return;
+}
+
+void cUserIO::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+	// A regular mouse wheel returns the y value
+	cCamera::getInstance()->setMouseWheelDelta(yoffset);
+
+	//	std::cout << "Mouse wheel: " << yoffset << std::endl;
+
+	return;
+}
+
 void cUserIO::mSaveSettings()
 {
 	cLightsManager* lightsManager = cLightsManager::getInstance();
@@ -365,13 +469,13 @@ void cUserIO::mSaveSettings()
 	nlohmann::json json = cJsonUtils::getJsonInstance();
 
 	//save camera
-	json["cameraEye"]["x"] = sceneUtils->cameraEye.x;
-	json["cameraEye"]["y"] = sceneUtils->cameraEye.y;
-	json["cameraEye"]["z"] = sceneUtils->cameraEye.z;
+	json["cameraEye"]["x"] = cCamera::getInstance()->eye.x;
+	json["cameraEye"]["y"] = cCamera::getInstance()->eye.y;
+	json["cameraEye"]["z"] = cCamera::getInstance()->eye.z;
 
-	json["cameraAt"]["x"] = sceneUtils->cameraAt.x;
-	json["cameraAt"]["y"] = sceneUtils->cameraAt.y;
-	json["cameraAt"]["z"] = sceneUtils->cameraAt.z;
+	json["cameraAt"]["x"] = cCamera::getInstance()->getAtInWorldSpace().x;
+	json["cameraAt"]["y"] = cCamera::getInstance()->getAtInWorldSpace().y;
+	json["cameraAt"]["z"] = cCamera::getInstance()->getAtInWorldSpace().z;
 
 	//saving the lights
 	size_t numLights = lightsManager->vecLights.size();

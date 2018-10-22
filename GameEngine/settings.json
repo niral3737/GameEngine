@@ -10,9 +10,14 @@
         "z": 0.0
     },
     "cameraEye": {
-        "x": -5.939999580383301,
-        "y": 322.0,
-        "z": -498.0
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "cameraUp": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
     },
     "compressedFileExt": ".mp3",
     "fireSound": "fire",
@@ -441,7 +446,8 @@
         "ering.ply",
         "environment.ply",
         "box.ply",
-        "cue.ply"
+        "cue.ply",
+        "terrain_xyz_n.ply"
     ],
     "meshes": [
         {

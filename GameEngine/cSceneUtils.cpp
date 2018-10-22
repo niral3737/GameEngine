@@ -2,6 +2,8 @@
 #include <vector>
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
+#define GLM_ENABLE_EXPERIMENTAL		// To get glm quaternion stuff to compile
+#include <glm/gtx/quaternion.hpp>
 
 #include <fstream>
 #include <iostream>
@@ -10,6 +12,7 @@
 #include "cMeshObjectFactory.h"
 #include "cModelDrawInfo.h"
 #include "cVAOMeshUtils.h"
+#include "cCamera.h"
 
 cSceneUtils* cSceneUtils::pSceneUtils = 0;
 
@@ -195,17 +198,37 @@ void cSceneUtils::initializeCamera()
 	{
 		json = cJsonUtils::getJsonInstance();
 	}
-	cSceneUtils::cameraEye = glm::vec3(
+	//cSceneUtils::cameraEye = glm::vec3(
+	//	json["cameraEye"]["x"].get<float>(),
+	//	json["cameraEye"]["y"].get<float>(),
+	//	json["cameraEye"]["z"].get<float>()
+	//);
+
+	//cSceneUtils::cameraAt = glm::vec3(
+	//	json["cameraAt"]["x"].get<float>(),
+	//	json["cameraAt"]["y"].get<float>(),
+	//	json["cameraAt"]["z"].get<float>()
+	//);
+
+	//cCamera::getInstance()->eye = glm::vec3(
+	//	json["cameraEye"]["x"].get<float>(),
+	//	json["cameraEye"]["y"].get<float>(),
+	//	json["cameraEye"]["z"].get<float>()
+	//);
+
+	/*cCamera::getInstance()->orientation = glm::quat (
 		json["cameraEye"]["x"].get<float>(),
 		json["cameraEye"]["y"].get<float>(),
-		json["cameraEye"]["z"].get<float>()
-	);
+		json["cameraEye"]["z"].get<float>(),
+		json["cameraEye"]["w"].get<float>()
+	);*/
 
-	cSceneUtils::cameraAt = glm::vec3(
+	/*cCamera::getInstance()->at = glm::vec3(
 		json["cameraAt"]["x"].get<float>(),
 		json["cameraAt"]["y"].get<float>(),
 		json["cameraAt"]["z"].get<float>()
-	);
+	);*/
+
 }
 
 void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, GLuint shaderProgramID)

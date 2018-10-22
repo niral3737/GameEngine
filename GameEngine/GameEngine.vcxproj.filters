@@ -135,6 +135,9 @@
     <ClCompile Include="cMediator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cShaderUtils.h">
@@ -222,6 +225,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="iMediatorEquipment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

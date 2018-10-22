@@ -10,9 +10,14 @@
         "z": 0.0
     },
     "cameraEye": {
-        "x": -5.939999580383301,
-        "y": 322.0,
-        "z": -498.0
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "cameraUp": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
     },
     "compressedFileExt": ".mp3",
     "fireSound": "fire",
@@ -441,7 +446,8 @@
         "ering.ply",
         "environment.ply",
         "box.ply",
-        "cue.ply"
+        "cue.ply",
+        "terrain_xyz_n.ply"
     ],
     "meshes": [
         {
@@ -535,10 +541,10 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "environment",
+            "friendlyName": "terrain",
             "isUpdatedByPhysics": false,
             "isVisible": true,
-            "isWireFrame": false,
+            "isWireFrame": true,
             "materialDiffuse": {
                 "a": 1.0,
                 "b": 1.0,
@@ -551,16 +557,16 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "environment.ply",
+            "meshName": "terrain_xyz_n.ply",
             "position": {
                 "x": 0.0,
                 "y": 0.0,
                 "z": 0.0
             },
             "postRotation": {
-                "x": -1.9896740913391113,
-                "y": -1.5009809732437134,
-                "z": 2.338740348815918
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
             },
             "scale": 5.984408855438232,
             "useVertexColor": false,

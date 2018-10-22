@@ -25,6 +25,8 @@
 #define GLM_ENABLE_EXPERIMENTAL		// To get glm quaternion stuff to compile
 #include <glm/gtx/quaternion.hpp>	// Note strange folder
 
+#include "cCamera.h"
+
 int main(void)
 {
 	cGLFWUtils::setUpGLFW();
@@ -71,7 +73,7 @@ int main(void)
 	
 	iEquipment* cueStick = equipmentFactory->createEquipment(2);
 	mediator->LoadEquipment(cueStick);
-	cMeshObject* cueMesh = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("cue0");
+	cMeshObject* cueMesh = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("terrain");
 	cueStick->setMesh(cueMesh);
 
 	cSceneUtils::getInstance()->vecEquipmentsToDraw.push_back(cueStick);
@@ -131,11 +133,11 @@ int main(void)
 			ratio,		// Aspect ratio
 			0.1f,			// Near clipping plane
 			10000.0f);	// Far clipping plane
-		matView = glm::lookAt(cSceneUtils::cameraEye,	// Eye
-			cSceneUtils::cameraAt,		// At
-			glm::vec3(0.0f, 1.0f, 0.0f));// Up
+		matView = glm::lookAt(cCamera::getInstance()->eye,	// Eye
+			cCamera::getInstance()->getAtInWorldSpace(),		// At
+			cCamera::getInstance()->getUpVector());// Up
 
-		glUniform3f(eyeLocation_location, cSceneUtils::cameraEye.x, cSceneUtils::cameraEye.y, cSceneUtils::cameraEye.z);
+		glUniform3f(eyeLocation_location, cCamera::getInstance()->eye.x, cCamera::getInstance()->eye.y, cCamera::getInstance()->eye.z);
 
 		glUniformMatrix4fv(matView_location, 1, GL_FALSE, glm::value_ptr(matView));
 		glUniformMatrix4fv(matProj_location, 1, GL_FALSE, glm::value_ptr(matProjection));
@@ -180,6 +182,7 @@ int main(void)
 
 		PhysicsUpdate(deltaTime, modelDrawInfo);*/
 		cUserIO::processAsynKeys(window);
+		cUserIO::processAsynMouse(window);
 	}//while (!glfwWindowShouldClose(window))
 
 	//soundManager->shutdownFmod();

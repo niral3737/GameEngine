@@ -31,7 +31,15 @@ void cGLFWUtils::setUpGLFW(void)
 		exit(EXIT_FAILURE);
 	}
 
+	//keyboard callbacks
 	glfwSetKeyCallback(window, cUserIO::key_callback);
+
+	//mouse callbacks
+	glfwSetCursorPosCallback(window, cUserIO::cursor_position_callback);
+	glfwSetMouseButtonCallback(window, cUserIO::mouse_button_callback);
+	glfwSetCursorEnterCallback(window, cUserIO::cursor_enter_callback);
+	glfwSetScrollCallback(window, cUserIO::scroll_callback);
+
 	glfwMakeContextCurrent(window);
 	gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
 	glfwSwapInterval(1);
