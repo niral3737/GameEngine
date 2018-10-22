@@ -8,18 +8,30 @@
 #include "cModelDrawInfo.h"
 #include "cVAOMeshUtils.h"
 
-void PhysicsUpdate(double deltaTime, const cModelDrawInfo& collisionTest);
+class cPhysics
+{
+public:
+	void PhysicsUpdate(double deltaTime, const cModelDrawInfo& collisionTest);
 
-void PlayerPhysicsUpdate(cMeshObject* playerObject, double deltaTime);
+	void PlayerPhysicsUpdate(cMeshObject* playerObject, double deltaTime);
 
-void CalculateClosestPointsOnMesh(cModelDrawInfo theMeshDrawInfo, glm::vec3 pointToTest, std::vector<glm::vec3> &vecPoints);
+	void CalculateClosestPointsOnMesh(cModelDrawInfo theMeshDrawInfo, glm::vec3 pointToTest, std::vector<glm::vec3> &vecPoints);
 
-unsigned int FindClosestPointOfAll(const glm::vec3& pointToTest, const std::vector<glm::vec3>& vecPoints, glm::vec3& finalPoint);
+	unsigned int FindClosestPointOfAll(const glm::vec3& pointToTest, const std::vector<glm::vec3>& vecPoints, glm::vec3& finalPoint);
 
-void GetClosestTriangle(unsigned int finalIndex, const cModelDrawInfo& info, glm::vec3& closestTriangle);
+	void GetClosestTriangle(unsigned int finalIndex, const cModelDrawInfo& info, glm::vec3& closestTriangle);
 
-bool SphereSphereCollision(cMeshObject* pA, cMeshObject* pB);
+	bool SphereSphereCollision(cMeshObject* pA, cMeshObject* pB);
 
-bool SphereCubeCollision(cMeshObject* pSphere, cMeshObject* pCube, cModelDrawInfo& meshInfo);
+	bool SphereCubeCollision(cMeshObject* pSphere, cMeshObject* pCube, cModelDrawInfo& meshInfo);
+
+	void addProjectileAim(double deltaTime);
+
+	glm::vec3 ClosestPtPointTriangle(glm::vec3 p, glm::vec3 a, glm::vec3 b, glm::vec3 c);
+
+	static const glm::vec3 ACCEL_GRAVITY;
+
+	static float initialProjectileVelocity;
+};
 
 #endif // !_cPhysics_HG_

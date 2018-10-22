@@ -84,6 +84,29 @@ iMeshObject* cMeshObject::create(void)
 	return new cMeshObject();
 }
 
+cMeshObject* cMeshObject::cloneObject()
+{
+	cMeshObject* clone = new cMeshObject();
+
+	clone->position = this->position;
+	clone->postRotation = this->postRotation;
+	clone->materialDiffuse = this->materialDiffuse;
+	clone->materialSpecular = this->materialSpecular;
+	clone->scale = this->scale;
+	clone->meshName = this->meshName;
+	clone->friendlyName = this->friendlyName;
+	clone->isWireFrame = this->isWireFrame;
+	clone->isVisible = this->isVisible;
+	clone->useVertexColor = this->useVertexColor;
+	clone->dontLight = this->dontLight;
+	clone->isUpdatedByPhysics = this->isUpdatedByPhysics;
+	clone->velocity = this->velocity;
+	clone->acceleration = this->acceleration;
+	clone->orientation = this->orientation;
+
+	return clone;
+}
+
 void cMeshObject::setDiffuseColour(glm::vec3 newDiffuse)
 {
 	this->materialDiffuse = glm::vec4(newDiffuse, this->materialDiffuse.a);

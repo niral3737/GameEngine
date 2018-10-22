@@ -447,7 +447,8 @@
         "environment.ply",
         "box.ply",
         "cue.ply",
-        "terrain_xyz_n.ply"
+        "terrain_xyz_n.ply",
+        "cueBall.ply"
     ],
     "meshes": [
         {

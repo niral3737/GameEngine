@@ -3,11 +3,15 @@
 
 #include "cPhysics.h"
 #include "cSceneUtils.h"
+#include "cCamera.h"
+#include "cShaderUtils.h"
+#include "cJsonUtils.h"
 
-typedef glm::vec3 Point;
-typedef glm::vec3 Vector;
+const glm::vec3 cPhysics::ACCEL_GRAVITY = glm::vec3(0.0f, -5.0f, 0.0f);
 
-void PhysicsUpdate(double deltaTime, const cModelDrawInfo& collisionTest)
+float cPhysics::initialProjectileVelocity = 10.0f;
+
+void cPhysics::PhysicsUpdate(double deltaTime, const cModelDrawInfo& collisionTest)
 {
 	cVAOMeshUtils* vao = cVAOMeshUtils::getInstance();
 	cSceneUtils* scene = cSceneUtils::getInstance();
@@ -51,59 +55,75 @@ void PhysicsUpdate(double deltaTime, const cModelDrawInfo& collisionTest)
 				currentObject->position.z += currentObject->velocity.z * deltaTime;
 
 				// Check for the ground and bounce it back
-				if (currentObject->position.y <= LIMIT_NEG_Y)
-				{
-					// Normal to the ground is for now, just the Y vector (0, 1, 0)
-					glm::vec3 normalToGround = glm::vec3(0.0f, 1.0f, 0.0f);
+				//if (currentObject->position.y <= LIMIT_NEG_Y)
+				//{
+				//	// Normal to the ground is for now, just the Y vector (0, 1, 0)
+				//	glm::vec3 normalToGround = glm::vec3(0.0f, 1.0f, 0.0f);
 
-					// Invert the velocity downwards, simply by removing the negative
-					currentObject->velocity.y = fabs(currentObject->velocity.y);
-				}
+				//	// Invert the velocity downwards, simply by removing the negative
+				//	currentObject->velocity.y = fabs(currentObject->velocity.y);
+				//}
 
-				// BOX LOCK
-				if (currentObject->position.x >= LIMIT_POS_X)
-				{
-					currentObject->velocity.x = -fabs(currentObject->velocity.x);
-				}
-				if (currentObject->position.x <= LIMIT_NEG_X)
-				{
-					currentObject->velocity.x = fabs(currentObject->velocity.x);
-				}
-				if (currentObject->position.y >= LIMIT_POS_Y)
-				{
-					currentObject->velocity.y = -fabs(currentObject->velocity.y);
-				}
-				if (currentObject->position.z >= LIMIT_POS_Z)
-				{
-					currentObject->velocity.z = -fabs(currentObject->velocity.z);
-				}
-				if (currentObject->position.z <= LIMIT_NEG_Z)
-				{
-					currentObject->velocity.z = fabs(currentObject->velocity.z);
-				}
+				//// BOX LOCK
+				//if (currentObject->position.x >= LIMIT_POS_X)
+				//{
+				//	currentObject->velocity.x = -fabs(currentObject->velocity.x);
+				//}
+				//if (currentObject->position.x <= LIMIT_NEG_X)
+				//{
+				//	currentObject->velocity.x = fabs(currentObject->velocity.x);
+				//}
+				//if (currentObject->position.y >= LIMIT_POS_Y)
+				//{
+				//	currentObject->velocity.y = -fabs(currentObject->velocity.y);
+				//}
+				//if (currentObject->position.z >= LIMIT_POS_Z)
+				//{
+				//	currentObject->velocity.z = -fabs(currentObject->velocity.z);
+				//}
+				//if (currentObject->position.z <= LIMIT_NEG_Z)
+				//{
+				//	currentObject->velocity.z = fabs(currentObject->velocity.z);
+				//}
 			}
 			
 
 			// Collision stuff has been commented for now
 
 			// Check collisions with terrain
-			//if (currentObject->name == "Link")
+			//if (currentObject->friendlyName == "box")
 			//{
 			//	std::vector<glm::vec3> vecClosestPoints;
 			//	glm::vec3 finalPoint = { 0.0f, 0.0f, 0.0f };
 			//	unsigned int finalIndex = 0;
 			//	CalculateClosestPointsOnMesh(collisionTest, currentObject->position, vecClosestPoints);
 			//	finalIndex = FindClosestPointOfAll(currentObject->position, vecClosestPoints, finalPoint);
-			//	if (abs(glm::distance(currentObject->position, finalPoint) < currentObject->radius))
+			//	if (abs(glm::distance(currentObject->position, finalPoint) < 6))
 			//	{
 			//		// Colliding, change colour
-			//		currentObject->colour = glm::vec3(1.0f, 0.0f, 0.0f);
+			//		currentObject->velocity = glm::vec3(0.0f, 0.0f, 0.0f);
 			//	}
 			//	else
 			//	{
 			//		//currentObject->colour = glm::vec3(1.0f, 1.0f, 1.0f);
 			//	}
 			//}
+
+			for (std::vector<iMeshObject*>::iterator vecIter = scene->vecObjectsToDraw.begin(); vecIter != scene->vecObjectsToDraw.end(); vecIter++)
+			{
+				cMeshObject* obj = (cMeshObject*)*vecIter;
+
+				if (currentObject->friendlyName == "cueBall" && obj->friendlyName == "box")
+				{
+					//taking ball's radius as 1 and box's radius as 6
+					//collision if radius + radius > distance
+					if (abs(glm::distance(currentObject->position, obj->position) < (6 + 1)))
+					{
+						obj->setDiffuseColour(glm::vec3(0.0f, 1.0f, 0.0f));
+					}
+				}
+
+			}
 
 			// Check collisions
 			//for (std::vector<iEnemy*>::iterator enemyIter = vecpEnemiesToDraw.begin(); enemyIter != vecpEnemiesToDraw.end(); enemyIter++)
@@ -151,7 +171,7 @@ void PhysicsUpdate(double deltaTime, const cModelDrawInfo& collisionTest)
 	}
 }
 
-void PlayerPhysicsUpdate(cMeshObject* playerObject, double deltaTime)
+void cPhysics::PlayerPhysicsUpdate(cMeshObject* playerObject, double deltaTime)
 {
 	// EULER INTEGRATION
 
@@ -233,11 +253,11 @@ void PlayerPhysicsUpdate(cMeshObject* playerObject, double deltaTime)
 	playerObject->postRotation.y += playerObject->velocity.x * deltaTime;
 }
 
-Point ClosestPtPointTriangle(Point p, Point a, Point b, Point c)
+glm::vec3 cPhysics::ClosestPtPointTriangle(glm::vec3 p, glm::vec3 a, glm::vec3 b, glm::vec3 c)
 {
-	Vector ab = b - a;
-	Vector ac = c - a;
-	Vector bc = c - b;
+	glm::vec3 ab = b - a;
+	glm::vec3 ac = c - a;
+	glm::vec3 bc = c - b;
 
 	// Compute parametric position s for projection P' of P on AB,
 	// P' = A + s*AB, s = snom/(snom+sdenom)
@@ -265,7 +285,7 @@ Point ClosestPtPointTriangle(Point p, Point a, Point b, Point c)
 
 													// P is outside (or on) AB if the triple scalar product [N PA PB] <= 0
 													//    Vector n = Cross(b - a, c - a);
-	Vector n = glm::cross(b - a, c - a);
+	glm::vec3 n = glm::cross(b - a, c - a);
 	//    float vc = Dot(n, Cross(a - p, b - p));
 
 	float vc = glm::dot(n, glm::cross(a - p, b - p));
@@ -301,34 +321,34 @@ Point ClosestPtPointTriangle(Point p, Point a, Point b, Point c)
 	return u * a + v * b + w * c;
 }
 
-//void CalculateClosestPointsOnMesh(cModelDrawInfo theMeshDrawInfo, glm::vec3 pointToTest, std::vector<glm::vec3> &vecPoints)
-//{
-//	vecPoints.clear();
-//
-//	// For each triangle in the mesh information...
-//	for (unsigned int triIndex = 0; triIndex != theMeshDrawInfo.numberOfTriangles; triIndex++)
-//	{
-//		glm::ivec3 CurTri = theMeshDrawInfo.pTriangles[triIndex];
-//
-//		// ... call the ClosestPointToTriangle...
-//		// Need to get the 3 vertices of the triangle
-//		sPlyVertex corner_1 = theMeshDrawInfo.pVerticesFromFile[CurTri.vertexIndex1];
-//		sPlyVertex corner_2 = theMeshDrawInfo.pVerticesFromFile[CurTri.vertexIndex2];
-//		sPlyVertex corner_3 = theMeshDrawInfo.pVerticesFromFile[CurTri.vertexIndex3];
-//
-//		// Convert this to glm::vec3
-//		glm::vec3 vert_1 = glm::vec3(corner_1.x, corner_1.y, corner_1.z);
-//		glm::vec3 vert_2 = glm::vec3(corner_2.x, corner_2.y, corner_2.z);
-//		glm::vec3 vert_3 = glm::vec3(corner_3.x, corner_3.y, corner_3.z);
-//
-//		glm::vec3 closestPoint = ClosestPtPointTriangle(pointToTest, vert_1, vert_2, vert_3);
-//
-//		vecPoints.push_back(closestPoint);
-//	}
-//}
+void cPhysics::CalculateClosestPointsOnMesh(cModelDrawInfo theMeshDrawInfo, glm::vec3 pointToTest, std::vector<glm::vec3> &vecPoints)
+{
+	vecPoints.clear();
+
+	// For each triangle in the mesh information...
+	for (unsigned int triIndex = 0; triIndex != theMeshDrawInfo.numberOfTriangles; triIndex++)
+	{
+		glm::ivec3 CurTri = theMeshDrawInfo.pTriangles[triIndex];
+
+		// ... call the ClosestPointToTriangle...
+		// Need to get the 3 vertices of the triangle
+		glm::vec3 corner_1 = theMeshDrawInfo.pVerticesFromFile[CurTri.x];
+		glm::vec3 corner_2 = theMeshDrawInfo.pVerticesFromFile[CurTri.y];
+		glm::vec3 corner_3 = theMeshDrawInfo.pVerticesFromFile[CurTri.z];
+
+		// Convert this to glm::vec3
+		glm::vec3 vert_1 = glm::vec3(corner_1.x, corner_1.y, corner_1.z);
+		glm::vec3 vert_2 = glm::vec3(corner_2.x, corner_2.y, corner_2.z);
+		glm::vec3 vert_3 = glm::vec3(corner_3.x, corner_3.y, corner_3.z);
+
+		glm::vec3 closestPoint = ClosestPtPointTriangle(pointToTest, vert_1, vert_2, vert_3);
+
+		vecPoints.push_back(closestPoint);
+	}
+}
 
 // Find closest point from all points
-unsigned int FindClosestPointOfAll(const glm::vec3& pointToTest, const std::vector<glm::vec3>& vecPoints, glm::vec3& finalPoint)
+unsigned int cPhysics::FindClosestPointOfAll(const glm::vec3& pointToTest, const std::vector<glm::vec3>& vecPoints, glm::vec3& finalPoint)
 {
 	glm::vec3 closestPoint = vecPoints[0]; // Begin assuming that the closes point is the first one
 	float currentDist = glm::distance(pointToTest, closestPoint); // Check the distance with first assumed point
@@ -355,7 +375,7 @@ unsigned int FindClosestPointOfAll(const glm::vec3& pointToTest, const std::vect
 	return finalIndex;
 }
 
-void GetClosestTriangle(unsigned int finalIndex, const cModelDrawInfo& info, glm::vec3& closestTriangle)
+void cPhysics::GetClosestTriangle(unsigned int finalIndex, const cModelDrawInfo& info, glm::vec3& closestTriangle)
 {
 	// By logic, the closest point index is the closest triangle index.
 	int x, y, z;
@@ -365,6 +385,70 @@ void GetClosestTriangle(unsigned int finalIndex, const cModelDrawInfo& info, glm
 
 	// Update the closest triangle
 	closestTriangle = { x, y, z };
+}
+
+void cPhysics::addProjectileAim(double deltaTime)
+{
+	cCamera* camera = cCamera::getInstance();
+
+	glm::vec3 cameraAt = camera->getAtInWorldSpace();
+
+	cMeshObject* shootRing = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("ring");
+
+	cMeshObject* debugSphere = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("sphere");
+
+	debugSphere->position = cameraAt;
+	debugSphere->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
+	debugSphere->isVisible = true;
+	debugSphere->scale = 0.1f;
+	debugSphere->isWireFrame = true;
+	debugSphere->isUpdatedByPhysics = false;
+
+	shootRing->position = cameraAt;
+	shootRing->setOrientationEulerAngles(glm::vec3(90.0f, 0.0f, 0.0f), true);
+	shootRing->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
+	shootRing->isVisible = true;
+	shootRing->scale = 0.01f;
+	shootRing->isWireFrame = true;
+	shootRing->isUpdatedByPhysics = false;
+
+	glm::mat4 matWorld = glm::mat4(1.0f);
+	std::string shaderProgramName = cJsonUtils::getJsonInstance()["shaderProgramName"].get<std::string>();
+	cSceneUtils::getInstance()->drawObject(shootRing, matWorld, cShaderUtils::getInstance()->getIdFromFriendlyName(shaderProgramName));
+
+	glm::vec3 projVelWorldSpace = camera->getCameraDirection() * initialProjectileVelocity;
+	glm::vec3 projPosition = camera->eye;
+	glm::vec3 projAccel = ACCEL_GRAVITY;
+
+
+	// draw projectile path
+
+	float timeStep = 0.25f;
+	float howLongWeGonnaRun = 10.0f;
+
+	for (float time = 0.0f; time < howLongWeGonnaRun; time += timeStep)
+	{
+		projVelWorldSpace.x = projVelWorldSpace.x + (projAccel.x * timeStep);
+		projVelWorldSpace.y = projVelWorldSpace.y + (projAccel.y * timeStep);
+		projVelWorldSpace.z = projVelWorldSpace.z + (projAccel.z * timeStep);
+
+		// Update position from velocity
+		projPosition.x = projPosition.x + (projVelWorldSpace.x * timeStep);
+		projPosition.y = projPosition.y + (projVelWorldSpace.y * timeStep);
+		projPosition.z = projPosition.z + (projVelWorldSpace.z * timeStep);
+
+		// Draw a sphere at each of these locations...
+		debugSphere->position = projPosition;
+		debugSphere->setDiffuseColour(glm::vec3(0.8f, 0.8f, 0.8f));
+		debugSphere->isVisible = true;
+		debugSphere->scale = 0.075f;
+
+		glm::mat4 matWorld = glm::mat4(1.0f);
+		cSceneUtils::getInstance()->drawObject(debugSphere, matWorld, cShaderUtils::getInstance()->getIdFromFriendlyName(shaderProgramName));
+
+		debugSphere->isVisible = false;
+	}
+
 }
 
 //bool SphereSphereCollision(cMeshObject* pA, cMeshObject* pB)

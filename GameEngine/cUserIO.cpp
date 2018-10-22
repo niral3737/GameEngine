@@ -15,6 +15,7 @@
 #include "json.hpp"
 #include "cCueStick.h"
 #include "cCamera.h"
+#include "cPhysics.h"
 
 eSelectionMode cUserIO::selectionMode = eSelectionMode::MESH_SELECTION;
 bool cUserIO::includeInvisibleObjects = false;
@@ -99,6 +100,16 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 	}
 	//}
 
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+	{
+		cMeshObject* ball = (cMeshObject*) sceneUtils->findObjectByFriendlyName("cueBall");
+		ball->isUpdatedByPhysics = true;
+		ball->position = cCamera::getInstance()->eye;
+		ball->velocity = cCamera::getInstance()->getCameraDirection() * cPhysics::initialProjectileVelocity;
+		ball->acceleration = cPhysics::ACCEL_GRAVITY;
+
+	}
+
 	//save settings
 	if (glfwGetKey(window, GLFW_KEY_ENTER))
 	{
@@ -138,6 +149,15 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 	{
 		// Note: The "== GLFW_PRESS" isn't really needed as it's actually "1" 
 		// (so the if() treats the "1" as true...)
+
+		if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
+		{
+			cPhysics::initialProjectileVelocity += 0.1f;
+		}
+		if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
+		{
+			cPhysics::initialProjectileVelocity -= 0.1f;
+		}
 
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		{

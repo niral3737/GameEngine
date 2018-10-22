@@ -26,6 +26,7 @@
 #include <glm/gtx/quaternion.hpp>	// Note strange folder
 
 #include "cCamera.h"
+#include "cPhysics.h"
 
 int main(void)
 {
@@ -70,13 +71,55 @@ int main(void)
 	//ball->setMesh(ballMesh);
 
 	//cSceneUtils::getInstance()->vecEquipmentsToDraw.push_back(ball);
-	
+	cCamera* camera = cCamera::getInstance();
+
 	iEquipment* cueStick = equipmentFactory->createEquipment(2);
 	mediator->LoadEquipment(cueStick);
 	cMeshObject* cueMesh = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("terrain");
+	cueMesh->setDiffuseColour(glm::vec3(1.0f, 1.0f, 0.0f));
+	cueMesh->isWireFrame = false;
 	cueStick->setMesh(cueMesh);
 
 	cSceneUtils::getInstance()->vecEquipmentsToDraw.push_back(cueStick);
+
+	iEquipment* cueStick1 = equipmentFactory->createEquipment(2);
+	mediator->LoadEquipment(cueStick1);
+	cMeshObject* cueMesh1 = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("ring");
+	cueMesh1->setDiffuseColour(glm::vec3(1.0f, 1.0f, 0.0f));
+	cueMesh1->isWireFrame = false;
+	cueMesh1->scale = 0.01f;
+	cueStick1->setMesh(cueMesh1);
+
+	cSceneUtils::getInstance()->vecEquipmentsToDraw.push_back(cueStick1);
+
+	iEquipment* cueStick2 = equipmentFactory->createEquipment(2);
+	mediator->LoadEquipment(cueStick2);
+	cMeshObject* cueMesh2 = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("cueBall");
+	cueMesh2->setDiffuseColour(glm::vec3(1.0f, 1.0f, 0.0f));
+	cueMesh2->isWireFrame = false;
+	cueStick2->setMesh(cueMesh2);
+
+	cSceneUtils::getInstance()->vecEquipmentsToDraw.push_back(cueStick2);
+	cMeshObject* cueMesh3 = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("box");
+	for (size_t i = 0; i < 30; i++)
+	{
+		/*iEquipment* cueStick3 = equipmentFactory->createEquipment(2);
+		mediator->LoadEquipment(cueStick3);*/
+		cMeshObject* newObeject = cueMesh3->cloneObject();
+		float x = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		float z = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		newObeject->position = glm::vec3(x * 300.0f, -20.0f, z * 300.0f);
+		newObeject->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
+		newObeject->isWireFrame = false;
+		newObeject->isUpdatedByPhysics = true;
+		newObeject->velocity = glm::vec3(0.0f, 0.0f, 0.0f);
+		//cueStick3->setMesh(cueMesh3);
+
+		cSceneUtils::getInstance()->vecObjectsToDraw.push_back(newObeject);
+	}
+
+	
+
 
 	/*
 	iEquipment* cueRack = equipmentFactory->createEquipment(3);
@@ -91,7 +134,7 @@ int main(void)
 	{
 		((cCueRack*)cueRack)->cues[i]->setMesh((cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("cue1"));
 	}*/
-
+	cPhysics* physics = new cPhysics();
 	cShaderUtils::getInstance()->getUniformVariableLocation(program, "objectColour");
 
 	GLint matView_location = glGetUniformLocation(program, "matView");
@@ -144,12 +187,36 @@ int main(void)
 
 		lightsManager->copyLightValuesToShader();
 
-		for (size_t i = 0; i < cSceneUtils::getInstance()->vecEquipmentsToDraw.size(); i++)
-		{
-			iEquipment* equipment = cSceneUtils::getInstance()->vecEquipmentsToDraw[i];
+		//for (size_t i = 0; i < cSceneUtils::getInstance()->vecEquipmentsToDraw.size(); i++)
+		//{
+		//	iEquipment* equipment = cSceneUtils::getInstance()->vecEquipmentsToDraw[i];
 
-			cSceneUtils::getInstance()->drawEquipment(equipment, program);
-		}
+		//	cSceneUtils::getInstance()->drawEquipment(equipment, program);
+		//}
+
+		for (unsigned int objIndex = 0;
+			objIndex != (unsigned int)cSceneUtils::getInstance()->vecObjectsToDraw.size();
+			objIndex++)
+		{
+			iMeshObject* pCurrentMesh = cSceneUtils::getInstance()->vecObjectsToDraw[objIndex];
+
+			glm::mat4x4 matModel = glm::mat4(1.0f);			// mat4x4 m, p, mvp;
+
+			cSceneUtils::getInstance()->drawObject(pCurrentMesh, matModel, program);
+
+		}//for ( unsigned int objIndex = 0; 
+
+		double currentTime = glfwGetTime();
+		double deltaTime = currentTime - lastTime;
+
+		cModelDrawInfo modelDrawInfo;
+		modelDrawInfo.meshFileName = "terrain_xyz_n.ply";
+		cVAOMeshUtils::getInstance()->findDrawInfoByModelName(modelDrawInfo);
+
+		physics->PhysicsUpdate(deltaTime, modelDrawInfo);
+		physics->addProjectileAim(deltaTime);
+
+		lastTime = currentTime;
 
 		/*cSceneUtils::getInstance()->drawEquipment(cueRack, program);
 		for (size_t i = 0; i < ((cCueRack*)cueRack)->cues.size(); i++)
@@ -157,30 +224,13 @@ int main(void)
 			cSceneUtils::getInstance()->drawEquipment(((cCueRack*)cueRack)->cues[i], program);
 		}*/
 
-		//for (unsigned int objIndex = 0;
-		//	objIndex != (unsigned int) cSceneUtils::getInstance()->vecObjectsToDraw.size();
-		//	objIndex++)
-		//{
-		//	iMeshObject* pCurrentMesh = cSceneUtils::getInstance()->vecObjectsToDraw[objIndex];
-
-		//	glm::mat4x4 matModel = glm::mat4(1.0f);			// mat4x4 m, p, mvp;
-
-		//	cSceneUtils::getInstance()->drawObject(pCurrentMesh, matModel, program);
-
-		//}//for ( unsigned int objIndex = 0; 
-		
 		glfwSwapBuffers(window);		// Shows what we drew
 
 		glfwPollEvents();
-		double currentTime = glfwGetTime();
+		/*double currentTime = glfwGetTime();
 		double deltaTime = currentTime - lastTime;
-		lastTime = currentTime;
+		lastTime = currentTime;*/
 
-		/*cModelDrawInfo modelDrawInfo;
-		modelDrawInfo.meshFileName = "terrain_xyz_n.ply";
-		cVAOMeshUtils::getInstance()->findDrawInfoByModelName(modelDrawInfo);
-
-		PhysicsUpdate(deltaTime, modelDrawInfo);*/
 		cUserIO::processAsynKeys(window);
 		cUserIO::processAsynMouse(window);
 	}//while (!glfwWindowShouldClose(window))

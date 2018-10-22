@@ -53,6 +53,7 @@ public:
 	}
 
 	static iMeshObject* create(void);
+	cMeshObject* cloneObject();
 private:
 	cMeshObject();
 	unsigned int mUniqueID;			// Number that's unique to this instance
