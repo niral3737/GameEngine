@@ -1,0 +1,99 @@
+/*cMediator* mediator = new cMediator();
+
+	cEquipmentFactory* equipmentFactory = new cEquipmentFactory(mediator);*/
+
+	//iEquipment* ball = equipmentFactory->createEquipment(1);
+	//mediator->LoadEquipment(ball);
+	//cMeshObject* ballMesh = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("cueBall");
+	//ball->setMesh(ballMesh);
+
+	//cSceneUtils::getInstance()->vecEquipmentsToDraw.push_back(ball);
+
+//iEquipment* cueStick = equipmentFactory->createEquipment(2);
+	//mediator->LoadEquipment(cueStick);
+	//cMeshObject* cueMesh = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("terrain");
+	//cueMesh->setDiffuseColour(glm::vec3(1.0f, 1.0f, 0.0f));
+	//cueMesh->isWireFrame = false;
+	//cueStick->setMesh(cueMesh);
+
+	//cSceneUtils::getInstance()->vecEquipmentsToDraw.push_back(cueStick);
+
+	//iEquipment* cueStick1 = equipmentFactory->createEquipment(2);
+	//mediator->LoadEquipment(cueStick1);
+	//cMeshObject* cueMesh1 = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("ring");
+	//cueMesh1->setDiffuseColour(glm::vec3(1.0f, 1.0f, 0.0f));
+	//cueMesh1->isWireFrame = false;
+	//cueMesh1->scale = 0.01f;
+	//cueStick1->setMesh(cueMesh1);
+
+	//cSceneUtils::getInstance()->vecEquipmentsToDraw.push_back(cueStick1);
+
+	//iEquipment* cueStick2 = equipmentFactory->createEquipment(2);
+	//mediator->LoadEquipment(cueStick2);
+	//cMeshObject* cueMesh2 = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("cueBall");
+	//cueMesh2->setDiffuseColour(glm::vec3(1.0f, 1.0f, 0.0f));
+	//cueMesh2->isWireFrame = false;
+	//cueStick2->setMesh(cueMesh2);
+
+	//cSceneUtils::getInstance()->vecEquipmentsToDraw.push_back(cueStick2);
+	//cMeshObject* cueMesh3 = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("box");
+	//for (size_t i = 0; i < 30; i++)
+	//{
+	//	/*iEquipment* cueStick3 = equipmentFactory->createEquipment(2);
+	//	mediator->LoadEquipment(cueStick3);*/
+	//	cMeshObject* newObeject = cueMesh3->cloneObject();
+	//	float x = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+	//	float z = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+	//	newObeject->position = glm::vec3(x * 300.0f, -20.0f, z * 300.0f);
+	//	newObeject->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
+	//	newObeject->isWireFrame = false;
+	//	newObeject->isUpdatedByPhysics = true;
+	//	newObeject->velocity = glm::vec3(0.0f, 0.0f, 0.0f);
+	//	//cueStick3->setMesh(cueMesh3);
+
+	//	cSceneUtils::getInstance()->vecObjectsToDraw.push_back(newObeject);
+	//}
+	
+	
+	
+	
+	
+	
+	/***************************************************/
+	
+	
+	
+	
+	
+	
+	/*cMeshObject* sphereMesh = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("sphere");
+	sphereMesh->isVisible = false;
+	const size_t NUMBER_OF_PORTS = 20;
+	for (size_t i = 0; i < NUMBER_OF_PORTS; i++)
+	{
+		cMeshObject* portMesh = sphereMesh->cloneObject();
+		portMesh->friendlyName = portMesh->friendlyName + std::to_string(i);
+		portMesh->isVisible = true;
+
+		cSceneUtils::getInstance()->vecObjectsToDraw.push_back(portMesh);
+	}*/
+	
+	
+	/***************************************************************/
+	
+	
+	
+	
+	/*
+	iEquipment* cueRack = equipmentFactory->createEquipment(3);
+	mediator->LoadEquipment(cueRack);
+	cMeshObject* cueRackMesh = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("cueRack");
+	cueRack->setMesh(cueRackMesh);
+
+	cEquipmentBuilder* builder = new cEquipmentBuilder();
+	builder->buildEquipment(3, cueRack);
+
+	for (size_t i = 0; i < ((cCueRack*)cueRack)->cues.size(); i++)
+	{
+		((cCueRack*)cueRack)->cues[i]->setMesh((cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("cue1"));
+	}*/

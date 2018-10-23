@@ -114,28 +114,37 @@
     <ClCompile Include="cPhysics.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
-    <ClCompile Include="cBall.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cEquipmentFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cCueStick.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cEquipmentFactoryImpl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cEquipmentBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cCueRack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cMediator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cRandomHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cShip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cNormalShip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cTreasure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cGoldCoins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cGemStones.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cPort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cEntityFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cEntityFactoryImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -200,34 +209,43 @@
     <ClInclude Include="iEquipment.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="cBall.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cEquipmentFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cCueStick.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cEquipmentFactoryImpl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cEquipmentBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cCueRack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="iCueRackBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="cMediator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="iMediatorEquipment.h">
+    <ClInclude Include="cCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cCamera.h">
+    <ClInclude Include="iEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cRandomHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cShip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cNormalShip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cTreasure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cGoldCoins.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cGemStones.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cPort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cEntityFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cEntityFactoryImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iMediatorEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -380,25 +380,3 @@ void cSceneUtils::selectNextMeshObject(bool includeInvisibleObject)
 	selectedMeshObject = vecObjectsToDraw[selectedObjectIndex];
 	std::cout << ((cMeshObject*)selectedMeshObject)->friendlyName << " selected, isVisible : " << ((cMeshObject*)selectedMeshObject)->isVisible << std::endl;
 }
-
-void cSceneUtils::drawEquipment(iEquipment* equipment, GLuint shaderProgramID)
-{
-	glm::mat4 matEquip = glm::mat4(1.0f);
-	if (equipment->getMesh() != NULL)
-	{
-		drawObject(equipment->getMesh(), matEquip, shaderProgramID);
-	}
-}
-
-iEquipment* cSceneUtils::findEquipmentByFriendlyName(std::string name)
-{
-	for (size_t i = 0; i < vecEquipmentsToDraw.size(); i++)
-	{
-		cMeshObject* mesh = (cMeshObject*) vecEquipmentsToDraw[i]->getMesh();
-		if (mesh->friendlyName == name)
-		{
-			return vecEquipmentsToDraw[i];
-		}
-	}
-	return nullptr;
-}

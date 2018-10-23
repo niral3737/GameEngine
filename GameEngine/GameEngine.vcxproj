@@ -138,15 +138,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cBall.cpp" />
     <ClCompile Include="cCamera.cpp" />
-    <ClCompile Include="cCueRack.cpp" />
-    <ClCompile Include="cCueStick.cpp" />
-    <ClCompile Include="cEquipmentBuilder.cpp" />
-    <ClCompile Include="cEquipmentFactory.cpp" />
-    <ClCompile Include="cEquipmentFactoryImpl.cpp" />
+    <ClCompile Include="cEntityFactory.cpp" />
+    <ClCompile Include="cEntityFactoryImpl.cpp" />
+    <ClCompile Include="cGemStones.cpp" />
     <ClCompile Include="cGLColourHelper.cpp" />
     <ClCompile Include="cGLFWUtils.cpp" />
+    <ClCompile Include="cGoldCoins.cpp" />
     <ClCompile Include="cLight.cpp" />
     <ClCompile Include="cLightHelper.cpp" />
     <ClCompile Include="cLightsManager.cpp" />
@@ -154,11 +152,16 @@
     <ClCompile Include="cMeshObject.cpp" />
     <ClCompile Include="cMeshObjectFactory.cpp" />
     <ClCompile Include="cModelDrawInfo.cpp" />
+    <ClCompile Include="cNormalShip.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="cPhysics.cpp" />
+    <ClCompile Include="cPort.cpp" />
+    <ClCompile Include="cRandomHelper.cpp" />
     <ClCompile Include="cSceneUtils.cpp" />
     <ClCompile Include="cShader.cpp" />
     <ClCompile Include="cShaderUtils.cpp" />
+    <ClCompile Include="cShip.cpp" />
+    <ClCompile Include="cTreasure.cpp" />
     <ClCompile Include="cVAOMeshUtils.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="cJsonUtils.cpp" />
@@ -168,15 +171,13 @@
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cBall.h" />
     <ClInclude Include="cCamera.h" />
-    <ClInclude Include="cCueRack.h" />
-    <ClInclude Include="cCueStick.h" />
-    <ClInclude Include="cEquipmentBuilder.h" />
-    <ClInclude Include="cEquipmentFactory.h" />
-    <ClInclude Include="cEquipmentFactoryImpl.h" />
+    <ClInclude Include="cEntityFactory.h" />
+    <ClInclude Include="cEntityFactoryImpl.h" />
+    <ClInclude Include="cGemStones.h" />
     <ClInclude Include="cGLColourHelper.h" />
     <ClInclude Include="cGLFWUtils.h" />
+    <ClInclude Include="cGoldCoins.h" />
     <ClInclude Include="cLight.h" />
     <ClInclude Include="cLightHelper.h" />
     <ClInclude Include="cLightsManager.h" />
@@ -184,15 +185,20 @@
     <ClInclude Include="cMeshObject.h" />
     <ClInclude Include="cMeshObjectFactory.h" />
     <ClInclude Include="cModelDrawInfo.h" />
+    <ClInclude Include="cNormalShip.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="cPhysics.h" />
+    <ClInclude Include="cPort.h" />
+    <ClInclude Include="cRandomHelper.h" />
     <ClInclude Include="cSceneUtils.h" />
     <ClInclude Include="cShaderUtils.h" />
+    <ClInclude Include="cShip.h" />
+    <ClInclude Include="cTreasure.h" />
     <ClInclude Include="cUserIO.h" />
     <ClInclude Include="cVAOMeshUtils.h" />
-    <ClInclude Include="iCueRackBuilder.h" />
+    <ClInclude Include="iEntity.h" />
     <ClInclude Include="iEquipment.h" />
-    <ClInclude Include="iMediatorEquipment.h" />
+    <ClInclude Include="iMediatorEntity.h" />
     <ClInclude Include="iMeshObject.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="cJsonUtils.h" />

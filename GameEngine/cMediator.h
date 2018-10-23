@@ -1,24 +1,23 @@
 #ifndef _MEDIATOR_HG_
 #define _MEDIATOR_HG_
 
-#include "iMediatorEquipment.h"
+#include "iMediatorEntity.h"
 #include "json.hpp"
 
-class cMediator : public iMediatorEquipment
+class cMediator : public iMediatorEntity
 {
 public:
 	cMediator();
 	~cMediator();
 
-	void LoadEquipment(iEquipment* equipment);
+	void LoadEntity(iEntity* equipment);
 	
-	iEquipment* findEquipmentByName(std::string name);
+	iEntity* findEntityByName(std::string name);
 
-	virtual void sendMessageToEquipment(std::vector<std::string> vecMessage);
-	virtual void sendMessageToEquipment(nlohmann::json message);
+	virtual void sendMessageToEntity(nlohmann::json message);
 
 private:
-	std::vector<iEquipment*> vecEquipments;
+	std::vector<iEntity*> vecEntities;
 };
 
 

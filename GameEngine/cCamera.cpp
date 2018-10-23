@@ -19,7 +19,7 @@ cCamera::cCamera()
 
 
 	this->setMouseXY(0.0, 0.0);
-	this->mouseWheel = 0.0f;
+	this->mouseWheel = 25.0f;
 
 	this->isMouseInitialStateSet = false;
 }

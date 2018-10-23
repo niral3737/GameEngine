@@ -13,7 +13,6 @@
 #include "cLightsManager.h"
 #include "cJsonUtils.h"
 #include "json.hpp"
-#include "cCueStick.h"
 #include "cCamera.h"
 #include "cPhysics.h"
 
@@ -130,15 +129,6 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
 	{
 		cameraSpeed = CAMERA_SPEED_FAST;
-	}
-
-	if (glfwGetKey(window, GLFW_KEY_H))
-	{
-		cCueStick* cueStick = (cCueStick*) cSceneUtils::getInstance()->findEquipmentByFriendlyName("cue0");
-		if (cueStick)
-		{
-			cueStick->hitCueBall();
-		}
 	}
 
 	cCamera* camera = cCamera::getInstance();
@@ -414,7 +404,7 @@ void cUserIO::processAsynMouse(GLFWwindow * window)
 
 	const float MOUSE_SENSITIVITY = 0.1f;
 
-	std::cout << camera->getMouseX() << ", " << camera->getMouseY() << std::endl;
+	//std::cout << camera->getMouseX() << ", " << camera->getMouseY() << std::endl;
 
 		// Mouse left (primary?) button pressed? 
 		// AND the mouse is inside the window...
@@ -445,12 +435,12 @@ void cUserIO::cursor_enter_callback(GLFWwindow* window, int entered)
 	if (entered)
 	{
 		cUserIO::isMouseInsideWindow = true;
-		std::cout << "Mouse moved indide window" << std::endl;
+		//std::cout << "Mouse moved indide window" << std::endl;
 	}
 	else
 	{
 		cUserIO::isMouseInsideWindow = false;
-		std::cout << "Mouse moved outside window" << std::endl;
+		//std::cout << "Mouse moved outside window" << std::endl;
 	}
 	return;
 }//cursor_enter_callback(...

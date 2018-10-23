@@ -643,3 +643,175 @@
                 "z": 0.0
             }
         }
+		
+		******************************************
+		{
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "environment",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "environment.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": -1.9896740913391113,
+                "y": -1.5009809732437134,
+                "z": 2.338740348815918
+            },
+            "scale": 5.984408855438232,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "box",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "box.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": -1.9896740913391113,
+                "y": -1.5009809732437134,
+                "z": 2.338740348815918
+            },
+            "scale": 5.984408855438232,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "cue0",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 0.6039000153541565,
+                "g": 0.800000011920929,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "cue.ply",
+            "position": {
+                "x": 109.0,
+                "y": 0.0,
+                "z": 41.0
+            },
+            "postRotation": {
+                "x": -2.593468189239502,
+                "y": 0.3211260735988617,
+                "z": -0.10003017634153366
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        }
+		
+		*******************************************
+		{
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "sphere",
+            "isUpdatedByPhysics": false,
+            "isVisible": false,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
