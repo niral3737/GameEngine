@@ -61,8 +61,27 @@ int main(void)
 	
 	const size_t NUMBER_OF_PORTS = 20;
 	std::vector<cPort*> vecPorts;
-	
-	for (size_t i = 0; i < NUMBER_OF_PORTS; i++)
+
+	//<alterations
+	//initially port0 has superShip
+	cPort* port0 = (cPort*)entityFactory->createEntity("port");
+	mediator->LoadEntity(port0);
+	port0->setMesh(sceneUtils->findObjectByFriendlyName("port" + std::to_string(0)));
+
+	port0->ship = (cShip*)entityFactory->createEntity("superShip");
+	port0->ship->ownPortName = port0->getName();
+	port0->ship->setMesh(sceneUtils->findObjectByFriendlyName("ship" + std::to_string(0)));
+	port0->ship->getMesh()->setDiffuseColour(glm::vec3(1.0f, 1.0f, 0.0f));
+	mediator->LoadEntity(port0->ship);
+	port0->treasureGold = (cTreasure*) entityFactory->createEntity("goldCoins");
+	port0->treasureGemStones = (cTreasure*)entityFactory->createEntity("gemStones");
+	//extra 100 gold coins
+	port0->treasureGold->addTreasure(100);
+
+	vecPorts.push_back(port0);
+	//alterations>
+
+	for (size_t i = 1; i < NUMBER_OF_PORTS; i++)
 	{
 		cPort* port = (cPort*) entityFactory->createEntity("port");
 		mediator->LoadEntity(port);
@@ -74,7 +93,9 @@ int main(void)
 		port->ship->getMesh()->setDiffuseColour(glm::vec3(0.0f, 1.0f, 0.0f));
 		mediator->LoadEntity(port->ship);
 		port->treasureGold = (cTreasure*) entityFactory->createEntity("goldCoins");
-
+		//<alterations
+		port->treasureGemStones = (cTreasure*)entityFactory->createEntity("gemStones");
+		//alterations>
 		vecPorts.push_back(port);
 	}
 
@@ -94,9 +115,21 @@ int main(void)
 		goldCoins -= coins;
 	}
 
-	for (size_t i = 0; i < NUMBER_OF_PORTS; i++)
+	int gemStones = 200;
+	while (gemStones > 0)
 	{
-		std::cout << i << ": " << vecPorts[i]->treasureGold->numberOfTreasure << std::endl;
+		unsigned int stones = cRandomHelper::generateRandomIntInRange(2, 10);
+		unsigned int portIndex = cRandomHelper::generateRandomIntInRange(0, NUMBER_OF_PORTS - 1);
+
+		if (gemStones - stones < 0)
+		{
+			vecPorts[portIndex]->treasureGold->addTreasure(gemStones);
+		}
+		else
+		{
+			vecPorts[portIndex]->treasureGold->addTreasure(stones);
+		}
+		gemStones -= stones;
 	}
 
 	cShaderUtils::getInstance()->getUniformVariableLocation(program, "objectColour");
@@ -118,6 +151,13 @@ int main(void)
 		ship->portToGoIndex = cRandomHelper::generateRandomIntInRange(0, NUMBER_OF_PORTS - 1);
 		ship->timeToWait = SPEED_PER_TICK * cRandomHelper::generateRandomIntInRange(100, 200);
 		
+		//<alterations
+		if (vecPorts[i]->ship->isSuperShip)
+		{
+			ship->timeToWait = SPEED_PER_TICK * cRandomHelper::generateRandomIntInRange(150, 300);
+		}
+		//alterations>
+
 		//initial state is waiting
 		ship->eShipState = WAITING;
 	}
@@ -177,7 +217,15 @@ int main(void)
 			else
 			{
 				ship->eShipState = GOING;
+				vecPorts[i]->isShipDocked = false;
+				// change as per the ship
 				ship->timeToWait = SPEED_PER_TICK * cRandomHelper::generateRandomIntInRange(100, 200);
+				//<alterations
+				if (ship->isSuperShip)
+				{
+					ship->timeToWait = SPEED_PER_TICK * cRandomHelper::generateRandomIntInRange(150, 300);
+				}
+				//alterations>
 				ship->timeWaited = 0.0f;
 			}
 
@@ -223,17 +271,56 @@ int main(void)
 						//no ship at the port
 						ship->attackEmptyPort(vecPorts[ship->portToGoIndex]->getName());
 					}
+					//<alteration
+					// check if it can be a superShip after an attack
+					if (vecPorts[i]->treasureGold->numberOfTreasure > 100)
+					{
+						unsigned int oneForthChanceNum = cRandomHelper::generateRandomIntInRange(0, 3);
+						if (oneForthChanceNum == 0)
+						{
+							ship->upgradeToSuperShip();
+						}
+					}
+
+					if (vecPorts[ship->portToGoIndex]->treasureGold->numberOfTreasure > 100)
+					{
+						unsigned int oneForthChanceNum = cRandomHelper::generateRandomIntInRange(0, 3);
+						if (oneForthChanceNum == 0)
+						{
+							vecPorts[ship->portToGoIndex]->ship->upgradeToSuperShip();
+						}
+					}
+
 					if (vecPorts[i]->treasureGold->numberOfTreasure <= 0)
 					{
-						//no gold on port, must die
-						//ship->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
-						vecPorts[i]->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
-						vecPorts[i]->ship->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
-						vecPorts[i]->ship->eShipState = DEAD;
+						vecPorts[i]->convertGemStonesToGold();
 
-						continue;
+						if(vecPorts[i]->treasureGold->numberOfTreasure <= 0){
+							//no gold on port, must die
+							vecPorts[i]->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
+							vecPorts[i]->ship->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
+							vecPorts[i]->ship->eShipState = DEAD;
+							continue;
+						}
+						
 					}
-					
+
+					//if (vecPorts[ship->portToGoIndex]->treasureGold->numberOfTreasure <= 0)
+					//{
+					//	vecPorts[ship->portToGoIndex]->convertGemStonesToGold();
+
+					//	if (vecPorts[ship->portToGoIndex]->treasureGold->numberOfTreasure <= 0)
+					//	{
+					//		//no gold on port, must die
+					//		//ship->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
+					//		vecPorts[ship->portToGoIndex]->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
+					//		vecPorts[ship->portToGoIndex]->ship->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
+					//		vecPorts[ship->portToGoIndex]->ship->eShipState = DEAD;
+					//		continue;
+					//	}
+					//}
+					//alteration>
+
 					//go home
 					ship->eShipState = GOING;
 					ship->portToGoIndex = i;
@@ -248,15 +335,29 @@ int main(void)
 					vecPorts[i]->isShipDocked = true;
 					//spend gold waiting
 					ship->spendGoldWaiting();
+					//if (vecPorts[i]->treasureGold->numberOfTreasure <= 0)
+					//{
+					//	//no gold on port, must die
+					//	//ship->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
+					//	vecPorts[i]->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
+					//	vecPorts[i]->ship->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
+					//	vecPorts[i]->ship->eShipState = DEAD;
+
+					//	continue;
+					//}
 					if (vecPorts[i]->treasureGold->numberOfTreasure <= 0)
 					{
-						//no gold on port, must die
-						//ship->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
-						vecPorts[i]->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
-						vecPorts[i]->ship->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
-						vecPorts[i]->ship->eShipState = DEAD;
+						vecPorts[i]->convertGemStonesToGold();
 
-						continue;
+						if (vecPorts[i]->treasureGold->numberOfTreasure <= 0)
+						{
+							//no gold on port, must die
+							//ship->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
+							vecPorts[i]->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
+							vecPorts[i]->ship->getMesh()->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));
+							vecPorts[i]->ship->eShipState = DEAD;
+							continue;
+						}
 					}
 					
 					//find a port that's not dead
@@ -266,8 +367,6 @@ int main(void)
 						portToGoIndex = cRandomHelper::generateRandomIntInRange(0, NUMBER_OF_PORTS - 1);
 					}
 					ship->portToGoIndex = portToGoIndex;
-
-					//ship->timeToWait = SPEED_PER_TICK * cRandomHelper::generateRandomIntInRange(100, 200);
 				}
 
 

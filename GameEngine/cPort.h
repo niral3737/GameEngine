@@ -18,12 +18,15 @@ public:
 
 	cShip* ship;
 	cTreasure* treasureGold;
+	cTreasure* treasureGemStones;
+
 	bool isShipDocked;
 	
 	// using cMeshObject* instead of iMeshObject* just for ease of operation
 	cMeshObject* getMesh();
 	void setMesh(iMeshObject* mesh);
 	virtual std::string getName();
+	void convertGemStonesToGold();
 
 	iMeshObject* mesh;
 private:

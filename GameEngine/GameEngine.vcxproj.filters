@@ -147,6 +147,9 @@
     <ClCompile Include="cEntityFactoryImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cSuperShip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cShaderUtils.h">
@@ -246,6 +249,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="iMediatorEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cSuperShip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

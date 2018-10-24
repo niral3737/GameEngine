@@ -3,7 +3,9 @@
 #include "cPort.h"
 #include "cShip.h"
 #include "cNormalShip.h"
+#include "cSuperShip.h"
 #include "cGoldCoins.h"
+#include "cGemStones.h"
 
 cEntityFactoryImpl::cEntityFactoryImpl()
 {}
@@ -16,6 +18,7 @@ bool cEntityFactoryImpl::isEntityTypeValid(std::string entityType)
 {
 	return entityType == "port" 
 		|| entityType == "normalShip" 
+		|| entityType == "superShip"
 		|| entityType == "goldCoins" 
 		|| entityType == "gemStones" ;
 }
@@ -41,11 +44,23 @@ iEntity * cEntityFactoryImpl::createEntity(std::string entityType)
 		ship->setMediator(mediator);
 		entity = ship;
 	}
+	else if (entityType == "superShip")
+	{
+		cShip* ship = new cSuperShip();
+		ship->setMediator(mediator);
+		entity = ship;
+	}
 	else if (entityType == "goldCoins")
 	{
 		cTreasure* goldCoins = new cGoldCoins();
 		//ship->setMediator(mediator);
 		entity = goldCoins;
+	}
+	else if (entityType == "gemStones")
+	{
+		cTreasure* gemStones = new cGemStones();
+		//ship->setMediator(mediator);
+		entity = gemStones;
 	}
 
 	return entity;

@@ -35,3 +35,12 @@ std::string cPort::getName()
 	}
 	return "";
 }
+
+void cPort::convertGemStonesToGold()
+{
+	if (this->treasureGemStones->numberOfTreasure > 0)
+	{
+		this->treasureGold->addTreasure(this->treasureGemStones->numberOfTreasure * this->treasureGemStones->valueOfOneTreasure);
+	}
+	this->treasureGemStones->numberOfTreasure = 0;
+}

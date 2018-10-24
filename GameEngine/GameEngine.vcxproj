@@ -161,6 +161,7 @@
     <ClCompile Include="cShader.cpp" />
     <ClCompile Include="cShaderUtils.cpp" />
     <ClCompile Include="cShip.cpp" />
+    <ClCompile Include="cSuperShip.cpp" />
     <ClCompile Include="cTreasure.cpp" />
     <ClCompile Include="cVAOMeshUtils.cpp" />
     <ClCompile Include="glad.c" />
@@ -193,6 +194,7 @@
     <ClInclude Include="cSceneUtils.h" />
     <ClInclude Include="cShaderUtils.h" />
     <ClInclude Include="cShip.h" />
+    <ClInclude Include="cSuperShip.h" />
     <ClInclude Include="cTreasure.h" />
     <ClInclude Include="cUserIO.h" />
     <ClInclude Include="cVAOMeshUtils.h" />

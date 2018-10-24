@@ -30,6 +30,7 @@ public:
 
 	size_t portToGoIndex;
 	std::string ownPortName;
+	bool isSuperShip;
 
 	shipState eShipState;
 
@@ -45,7 +46,7 @@ public:
 	void attackPortWithShip(std::string portFriendlyName);
 	void spendGoldWaiting();
 	unsigned int getTreasureCapacity();
-
+	void upgradeToSuperShip();
 private:
 	iMediatorEntity* mediator;
 };

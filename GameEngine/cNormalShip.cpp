@@ -5,6 +5,7 @@
 cNormalShip::cNormalShip()
 {
 	this->treasureCapacity = 50;
+	this->percentGoldToSpendWaiting = 3;
 }
 
 

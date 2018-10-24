@@ -48,10 +48,17 @@ void cShip::attackEmptyPort(std::string portFriendlyName)
 	//transection start
 	//25% gold
 	unsigned int goldToBeDeducted = portUnderAttack->treasureGold->numberOfTreasure / 4;
+	unsigned int gemStonesToBeDeducted = portUnderAttack->treasureGemStones->numberOfTreasure / 4;
 
+	//edge case where division returns 0
 	if (goldToBeDeducted == 0)
 	{
 		goldToBeDeducted = portUnderAttack->treasureGold->numberOfTreasure;
+	}
+
+	if (gemStonesToBeDeducted == 0)
+	{
+		gemStonesToBeDeducted = portUnderAttack->treasureGemStones->numberOfTreasure;
 	}
 
 	if (goldToBeDeducted > getTreasureCapacity())
@@ -59,9 +66,18 @@ void cShip::attackEmptyPort(std::string portFriendlyName)
 		goldToBeDeducted = getTreasureCapacity();
 	}
 
+	if (gemStonesToBeDeducted > getTreasureCapacity())
+	{
+		gemStonesToBeDeducted = getTreasureCapacity();
+	}
+
 	portUnderAttack->treasureGold->deductTreasure(goldToBeDeducted);
+	portUnderAttack->treasureGemStones->deductTreasure(gemStonesToBeDeducted);
+
 	cPort* ownPort = (cPort*)this->mediator->findEntityByName(ownPortName);
+
 	ownPort->treasureGold->addTreasure(goldToBeDeducted);
+	ownPort->treasureGemStones->addTreasure(gemStonesToBeDeducted);
 	//transection end
 
 	//ship->treasureGold->
@@ -75,6 +91,18 @@ void cShip::attackPortWithShip(std::string portFriendlyName)
 
 	unsigned int ownPortGold = ownPort->treasureGold->numberOfTreasure;
 	unsigned int defendingPortGold = portDefending->treasureGold->numberOfTreasure;
+
+	//<alteration
+	if (ownPort->ship->isSuperShip)
+	{
+		ownPortGold *= 1.5;
+	}
+
+	if (portDefending->ship->isSuperShip)
+	{
+		defendingPortGold *= 1.5;
+	}
+	//alteration>
 
 	cPort* smallerNumOfGoldPort;
 	cPort* largerNumOfGoldPort;
@@ -94,7 +122,16 @@ void cShip::attackPortWithShip(std::string portFriendlyName)
 
 	cPort* winnerPort;
 	cPort* looserPort;
-	if (randomNumber < smallerNumOfGoldPort->treasureGold->numberOfTreasure)
+
+	//<alteration
+	unsigned int smallerGold = smallerNumOfGoldPort->treasureGold->numberOfTreasure;
+	if (smallerNumOfGoldPort->ship->isSuperShip)
+	{
+		smallerGold = smallerNumOfGoldPort->treasureGold->numberOfTreasure * 1.5;
+	}
+	//alteration>
+
+	if (randomNumber < smallerGold)
 	{
 		//smallerNumOfGoldPort wins
 		winnerPort = smallerNumOfGoldPort;
@@ -112,11 +149,16 @@ void cShip::attackPortWithShip(std::string portFriendlyName)
 
 	//50% gold
 	unsigned int goldToBeDeducted = looserPort->treasureGold->numberOfTreasure / 2;
+	unsigned int gemsToBeDeducted = looserPort->treasureGemStones->numberOfTreasure / 2;
 
 	//edge case 1/2 will give 0 and will not deduct anything from port
 	if (goldToBeDeducted == 0)
 	{
 		goldToBeDeducted = looserPort->treasureGold->numberOfTreasure;
+	}
+	if (gemsToBeDeducted == 0)
+	{
+		gemsToBeDeducted = looserPort->treasureGemStones->numberOfTreasure;
 	}
 
 	if (goldToBeDeducted > getTreasureCapacity())
@@ -124,20 +166,28 @@ void cShip::attackPortWithShip(std::string portFriendlyName)
 		goldToBeDeducted = getTreasureCapacity();
 	}
 
-	/*std::cout << "**********************************" << std::endl;
+	if (gemsToBeDeducted > getTreasureCapacity())
+	{
+		gemsToBeDeducted = getTreasureCapacity();
+	}
+
+	std::cout << "**********************************" << std::endl;
 	std::cout << "(" << ownPortGold << "," << defendingPortGold << ")" << std::endl;
 	std::cout << "(" << ownPort->getName() << ", " << portDefending->getName() << ")" << std::endl;
+	std::cout << "hasSuperShip: (" << ownPort->ship->isSuperShip << ", " << portDefending->ship->isSuperShip << ")" << std::endl;
 	std::cout << "random number : " << randomNumber << std::endl;
 	std::cout << "(winner, looser)" << std::endl;
 	std::cout << "(" << winnerPort->getName() << ", " << looserPort->getName() << ")" << std::endl;
-	std::cout << "Gold to be deducted: " << goldToBeDeducted << std::endl;*/
+	std::cout << "Gold to be deducted: " << goldToBeDeducted << std::endl;
 	
 	winnerPort->treasureGold->addTreasure(goldToBeDeducted);
+	winnerPort->treasureGemStones->addTreasure(gemsToBeDeducted);
 	looserPort->treasureGold->deductTreasure(goldToBeDeducted);
+	looserPort->treasureGemStones->deductTreasure(gemsToBeDeducted);
 
-	/*std::cout << "after deduction" << std::endl;
-	std::cout << "(" << winnerPort->treasureGold->numberOfTreasure << ", " << looserPort->treasureGold->numberOfTreasure << std::endl;
-	std::cout << "**********************************" << std::endl;*/
+	std::cout << "after deduction" << std::endl;
+	std::cout << "(" << winnerPort->treasureGold->numberOfTreasure << ", " << looserPort->treasureGold->numberOfTreasure << ")" << std::endl;
+	std::cout << "**********************************" << std::endl;
 	//transetion ends
 }
 
@@ -156,4 +206,12 @@ void cShip::spendGoldWaiting()
 unsigned int cShip::getTreasureCapacity()
 {
 	return this->treasureCapacity;
+}
+
+void cShip::upgradeToSuperShip()
+{
+	this->isSuperShip = true;
+	this->treasureCapacity = 75;
+	this->percentGoldToSpendWaiting = 5;
+	this->getMesh()->setDiffuseColour(glm::vec3(1.0f, 1.0f, 0.0f));
 }
