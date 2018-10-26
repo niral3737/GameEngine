@@ -5,14 +5,14 @@
     "backgroundSound2": "Puzzle-Game",
     "backgroundSound3": "Fantasy_Game_Background",
     "cameraAt": {
-        "x": 9.374430656433105,
-        "y": 453.4426574707031,
-        "z": -517.1668090820313
+        "x": 187.17312622070313,
+        "y": 139.0080108642578,
+        "z": -333.8184814453125
     },
     "cameraEye": {
-        "x": 9.458864212036133,
-        "y": 454.1070861816406,
-        "z": -517.9093627929688
+        "x": 187.9796142578125,
+        "y": 139.2616729736328,
+        "z": -334.3526916503906
     },
     "cameraUp": {
         "x": 0.0,
@@ -463,9 +463,9 @@
             "isWireFrame": false,
             "materialDiffuse": {
                 "a": 1.0,
-                "b": 0.5,
-                "g": 0.5,
-                "r": 0.5
+                "b": 0.20000000298023224,
+                "g": 0.20000000298023224,
+                "r": 0.20000000298023224
             },
             "materialSpecular": {
                 "b": 1.0,
@@ -505,9 +505,9 @@
             "isWireFrame": false,
             "materialDiffuse": {
                 "a": 1.0,
-                "b": 0.5,
-                "g": 0.5,
-                "r": 0.5
+                "b": 0.20000000298023224,
+                "g": 0.20000000298023224,
+                "r": 0.20000000298023224
             },
             "materialSpecular": {
                 "b": 1.0,
@@ -547,9 +547,9 @@
             "isWireFrame": false,
             "materialDiffuse": {
                 "a": 1.0,
-                "b": 0.5,
-                "g": 0.5,
-                "r": 0.5
+                "b": 0.20000000298023224,
+                "g": 0.20000000298023224,
+                "r": 0.20000000298023224
             },
             "materialSpecular": {
                 "b": 1.0,
@@ -589,9 +589,9 @@
             "isWireFrame": false,
             "materialDiffuse": {
                 "a": 1.0,
-                "b": 0.5,
-                "g": 0.5,
-                "r": 0.5
+                "b": 0.20000000298023224,
+                "g": 0.20000000298023224,
+                "r": 0.20000000298023224
             },
             "materialSpecular": {
                 "b": 1.0,
@@ -625,9 +625,9 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port0",
+            "friendlyName": "base",
             "isUpdatedByPhysics": false,
-            "isVisible": true,
+            "isVisible": false,
             "isWireFrame": false,
             "materialDiffuse": {
                 "a": 1.0,
@@ -643,9 +643,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": 159.5,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -29.0
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -667,9 +667,9 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port1",
+            "friendlyName": "cannonBall",
             "isUpdatedByPhysics": false,
-            "isVisible": true,
+            "isVisible": false,
             "isWireFrame": false,
             "materialDiffuse": {
                 "a": 1.0,
@@ -683,11 +683,11 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "sphere.ply",
+            "meshName": "cueBall.ply",
             "position": {
-                "x": 102.0,
-                "y": 0.5,
-                "z": -157.0
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -709,7 +709,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port2",
+            "friendlyName": "base0",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -727,9 +727,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": 139.0,
-                "y": 0.0,
-                "z": -50.5
+                "x": 166.5,
+                "y": 92.5,
+                "z": -119.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -751,7 +751,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port3",
+            "friendlyName": "base1",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -769,9 +769,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": 135.0,
-                "y": 0.0,
-                "z": -80.0
+                "x": 160.5,
+                "y": 67.5,
+                "z": -153.5
             },
             "postRotation": {
                 "x": 0.0,
@@ -793,7 +793,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port4",
+            "friendlyName": "base2",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -811,9 +811,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": 144.5,
-                "y": 0.0,
-                "z": -112.0
+                "x": 179.5,
+                "y": 76.5,
+                "z": -89.5
             },
             "postRotation": {
                 "x": 0.0,
@@ -835,7 +835,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port5",
+            "friendlyName": "base3",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -853,9 +853,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": -52.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -209.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -877,7 +877,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port6",
+            "friendlyName": "base4",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -895,9 +895,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": -72.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -182.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -919,7 +919,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port7",
+            "friendlyName": "base5",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -937,9 +937,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": -106.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -149.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -961,7 +961,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port8",
+            "friendlyName": "base6",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -979,9 +979,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": -129.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -130.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1003,7 +1003,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port9",
+            "friendlyName": "base7",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1021,9 +1021,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": -143.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -105.0
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1045,7 +1045,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port10",
+            "friendlyName": "base8",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1063,9 +1063,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": -141.5,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 9.0
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1087,7 +1087,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port11",
+            "friendlyName": "base9",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1105,9 +1105,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": -146.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 45.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1129,7 +1129,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port12",
+            "friendlyName": "base10",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1147,9 +1147,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": -141.5,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 121.0
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1171,7 +1171,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port13",
+            "friendlyName": "base11",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1189,9 +1189,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": -101.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 141.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1213,7 +1213,2023 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port14",
+            "friendlyName": "base12",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base13",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base14",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base15",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base16",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base17",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base18",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base19",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base20",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 158.5,
+                "y": 88.5,
+                "z": 130.5
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base21",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 163.5,
+                "y": 66.5,
+                "z": 99.5
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base22",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 189.0,
+                "y": 76.0,
+                "z": 186.5
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base23",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base24",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base25",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base26",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base27",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base28",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base29",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base30",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base31",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base32",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base33",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base34",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base35",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base36",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base37",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base38",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base39",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base40",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": -80.0,
+                "y": 85.5,
+                "z": 206.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base41",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": -159.5,
+                "y": 99.0,
+                "z": 216.5
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base42",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": -227.5,
+                "y": 77.5,
+                "z": 104.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base43",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base44",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base45",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base46",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base47",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base48",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base49",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base50",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base51",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base52",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base53",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base54",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base55",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base56",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base57",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base58",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base59",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "sphere.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "base60",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1232,8 +3248,8 @@
             "meshName": "sphere.ply",
             "position": {
                 "x": -69.0,
-                "y": 0.0,
-                "z": 147.0
+                "y": 81.5,
+                "z": -72.5
             },
             "postRotation": {
                 "x": 0.0,
@@ -1255,7 +3271,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port15",
+            "friendlyName": "base61",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1273,9 +3289,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": 30.5,
-                "y": 0.0,
-                "z": 146.5
+                "x": -94.5,
+                "y": 94.0,
+                "z": -123.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1297,7 +3313,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port16",
+            "friendlyName": "base62",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1315,9 +3331,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": 79.5,
-                "y": 0.0,
-                "z": 131.5
+                "x": -83.5,
+                "y": 72.5,
+                "z": -165.5
             },
             "postRotation": {
                 "x": 0.0,
@@ -1339,7 +3355,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port17",
+            "friendlyName": "base63",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1357,9 +3373,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": 106.5,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 83.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1381,7 +3397,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port18",
+            "friendlyName": "base64",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1399,9 +3415,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": 139.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 90.0
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1423,7 +3439,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "port19",
+            "friendlyName": "base65",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1441,9 +3457,9 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": 121.5,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 165.0
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1465,7 +3481,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship0",
+            "friendlyName": "base66",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1481,11 +3497,11 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "cueBall.ply",
+            "meshName": "sphere.ply",
             "position": {
-                "x": 159.5,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -29.0
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1507,7 +3523,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship1",
+            "friendlyName": "base67",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1523,11 +3539,11 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "cueBall.ply",
+            "meshName": "sphere.ply",
             "position": {
-                "x": 102.0,
-                "y": 0.5,
-                "z": -157.0
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1549,7 +3565,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship2",
+            "friendlyName": "base68",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1565,11 +3581,11 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "cueBall.ply",
+            "meshName": "sphere.ply",
             "position": {
-                "x": 139.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -50.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1591,7 +3607,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship3",
+            "friendlyName": "base69",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1607,11 +3623,11 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "cueBall.ply",
+            "meshName": "sphere.ply",
             "position": {
-                "x": 135.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -80.0
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1633,7 +3649,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship4",
+            "friendlyName": "base70",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1649,11 +3665,11 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "cueBall.ply",
+            "meshName": "sphere.ply",
             "position": {
-                "x": 144.5,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -112.0
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1675,7 +3691,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship5",
+            "friendlyName": "base71",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1691,11 +3707,11 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "cueBall.ply",
+            "meshName": "sphere.ply",
             "position": {
-                "x": -52.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -209.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1717,7 +3733,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship6",
+            "friendlyName": "base72",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1733,11 +3749,11 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "cueBall.ply",
+            "meshName": "sphere.ply",
             "position": {
-                "x": -72.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -182.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1759,7 +3775,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship7",
+            "friendlyName": "base73",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1775,11 +3791,11 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "cueBall.ply",
+            "meshName": "sphere.ply",
             "position": {
-                "x": -106.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -149.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1801,7 +3817,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship8",
+            "friendlyName": "base74",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1817,11 +3833,11 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "cueBall.ply",
+            "meshName": "sphere.ply",
             "position": {
-                "x": -129.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -130.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1843,7 +3859,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship9",
+            "friendlyName": "base75",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1859,11 +3875,11 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "cueBall.ply",
+            "meshName": "sphere.ply",
             "position": {
-                "x": -143.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": -105.0
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1885,7 +3901,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship10",
+            "friendlyName": "base76",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1901,11 +3917,11 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "cueBall.ply",
+            "meshName": "sphere.ply",
             "position": {
-                "x": -141.5,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 9.0
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1927,7 +3943,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship11",
+            "friendlyName": "base77",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1943,11 +3959,11 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "cueBall.ply",
+            "meshName": "sphere.ply",
             "position": {
-                "x": -146.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 45.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -1969,7 +3985,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship12",
+            "friendlyName": "base78",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1985,11 +4001,11 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "cueBall.ply",
+            "meshName": "sphere.ply",
             "position": {
-                "x": -141.5,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 121.0
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -2011,7 +4027,7 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship13",
+            "friendlyName": "base79",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -2027,11 +4043,11 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "cueBall.ply",
+            "meshName": "sphere.ply",
             "position": {
-                "x": -101.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 141.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -2053,8 +4069,8 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship14",
-            "isUpdatedByPhysics": false,
+            "friendlyName": "cannonBall0",
+            "isUpdatedByPhysics": true,
             "isVisible": true,
             "isWireFrame": false,
             "materialDiffuse": {
@@ -2071,9 +4087,9 @@
             },
             "meshName": "cueBall.ply",
             "position": {
-                "x": -69.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 147.0
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -2095,8 +4111,8 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship15",
-            "isUpdatedByPhysics": false,
+            "friendlyName": "cannonBall1",
+            "isUpdatedByPhysics": true,
             "isVisible": true,
             "isWireFrame": false,
             "materialDiffuse": {
@@ -2113,9 +4129,9 @@
             },
             "meshName": "cueBall.ply",
             "position": {
-                "x": 30.5,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 146.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -2137,8 +4153,8 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship16",
-            "isUpdatedByPhysics": false,
+            "friendlyName": "cannonBall2",
+            "isUpdatedByPhysics": true,
             "isVisible": true,
             "isWireFrame": false,
             "materialDiffuse": {
@@ -2155,9 +4171,9 @@
             },
             "meshName": "cueBall.ply",
             "position": {
-                "x": 79.5,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 131.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -2179,8 +4195,8 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship17",
-            "isUpdatedByPhysics": false,
+            "friendlyName": "cannonBall3",
+            "isUpdatedByPhysics": true,
             "isVisible": true,
             "isWireFrame": false,
             "materialDiffuse": {
@@ -2197,9 +4213,9 @@
             },
             "meshName": "cueBall.ply",
             "position": {
-                "x": 106.5,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 83.5
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -2221,8 +4237,8 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship18",
-            "isUpdatedByPhysics": false,
+            "friendlyName": "cannonBall4",
+            "isUpdatedByPhysics": true,
             "isVisible": true,
             "isWireFrame": false,
             "materialDiffuse": {
@@ -2239,9 +4255,9 @@
             },
             "meshName": "cueBall.ply",
             "position": {
-                "x": 139.0,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 90.0
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -2263,8 +4279,8 @@
                 "z": 0.0
             },
             "dontLight": true,
-            "friendlyName": "ship19",
-            "isUpdatedByPhysics": false,
+            "friendlyName": "cannonBall5",
+            "isUpdatedByPhysics": true,
             "isVisible": true,
             "isWireFrame": false,
             "materialDiffuse": {
@@ -2281,9 +4297,93 @@
             },
             "meshName": "cueBall.ply",
             "position": {
-                "x": 121.5,
+                "x": 0.0,
                 "y": 0.0,
-                "z": 165.0
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "cannonBall6",
+            "isUpdatedByPhysics": true,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "cueBall.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "cannonBall7",
+            "isUpdatedByPhysics": true,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "cueBall.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,

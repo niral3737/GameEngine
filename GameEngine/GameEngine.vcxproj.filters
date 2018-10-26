@@ -150,6 +150,15 @@
     <ClCompile Include="cSuperShip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cIsland.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cCannonBall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cShaderUtils.h">
@@ -252,6 +261,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cSuperShip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cIsland.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cCannonBall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

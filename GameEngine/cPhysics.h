@@ -7,11 +7,13 @@
 #include "cMeshObject.h"
 #include "cModelDrawInfo.h"
 #include "cVAOMeshUtils.h"
+#include "cCannonBall.h"
+#include "cBase.h" 
 
 class cPhysics
 {
 public:
-	void PhysicsUpdate(double deltaTime, const cModelDrawInfo& collisionTest);
+	void PhysicsUpdate(double deltaTime);
 
 	void PlayerPhysicsUpdate(cMeshObject* playerObject, double deltaTime);
 
@@ -25,7 +27,7 @@ public:
 
 	bool SphereCubeCollision(cMeshObject* pSphere, cMeshObject* pCube, cModelDrawInfo& meshInfo);
 
-	void addProjectileAim(double deltaTime);
+	void addProjectileAim(double deltaTime, cCannonBall* cannonBall, cBase* shootingBase);
 
 	glm::vec3 ClosestPtPointTriangle(glm::vec3 p, glm::vec3 a, glm::vec3 b, glm::vec3 c);
 

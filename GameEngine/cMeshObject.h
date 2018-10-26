@@ -35,6 +35,8 @@ public:
 	bool useVertexColor;
 	bool dontLight;
 
+	float radius;
+
 	//Physics
 	bool isUpdatedByPhysics;
 	glm::vec3 velocity;

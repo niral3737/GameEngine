@@ -112,7 +112,7 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 	//save settings
 	if (glfwGetKey(window, GLFW_KEY_ENTER))
 	{
-		mSaveSettings();
+		//mSaveSettings();
 	}
 
 	return;

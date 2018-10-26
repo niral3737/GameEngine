@@ -7,7 +7,7 @@
 
 #include "iMeshObject.h"
 #include "cMeshObject.h"
-#include "iEquipment.h"
+#include "cIsland.h"
 
 class cSceneUtils
 {
@@ -27,10 +27,8 @@ public:
 	void selectNextMeshObject(bool includeInvisibleObject);
 	iMeshObject* selectedMeshObject;
 	static bool loadFromSaveFile;
-	void drawEquipment(iEquipment* equipment, GLuint shaderProgramID);
 
-	std::vector<iEquipment*> vecEquipmentsToDraw;
-	iEquipment* findEquipmentByFriendlyName(std::string name);
+	std::vector<cIsland*> vecIslands;
 private:
 	static cSceneUtils* pSceneUtils;
 	int selectedObjectIndex;

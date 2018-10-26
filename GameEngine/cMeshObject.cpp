@@ -20,6 +20,8 @@ cMeshObject::cMeshObject()
 	this->isUpdatedByPhysics = true;
 	this->velocity = glm::vec3(0.0f);
 	this->acceleration = glm::vec3(0.0f);
+	
+	this->radius = 0.0f;
 
 	this->mUniqueID = cMeshObject::mNextID;
 	cMeshObject::mNextID++;

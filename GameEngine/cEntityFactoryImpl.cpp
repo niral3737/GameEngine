@@ -1,3 +1,4 @@
+
 #include "cEntityFactoryImpl.h"
 
 #include "cPort.h"
@@ -6,6 +7,9 @@
 #include "cSuperShip.h"
 #include "cGoldCoins.h"
 #include "cGemStones.h"
+#include "cBase.h"
+#include "cIsland.h"
+#include "cCannonBall.h"
 
 cEntityFactoryImpl::cEntityFactoryImpl()
 {}
@@ -20,7 +24,10 @@ bool cEntityFactoryImpl::isEntityTypeValid(std::string entityType)
 		|| entityType == "normalShip" 
 		|| entityType == "superShip"
 		|| entityType == "goldCoins" 
-		|| entityType == "gemStones" ;
+		|| entityType == "gemStones"
+		|| entityType == "base"
+		|| entityType == "island"
+		|| entityType == "cannonBall";
 }
 
 iEntity * cEntityFactoryImpl::createEntity(std::string entityType)
@@ -61,6 +68,24 @@ iEntity * cEntityFactoryImpl::createEntity(std::string entityType)
 		cTreasure* gemStones = new cGemStones();
 		//ship->setMediator(mediator);
 		entity = gemStones;
+	}
+	else if (entityType == "base")
+	{
+		cBase* base = new cBase();
+		//ship->setMediator(mediator);
+		entity = base;
+	}
+	else if (entityType == "island")
+	{
+		cIsland* island = new cIsland();
+		//ship->setMediator(mediator);
+		entity = island;
+	}
+	else if (entityType == "cannonBall")
+	{
+		cCannonBall* ball = new cCannonBall();
+		//ship->setMediator(mediator);
+		entity = ball;
 	}
 
 	return entity;

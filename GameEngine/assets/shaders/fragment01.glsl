@@ -192,6 +192,14 @@ void main()
 		// ********************************************************
 	}//for(intindex=0...
 	
-	finalOutputColour.rgb = finalObjectColour.rgb;
+	if(vertPosWorld.y > 0.2f){
+		finalOutputColour.rgb = finalObjectColour.rgb;
+	}else{
+		finalObjectColour.r = 0.0f;
+		finalOutputColour.g = 0.0f;
+		finalOutputColour.b = 1.0f;
+	}
 	finalOutputColour.a = 1.0f;
+
+	
 }

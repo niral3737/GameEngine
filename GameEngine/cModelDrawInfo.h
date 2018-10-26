@@ -3,6 +3,7 @@
 
 #include <glm/glm.hpp>
 #include <string>
+#include <vector>
 
 struct sVert_xyz_rgb_n
 {
@@ -48,6 +49,8 @@ public:
 	glm::vec3 min;
 	glm::vec3 extent;
 	float maxExtent;
+
+	std::vector<glm::vec3> top3Vertices;
 
 	// ******************************************
 	// This is to draw "debug lines" in the scene

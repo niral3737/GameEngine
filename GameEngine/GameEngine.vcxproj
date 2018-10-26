@@ -138,13 +138,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cBase.cpp" />
     <ClCompile Include="cCamera.cpp" />
+    <ClCompile Include="cCannonBall.cpp" />
     <ClCompile Include="cEntityFactory.cpp" />
     <ClCompile Include="cEntityFactoryImpl.cpp" />
     <ClCompile Include="cGemStones.cpp" />
     <ClCompile Include="cGLColourHelper.cpp" />
     <ClCompile Include="cGLFWUtils.cpp" />
     <ClCompile Include="cGoldCoins.cpp" />
+    <ClCompile Include="cIsland.cpp" />
     <ClCompile Include="cLight.cpp" />
     <ClCompile Include="cLightHelper.cpp" />
     <ClCompile Include="cLightsManager.cpp" />
@@ -172,13 +175,16 @@
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cBase.h" />
     <ClInclude Include="cCamera.h" />
+    <ClInclude Include="cCannonBall.h" />
     <ClInclude Include="cEntityFactory.h" />
     <ClInclude Include="cEntityFactoryImpl.h" />
     <ClInclude Include="cGemStones.h" />
     <ClInclude Include="cGLColourHelper.h" />
     <ClInclude Include="cGLFWUtils.h" />
     <ClInclude Include="cGoldCoins.h" />
+    <ClInclude Include="cIsland.h" />
     <ClInclude Include="cLight.h" />
     <ClInclude Include="cLightHelper.h" />
     <ClInclude Include="cLightsManager.h" />
