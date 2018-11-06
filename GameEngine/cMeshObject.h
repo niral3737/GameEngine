@@ -10,6 +10,14 @@
 
 #include "iMeshObject.h"
 
+
+struct sTextureInfo
+{
+	std::string name;
+	int cachedTextureID; 	// Set to -1 by default
+	float strength;		// Set to 0.0f by default
+};
+
 class cMeshObject : public iMeshObject
 {
 public:
@@ -56,6 +64,9 @@ public:
 
 	static iMeshObject* create(void);
 	cMeshObject* cloneObject();
+
+	// Textures...
+	std::vector<sTextureInfo> vecTextures;
 private:
 	cMeshObject();
 	unsigned int mUniqueID;			// Number that's unique to this instance

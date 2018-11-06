@@ -13,6 +13,7 @@
 #include "cModelDrawInfo.h"
 #include "cVAOMeshUtils.h"
 #include "cCamera.h"
+#include "TextureManager/cBasicTextureManager.h"
 
 cSceneUtils* cSceneUtils::pSceneUtils = 0;
 
@@ -120,70 +121,6 @@ void cSceneUtils::loadModelsIntoScene()
 	}
 }
 
-//cMeshObject* cSceneUtils::loadMeshInfoByFriendlyName( std::string friendlyName)
-//{
-//	//load models 
-//	std::vector<nlohmann::json> meshes;
-//	if (loadFromSaveFile)
-//	{
-//		std::ifstream ifs("savefile.json");
-//		nlohmann::json j = json::parse(ifs);
-//		ifs.close();
-//		meshes = j["meshes"].get<std::vector<nlohmann::json>>();
-//	}
-//	else
-//	{
-//		meshes = cJsonUtils::getJsonInstance()["meshes"].get<std::vector<nlohmann::json>>();
-//	}
-//	for (size_t i = 0; i < meshes.size(); i++)
-//	{
-//		if (meshes[i]["friendlyName"].get<std::string>() == friendlyName)
-//		{
-//			cMeshObject* meshObject = (cMeshObject*)cMeshObjectFactory::createMeshObject();
-//			meshObject->meshName = meshes[i]["meshName"].get<std::string>();
-//			meshObject->friendlyName = meshes[i]["friendlyName"].get<std::string>();
-//
-//			meshObject->isWireFrame = meshes[i]["isWireFrame"].get<bool>();
-//			meshObject->isVisible = meshes[i]["isVisible"].get<bool>();
-//			meshObject->useVertexColor = meshes[i]["useVertexColor"].get<bool>();
-//			meshObject->dontLight = meshes[i]["dontLight"].get<bool>();
-//
-//			meshObject->position.x = meshes[i]["position"]["x"].get<float>();
-//			meshObject->position.y = meshes[i]["position"]["y"].get<float>();
-//			meshObject->position.z = meshes[i]["position"]["z"].get<float>();
-//
-//			meshObject->postRotation.x = meshes[i]["postRotation"]["x"].get<float>();
-//			meshObject->postRotation.y = meshes[i]["postRotation"]["y"].get<float>();
-//			meshObject->postRotation.z = meshes[i]["postRotation"]["z"].get<float>();
-//
-//			meshObject->materialDiffuse.r = meshes[i]["materialDiffuse"]["r"].get<float>();
-//			meshObject->materialDiffuse.g = meshes[i]["materialDiffuse"]["g"].get<float>();
-//			meshObject->materialDiffuse.b = meshes[i]["materialDiffuse"]["b"].get<float>();
-//			meshObject->materialDiffuse.a = meshes[i]["materialDiffuse"]["a"].get<float>();
-//
-//			meshObject->materialSpecular.r = meshes[i]["materialSpecular"]["r"].get<float>();
-//			meshObject->materialSpecular.g = meshes[i]["materialSpecular"]["g"].get<float>();
-//			meshObject->materialSpecular.b = meshes[i]["materialSpecular"]["b"].get<float>();
-//			meshObject->materialSpecular.a = meshes[i]["materialSpecular"]["power"].get<float>();
-//
-//			meshObject->scale = meshes[i]["scale"].get<float>();
-//
-//			meshObject->isUpdatedByPhysics = meshes[i]["isUpdatedByPhysics"].get<bool>();
-//
-//			meshObject->velocity.x = meshes[i]["velocity"]["x"].get<float>();
-//			meshObject->velocity.y = meshes[i]["velocity"]["y"].get<float>();
-//			meshObject->velocity.z = meshes[i]["velocity"]["z"].get<float>();
-//
-//			meshObject->acceleration.x = meshes[i]["acceleration"]["x"].get<float>();
-//			meshObject->acceleration.y = meshes[i]["acceleration"]["y"].get<float>();
-//			meshObject->acceleration.z = meshes[i]["acceleration"]["z"].get<float>();
-//
-//			vecObjectsToDraw.push_back(meshObject);
-//			return meshObject;
-//		}
-//	}
-//	return NULL;
-//}
 
 void cSceneUtils::initializeCamera()
 {
@@ -198,37 +135,6 @@ void cSceneUtils::initializeCamera()
 	{
 		json = cJsonUtils::getJsonInstance();
 	}
-	//cSceneUtils::cameraEye = glm::vec3(
-	//	json["cameraEye"]["x"].get<float>(),
-	//	json["cameraEye"]["y"].get<float>(),
-	//	json["cameraEye"]["z"].get<float>()
-	//);
-
-	//cSceneUtils::cameraAt = glm::vec3(
-	//	json["cameraAt"]["x"].get<float>(),
-	//	json["cameraAt"]["y"].get<float>(),
-	//	json["cameraAt"]["z"].get<float>()
-	//);
-
-	//cCamera::getInstance()->eye = glm::vec3(
-	//	json["cameraEye"]["x"].get<float>(),
-	//	json["cameraEye"]["y"].get<float>(),
-	//	json["cameraEye"]["z"].get<float>()
-	//);
-
-	/*cCamera::getInstance()->orientation = glm::quat (
-		json["cameraEye"]["x"].get<float>(),
-		json["cameraEye"]["y"].get<float>(),
-		json["cameraEye"]["z"].get<float>(),
-		json["cameraEye"]["w"].get<float>()
-	);*/
-
-	/*cCamera::getInstance()->at = glm::vec3(
-		json["cameraAt"]["x"].get<float>(),
-		json["cameraAt"]["y"].get<float>(),
-		json["cameraAt"]["z"].get<float>()
-	);*/
-
 }
 
 void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, GLuint shaderProgramID)
@@ -237,6 +143,9 @@ void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, G
 
 	if (!currentMesh->isVisible)
 		return;
+
+	// Set up the texture binding for this object
+	bindTextures(currentMesh, shaderProgramID);
 
 	glm::mat4 matModelInvTrans;
 	applyTranformations(currentMesh, matModel, matModelInvTrans);
@@ -324,6 +233,98 @@ void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, G
 		glBindVertexArray(0);
 
 	}
+
+	return;
+}
+
+void cSceneUtils::bindTextures(cMeshObject* pCurrentMesh, GLuint shaderProgramID)
+{
+	// This is pretty much a hack, so we should likely pass the shader object 
+	// (pointer) to this function, and to the DrawObject call, too. 
+	// (Another option would be to pass the shader MANAGER instead, so 
+	//  that the functions can look up various things in the shader)
+	//
+	// For now, I'm going to get the uniform location here 
+	// (to make it clear (maybe?) that we'll NEED those shader uniform locations)
+
+	// So this is only called once... 
+	if (!HACK_bTextureUniformLocationsLoaded)
+	{
+		tex00_UniLoc = glGetUniformLocation(shaderProgramID, "texture00");		// uniform sampler2D texture00;
+		tex01_UniLoc = glGetUniformLocation(shaderProgramID, "texture01");		// uniform sampler2D texture01;
+		tex02_UniLoc = glGetUniformLocation(shaderProgramID, "texture02");		// uniform sampler2D texture02;
+		tex03_UniLoc = glGetUniformLocation(shaderProgramID, "texture03");		// uniform sampler2D texture03;
+		tex04_UniLoc = glGetUniformLocation(shaderProgramID, "texture04");		// uniform sampler2D texture04;
+		tex05_UniLoc = glGetUniformLocation(shaderProgramID, "texture05");		// uniform sampler2D texture05;
+		tex06_UniLoc = glGetUniformLocation(shaderProgramID, "texture06");		// uniform sampler2D texture06;
+		tex07_UniLoc = glGetUniformLocation(shaderProgramID, "texture07");		// uniform sampler2D texture07;
+
+		texBW_0_UniLoc = glGetUniformLocation(shaderProgramID, "texBlendWeights[0]");	// uniform vec4 texBlendWeights[2];
+		texBW_1_UniLoc = glGetUniformLocation(shaderProgramID, "texBlendWeights[1]");	// uniform vec4 texBlendWeights[2];
+
+		HACK_bTextureUniformLocationsLoaded = true;
+
+	}//if(!HACK_bTextureUniformLocationsLoaded )
+
+	// For each texture, bind the texture to a texture unit and sampler
+	// Texture #0 (on the mesh) -- Texture Unit 0 -- Sampler 0
+	// Texture #1 (on the mesh) -- Texture Unit 1 -- Sampler 1
+	// ....
+
+	// Set all the blend weights (strengths) to zero
+	float blendWeights[8] = { 0 };
+
+
+	for (int texBindIndex = 0; texBindIndex != pCurrentMesh->vecTextures.size(); texBindIndex++)
+	{
+		// Bind to the the "texBindIndex" texture unit
+		glActiveTexture(GL_TEXTURE0 + texBindIndex);
+
+		// Connect the specific texture to THIS texture unit
+		std::string texName = pCurrentMesh->vecTextures[texBindIndex].name;
+
+		GLuint texID = cBasicTextureManager::getInstance()->getTextureIDFromName(texName);
+
+		glBindTexture(GL_TEXTURE_2D, texID);
+
+		// Use a switch to pick the texture sampler and weight (strength)
+		// BECAUSE the samplers can't be in an array
+		switch (texBindIndex)
+		{
+		case 0:		// uniform sampler2D texture00  AND texBlendWeights[0].x;
+			glUniform1i(tex00_UniLoc, texBindIndex);
+			break;
+		case 1:		// uniform sampler2D texture01  AND texBlendWeights[0].y;
+			glUniform1i(tex01_UniLoc, texBindIndex);
+			break;
+		case 2:
+			glUniform1i(tex02_UniLoc, texBindIndex);
+			break;
+		case 3:
+			glUniform1i(tex03_UniLoc, texBindIndex);
+			break;
+		case 4:		// uniform sampler2D texture04  AND texBlendWeights[1].x;
+			glUniform1i(tex04_UniLoc, texBindIndex);
+			break;
+		case 5:
+			glUniform1i(tex05_UniLoc, texBindIndex);
+			break;
+		case 6:
+			glUniform1i(tex06_UniLoc, texBindIndex);
+			break;
+		case 7:
+			glUniform1i(tex07_UniLoc, texBindIndex);
+			break;
+		}//switch ( texBindIndex )
+
+		// Set the blend weight (strengty)
+		blendWeights[texBindIndex] = pCurrentMesh->vecTextures[texBindIndex].strength;
+
+	}//for ( int texBindIndex
+
+	// Set the weights (strengths) in the shader
+	glUniform4f(texBW_0_UniLoc, blendWeights[0], blendWeights[1], blendWeights[2], blendWeights[3]);
+	glUniform4f(texBW_1_UniLoc, blendWeights[4], blendWeights[5], blendWeights[6], blendWeights[7]);
 
 	return;
 }

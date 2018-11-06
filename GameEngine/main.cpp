@@ -51,6 +51,14 @@ int main(void)
 
 	cSceneUtils::initializeCamera();
 	cSceneUtils::getInstance()->loadModelsIntoScene();
+
+	cMeshObject* terrain = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("terrain");
+	
+	sTextureInfo bricks;
+	bricks.name = "brick-wall.bmp";
+	bricks.strength = 1.0f;
+	terrain->vecTextures.push_back(bricks);
+
 	lightsManager->loadAllLights(program);
 
 	cCamera* camera = cCamera::getInstance();

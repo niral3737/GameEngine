@@ -17,6 +17,7 @@ cModelDrawInfo::cModelDrawInfo()
 
 	// These come from the file
 	this->pVerticesFromFile = NULL;
+	this->pTextureCoordsFromFile = NULL;
 	this->pTriangles = NULL;
 	// These are copied to the GPU
 	this->pVerticesToVBO = NULL;

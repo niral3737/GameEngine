@@ -10,6 +10,7 @@
 #include "json.hpp"
 #include "cJsonUtils.h"
 #include "cShaderUtils.h"
+#include "TextureManager/cBasicTextureManager.h"
 
 bool cVAOMeshUtils::loadFromSaveFile = false;
 
@@ -61,6 +62,16 @@ bool cVAOMeshUtils::loadModels(GLuint program)
 			return false;
 		}
 	}
+
+	cBasicTextureManager::getInstance()->SetBasePath("assets/textures");
+
+	if (!cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("Justin.bmp", true))
+	{
+		std::cout << "Didn't load texture" << std::endl;
+	}
+	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("grass.bmp", true);
+	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("brick-wall.bmp", true);
+	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("220px-Emma_Watson_2013.bmp", true);
 
 	return true;
 }
@@ -190,6 +201,7 @@ bool cVAOMeshUtils::mLoadModelFromFile(cModelDrawInfo &drawInfo)
 //	g_pArrayVert = new sPlyVertex[g_numberOfVertices];	// HEAP
 	drawInfo.pVerticesFromFile = new glm::vec3[drawInfo.numberOfVertices];
 	drawInfo.pNormalsFromFile = new glm::vec3[drawInfo.numberOfVertices];
+	drawInfo.pTextureCoordsFromFile = new glm::vec2[drawInfo.numberOfVertices];
 	//	ZeroMemory(); win32
 		// C call... (clears memory to all zeros)
 	//	memset( g_pArrayVert, 0, sizeof( sPlyVertex ) * g_numberOfVertices );
@@ -205,6 +217,9 @@ bool cVAOMeshUtils::mLoadModelFromFile(cModelDrawInfo &drawInfo)
 		theFile >> drawInfo.pNormalsFromFile[index].x;
 		theFile >> drawInfo.pNormalsFromFile[index].y;
 		theFile >> drawInfo.pNormalsFromFile[index].z;
+
+		theFile >> drawInfo.pTextureCoordsFromFile[index].x;
+		theFile >> drawInfo.pTextureCoordsFromFile[index].y;
 
 		//		theFile >> g_pArrayVert[index].;
 	}//for ( unsigned int index...
@@ -264,7 +279,7 @@ bool cVAOMeshUtils::mLoadDrawInfoIntoVAO(
 	unsigned int shaderProgramID)
 {
 	//sVert_xyz_rgb* pVertices = new sVert_xyz_rgb[g_numberOfVertices];
-	drawInfo.pVerticesToVBO = new sVert_xyz_rgb_n[drawInfo.numberOfVertices];
+	drawInfo.pVerticesToVBO = new sVert_xyz_rgb_n_uv2[drawInfo.numberOfVertices];
 
 	// Copy the data from the PLY format to the vertex buffer format
 	for (unsigned int index = 0; index != drawInfo.numberOfVertices; index++)
@@ -276,9 +291,13 @@ bool cVAOMeshUtils::mLoadDrawInfoIntoVAO(
 
 		drawInfo.pVerticesToVBO[index].n = normal;
 
-		drawInfo.pVerticesToVBO[index].rgb.r = 1.0f;
-		drawInfo.pVerticesToVBO[index].rgb.g = 1.0f;
-		drawInfo.pVerticesToVBO[index].rgb.b = 1.0f;
+		// Set all the colours to white (1,1,1) for now
+		drawInfo.pVerticesToVBO[index].rgb = glm::vec3(1.0f);
+
+		// Set the UV values, also
+		drawInfo.pVerticesToVBO[index].uv0 = drawInfo.pTextureCoordsFromFile[index];
+		// There might be a 2nd set of UV coordinates, but not now
+		drawInfo.pVerticesToVBO[index].uv1 = glm::vec2(0.0f);
 	}
 
 
@@ -299,7 +318,7 @@ bool cVAOMeshUtils::mLoadDrawInfoIntoVAO(
 	glBindBuffer(GL_ARRAY_BUFFER, drawInfo.vertexBufferID);
 
 	unsigned int vertexBufferSizeInBytes =
-		sizeof(sVert_xyz_rgb_n) * drawInfo.numberOfVertices;
+		sizeof(sVert_xyz_rgb_n_uv2) * drawInfo.numberOfVertices;
 
 	//	vector<sVert_xyz_rgb> vecVerticesON_THE_CPU;
 	//	sVert_xyz_rgb* pVerticesToVBO = new sVert_xyz_rgb[ARRAYSIZE]
@@ -355,14 +374,15 @@ bool cVAOMeshUtils::mLoadDrawInfoIntoVAO(
 	GLint vpos_location = glGetAttribLocation(shaderProgramID, "vPosition");
 	GLint vcol_location = glGetAttribLocation(shaderProgramID, "vColour");
 	GLint vnorm_location = glGetAttribLocation(shaderProgramID, "vNormal");
+	GLint vUVx2_location = glGetAttribLocation(shaderProgramID, "vUV_x2");
 
 	glEnableVertexAttribArray(vpos_location);
 	glVertexAttribPointer(vpos_location,	// "vPosition"
 		3,				//  vec3 (xyz)
 		GL_FLOAT,
 		GL_FALSE,		// DON'T "normalize"
-		sizeof(sVert_xyz_rgb_n),
-		(void*) offsetof(sVert_xyz_rgb_n, xyz));
+		sizeof(sVert_xyz_rgb_n_uv2),
+		(void*) offsetof(sVert_xyz_rgb_n_uv2, xyz));
 		//sizeof(float) * 6,
 		//(void*)0);
 
@@ -371,16 +391,25 @@ bool cVAOMeshUtils::mLoadDrawInfoIntoVAO(
 		3,					// vec3 (rgb)
 		GL_FLOAT,
 		GL_FALSE,
-		sizeof(sVert_xyz_rgb_n), //sizeof(float) * 6,
-		(void*) offsetof(sVert_xyz_rgb_n, rgb));//(void*)(sizeof(float) * 3));
+		sizeof(sVert_xyz_rgb_n_uv2), //sizeof(float) * 6,
+		(void*) offsetof(sVert_xyz_rgb_n_uv2, rgb));//(void*)(sizeof(float) * 3));
 
 	glEnableVertexAttribArray(vnorm_location);
 	glVertexAttribPointer(vnorm_location,		// 
 		3,					// vec3 (xyz)
 		GL_FLOAT,
 		GL_FALSE,
-		sizeof(sVert_xyz_rgb_n),	//   9  size in bytes
-		(void*) offsetof(sVert_xyz_rgb_n, n));
+		sizeof(sVert_xyz_rgb_n_uv2),	//   9  size in bytes
+		(void*) offsetof(sVert_xyz_rgb_n_uv2, n));
+
+	// Now add the texture vertex attribute
+	glEnableVertexAttribArray(vUVx2_location);
+	glVertexAttribPointer(vUVx2_location,		// 
+		4,					// vec4 vUV_x2;
+		GL_FLOAT,
+		GL_FALSE,
+		sizeof(sVert_xyz_rgb_n_uv2),	//   float u0, v0, u1, v1;
+		(void*)offsetof(sVert_xyz_rgb_n_uv2, uv0));
 
 	// Get rid of everything we don't need.
 
@@ -390,6 +419,7 @@ bool cVAOMeshUtils::mLoadDrawInfoIntoVAO(
 	glDisableVertexAttribArray(vpos_location);
 	glDisableVertexAttribArray(vcol_location);
 	glDisableVertexAttribArray(vnorm_location);
+	glDisableVertexAttribArray(vUVx2_location);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -434,7 +464,7 @@ void cVAOMeshUtils::updateModelVertexInformation(cModelDrawInfo &drawInfo)
 	glBindBuffer(GL_ARRAY_BUFFER, drawInfo.vertexBufferID);
 
 	unsigned int vertexBufferSizeInBytes =
-		sizeof(sVert_xyz_rgb_n) * drawInfo.numberOfVertices;
+		sizeof(sVert_xyz_rgb_n_uv2) * drawInfo.numberOfVertices;
 
 	// ASSUME it's a dynmaic buffer
 //	if ( drawInfo.bVertexBufferIsDynamic )

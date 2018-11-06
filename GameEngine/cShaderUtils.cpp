@@ -60,6 +60,19 @@ GLuint cShaderUtils::setUpShaders()
 		std::cout << pShaderUtils->getLastError() << std::endl;
 	}
 
+	// Load the uniform location values (some of them, anyway)
+	cShaderUtils::cShaderProgram* pSP = cShaderUtils::getInstance()->getShaderProgramFromFriendlyName(shaderProgramName);
+	pSP->loadUniformLocation("texture00");
+	pSP->loadUniformLocation("texture01");
+	pSP->loadUniformLocation("texture02");
+	pSP->loadUniformLocation("texture03");
+	pSP->loadUniformLocation("texture04");
+	pSP->loadUniformLocation("texture05");
+	pSP->loadUniformLocation("texture06");
+	pSP->loadUniformLocation("texture07");
+	pSP->loadUniformLocation("texBlendWeights[0]");
+	pSP->loadUniformLocation("texBlendWeights[1]");
+
 	GLuint program = pShaderUtils->getIdFromFriendlyName(shaderProgramName);
 
 	return program;
