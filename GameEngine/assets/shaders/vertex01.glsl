@@ -9,11 +9,13 @@ uniform mat4 matProj;		// P
 
 in vec3 vColour;		// rgb   	was "attribute"
 in vec3 vPosition;		// xyz		was "attribute"
-in vec3 vNormal;        // nor
+in vec3 vNormal;        // normal xyz
+in vec4 vUV_x2;			// Texture coordinates (2 of them)
 
 out vec3 color;			// exit to fragment
 out vec4 vertPosWorld;  // "World space"
 out vec3 vertNormal;    // "Model space"
+out vec4 vertUV_x2;		// To the next shader stage
 
 void main()
 {
@@ -31,6 +33,9 @@ void main()
 	vertNormal = vec3( matModelInvTrans * vec4(normalize(vNormal),1.0f) );
 
     color = vColour;
+
+	// Pass the texture coordinates out, unchanged.
+	vertUV_x2.xy = vUV_x2.xy;
 }
 
 

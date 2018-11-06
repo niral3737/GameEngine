@@ -5,6 +5,7 @@
 in vec3 color;		// in from the vertex shader
 in vec4 vertPosWorld;
 in vec3 vertNormal;	// "Model space" (only rotation)
+in vec4 vertUV_x2;		// Texture coordinates
 
 uniform vec4 objectDiffuse;
 uniform vec4 objectSpecular;
@@ -14,10 +15,6 @@ uniform vec3 eyeLocation;
 // Set this to true (1), and the vertex colour is used
 uniform bool useVertexColour;
 uniform bool bDontUseLighting;	
-
-// Good enough for Rock-n-Roll
-uniform vec3 lightPos;
-uniform float lightBrightness;		
 
 //vec4 gl_FragColor
 out vec4 finalOutputColour;		// Any name, but must be vec4
@@ -40,6 +37,22 @@ const int DIRECTIONAL_LIGHT_TYPE = 2;
 const int NUMBEROFLIGHTS = 10;
 uniform sLight theLights[NUMBEROFLIGHTS];  	// 80 uniforms
 
+// CAN'T put texture samplers into an array (sadly)
+//uniform sampler textures[10];
+
+uniform sampler2D texture00;
+uniform sampler2D texture01;
+uniform sampler2D texture02;
+uniform sampler2D texture03;
+uniform sampler2D texture04;
+uniform sampler2D texture05;
+uniform sampler2D texture06;
+uniform sampler2D texture07;
+
+// This is 4 x 2 floats or 8 floats
+uniform vec4 texBlendWeights[2];	// x is 0, y is 1, z is 2
+
+
 void main()
 {
 	vec4 materialDiffuse = vec4(0.0f, 0.0f, 0.0f, 1.0f);
@@ -52,8 +65,26 @@ void main()
 	}
 	else
 	{
+		vec4 tex0Col = texture( texture00, vertUV_x2.st ).rgba;
+		vec4 tex1Col = texture( texture01, vertUV_x2.st ).rgba;
+		vec4 tex2Col = texture( texture02, vertUV_x2.st ).rgba;
+		vec4 tex3Col = texture( texture03, vertUV_x2.st ).rgba;
+		vec4 tex4Col = texture( texture04, vertUV_x2.st ).rgba;
+		vec4 tex5Col = texture( texture05, vertUV_x2.st ).rgba;
+		vec4 tex6Col = texture( texture06, vertUV_x2.st ).rgba;
+		vec4 tex7Col = texture( texture07, vertUV_x2.st ).rgba;
+		
+		materialDiffuse =  objectDiffuse
+						  + (tex0Col * texBlendWeights[0].x) 	 // 0
+		                  + (tex1Col * texBlendWeights[0].y)     // 1
+						  + (tex2Col * texBlendWeights[0].z)     // 2
+		                  + (tex3Col * texBlendWeights[0].w)     // 3
+		                  + (tex4Col * texBlendWeights[1].x)     // 4
+		                  + (tex5Col * texBlendWeights[1].y)     // 5
+		                  + (tex6Col * texBlendWeights[1].z)     // 6
+		                  + (tex7Col * texBlendWeights[1].w);    // 7
 		//gl_FragColor = vec4(objectColour, 1.0);
-		materialDiffuse = objectDiffuse;
+//		materialDiffuse = objectDiffuse;
 	}
 
 	// Is this being lit? 
@@ -192,13 +223,16 @@ void main()
 		// ********************************************************
 	}//for(intindex=0...
 	
-	if(vertPosWorld.y > 0.2f){
-		finalOutputColour.rgb = finalObjectColour.rgb;
-	}else{
-		finalObjectColour.r = 0.0f;
-		finalOutputColour.g = 0.0f;
-		finalOutputColour.b = 1.0f;
-	}
+//	if(vertPosWorld.y > 0.2f){
+//		finalOutputColour.rgb = finalObjectColour.rgb;
+//	}else{
+//		finalObjectColour.r = 0.0f;
+//		finalOutputColour.g = 0.0f;
+//		finalOutputColour.b = 1.0f;
+//	}
+//	finalOutputColour.a = 1.0f;
+
+	finalOutputColour.rgb = finalObjectColour.rgb;
 	finalOutputColour.a = 1.0f;
 
 	
