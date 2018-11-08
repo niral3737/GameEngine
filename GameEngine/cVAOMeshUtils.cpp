@@ -73,6 +73,13 @@ bool cVAOMeshUtils::loadModels(GLuint program)
 	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("brick-wall.bmp", true);
 	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("220px-Emma_Watson_2013.bmp", true);
 
+	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("wood.bmp", true);
+	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("trump.bmp", true);
+	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("fabric.bmp", true);
+	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("fabric2.bmp", true);
+	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("wall.bmp", true);
+	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("water.bmp", true);
+
 	return true;
 }
 

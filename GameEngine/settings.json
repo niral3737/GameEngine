@@ -448,7 +448,9 @@
         "island4.ply",
         "sphere.ply",
         "cueBall.ply",
-        "terrain_xyz_n_uv.ply"
+        "terrain_xyz_n_uv.ply",
+        "ship.ply",
+        "stadium.ply"
     ],
     "meshes": [
         {
@@ -464,9 +466,9 @@
             "isWireFrame": false,
             "materialDiffuse": {
                 "a": 1.0,
-                "b": 0.20000000298023224,
-                "g": 0.20000000298023224,
-                "r": 0.20000000298023224
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
             },
             "materialSpecular": {
                 "b": 1.0,

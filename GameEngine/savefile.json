@@ -5,14 +5,14 @@
     "backgroundSound2": "Puzzle-Game",
     "backgroundSound3": "Fantasy_Game_Background",
     "cameraAt": {
-        "x": 187.17312622070313,
-        "y": 139.0080108642578,
-        "z": -333.8184814453125
+        "x": -18.259138107299805,
+        "y": 118.05660247802734,
+        "z": -245.95802307128906
     },
     "cameraEye": {
-        "x": 187.9796142578125,
-        "y": 139.2616729736328,
-        "z": -334.3526916503906
+        "x": -18.348295211791992,
+        "y": 118.50019836425781,
+        "z": -246.8498077392578
     },
     "cameraUp": {
         "x": 0.0,
@@ -448,7 +448,9 @@
         "island4.ply",
         "sphere.ply",
         "cueBall.ply",
-        "terrain_xyz_n_uv.ply"
+        "terrain_xyz_n_uv.ply",
+        "ship.ply",
+        "stadium.ply"
     ],
     "meshes": [
         {
@@ -464,9 +466,9 @@
             "isWireFrame": false,
             "materialDiffuse": {
                 "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
+                "b": 0.4,
+                "g": 0.4,
+                "r": 0.4
             },
             "materialSpecular": {
                 "b": 1.0,
@@ -486,6 +488,90 @@
                 "z": 0.0
             },
             "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "ship",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 0.5,
+                "g": 0.5,
+                "r": 0.5
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "ship.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "stadium",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 0.30000001192092896,
+                "g": 0.30000001192092896,
+                "r": 0.30000001192092896
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "stadium.ply",
+            "position": {
+                "x": -74.5,
+                "y": 0.0,
+                "z": -18.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 0.024255305528640747,
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,

@@ -52,13 +52,32 @@ int main(void)
 	cSceneUtils::initializeCamera();
 	cSceneUtils::getInstance()->loadModelsIntoScene();
 
-	cMeshObject* terrain = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("terrain");
+	cMeshObject* stadium = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("stadium");
 	
-	sTextureInfo bricks;
-	bricks.name = "brick-wall.bmp";
-	bricks.strength = 1.0f;
-	terrain->vecTextures.push_back(bricks);
+	sTextureInfo wood;
+	wood.name = "wood.bmp";
+	wood.strength = 0.5f;
+	stadium->vecTextures.push_back(wood);
 
+	sTextureInfo trump;
+	trump.name = "trump.bmp";
+	trump.strength = 0.5f;
+	stadium->vecTextures.push_back(trump);
+
+	cMeshObject* terrain = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("terrain");
+
+	sTextureInfo water;
+	water.name = "water.bmp";
+	water.strength = 1.0f;
+	terrain->vecTextures.push_back(water);
+
+	cMeshObject* ship = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("ship");
+
+	sTextureInfo fabric2;
+	fabric2.name = "fabric2.bmp";
+	fabric2.strength = 1.0f;
+	ship->vecTextures.push_back(fabric2);
+	
 	lightsManager->loadAllLights(program);
 
 	cCamera* camera = cCamera::getInstance();

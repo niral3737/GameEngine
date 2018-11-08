@@ -97,6 +97,19 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 			selectedLight->diffuse = glm::vec4(r, g, b, 1.0f);
 		}
 	}
+
+	if (glfwGetKey(window, GLFW_KEY_EQUAL) && action == GLFW_PRESS)
+	{
+		cMeshObject* terrain = (cMeshObject*) sceneUtils->findObjectByFriendlyName("stadium");
+		terrain->vecTextures[0].strength += (terrain->vecTextures[0].strength < 1.0f) ? 0.1f : 0.0f;
+		terrain->vecTextures[1].strength = 1.0f - terrain->vecTextures[0].strength;
+	}
+	if (glfwGetKey(window, GLFW_KEY_MINUS) && action == GLFW_PRESS)
+	{
+		cMeshObject* terrain = (cMeshObject*)sceneUtils->findObjectByFriendlyName("stadium");
+		terrain->vecTextures[0].strength -= (terrain->vecTextures[0].strength > 0.0f) ? 0.1f : 0.0f;
+		terrain->vecTextures[1].strength = 1.0f - terrain->vecTextures[0].strength;
+	}
 	//}
 
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
@@ -112,7 +125,7 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 	//save settings
 	if (glfwGetKey(window, GLFW_KEY_ENTER))
 	{
-		//mSaveSettings();
+		mSaveSettings();
 	}
 
 	return;
