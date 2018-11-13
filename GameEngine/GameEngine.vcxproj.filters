@@ -55,6 +55,9 @@
     <Filter Include="TextureManager">
       <UniqueIdentifier>{f933f27f-bd31-4908-9af9-ffbe05d5e098}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripting">
+      <UniqueIdentifier>{107d9956-163d-475a-bf6f-0ab8fe1a84d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -172,6 +175,12 @@
       <Filter>TextureManager</Filter>
     </ClCompile>
     <ClCompile Include="cAABB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cCommandGroup.cpp">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="cMoveToCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -297,6 +306,15 @@
       <Filter>TextureManager</Filter>
     </ClInclude>
     <ClInclude Include="cAABB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iCommand.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="cCommandGroup.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="cMoveToCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

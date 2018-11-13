@@ -26,6 +26,8 @@
 //#include "cPort.h"
 #include "cEntityFactory.h"
 //#include "cGoldCoins.h"
+#include "cCommandGroup.h"
+#include "cMoveToCommand.h"
 
 int main(void)
 {
@@ -113,6 +115,34 @@ int main(void)
 
 	cPhysics* physics = new cPhysics();
 
+	/*******************Move to Command*****************************/
+
+	cCommandGroup sceneCommandGroup;
+
+	cCommandGroup* pFollowCG = new cCommandGroup();
+
+	cMoveToCommand* pMove = new cMoveToCommand();
+
+
+	nlohmann::json values;
+
+	values["from"]["x"] = ship->position.x;
+	values["from"]["y"] = ship->position.y;
+	values["from"]["z"] = ship->position.z;
+
+	values["to"]["x"] = 255.0f;
+	values["to"]["y"] = 0.0f;
+	values["to"]["z"] = 255.0f;
+
+	//time in seconds
+	values["time"] = 30.0;
+
+	pMove->initialize(values);
+	pFollowCG->vecCommands.push_back(pMove);
+	sceneCommandGroup.vecCommandGroups.push_back(pFollowCG);
+
+	/*****************************************************/
+
 	while (!glfwWindowShouldClose(window))
 	{
 		/*std::cout << "x: " << camera->orientation.x << std::endl;
@@ -176,7 +206,15 @@ int main(void)
 
 		double currentTime = glfwGetTime();
 		double deltaTime = currentTime - lastTime;
+		double MAX_DELTA_TIME = 0.1;	// 100 ms
+		if (deltaTime > MAX_DELTA_TIME)
+		{
+			deltaTime = MAX_DELTA_TIME;
+		}
 
+		sceneCommandGroup.Update(deltaTime);
+		ship->position = pMove->currentLocation;
+		std::cout << ship->position.x <<" " << ship->position.z << std::endl;
 		//cModelDrawInfo modelDrawInfo;
 		//modelDrawInfo.meshFileName = "terrain_xyz_n.ply";
 		//cVAOMeshUtils::getInstance()->findDrawInfoByModelName(modelDrawInfo);

@@ -142,6 +142,7 @@
     <ClCompile Include="cBase.cpp" />
     <ClCompile Include="cCamera.cpp" />
     <ClCompile Include="cCannonBall.cpp" />
+    <ClCompile Include="cCommandGroup.cpp" />
     <ClCompile Include="cEntityFactory.cpp" />
     <ClCompile Include="cEntityFactoryImpl.cpp" />
     <ClCompile Include="cGemStones.cpp" />
@@ -156,6 +157,7 @@
     <ClCompile Include="cMeshObject.cpp" />
     <ClCompile Include="cMeshObjectFactory.cpp" />
     <ClCompile Include="cModelDrawInfo.cpp" />
+    <ClCompile Include="cMoveToCommand.cpp" />
     <ClCompile Include="cNormalShip.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="cPhysics.cpp" />
@@ -183,6 +185,7 @@
     <ClInclude Include="cBase.h" />
     <ClInclude Include="cCamera.h" />
     <ClInclude Include="cCannonBall.h" />
+    <ClInclude Include="cCommandGroup.h" />
     <ClInclude Include="cEntityFactory.h" />
     <ClInclude Include="cEntityFactoryImpl.h" />
     <ClInclude Include="cGemStones.h" />
@@ -197,6 +200,7 @@
     <ClInclude Include="cMeshObject.h" />
     <ClInclude Include="cMeshObjectFactory.h" />
     <ClInclude Include="cModelDrawInfo.h" />
+    <ClInclude Include="cMoveToCommand.h" />
     <ClInclude Include="cNormalShip.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="cPhysics.h" />
@@ -209,6 +213,7 @@
     <ClInclude Include="cTreasure.h" />
     <ClInclude Include="cUserIO.h" />
     <ClInclude Include="cVAOMeshUtils.h" />
+    <ClInclude Include="iCommand.h" />
     <ClInclude Include="iEntity.h" />
     <ClInclude Include="iEquipment.h" />
     <ClInclude Include="iMediatorEntity.h" />
