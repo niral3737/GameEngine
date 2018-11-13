@@ -8,6 +8,7 @@
 #include "iMeshObject.h"
 #include "cMeshObject.h"
 #include "cIsland.h"
+#include "cAABB.h"
 
 class cSceneUtils
 {
@@ -30,6 +31,7 @@ public:
 	static bool loadFromSaveFile;
 
 	std::vector<cIsland*> vecIslands;
+	cAABBHierarchy* terrainHierarchy;
 private:
 	static cSceneUtils* pSceneUtils;
 	int selectedObjectIndex;

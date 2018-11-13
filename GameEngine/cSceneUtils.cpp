@@ -26,6 +26,7 @@ cSceneUtils::cSceneUtils()
 {
 	this->selectedMeshObject = NULL;
 	this->selectedObjectIndex = -1;
+	this->terrainHierarchy = new cAABBHierarchy();
 }
 
 cSceneUtils::~cSceneUtils()

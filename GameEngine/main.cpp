@@ -81,6 +81,14 @@ int main(void)
 	lightsManager->loadAllLights(program);
 
 	cCamera* camera = cCamera::getInstance();
+
+	//*****************************
+	cModelDrawInfo terrainMeshInfo;
+	terrainMeshInfo.meshFileName = "terrain_xyz_n_uv.ply";
+	cVAOMeshUtils::getInstance()->findDrawInfoByModelName(terrainMeshInfo);
+	cSceneUtils::getInstance()->terrainHierarchy->loadTerrainAABB(terrainMeshInfo);
+	//*****************************
+
 	/*camera->orientation.x = 0.507363f;
 	camera->orientation.y = -0.0132092f;
 	camera->orientation.z = -0.0100001f;
@@ -163,6 +171,8 @@ int main(void)
 			cSceneUtils::getInstance()->drawObject(pCurrentMesh, matModel, program);
 
 		}//for ( unsigned int objIndex = 0; 
+
+		//std::cout << cAABB::generateId(ship->position, 10.0f) << std::endl;
 
 		double currentTime = glfwGetTime();
 		double deltaTime = currentTime - lastTime;

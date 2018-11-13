@@ -138,6 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cAABB.cpp" />
     <ClCompile Include="cBase.cpp" />
     <ClCompile Include="cCamera.cpp" />
     <ClCompile Include="cCannonBall.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cAABB.h" />
     <ClInclude Include="cBase.h" />
     <ClInclude Include="cCamera.h" />
     <ClInclude Include="cCannonBall.h" />
