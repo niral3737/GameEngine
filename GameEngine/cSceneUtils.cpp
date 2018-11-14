@@ -171,6 +171,14 @@ void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, G
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
+
+	/***************Blender Alpha Trans**************/
+
+	glEnable(GL_BLEND);
+
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	/***********************************************/
+
 	glUniform4f(objectDiffuse_UniLoc,
 		currentMesh->materialDiffuse.r,
 		currentMesh->materialDiffuse.g,

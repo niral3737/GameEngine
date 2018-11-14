@@ -74,6 +74,7 @@ int main(void)
 	terrain->vecTextures.push_back(water);
 
 	cMeshObject* ship = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("ship");
+	ship->setAlphaTransparency(0.5f);
 
 	sTextureInfo fabric2;
 	fabric2.name = "fabric2.bmp";
