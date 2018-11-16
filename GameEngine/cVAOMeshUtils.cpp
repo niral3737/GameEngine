@@ -80,6 +80,21 @@ bool cVAOMeshUtils::loadModels(GLuint program)
 	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("wall.bmp", true);
 	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("water.bmp", true);
 
+	// Load the cube map
+	cBasicTextureManager::getInstance()->SetBasePath("assets/textures/cubemaps");
+	std::string errorString;
+	if (cBasicTextureManager::getInstance()->CreateCubeTextureFromBMPFiles("CityCubeMap",
+		"TropicalSunnyDayLeft2048.bmp", "TropicalSunnyDayRight2048.bmp",				// reverse these
+		"TropicalSunnyDayDown2048.bmp", "TropicalSunnyDayUp2048.bmp",				// Rotate the image "right 90 degrees")
+		"TropicalSunnyDayFront2048.bmp", "TropicalSunnyDayBack2048.bmp", true, errorString))
+	{
+		std::cout << "Loaded the city cube map OK" << std::endl;
+	}
+	else
+	{
+		std::cout << "Error: city cube map DIDN't load. On no!" << std::endl;
+	}
+
 	return true;
 }
 

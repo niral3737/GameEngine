@@ -191,17 +191,54 @@ int main(void)
 
 		lightsManager->copyLightValuesToShader();
 
+		cSceneUtils::getInstance()->drawSkyBox(camera->eye, program);
+
+		cSceneUtils::getInstance()->vecTrasparentObjects.clear();
 		for (unsigned int objIndex = 0;
 			objIndex != (unsigned int)cSceneUtils::getInstance()->vecObjectsToDraw.size();
 			objIndex++)
 		{
-			iMeshObject* pCurrentMesh = cSceneUtils::getInstance()->vecObjectsToDraw[objIndex];
+			cMeshObject* pCurrentMesh = (cMeshObject*) cSceneUtils::getInstance()->vecObjectsToDraw[objIndex];
+
+			//sorting logic
+			if (pCurrentMesh->materialDiffuse.a < 1.0f)
+			{
+				if (cSceneUtils::getInstance()->vecTrasparentObjects.empty())
+				{
+					cSceneUtils::getInstance()->vecTrasparentObjects.push_back(pCurrentMesh);
+					continue;
+				}
+				size_t numTransObj = cSceneUtils::getInstance()->vecTrasparentObjects.size();
+				for (size_t i = 0; i < numTransObj; i++)
+				{
+					cMeshObject* obj = cSceneUtils::getInstance()->vecTrasparentObjects[i];
+					float distanceObj = glm::distance(obj->position, camera->eye);
+					float distanceCurrentMesh = glm::distance(pCurrentMesh->position, camera->eye);
+					if (distanceObj < distanceCurrentMesh )
+					{
+						cSceneUtils::getInstance()->vecTrasparentObjects.insert(cSceneUtils::getInstance()->vecTrasparentObjects.begin() + i, pCurrentMesh);
+						break;
+					}
+					else if (i == numTransObj - 1)
+					{
+						cSceneUtils::getInstance()->vecTrasparentObjects.push_back(pCurrentMesh);
+						break;
+					}
+				}
+				continue;
+			}
 
 			glm::mat4x4 matModel = glm::mat4(1.0f);			// mat4x4 m, p, mvp;
 
 			cSceneUtils::getInstance()->drawObject(pCurrentMesh, matModel, program);
-
 		}//for ( unsigned int objIndex = 0; 
+
+		//drawing trasparent objects
+		for (size_t i = 0; i < cSceneUtils::getInstance()->vecTrasparentObjects.size(); i++)
+		{
+			glm::mat4x4 matModel = glm::mat4(1.0f);			// mat4x4 m, p, mvp;
+			cSceneUtils::getInstance()->drawObject(cSceneUtils::getInstance()->vecTrasparentObjects[i], matModel, program);
+		}
 
 		//std::cout << cAABB::generateId(ship->position, 10.0f) << std::endl;
 
@@ -213,9 +250,9 @@ int main(void)
 			deltaTime = MAX_DELTA_TIME;
 		}
 
-		sceneCommandGroup.Update(deltaTime);
-		ship->position = pMove->currentLocation;
-		std::cout << ship->position.x <<" " << ship->position.z << std::endl;
+		//sceneCommandGroup.Update(deltaTime);
+		//ship->position = pMove->currentLocation;
+		//std::cout << ship->position.x <<" " << ship->position.z << std::endl;
 		//cModelDrawInfo modelDrawInfo;
 		//modelDrawInfo.meshFileName = "terrain_xyz_n.ply";
 		//cVAOMeshUtils::getInstance()->findDrawInfoByModelName(modelDrawInfo);

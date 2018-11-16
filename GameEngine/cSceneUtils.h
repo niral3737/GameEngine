@@ -31,7 +31,10 @@ public:
 	static bool loadFromSaveFile;
 
 	std::vector<cIsland*> vecIslands;
+	std::vector<cMeshObject*> vecTrasparentObjects;
 	cAABBHierarchy* terrainHierarchy;
+
+	void drawSkyBox(glm::vec3 eye, GLuint program);
 private:
 	static cSceneUtils* pSceneUtils;
 	int selectedObjectIndex;

@@ -52,12 +52,33 @@ uniform sampler2D texture07;
 // This is 4 x 2 floats or 8 floats
 uniform vec4 texBlendWeights[2];	// x is 0, y is 1, z is 2
 
+// Cube map texture (NOT a sampler3D)
+uniform samplerCube textureSkyBox;
+uniform bool useSkyBoxTexture;
+
+//alpha transperancy
+uniform float wholeObjectAlphaTransparency;
 
 void main()
 {
 	vec4 materialDiffuse = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 	vec4 materialSpecular = objectSpecular;
 
+	// is this the skybox texture?
+	if (useSkyBoxTexture == true)
+	{
+		//finalOutputColour.rgb = vec3(1.0f, 0.0f, 0.0f);
+
+		// Note for cube maps, the texture coordinates are 3D
+		// (so here we are using the normal on the surface 
+		//  of the sphere, like a "ray cast" really)
+		vec3 skyPixelColour = texture( textureSkyBox, vertNormal.xyz ).rgb;
+		
+		finalOutputColour.rgb = skyPixelColour;
+		finalOutputColour.a = 1.0f;
+		return;
+	}
+	
 	if ( useVertexColour )
 	{
 		//gl_FragColor = vec4(color, 1.0);
@@ -136,7 +157,7 @@ void main()
 
 			// TODO: Still need to do specular, but this gives you an idea
 			finalOutputColour.rgb = finalObjectColour.rgb;
-			finalOutputColour.a = 1.0f;
+			finalOutputColour.a = wholeObjectAlphaTransparency;
 
 			return;		
 		}
@@ -233,7 +254,7 @@ void main()
 //	finalOutputColour.a = 1.0f;
 
 	finalOutputColour.rgb = finalObjectColour.rgb;
-	finalOutputColour.a = 1.0f;
+	finalOutputColour.a = wholeObjectAlphaTransparency;
 
 	
 }

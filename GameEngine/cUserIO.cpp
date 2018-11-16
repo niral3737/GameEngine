@@ -76,6 +76,14 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 			float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 			selectedObject->materialDiffuse = glm::vec4(r, g, b, 1.0f);
 		}
+		if (glfwGetKey(window, GLFW_KEY_COMMA) && action == GLFW_PRESS)
+		{
+			selectedObject->materialDiffuse.a = selectedObject->materialDiffuse.a <= 0.0f ? 0.0f : selectedObject->materialDiffuse.a - 0.05;
+		}
+		if (glfwGetKey(window, GLFW_KEY_PERIOD) && action == GLFW_PRESS)
+		{
+			selectedObject->materialDiffuse.a = selectedObject->materialDiffuse.a >= 1.0f ? 1.0f : selectedObject->materialDiffuse.a + 0.05;
+		}
 	}
 	else if(selectionMode == LIGHT_SELECTION && lightManager->selectedLight){
 

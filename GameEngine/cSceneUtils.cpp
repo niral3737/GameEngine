@@ -22,6 +22,7 @@ glm::vec3 cSceneUtils::cameraAt = glm::vec3(0.0f, 0.0f, 0.0f);
 
 bool cSceneUtils::loadFromSaveFile = false;
 
+
 cSceneUtils::cSceneUtils()
 {
 	this->selectedMeshObject = NULL;
@@ -173,10 +174,22 @@ void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, G
 
 
 	/***************Blender Alpha Trans**************/
+	// I'll do quick sort or whatever sexy sorts
+	// One pass of bubble sort is fine...
 
+	// Enable blend or "alpha" transparency
 	glEnable(GL_BLEND);
 
+	//glDisable( GL_BLEND );
+	// Source == already on framebuffer
+	// Dest == what you're about to draw
+	// This is the "regular alpha blend transparency"
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	GLint wholeObjectAlphaTransparency_LocID = glGetUniformLocation(shaderProgramID,
+		"wholeObjectAlphaTransparency");
+
+	glUniform1f(wholeObjectAlphaTransparency_LocID, currentMesh->materialDiffuse.a);
 	/***********************************************/
 
 	glUniform4f(objectDiffuse_UniLoc,
@@ -389,4 +402,39 @@ void cSceneUtils::selectNextMeshObject(bool includeInvisibleObject)
 	}
 	selectedMeshObject = vecObjectsToDraw[selectedObjectIndex];
 	std::cout << ((cMeshObject*)selectedMeshObject)->friendlyName << " selected, isVisible : " << ((cMeshObject*)selectedMeshObject)->isVisible << std::endl;
+}
+
+void cSceneUtils::drawSkyBox(glm::vec3 eye, GLuint program)
+{
+	cMeshObject* skyBox = (cMeshObject*) findObjectByFriendlyName("SkyBoxObject");
+
+	skyBox->position = eye;
+	skyBox->isVisible = true;
+	skyBox->isWireFrame = false;
+
+	GLuint cityTextureUNIT_ID = 30;			// Texture unit go from 0 to 79
+	glActiveTexture(cityTextureUNIT_ID + GL_TEXTURE0);	// GL_TEXTURE0 = 33984
+
+	int cubeMapTextureID = cBasicTextureManager::getInstance()->getTextureIDFromName("CityCubeMap");
+
+	// Cube map is now bound to texture unit 30
+	//		glBindTexture( GL_TEXTURE_2D, cubeMapTextureID );
+	glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapTextureID);
+
+	//uniform samplerCube textureSkyBox;
+	GLint skyBoxCubeMap_UniLoc = glGetUniformLocation(program, "textureSkyBox");
+	glUniform1i(skyBoxCubeMap_UniLoc, cityTextureUNIT_ID);
+
+	//uniform bool useSkyBoxTexture;
+	GLint useSkyBoxTexture_UniLoc = glGetUniformLocation(program, "useSkyBoxTexture");
+	glUniform1f(useSkyBoxTexture_UniLoc, (float)GL_TRUE);
+
+	glm::mat4 matIdentity = glm::mat4(1.0f);
+	drawObject(skyBox, matIdentity, program);
+
+	//		glEnable( GL_CULL_FACE );
+	//		glCullFace( GL_BACK );
+
+	skyBox->isVisible = false;
+	glUniform1f(useSkyBoxTexture_UniLoc, (float)GL_FALSE);
 }
