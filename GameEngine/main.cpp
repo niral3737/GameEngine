@@ -124,7 +124,6 @@ int main(void)
 
 	cMoveToCommand* pMove = new cMoveToCommand();
 
-
 	nlohmann::json values;
 
 	values["from"]["x"] = ship->position.x;

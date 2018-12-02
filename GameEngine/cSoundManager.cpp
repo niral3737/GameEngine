@@ -6,6 +6,7 @@
 cSoundManager* cSoundManager::soundManager = NULL;
 
 const unsigned int FILENAME_LENGTH = 50;
+#define STREAM_BUFFER_SIZE 65536
 std::map<FMOD_SOUND_FORMAT, std::string> mapFormat = {
 	{FMOD_SOUND_FORMAT_NONE,             "Unitialized / unknown. "},
 	{FMOD_SOUND_FORMAT_PCM8,             "8bit integer PCM data." },
