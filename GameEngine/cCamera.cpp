@@ -203,6 +203,9 @@ void cCamera::setOrientationEulerAngles(glm::vec3 newEulerAngles, bool bIsDegree
 	}
 
 	this->orientation = glm::quat(glm::vec3(newEulerAngles.x, newEulerAngles.y, newEulerAngles.z));
+
+	this->updateAtFromOrientation();
+	this->updateUpFromOrientation();
 }
 
 void cCamera::setOrientationEulerAngles(float x, float y, float z, bool bIsDegrees)
@@ -226,6 +229,9 @@ void cCamera::adjustOrientationEulerAngles(glm::vec3 adjEulerAngle, bool bIsDegr
 	//this->orientation *= rotationAdjust;
 	this->orientation *= rotationAdjust;
 	this->orientation = this->orientation * rotationAdjust;
+
+	this->updateAtFromOrientation();
+	this->updateUpFromOrientation();
 }
 
 void cCamera::adjustOrientationEulerAngles(float x, float y, float z, bool bIsDegrees)
@@ -236,6 +242,13 @@ void cCamera::adjustOrientationEulerAngles(float x, float y, float z, bool bIsDe
 void cCamera::adjustOrientation(glm::quat adjOrient)
 {
 	this->orientation *= adjOrient;
+}
+
+void cCamera::lookAt(glm::vec3 objPosToLookAt)
+{
+	glm::vec3 direction = glm::normalize(objPosToLookAt - this->eye);
+
+
 }
 
 void cCamera::updateAtFromOrientation()

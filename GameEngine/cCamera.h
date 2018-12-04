@@ -43,6 +43,8 @@ public:
 	void adjustOrientationEulerAngles(float x, float y, float z, bool bIsDegrees = false);
 	void adjustOrientation(glm::quat adjOrient);
 	
+	void lookAt(glm::vec3 objPosToLookAt);
+
 	glm::quat orientation;
 
 private:

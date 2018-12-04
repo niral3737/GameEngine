@@ -90,10 +90,10 @@ int main(void)
 	cSceneUtils::getInstance()->terrainHierarchy->loadTerrainAABB(terrainMeshInfo);
 	//*****************************
 
-	camera->eye.x = 50.0f;
-	camera->eye.y = 0.0f;
-	camera->eye.z = 50.0f;
-
+	camera->eye.x = 0.0f;
+	camera->eye.y = 40.0f;
+	camera->eye.z = -50.0f;
+	camera->setOrientationEulerAngles(glm::vec3(25.0f, 0.0f, 0.0f), true);
 
 	cSceneUtils* sceneUtils = cSceneUtils::getInstance();
 
