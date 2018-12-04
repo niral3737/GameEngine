@@ -21,7 +21,7 @@
 #define GLM_ENABLE_EXPERIMENTAL		// To get glm quaternion stuff to compile
 #include <glm/gtx/quaternion.hpp>	// Note strange folder
 
-#include "cCamera.h"
+#include "cFlyCamera.h"
 #include "cRandomHelper.h"
 //#include "cPort.h"
 #include "cEntityFactory.h"
@@ -33,7 +33,7 @@ int main(void)
 {
 	cGLFWUtils::setUpGLFW();
 	GLuint program = cShaderUtils::setUpShaders();
-	cCamera* camera = cCamera::getInstance();
+	cFlyCamera* camera = cFlyCamera::getInstance();
 	//std::cout << "Load from previously saved file? (Y/y)" << std::endl;
 	char answer = 'y';
 	//std::cin >> answer;
@@ -93,7 +93,7 @@ int main(void)
 	camera->eye.x = 50.0f;
 	camera->eye.y = 0.0f;
 	camera->eye.z = 50.0f;
-
+	camera->setMeshOrientationEulerAngles(50.0f, 50.0f, 50.0f, true);
 
 	cSceneUtils* sceneUtils = cSceneUtils::getInstance();
 
@@ -169,11 +169,11 @@ int main(void)
 			ratio,		// Aspect ratio
 			0.1f,			// Near clipping plane
 			10000.0f);	// Far clipping plane
-		matView = glm::lookAt(cCamera::getInstance()->eye,	// Eye
-			cCamera::getInstance()->getAtInWorldSpace(),		// At
-			cCamera::getInstance()->getUpVector());// Up
+		matView = glm::lookAt(camera->eye,	// Eye
+			camera->getAtInWorldSpace(),		// At
+			camera->getUpVector());// Up
 
-		glUniform3f(eyeLocation_location, cCamera::getInstance()->eye.x, cCamera::getInstance()->eye.y, cCamera::getInstance()->eye.z);
+		glUniform3f(eyeLocation_location, camera->eye.x, camera->eye.y, camera->eye.z);
 
 		glUniformMatrix4fv(matView_location, 1, GL_FALSE, glm::value_ptr(matView));
 		glUniformMatrix4fv(matProj_location, 1, GL_FALSE, glm::value_ptr(matProjection));

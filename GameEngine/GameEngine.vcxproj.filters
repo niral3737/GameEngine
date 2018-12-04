@@ -123,9 +123,6 @@
     <ClCompile Include="cMediator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cRandomHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -181,6 +178,9 @@
       <Filter>Scripting</Filter>
     </ClCompile>
     <ClCompile Include="cMoveToCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cFlyCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -248,9 +248,6 @@
     <ClInclude Include="cMediator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cCamera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="iEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -315,6 +312,9 @@
       <Filter>Scripting</Filter>
     </ClInclude>
     <ClInclude Include="cMoveToCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cFlyCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -140,7 +140,7 @@
   <ItemGroup>
     <ClCompile Include="cAABB.cpp" />
     <ClCompile Include="cBase.cpp" />
-    <ClCompile Include="cCamera.cpp" />
+    <ClCompile Include="cFlyCamera.cpp" />
     <ClCompile Include="cCannonBall.cpp" />
     <ClCompile Include="cCommandGroup.cpp" />
     <ClCompile Include="cEntityFactory.cpp" />
@@ -183,7 +183,7 @@
   <ItemGroup>
     <ClInclude Include="cAABB.h" />
     <ClInclude Include="cBase.h" />
-    <ClInclude Include="cCamera.h" />
+    <ClInclude Include="cFlyCamera.h" />
     <ClInclude Include="cCannonBall.h" />
     <ClInclude Include="cCommandGroup.h" />
     <ClInclude Include="cEntityFactory.h" />

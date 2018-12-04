@@ -12,7 +12,6 @@
 #include "cMeshObjectFactory.h"
 #include "cModelDrawInfo.h"
 #include "cVAOMeshUtils.h"
-#include "cCamera.h"
 #include "TextureManager/cBasicTextureManager.h"
 #include <map>
 

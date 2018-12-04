@@ -13,7 +13,7 @@
 #include "cLightsManager.h"
 #include "cJsonUtils.h"
 #include "json.hpp"
-#include "cCamera.h"
+#include "cFlyCamera.h"
 #include "cPhysics.h"
 
 eSelectionMode cUserIO::selectionMode = eSelectionMode::MESH_SELECTION;
@@ -129,8 +129,8 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 	{
 		cMeshObject* ball = (cMeshObject*) sceneUtils->findObjectByFriendlyName("cueBall");
 		ball->isUpdatedByPhysics = true;
-		ball->position = cCamera::getInstance()->eye;
-		ball->velocity = cCamera::getInstance()->getCameraDirection() * cPhysics::initialProjectileVelocity;
+		ball->position = cFlyCamera::getInstance()->eye;
+		ball->velocity = cFlyCamera::getInstance()->getCameraDirection() * cPhysics::initialProjectileVelocity;
 		ball->acceleration = cPhysics::ACCEL_GRAVITY;
 
 	}
@@ -157,7 +157,7 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		cameraSpeed = CAMERA_SPEED_FAST;
 	}
 
-	cCamera* camera = cCamera::getInstance();
+	cFlyCamera* camera = cFlyCamera::getInstance();
 
 	float cameraMoveSpeed = camera->movementSpeed;
 	// If no keys are down, move the camera
@@ -178,32 +178,32 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		{
 			//cSceneUtils::cameraEye.z += cameraSpeed;
-			camera->moveForwardZ(+cameraMoveSpeed);
+			camera->MoveForward_Z(+cameraMoveSpeed);
 		}
 		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)	// "backwards"
 		{
 			//cSceneUtils::cameraEye.z -= cameraSpeed;
-			camera->moveForwardZ(-cameraMoveSpeed);
+			camera->MoveForward_Z(-cameraMoveSpeed);
 		}
 		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)	// "left"
 		{
 			//cSceneUtils::cameraEye.x += cameraSpeed;
-			camera->moveLeftRightX(-cameraMoveSpeed);
+			camera->MoveLeftRight_X(-cameraMoveSpeed);
 		}
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)	// "right"
 		{
 			//cSceneUtils::cameraEye.x -= cameraSpeed;
-			camera->moveLeftRightX(+cameraMoveSpeed);
+			camera->MoveLeftRight_X(+cameraMoveSpeed);
 		}
 		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)	// "up"
 		{
 			//cSceneUtils::cameraEye.y += cameraSpeed;
-			camera->moveUpDownY(-cameraMoveSpeed);
+			camera->MoveUpDown_Y(-cameraMoveSpeed);
 		}
 		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)	// "down"
 		{
 			//cSceneUtils::cameraEye.y -= cameraSpeed;
-			camera->moveUpDownY(+cameraMoveSpeed);
+			camera->MoveUpDown_Y(+cameraMoveSpeed);
 		}
 
 	}//if(AreAllModifiersUp(window)
@@ -212,12 +212,12 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 	{
 		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)	// "up"
 		{
-			camera->rollCWCCW(-CAMERA_TURN_SPEED);
+			camera->Roll_CW_CCW(-CAMERA_TURN_SPEED);
 			//			::g_pFlyCamera->MoveUpDown_Y( +cameraSpeed );
 		}
 		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)	// "down"
 		{
-			camera->rollCWCCW(+CAMERA_TURN_SPEED);
+			camera->Roll_CW_CCW(+CAMERA_TURN_SPEED);
 			//			::g_pFlyCamera->MoveUpDown_Y( -cameraSpeed );
 		}
 	}
@@ -424,7 +424,7 @@ void cUserIO::processAsynMouse(GLFWwindow * window)
 	double x, y;
 	glfwGetCursorPos(window, &x, &y);
 
-	cCamera* camera = cCamera::getInstance();
+	cFlyCamera* camera = cFlyCamera::getInstance();
 
 	camera->setMouseXY(x, y);
 
@@ -438,9 +438,9 @@ void cUserIO::processAsynMouse(GLFWwindow * window)
 		&& cUserIO::isMouseInsideWindow)
 	{
 		// Mouse button is down so turn the camera
-		camera->yawLeftRight(-camera->getDeltaMouseX() * MOUSE_SENSITIVITY);
+		camera->Yaw_LeftRight(-camera->getDeltaMouseX() * MOUSE_SENSITIVITY);
 
-		camera->pitchUpDown(camera->getDeltaMouseY() * MOUSE_SENSITIVITY);
+		camera->Pitch_UpDown(camera->getDeltaMouseY() * MOUSE_SENSITIVITY);
 
 	}
 
@@ -492,7 +492,7 @@ void cUserIO::mouse_button_callback(GLFWwindow* window, int button, int action, 
 void cUserIO::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
 	// A regular mouse wheel returns the y value
-	cCamera::getInstance()->setMouseWheelDelta(yoffset);
+	cFlyCamera::getInstance()->setMouseWheelDelta(yoffset);
 
 	//	std::cout << "Mouse wheel: " << yoffset << std::endl;
 
@@ -509,13 +509,13 @@ void cUserIO::mSaveSettings()
 	nlohmann::json json = cJsonUtils::getJsonInstance();
 
 	//save camera
-	json["cameraEye"]["x"] = cCamera::getInstance()->eye.x;
-	json["cameraEye"]["y"] = cCamera::getInstance()->eye.y;
-	json["cameraEye"]["z"] = cCamera::getInstance()->eye.z;
+	json["cameraEye"]["x"] = cFlyCamera::getInstance()->eye.x;
+	json["cameraEye"]["y"] = cFlyCamera::getInstance()->eye.y;
+	json["cameraEye"]["z"] = cFlyCamera::getInstance()->eye.z;
 
-	json["cameraAt"]["x"] = cCamera::getInstance()->getAtInWorldSpace().x;
-	json["cameraAt"]["y"] = cCamera::getInstance()->getAtInWorldSpace().y;
-	json["cameraAt"]["z"] = cCamera::getInstance()->getAtInWorldSpace().z;
+	json["cameraAt"]["x"] = cFlyCamera::getInstance()->getAtInWorldSpace().x;
+	json["cameraAt"]["y"] = cFlyCamera::getInstance()->getAtInWorldSpace().y;
+	json["cameraAt"]["z"] = cFlyCamera::getInstance()->getAtInWorldSpace().z;
 
 	//saving the lights
 	size_t numLights = lightsManager->vecLights.size();
