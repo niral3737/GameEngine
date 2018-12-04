@@ -446,6 +446,10 @@ void cUserIO::processAsynMouse(GLFWwindow * window)
 
 		// Adjust the movement speed based on the wheel position
 		camera->movementSpeed = camera->getMouseWheel() * MOUSE_WHEEL_SENSITIVITY;
+		if (camera->movementSpeed <= 0.0f)
+		{
+			camera->movementSpeed = 0.0f;
+		}
 	}
 
 	return;

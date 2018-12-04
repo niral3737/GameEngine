@@ -33,7 +33,7 @@ int main(void)
 {
 	cGLFWUtils::setUpGLFW();
 	GLuint program = cShaderUtils::setUpShaders();
-
+	cCamera* camera = cCamera::getInstance();
 	//std::cout << "Load from previously saved file? (Y/y)" << std::endl;
 	char answer = 'y';
 	//std::cin >> answer;
@@ -83,8 +83,6 @@ int main(void)
 	
 	lightsManager->loadAllLights(program);
 
-	cCamera* camera = cCamera::getInstance();
-
 	//*****************************
 	cModelDrawInfo terrainMeshInfo;
 	terrainMeshInfo.meshFileName = "terrain_xyz_n_uv.ply";
@@ -92,14 +90,10 @@ int main(void)
 	cSceneUtils::getInstance()->terrainHierarchy->loadTerrainAABB(terrainMeshInfo);
 	//*****************************
 
-	/*camera->orientation.x = 0.507363f;
-	camera->orientation.y = -0.0132092f;
-	camera->orientation.z = -0.0100001f;
-	camera->orientation.w = 0.861575f;
+	camera->eye.x = 50.0f;
+	camera->eye.y = 0.0f;
+	camera->eye.z = 50.0f;
 
-	camera->eye.x = 54.492;
-	camera->eye.y = 738.26;
-	camera->eye.z = -458.177;*/
 
 	cSceneUtils* sceneUtils = cSceneUtils::getInstance();
 
@@ -142,7 +136,6 @@ int main(void)
 	sceneCommandGroup.vecCommandGroups.push_back(pFollowCG);
 
 	/*****************************************************/
-
 	while (!glfwWindowShouldClose(window))
 	{
 		/*std::cout << "x: " << camera->orientation.x << std::endl;
@@ -153,7 +146,6 @@ int main(void)
 		std::cout << "eye: " << camera->eye.x << std::endl;
 		std::cout << camera->eye.y << std::endl;
 		std::cout << camera->eye.z << std::endl;*/
-
 		float ratio;
 		int width, height;
 		glm::mat4x4 matProjection = glm::mat4(1.0f);

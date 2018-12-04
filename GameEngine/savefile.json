@@ -451,7 +451,8 @@
         "cueBall.ply",
         "terrain_xyz_n_uv.ply",
         "ship.ply",
-        "stadium.ply"
+        "stadium.ply",
+        "ghost.ply"
     ],
     "meshes": [
         {

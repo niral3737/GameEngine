@@ -17,7 +17,6 @@ cCamera::cCamera()
 	this->updateAtFromOrientation();
 	this->updateUpFromOrientation();
 
-
 	this->setMouseXY(0.0, 0.0);
 	this->mouseWheel = 25.0f;
 
