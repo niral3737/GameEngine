@@ -248,7 +248,6 @@ void cCamera::lookAt(glm::vec3 objPosToLookAt)
 {
 	glm::vec3 direction = glm::normalize(objPosToLookAt - this->eye);
 
-
 }
 
 void cCamera::updateAtFromOrientation()
