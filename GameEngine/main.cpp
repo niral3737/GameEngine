@@ -106,8 +106,6 @@ int main(void)
 
 	GLFWwindow* window = cGLFWUtils::getWindowInstance();
 
-	cLightHelper* pLightHelper = new cLightHelper();
-
 	cPhysics* physics = new cPhysics();
 
 	/*******************Move to Command*****************************/
@@ -181,6 +179,7 @@ int main(void)
 		glUniformMatrix4fv(matProj_location, 1, GL_FALSE, glm::value_ptr(matProjection));
 
 		lightsManager->copyLightValuesToShader();
+		lightsManager->drawAttenuationSpheres(program);
 
 		cSceneUtils::getInstance()->drawSkyBox(camera->eye, program);
 
@@ -231,6 +230,7 @@ int main(void)
 			cSceneUtils::getInstance()->drawObject(cSceneUtils::getInstance()->vecTrasparentObjects[i], matModel, program);
 		}
 
+		sceneUtils->drawAABBs(program);
 		//std::cout << cAABB::generateId(ship->position, 10.0f) << std::endl;
 
 		double currentTime = glfwGetTime();

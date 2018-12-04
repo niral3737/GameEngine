@@ -5,6 +5,8 @@
 
 #include "json.hpp"
 #include "cJsonUtils.h"
+#include "cMeshObject.h"
+#include "cSceneUtils.h"
 
 cLightsManager* cLightsManager::instance = NULL;
 bool cLightsManager::loadFromSaveFile = false;
@@ -13,6 +15,7 @@ cLightsManager::cLightsManager()
 {
 	this->selectedLight = NULL;
 	this->selectedLightIndex = 0;
+	pLightHelper = new cLightHelper();
 }
 
 
@@ -191,4 +194,64 @@ void cLightsManager::selectNextLight()
 	}
 	selectedLight = vecLights[selectedLightIndex];
 	std::cout << selectedLight->friendlyName << " selected isOn " << selectedLight->getOn() << std::endl;
+}
+
+void cLightsManager::drawAttenuationSpheres(GLuint program)
+{
+	cMeshObject* attenSphere = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("sphere");
+	attenSphere->isVisible = true;
+	attenSphere->dontLight = true;
+	attenSphere->isWireFrame = true;
+
+	glm::mat4 matBall(1.0f);
+
+	const float ACCURACY_OF_DISTANCE = 0.01f;
+	const float INFINITE_DISTANCE = 10000.0f;
+
+	for (std::vector<cLight*>::iterator it = vecLights.begin(); it != vecLights.end(); it++)
+	{
+		cLight* light = *it;
+
+		if (!light->useDebugSphere)
+			continue;
+
+		attenSphere->position = light->position;
+
+		attenSphere->setDiffuseColour(glm::vec3(1.0f, 1.0f, 0.0f));
+		float distance90Percent = pLightHelper->calcApproxDistFromAtten(0.90f, ACCURACY_OF_DISTANCE,
+			INFINITE_DISTANCE, light->atten.x, light->atten.y, light->atten.z);
+		attenSphere->scale = distance90Percent;
+		cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
+
+		attenSphere->setDiffuseColour(glm::vec3(0.0f, 1.0f, 0.0f));	// 50% brightness
+		float distance50Percent =
+			pLightHelper->calcApproxDistFromAtten(0.50f, ACCURACY_OF_DISTANCE,
+				INFINITE_DISTANCE,
+				light->atten.x,
+				light->atten.y,
+				light->atten.z);
+		attenSphere->scale = distance50Percent;
+		cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
+
+		attenSphere->setDiffuseColour(glm::vec3(1.0f, 0.0f, 0.0f));	// 25% brightness
+		float distance25Percent =
+			pLightHelper->calcApproxDistFromAtten(0.25f, ACCURACY_OF_DISTANCE,
+				INFINITE_DISTANCE,
+				light->atten.x,
+				light->atten.y,
+				light->atten.z);
+		attenSphere->scale = distance25Percent;
+		cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
+
+		attenSphere->setDiffuseColour(glm::vec3(0.0f, 0.0f, 1.0f));	// 1% brightness
+		float distance1Percent =
+			pLightHelper->calcApproxDistFromAtten(0.01f, ACCURACY_OF_DISTANCE,
+				INFINITE_DISTANCE,
+				light->atten.x,
+				light->atten.y,
+				light->atten.z);
+		attenSphere->scale = distance1Percent;
+		cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
+	}
+	attenSphere->isVisible = false;
 }

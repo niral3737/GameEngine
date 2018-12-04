@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "cLight.h"
+#include "cLightHelper.h"
 
 class cLightsManager
 {
@@ -33,6 +34,10 @@ public:
 	// Start of every frame or scene
 	void copyLightValuesToShader(void);
 	void selectNextLight();
+	
+	void drawAttenuationSpheres(GLuint program);
+
+	cLightHelper* pLightHelper;
 
 private:
 	cLightsManager();

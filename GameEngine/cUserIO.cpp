@@ -54,6 +54,11 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 		std::cout << "Light selection mode" << std::endl;
 	}
 
+	if (key == GLFW_KEY_B && action == GLFW_PRESS)
+	{
+		sceneUtils->showAABBs = !sceneUtils->showAABBs;
+	}
+
 	if (selectionMode == MESH_SELECTION && sceneUtils->selectedMeshObject)
 	{
 		cMeshObject* selectedObject = (cMeshObject*) sceneUtils->selectedMeshObject;

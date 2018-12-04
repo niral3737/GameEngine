@@ -14,6 +14,7 @@
 #include "cVAOMeshUtils.h"
 #include "cCamera.h"
 #include "TextureManager/cBasicTextureManager.h"
+#include <map>
 
 cSceneUtils* cSceneUtils::pSceneUtils = 0;
 
@@ -28,6 +29,7 @@ cSceneUtils::cSceneUtils()
 	this->selectedMeshObject = NULL;
 	this->selectedObjectIndex = -1;
 	this->terrainHierarchy = new cAABBHierarchy();
+	this->showAABBs = false;
 }
 
 cSceneUtils::~cSceneUtils()
@@ -437,4 +439,30 @@ void cSceneUtils::drawSkyBox(glm::vec3 eye, GLuint program)
 
 	skyBox->isVisible = false;
 	glUniform1f(useSkyBoxTexture_UniLoc, (float)GL_FALSE);
+}
+
+void cSceneUtils::drawAABBs(GLuint program)
+{
+
+	if (!this->showAABBs)
+	{
+		return;
+	}
+
+	cMeshObject* aabbCube = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("cube");
+	aabbCube->isVisible = true;
+	aabbCube->dontLight = true;
+	aabbCube->isWireFrame = true;
+
+	glm::mat4 matCube(1.0f);
+
+	terrainHierarchy->mapAABBs;
+
+	for (std::map<unsigned long long, cAABB*>::iterator it = terrainHierarchy->mapAABBs.begin(); it != terrainHierarchy->mapAABBs.end(); it++)
+	{
+		 aabbCube->position = it->second->getCentre();
+		 drawObject(aabbCube, matCube, program);
+	}
+
+	aabbCube->isVisible = false;
 }

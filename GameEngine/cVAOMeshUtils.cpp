@@ -161,7 +161,7 @@ bool cVAOMeshUtils::mLoadModelFromFile(cModelDrawInfo &drawInfo)
 	// if ( theFile.is_open() == false )
 	if (!theFile.is_open())			// More "c" or "C++" ish
 	{
-		//std::cout << "Didn't open file" << std::endl;
+		std::cout << "Didn't open file" << std::endl;
 		this->mAppendTextToLastError("Didn't load the ", false);
 		this->mAppendTextToLastError(drawInfo.meshFileName, false);
 		this->mAppendTextToLastError(" file.");
@@ -183,8 +183,8 @@ bool cVAOMeshUtils::mLoadModelFromFile(cModelDrawInfo &drawInfo)
 //	theFile >> g_numberOfVertices;
 	theFile >> drawInfo.numberOfVertices;
 
-	//	std::cout << "vertices: " << g_numberOfVertices << std::endl;
-	//std::cout << "vertices: " << drawInfo.numberOfVertices << std::endl;
+		//std::cout << "vertices: " << g_numberOfVertices << std::endl;
+	std::cout << "vertices: " << drawInfo.numberOfVertices << std::endl;
 
 	// seach for "face"
 	while (theFile >> nextData)
@@ -201,7 +201,7 @@ bool cVAOMeshUtils::mLoadModelFromFile(cModelDrawInfo &drawInfo)
 	theFile >> drawInfo.numberOfTriangles;
 
 	//	std::cout << "triangles: " << g_numberOfTriangles << std::endl;
-	//std::cout << "triangles: " << drawInfo.numberOfTriangles << std::endl;
+	std::cout << "triangles: " << drawInfo.numberOfTriangles << std::endl;
 
 	while (theFile >> nextData)
 	{
@@ -265,7 +265,7 @@ bool cVAOMeshUtils::mLoadModelFromFile(cModelDrawInfo &drawInfo)
 		theFile >> drawInfo.pTriangles[index].z;
 	}//for ( unsigned int index...
 
-	//std::cout << "Read from the file OK." << std::endl;
+	std::cout << "Read from the file OK." << std::endl;
 
 	// Calculating extents...
 

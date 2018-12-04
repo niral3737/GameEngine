@@ -33,8 +33,10 @@ public:
 	std::vector<cIsland*> vecIslands;
 	std::vector<cMeshObject*> vecTrasparentObjects;
 	cAABBHierarchy* terrainHierarchy;
+	bool showAABBs;
 
 	void drawSkyBox(glm::vec3 eye, GLuint program);
+	void drawAABBs(GLuint program);
 private:
 	static cSceneUtils* pSceneUtils;
 	int selectedObjectIndex;
