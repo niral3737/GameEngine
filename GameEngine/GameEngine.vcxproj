@@ -93,7 +93,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>glfw3.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;fmod_vc.lib;%(AdditionalDependencies);lua5.3.3-static.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -104,7 +104,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>glfw3.lib;fmod64_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;fmod64_vc.lib;%(AdditionalDependencies);lua5.3.3-static.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -119,7 +119,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glfw3.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;fmod_vc.lib;%(AdditionalDependencies);lua5.3.3-static.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -134,7 +134,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glfw3.lib;fmod64_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;fmod64_vc.lib;%(AdditionalDependencies);lua5.3.3-static.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -145,6 +145,7 @@
     <ClCompile Include="cCommandGroup.cpp" />
     <ClCompile Include="cEntityFactory.cpp" />
     <ClCompile Include="cEntityFactoryImpl.cpp" />
+    <ClCompile Include="cFollowObjectCommand.cpp" />
     <ClCompile Include="cGemStones.cpp" />
     <ClCompile Include="cGLColourHelper.cpp" />
     <ClCompile Include="cGLFWUtils.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="cUserIO.cpp" />
     <ClCompile Include="cSoundManager.cpp" />
+    <ClCompile Include="smoothstep_Wikipedia.cpp" />
     <ClCompile Include="TextureManager\C24BitBMPpixel.cpp" />
     <ClCompile Include="TextureManager\cBasicTextureManager.cpp" />
     <ClCompile Include="TextureManager\CTextureFromBMP.cpp" />
@@ -188,6 +190,7 @@
     <ClInclude Include="cCommandGroup.h" />
     <ClInclude Include="cEntityFactory.h" />
     <ClInclude Include="cEntityFactoryImpl.h" />
+    <ClInclude Include="cFollowObjectCommand.h" />
     <ClInclude Include="cGemStones.h" />
     <ClInclude Include="cGLColourHelper.h" />
     <ClInclude Include="cGLFWUtils.h" />
@@ -221,6 +224,7 @@
     <ClInclude Include="json.hpp" />
     <ClInclude Include="cJsonUtils.h" />
     <ClInclude Include="cSoundManager.h" />
+    <ClInclude Include="smoothstep_Wikipedia.h" />
     <ClInclude Include="TextureManager\C24BitBMPpixel.h" />
     <ClInclude Include="TextureManager\cBasicTextureManager.h" />
     <ClInclude Include="TextureManager\CTextureFromBMP.h" />

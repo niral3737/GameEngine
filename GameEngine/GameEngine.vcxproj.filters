@@ -58,6 +58,9 @@
     <Filter Include="Scripting">
       <UniqueIdentifier>{107d9956-163d-475a-bf6f-0ab8fe1a84d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripting\Commands">
+      <UniqueIdentifier>{88fb32d4-db16-4b0c-b653-d0919aa60d3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -181,7 +184,13 @@
       <Filter>Scripting</Filter>
     </ClCompile>
     <ClCompile Include="cMoveToCommand.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Scripting\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="cFollowObjectCommand.cpp">
+      <Filter>Scripting\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="smoothstep_Wikipedia.cpp">
+      <Filter>Scripting</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -315,7 +324,13 @@
       <Filter>Scripting</Filter>
     </ClInclude>
     <ClInclude Include="cMoveToCommand.h">
-      <Filter>Header Files</Filter>
+      <Filter>Scripting\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="cFollowObjectCommand.h">
+      <Filter>Scripting\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="smoothstep_Wikipedia.h">
+      <Filter>Scripting</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

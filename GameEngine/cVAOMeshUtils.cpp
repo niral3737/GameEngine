@@ -39,16 +39,19 @@ cVAOMeshUtils* cVAOMeshUtils::getInstance(void)
 bool cVAOMeshUtils::loadModels(GLuint program)
 {
 	std::vector<std::string> meshFileNames;
+	std::vector<std::string> textures;
 	if (loadFromSaveFile)
 	{
 		std::ifstream ifs("savefile.json");
 		nlohmann::json j = json::parse(ifs);
 		ifs.close();
 		meshFileNames = j["meshFileNames"].get<std::vector<std::string>>();
+		textures = j["textures"].get<std::vector<std::string>>();
 	}
 	else
 	{
 		meshFileNames = cJsonUtils::getJsonInstance()["meshFileNames"].get<std::vector<std::string>>();
+		textures = cJsonUtils::getJsonInstance()["meshFileNames"].get<std::vector<std::string>>();
 	}
 
 	for (size_t i = 0; i < meshFileNames.size(); i++)
@@ -63,22 +66,16 @@ bool cVAOMeshUtils::loadModels(GLuint program)
 		}
 	}
 
+	//TODO change this to get from json file
 	cBasicTextureManager::getInstance()->SetBasePath("assets/textures");
 
-	if (!cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("Justin.bmp", true))
+	for (size_t i = 0; i < textures.size(); i++)
 	{
-		std::cout << "Didn't load texture" << std::endl;
+		if (!cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile(textures[i], true))
+		{
+			std::cout << "Didn't load texture" << std::endl;
+		}
 	}
-	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("grass.bmp", true);
-	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("brick-wall.bmp", true);
-	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("220px-Emma_Watson_2013.bmp", true);
-
-	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("wood.bmp", true);
-	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("trump.bmp", true);
-	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("fabric.bmp", true);
-	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("fabric2.bmp", true);
-	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("wall.bmp", true);
-	cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile("water.bmp", true);
 
 	// Load the cube map
 	cBasicTextureManager::getInstance()->SetBasePath("assets/textures/cubemaps");

@@ -442,19 +442,29 @@
     ],
     "maxNumberOfLights": 10,
     "meshFileNames": [
-        "island1.ply",
-        "island2.ply",
-        "island3.ply",
-        "island4.ply",
         "sphereInvertedNormals.ply",
         "sphere.ply",
         "cueBall.ply",
-        "terrain_xyz_n_uv.ply",
+        "Desert.ply",
         "ship.ply",
         "stadium.ply",
         "ghost.ply",
         "cube.ply"
     ],
+    "textures": [
+        "Desert_Road_Diffuse.bmp",
+        "Justin.bmp",
+        "grass.bmp",
+        "brick-wall.bmp",
+        "220px-Emma_Watson_2013.bmp",
+        "wood.bmp",
+        "trump.bmp",
+        "fabric.bmp",
+        "fabric2.bmp",
+        "wall.bmp",
+        "water.bmp"
+    ],
+    "textureBasePath": "assets/textures",
     "meshes": [
         {
             "acceleration": {
@@ -469,9 +479,9 @@
             "isWireFrame": false,
             "materialDiffuse": {
                 "a": 1.0,
-                "b": 0.4000000059604645,
-                "g": 0.4000000059604645,
-                "r": 0.4000000059604645
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
             },
             "materialSpecular": {
                 "b": 1.0,
@@ -479,7 +489,7 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "terrain_xyz_n_uv.ply",
+            "meshName": "Desert.ply",
             "position": {
                 "x": 0.0,
                 "y": 0.0,

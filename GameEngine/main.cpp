@@ -29,6 +29,13 @@
 #include "cCommandGroup.h"
 #include "cMoveToCommand.h"
 
+//extern "C" {
+//#include <Lua5.3.3\lua.h>
+//#include <Lua5.3.3\lua.h>
+//#include <Lua5.3.3\lauxlib.h>
+//#include <Lua5.3.3/lualib.h>
+//}
+
 int main(void)
 {
 	cGLFWUtils::setUpGLFW();
@@ -68,10 +75,10 @@ int main(void)
 
 	cMeshObject* terrain = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("terrain");
 
-	sTextureInfo water;
-	water.name = "water.bmp";
-	water.strength = 1.0f;
-	terrain->vecTextures.push_back(water);
+	sTextureInfo desert;
+	desert.name = "Desert_Road_Diffuse.bmp";
+	desert.strength = 1.0f;
+	terrain->vecTextures.push_back(desert);
 
 	cMeshObject* ship = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("ship");
 	ship->setAlphaTransparency(0.5f);
@@ -85,7 +92,7 @@ int main(void)
 
 	//*****************************
 	cModelDrawInfo terrainMeshInfo;
-	terrainMeshInfo.meshFileName = "terrain_xyz_n_uv.ply";
+	terrainMeshInfo.meshFileName = "Desert.ply";
 	cVAOMeshUtils::getInstance()->findDrawInfoByModelName(terrainMeshInfo);
 	cSceneUtils::getInstance()->terrainHierarchy->loadTerrainAABB(terrainMeshInfo);
 	//*****************************
