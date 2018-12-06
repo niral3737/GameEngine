@@ -5,14 +5,14 @@
     "backgroundSound2": "Puzzle-Game",
     "backgroundSound3": "Fantasy_Game_Background",
     "cameraAt": {
-        "x": 54.37981414794922,
-        "y": 27.497962951660156,
-        "z": -72.55223083496094
+        "x": -221.6547393798828,
+        "y": 125.53041076660156,
+        "z": -2.9976718425750732
     },
     "cameraEye": {
-        "x": 54.801658630371094,
-        "y": 27.700580596923828,
-        "z": -73.43597412109375
+        "x": -221.62197875976563,
+        "y": 126.15057373046875,
+        "z": -3.7814688682556152
     },
     "cameraUp": {
         "x": 0.0,
@@ -29,8 +29,8 @@
             "attenuation": {
                 "const": 0.0,
                 "distanceCutOff": 0.0,
-                "linear": 0.03157208487391472,
-                "quad": 9.999999747378752e-06
+                "linear": 0.140572190284729,
+                "quad": 0.00022000008902978152
             },
             "diffuse": {
                 "a": 1.0,
@@ -59,9 +59,9 @@
             },
             "position": {
                 "w": 1.0,
-                "x": -36.29999923706055,
-                "y": 75.0,
-                "z": 11.799999237060547
+                "x": -18.299999237060547,
+                "y": 239.5,
+                "z": -201.6999969482422
             },
             "specular": {
                 "a": 1.0,
@@ -75,8 +75,8 @@
             "attenuation": {
                 "const": 0.0,
                 "distanceCutOff": 0.0,
-                "linear": 0.08710000663995743,
-                "quad": 0.0004000000189989805
+                "linear": 0.041099995374679565,
+                "quad": 5.000013334210962e-05
             },
             "diffuse": {
                 "a": 1.0,
@@ -105,9 +105,9 @@
             },
             "position": {
                 "w": 1.0,
-                "x": -44.0,
+                "x": 41.5,
                 "y": 135.0,
-                "z": -128.0
+                "z": -249.0
             },
             "specular": {
                 "a": 1.0,
@@ -121,14 +121,14 @@
             "attenuation": {
                 "const": 0.0,
                 "distanceCutOff": 0.0,
-                "linear": -0.05999993905425072,
-                "quad": 0.0005000000237487257
+                "linear": -0.043999966233968735,
+                "quad": 0.004350014962255955
             },
             "diffuse": {
                 "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
+                "b": 0.9885250329971313,
+                "g": 0.1658986210823059,
+                "r": 0.14731284976005554
             },
             "direction": {
                 "w": 0.0,
@@ -151,9 +151,9 @@
             },
             "position": {
                 "w": 1.0,
-                "x": 139.0,
+                "x": 178.5,
                 "y": 176.0,
-                "z": 11.0
+                "z": 124.5
             },
             "specular": {
                 "a": 1.0,
@@ -214,7 +214,7 @@
                 "const": 0.0,
                 "distanceCutOff": 0.0,
                 "linear": -0.011999998241662979,
-                "quad": 0.0002099999983329326
+                "quad": 0.001209999667480588
             },
             "diffuse": {
                 "a": 1.0,
@@ -243,9 +243,9 @@
             },
             "position": {
                 "w": 1.0,
-                "x": -288.0,
+                "x": -257.5,
                 "y": 88.5,
-                "z": -293.5
+                "z": 280.0
             },
             "specular": {
                 "a": 1.0,
@@ -259,8 +259,8 @@
             "attenuation": {
                 "const": 0.0,
                 "distanceCutOff": 0.0,
-                "linear": -0.01599999889731407,
-                "quad": 0.0007999999797903001
+                "linear": -0.052999965846538544,
+                "quad": 0.0031200051307678223
             },
             "diffuse": {
                 "a": 1.0,
@@ -289,9 +289,9 @@
             },
             "position": {
                 "w": 1.0,
-                "x": -179.0,
-                "y": 134.0,
-                "z": 5.5
+                "x": 251.0,
+                "y": 300.5,
+                "z": 24.5
             },
             "specular": {
                 "a": 1.0,
@@ -306,7 +306,7 @@
                 "const": 0.0,
                 "distanceCutOff": 0.0,
                 "linear": -0.01899999938905239,
-                "quad": 0.0002999999560415745
+                "quad": 0.0003299999516457319
             },
             "diffuse": {
                 "a": 1.0,
@@ -335,9 +335,9 @@
             },
             "position": {
                 "w": 1.0,
-                "x": 138.5,
+                "x": 162.0,
                 "y": 108.5,
-                "z": 303.0
+                "z": 67.0
             },
             "specular": {
                 "a": 1.0,
@@ -351,8 +351,8 @@
             "attenuation": {
                 "const": 0.0,
                 "distanceCutOff": 0.0,
-                "linear": -0.24000030755996704,
-                "quad": 0.007699994370341301
+                "linear": -0.12400007247924805,
+                "quad": 0.005769979674369097
             },
             "diffuse": {
                 "a": 1.0,
@@ -381,9 +381,9 @@
             },
             "position": {
                 "w": 1.0,
-                "x": -32.5,
-                "y": 65.0,
-                "z": 14.0
+                "x": 44.5,
+                "y": 101.0,
+                "z": -668.0
             },
             "specular": {
                 "a": 1.0,
@@ -397,8 +397,8 @@
             "attenuation": {
                 "const": 0.0,
                 "distanceCutOff": 0.0,
-                "linear": -0.07599997520446777,
-                "quad": 0.0008399998769164085
+                "linear": 0.034999996423721313,
+                "quad": 1.9999486539745703e-05
             },
             "diffuse": {
                 "a": 1.0,
@@ -427,9 +427,285 @@
             },
             "position": {
                 "w": 1.0,
-                "x": -289.0,
-                "y": 156.0,
-                "z": 124.0
+                "x": 8.0,
+                "y": 46.5,
+                "z": -533.5
+            },
+            "specular": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "useDebugSphere": false
+        },
+        {
+            "attenuation": {
+                "const": 0.0,
+                "distanceCutOff": 0.0,
+                "linear": 0.32699933648109436,
+                "quad": 0.0011799994390457869
+            },
+            "diffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "direction": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "friendlyName": "light10",
+            "param1": {
+                "innerAngle": 0.0,
+                "lightType": 0.0,
+                "outerAngle": 0.0,
+                "w": 0.0
+            },
+            "param2": {
+                "on": 1.0,
+                "w": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "position": {
+                "w": 1.0,
+                "x": 61.5,
+                "y": 8.0,
+                "z": -442.5
+            },
+            "specular": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "useDebugSphere": false
+        },
+        {
+            "attenuation": {
+                "const": 0.0,
+                "distanceCutOff": 0.0,
+                "linear": 0.26000022888183594,
+                "quad": 0.004960019141435623
+            },
+            "diffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "direction": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "friendlyName": "light11",
+            "param1": {
+                "innerAngle": 0.0,
+                "lightType": 0.0,
+                "outerAngle": 0.0,
+                "w": 0.0
+            },
+            "param2": {
+                "on": 1.0,
+                "w": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "position": {
+                "w": 1.0,
+                "x": 38.0,
+                "y": 18.0,
+                "z": -468.5
+            },
+            "specular": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "useDebugSphere": false
+        },
+        {
+            "attenuation": {
+                "const": 0.0,
+                "distanceCutOff": 0.0,
+                "linear": 0.944991409778595,
+                "quad": 0.021320044994354248
+            },
+            "diffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "direction": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "friendlyName": "light12",
+            "param1": {
+                "innerAngle": 0.0,
+                "lightType": 0.0,
+                "outerAngle": 0.0,
+                "w": 0.0
+            },
+            "param2": {
+                "on": 1.0,
+                "w": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "position": {
+                "w": 1.0,
+                "x": 2.5,
+                "y": -81.0,
+                "z": -970.0
+            },
+            "specular": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "useDebugSphere": false
+        },
+        {
+            "attenuation": {
+                "const": 0.0,
+                "distanceCutOff": 0.0,
+                "linear": 0.03157208487391472,
+                "quad": 9.999999747378752e-06
+            },
+            "diffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "direction": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": -1.0,
+                "z": 0.0
+            },
+            "friendlyName": "light13",
+            "param1": {
+                "innerAngle": 15.0,
+                "lightType": 1.0,
+                "outerAngle": 18.0,
+                "w": 0.0
+            },
+            "param2": {
+                "on": 1.0,
+                "w": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "position": {
+                "w": 1.0,
+                "x": -247.29998779296875,
+                "y": 62.0,
+                "z": 209.8000030517578
+            },
+            "specular": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "useDebugSphere": false
+        },
+        {
+            "attenuation": {
+                "const": 0.0,
+                "distanceCutOff": 0.0,
+                "linear": 0.03157208487391472,
+                "quad": 9.999999747378752e-06
+            },
+            "diffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "direction": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": -1.0,
+                "z": 0.0
+            },
+            "friendlyName": "light14",
+            "param1": {
+                "innerAngle": 38.0,
+                "lightType": 1.0,
+                "outerAngle": 40.0,
+                "w": 0.0
+            },
+            "param2": {
+                "on": 1.0,
+                "w": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "position": {
+                "w": 1.0,
+                "x": -233.3000030517578,
+                "y": 145.5,
+                "z": 139.8000030517578
+            },
+            "specular": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "useDebugSphere": false
+        },
+        {
+            "attenuation": {
+                "const": 0.0,
+                "distanceCutOff": 0.0,
+                "linear": 0.03157208487391472,
+                "quad": 9.999999747378752e-06
+            },
+            "diffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "direction": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": -1.0,
+                "z": 0.0
+            },
+            "friendlyName": "light15",
+            "param1": {
+                "innerAngle": 38.0,
+                "lightType": 1.0,
+                "outerAngle": 40.0,
+                "w": 0.0
+            },
+            "param2": {
+                "on": 1.0,
+                "w": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "position": {
+                "w": 1.0,
+                "x": 172.1999969482422,
+                "y": 33.0,
+                "z": 38.79999923706055
             },
             "specular": {
                 "a": 1.0,
@@ -451,23 +727,16 @@
         "ghost.ply",
         "cube.ply",
         "plane.ply",
-        "sphereSmall1r.ply"
+        "sphereSmall1r.ply",
+        "table.ply",
+        "glass.ply",
+        "Bottle.ply",
+        "street_light.ply",
+        "houses.ply",
+        "tank.ply",
+        "bus.ply",
+        "BMW.ply"
     ],
-    "textures": [
-        "plane.bmp",
-        "Desert_Road_Diffuse.bmp",
-        "Justin.bmp",
-        "grass.bmp",
-        "brick-wall.bmp",
-        "220px-Emma_Watson_2013.bmp",
-        "wood.bmp",
-        "trump.bmp",
-        "fabric.bmp",
-        "fabric2.bmp",
-        "wall.bmp",
-        "water.bmp"
-    ],
-    "textureBasePath": "assets/textures",
     "meshes": [
         {
             "acceleration": {
@@ -518,6 +787,468 @@
                 "z": 0.0
             },
             "dontLight": false,
+            "friendlyName": "tank",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "tank.ply",
+            "position": {
+                "x": 18.0,
+                "y": -16.5,
+                "z": -194.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 14.360560417175293,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "BMW",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "BMW.ply",
+            "position": {
+                "x": 47.0,
+                "y": -12.0,
+                "z": -397.5
+            },
+            "postRotation": {
+                "x": -3.141592502593994,
+                "y": -1.483502745628357,
+                "z": -3.141592502593994
+            },
+            "scale": 0.5258326530456543,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "bus",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "bus.ply",
+            "position": {
+                "x": 34.0,
+                "y": 0.5,
+                "z": -727.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 9.795989990234375,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "street_light1",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "street_light.ply",
+            "position": {
+                "x": -266.0,
+                "y": 0.0,
+                "z": 81.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 4.7588210105896,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "street_light2",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "street_light.ply",
+            "position": {
+                "x": -191.0,
+                "y": 0.0,
+                "z": 85.0
+            },
+            "postRotation": {
+                "x": -3.141592502593994,
+                "y": -0.331611692905426,
+                "z": -3.141592502593994
+            },
+            "scale": 4.7588210105896,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "street_light3",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "street_light.ply",
+            "position": {
+                "x": -267.0,
+                "y": 0.0,
+                "z": 203.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 4.7588210105896,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "houses",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "houses.ply",
+            "position": {
+                "x": -224.0,
+                "y": 13.5,
+                "z": 160.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 3.2353515625,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "glass1",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 0.7499999403953552,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "glass.ply",
+            "position": {
+                "x": -230.0,
+                "y": 27.0,
+                "z": 137.0
+            },
+            "postRotation": {
+                "x": -1.413716197013855,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "glass2",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 0.6499999165534973,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "glass.ply",
+            "position": {
+                "x": -227.0,
+                "y": 27.0,
+                "z": 133.0
+            },
+            "postRotation": {
+                "x": -1.413716197013855,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "bottle",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 0.6499999165534973,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "Bottle.ply",
+            "position": {
+                "x": -233.0,
+                "y": 35.0,
+                "z": 132.5
+            },
+            "postRotation": {
+                "x": -1.065999984741211,
+                "y": 0.9417483806610107,
+                "z": -1.9515624046325684
+            },
+            "scale": 0.0206627044826746,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "table",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 0.8999999761581421,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "table.ply",
+            "position": {
+                "x": -230.5,
+                "y": 14.0,
+                "z": 135.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 9.647250175476074,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
             "friendlyName": "plane",
             "isUpdatedByPhysics": false,
             "isVisible": true,
@@ -536,51 +1267,9 @@
             },
             "meshName": "plane.ply",
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "postRotation": {
-                "x": 0.0,
-                "y": -0.0,
-                "z": 0.0
-            },
-            "scale": 1.0,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "ship",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 0.49999988079071045,
-                "b": 0.5,
-                "g": 0.5,
-                "r": 0.5
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "ship.ply",
-            "position": {
-                "x": 11.0,
-                "y": 13.5,
-                "z": 1.0
+                "x": 253.5,
+                "y": 282.0,
+                "z": 15.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -607,7 +1296,7 @@
             "isVisible": true,
             "isWireFrame": false,
             "materialDiffuse": {
-                "a": 0.3,
+                "a": 1.0,
                 "b": 0.30000001192092896,
                 "g": 0.30000001192092896,
                 "r": 0.30000001192092896
@@ -620,16 +1309,16 @@
             },
             "meshName": "stadium.ply",
             "position": {
-                "x": -27.0,
-                "y": 0.0,
-                "z": 61.5
+                "x": 179.0,
+                "y": -9.0,
+                "z": 41.5
             },
             "postRotation": {
                 "x": 0.0,
                 "y": -0.0,
                 "z": 0.0
             },
-            "scale": 0.024255305528640747,
+            "scale": 0.05650973320007324,
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,
@@ -662,9 +1351,9 @@
             },
             "meshName": "sphereInvertedNormals.ply",
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": -221.62197875976563,
+                "y": 126.15057373046875,
+                "z": -3.7814688682556152
             },
             "postRotation": {
                 "x": 0.0,
@@ -727,15 +1416,15 @@
                 "y": 0.0,
                 "z": 0.0
             },
-            "dontLight": false,
+            "dontLight": true,
             "friendlyName": "sphere",
             "isUpdatedByPhysics": false,
             "isVisible": false,
-            "isWireFrame": false,
+            "isWireFrame": true,
             "materialDiffuse": {
                 "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
+                "b": 0.0,
+                "g": 0.0,
                 "r": 1.0
             },
             "materialSpecular": {
@@ -746,16 +1435,16 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": 253.5,
+                "y": 265.9573059082031,
+                "z": 62.72848129272461
             },
             "postRotation": {
                 "x": 0.0,
                 "y": -0.0,
                 "z": 0.0
             },
-            "scale": 1.0,
+            "scale": 0.375,
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,
@@ -765,10 +1454,34 @@
         }
     ],
     "punchSound": "punch",
+    "radio1": "https://stream.absolutradio.de/hot/mp3-128/radioplayer/",
+    "radio2": "http://us4.internet-radio.com:8266/stream",
+    "radio3": "http://198.58.98.83:8258/stream",
     "shaderBasePath": "assets/shaders/",
     "shaderProgramName": "myShader",
     "soundsBasePath": "./assets/sounds/",
     "splashSound": "splash",
+    "textureBasePath": "assets/textures",
+    "textures": [
+        "plane.bmp",
+        "Desert_Road_Diffuse.bmp",
+        "Justin.bmp",
+        "grass.bmp",
+        "brick-wall.bmp",
+        "220px-Emma_Watson_2013.bmp",
+        "wood.bmp",
+        "trump.bmp",
+        "fabric.bmp",
+        "fabric2.bmp",
+        "wall.bmp",
+        "water.bmp",
+        "bus1.bmp",
+        "bus2.bmp",
+        "bmw1.bmp",
+        "bmw2.bmp",
+        "tank1.bmp",
+        "tank2.bmp"
+    ],
     "uncompressedFileExt": ".wav",
     "vertexShaderFileName": "vertex01.glsl"
 }

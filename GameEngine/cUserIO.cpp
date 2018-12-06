@@ -43,6 +43,19 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 		}
 	}
 
+	if (key == GLFW_KEY_F3 && action == GLFW_PRESS)
+	{
+		cMeshObject* bmw = (cMeshObject*) sceneUtils->findObjectByFriendlyName("BMW");
+		bmw->vecTextures[0].strength = bmw->vecTextures[0].strength >= 1.0f ? 1.0f : bmw->vecTextures[0].strength + 0.05;
+		bmw->vecTextures[1].strength = 1.0f - bmw->vecTextures[0].strength;
+	}
+	if (key == GLFW_KEY_F4 && action == GLFW_PRESS)
+	{
+		cMeshObject* bmw = (cMeshObject*)sceneUtils->findObjectByFriendlyName("BMW");
+		bmw->vecTextures[0].strength = bmw->vecTextures[0].strength <= 0.0f ? 0.0f : bmw->vecTextures[0].strength - 0.05;
+		bmw->vecTextures[1].strength = 1.0f - bmw->vecTextures[0].strength; 
+	}
+
 	if (key == GLFW_KEY_M && action == GLFW_PRESS)
 	{
 		selectionMode = eSelectionMode::MESH_SELECTION;
@@ -82,11 +95,11 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 			float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 			selectedObject->materialDiffuse = glm::vec4(r, g, b, 1.0f);
 		}
-		if (glfwGetKey(window, GLFW_KEY_COMMA) && action == GLFW_PRESS)
+		if (glfwGetKey(window, GLFW_KEY_F1) && action == GLFW_PRESS)
 		{
 			selectedObject->materialDiffuse.a = selectedObject->materialDiffuse.a <= 0.0f ? 0.0f : selectedObject->materialDiffuse.a - 0.05;
 		}
-		if (glfwGetKey(window, GLFW_KEY_PERIOD) && action == GLFW_PRESS)
+		if (glfwGetKey(window, GLFW_KEY_F2) && action == GLFW_PRESS)
 		{
 			selectedObject->materialDiffuse.a = selectedObject->materialDiffuse.a >= 1.0f ? 1.0f : selectedObject->materialDiffuse.a + 0.05;
 		}
@@ -112,7 +125,7 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 		}
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_EQUAL) && action == GLFW_PRESS)
+	/*if (glfwGetKey(window, GLFW_KEY_EQUAL) && action == GLFW_PRESS)
 	{
 		cMeshObject* terrain = (cMeshObject*) sceneUtils->findObjectByFriendlyName("stadium");
 		terrain->vecTextures[0].strength += (terrain->vecTextures[0].strength < 1.0f) ? 0.1f : 0.0f;
@@ -123,7 +136,7 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 		cMeshObject* terrain = (cMeshObject*)sceneUtils->findObjectByFriendlyName("stadium");
 		terrain->vecTextures[0].strength -= (terrain->vecTextures[0].strength > 0.0f) ? 0.1f : 0.0f;
 		terrain->vecTextures[1].strength = 1.0f - terrain->vecTextures[0].strength;
-	}
+	}*/
 	//}
 
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
@@ -211,54 +224,54 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 
 	if (mIsShiftDown(window))
 	{
-		//if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)	// "up"
-		//{
-		//	camera->rollCWCCW(-CAMERA_TURN_SPEED);
-		//	//			::g_pFlyCamera->MoveUpDown_Y( +cameraSpeed );
-		//}
-		//if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)	// "down"
-		//{
-		//	camera->rollCWCCW(+CAMERA_TURN_SPEED);
-		//	//			::g_pFlyCamera->MoveUpDown_Y( -cameraSpeed );
-		//}
-
-		const float ACC_MAX = 10.0f;
-		const float ACC_DELTA = 5.0f;
-		const float ANGLE_MAX = 20.0f;
-		const float ANGLE_DELTA = 1.0f;
-		cSceneUtils* sceneUtils = cSceneUtils::getInstance();
-		cJet* jet = sceneUtils->jet;
-
-		camera->eye = glm::vec3(jet->getMesh()->position.x, jet->getMesh()->position.y + 70.0f, jet->getMesh()->position.z - 120.0f);
-		camera->lookAt(jet->getMesh()->position);
-		if (jet)
+		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)	// "up"
 		{
-			if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)	
-			{
-				jet->getMesh()->acceleration.z = jet->getMesh()->acceleration.z >= ACC_MAX ? ACC_MAX : jet->getMesh()->acceleration.z + ACC_DELTA;
-			}
-			if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)	
-			{
-				jet->getMesh()->acceleration.z = jet->getMesh()->acceleration.z <= -ACC_MAX ? -ACC_MAX : jet->getMesh()->acceleration.z - ACC_DELTA;
-			}
-			if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)	
-			{
-				jet->getMesh()->acceleration.x = jet->getMesh()->acceleration.x <= ACC_MAX ? ACC_MAX : jet->getMesh()->acceleration.x + ACC_DELTA;
-				//jet->getMesh()->adjustOrientationEulerAngles(0.0f, 0.0f, ANGLE_DELTA);
-			}
-			if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)	
-			{
-				jet->getMesh()->acceleration.x = jet->getMesh()->acceleration.x <= -ACC_MAX ? -ACC_MAX : jet->getMesh()->acceleration.x - ACC_DELTA;
-			}
-			if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)	// "up"
-			{
-				jet->getMesh()->acceleration.y = jet->getMesh()->acceleration.y <= -ACC_MAX ? -ACC_MAX : jet->getMesh()->acceleration.y - ACC_DELTA;
-			}
-			if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)	// "down"
-			{
-				jet->getMesh()->acceleration.y = jet->getMesh()->acceleration.y <= ACC_MAX ? ACC_MAX : jet->getMesh()->acceleration.y + ACC_DELTA;
-			}
+			camera->rollCWCCW(-CAMERA_TURN_SPEED);
+			//			::g_pFlyCamera->MoveUpDown_Y( +cameraSpeed );
 		}
+		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)	// "down"
+		{
+			camera->rollCWCCW(+CAMERA_TURN_SPEED);
+			//			::g_pFlyCamera->MoveUpDown_Y( -cameraSpeed );
+		}
+
+		//const float ACC_MAX = 10.0f;
+		//const float ACC_DELTA = 5.0f;
+		//const float ANGLE_MAX = 20.0f;
+		//const float ANGLE_DELTA = 1.0f;
+		//cSceneUtils* sceneUtils = cSceneUtils::getInstance();
+		//cJet* jet = sceneUtils->jet;
+
+		//camera->eye = glm::vec3(jet->getMesh()->position.x, jet->getMesh()->position.y + 70.0f, jet->getMesh()->position.z - 120.0f);
+		//camera->lookAt(jet->getMesh()->position);
+		//if (jet)
+		//{
+		//	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)	
+		//	{
+		//		jet->getMesh()->acceleration.z = jet->getMesh()->acceleration.z >= ACC_MAX ? ACC_MAX : jet->getMesh()->acceleration.z + ACC_DELTA;
+		//	}
+		//	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)	
+		//	{
+		//		jet->getMesh()->acceleration.z = jet->getMesh()->acceleration.z <= -ACC_MAX ? -ACC_MAX : jet->getMesh()->acceleration.z - ACC_DELTA;
+		//	}
+		//	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)	
+		//	{
+		//		jet->getMesh()->acceleration.x = jet->getMesh()->acceleration.x <= ACC_MAX ? ACC_MAX : jet->getMesh()->acceleration.x + ACC_DELTA;
+		//		//jet->getMesh()->adjustOrientationEulerAngles(0.0f, 0.0f, ANGLE_DELTA);
+		//	}
+		//	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)	
+		//	{
+		//		jet->getMesh()->acceleration.x = jet->getMesh()->acceleration.x <= -ACC_MAX ? -ACC_MAX : jet->getMesh()->acceleration.x - ACC_DELTA;
+		//	}
+		//	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)	// "up"
+		//	{
+		//		jet->getMesh()->acceleration.y = jet->getMesh()->acceleration.y <= -ACC_MAX ? -ACC_MAX : jet->getMesh()->acceleration.y - ACC_DELTA;
+		//	}
+		//	if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)	// "down"
+		//	{
+		//		jet->getMesh()->acceleration.y = jet->getMesh()->acceleration.y <= ACC_MAX ? ACC_MAX : jet->getMesh()->acceleration.y + ACC_DELTA;
+		//	}
+		//}
 
 	}
 

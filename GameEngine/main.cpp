@@ -61,40 +61,80 @@ int main(void)
 
 	cSceneUtils::initializeCamera();
 	cSceneUtils::getInstance()->loadModelsIntoScene();
+	{
+		cMeshObject* terrain = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("terrain");
+		sTextureInfo desert;
+		desert.name = "Desert_Road_Diffuse.bmp";
+		desert.strength = 1.0f;
+		terrain->vecTextures.push_back(desert);
+	}
+		cMeshObject* plane = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("plane");
+		sTextureInfo planeTexture;
+		planeTexture.name = "plane.bmp";
+		planeTexture.strength = 1.0f;
+		plane->vecTextures.push_back(planeTexture);
+	{
+		cMeshObject* tank = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("tank");
+		sTextureInfo texture1;
+		texture1.name = "tank1.bmp";
+		texture1.strength = 0.5f;
+		tank->vecTextures.push_back(texture1);
 
-	/*cMeshObject* stadium = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("stadium");
-	
-	sTextureInfo wood;
-	wood.name = "wood.bmp";
-	wood.strength = 0.5f;
-	stadium->vecTextures.push_back(wood);
+		sTextureInfo texture2;
+		texture2.name = "tank2.bmp";
+		texture2.strength = 0.5f;
+		tank->vecTextures.push_back(texture2);
+	}
 
-	sTextureInfo trump;
-	trump.name = "trump.bmp";
-	trump.strength = 0.5f;
-	stadium->vecTextures.push_back(trump);*/
+	{
+		cMeshObject* bus = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("bus");
+		sTextureInfo texture1;
+		texture1.name = "bus1.bmp";
+		texture1.strength = 0.5f;
+		bus->vecTextures.push_back(texture1);
 
-	cMeshObject* terrain = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("terrain");
+		sTextureInfo texture2;
+		texture2.name = "bus2.bmp";
+		texture2.strength = 0.5f;
+		bus->vecTextures.push_back(texture2);
+	}
 
-	sTextureInfo desert;
-	desert.name = "Desert_Road_Diffuse.bmp";
-	desert.strength = 1.0f;
-	terrain->vecTextures.push_back(desert);
+	{
+		cMeshObject* BMW = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("BMW");
+		sTextureInfo texture1;
+		texture1.name = "bmw1.bmp";
+		texture1.strength = 0.5f;
+		BMW->vecTextures.push_back(texture1);
 
-	cMeshObject* plane = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("plane");
+		sTextureInfo texture2;
+		texture2.name = "bmw2.bmp";
+		texture2.strength = 0.5f;
+		BMW->vecTextures.push_back(texture2);
+	}
 
-	sTextureInfo planeTexture;
-	planeTexture.name = "plane.bmp";
-	planeTexture.strength = 1.0f;
-	plane->vecTextures.push_back(planeTexture);
+	{
+		cMeshObject* houses = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("houses");
+		sTextureInfo texture1;
+		texture1.name = "wall.bmp";
+		texture1.strength = 1.0f;
+		houses->vecTextures.push_back(texture1);
+	}
 
-	cMeshObject* ship = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("ship");
-	ship->setAlphaTransparency(0.5f);
+	{
+		cMeshObject* stadium = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("stadium");
+		sTextureInfo texture1;
+		texture1.name = "grass.bmp";
+		texture1.strength = 1.0f;
+		stadium->vecTextures.push_back(texture1);
+	}
 
-	sTextureInfo fabric2;
-	fabric2.name = "fabric2.bmp";
-	fabric2.strength = 1.0f;
-	ship->vecTextures.push_back(fabric2);
+	{
+		cMeshObject* table = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("table");
+		sTextureInfo texture1;
+		texture1.name = "wood.bmp";
+		texture1.strength = 1.0f;
+		table->vecTextures.push_back(texture1);
+	}
 
 	/*********Collision Points on Plane*********/
 	cEntityFactory* factory = new cEntityFactory();
@@ -108,7 +148,6 @@ int main(void)
 	jet->collisionPointsModel.push_back(glm::vec4(0.0f, -13.0426798f, 47.7284813f, 1.0f));
 	//jet->collisionPointsModel.push_back(glm::vec4(0.0f, -16.0426798f, 0.0f, 1.0f));
 
-	jet->showCollisionPoints = true;
 	/*******************************************/
 	lightsManager->loadAllLights(program);
 
@@ -120,9 +159,9 @@ int main(void)
 	//*****************************
 
 	camera->eye.x = 0.0f;
-	camera->eye.y = 40.0f;
-	camera->eye.z = -50.0f;
-	camera->setOrientationEulerAngles(glm::vec3(25.0f, 0.0f, 0.0f), true);
+	camera->eye.y = 300.0f;
+	camera->eye.z = -750.0f;
+	camera->setOrientationEulerAngles(glm::vec3(30.0f, 0.0f, 0.0f), true);
 
 	cSceneUtils* sceneUtils = cSceneUtils::getInstance();
 	sceneUtils->jet = jet;
@@ -148,9 +187,9 @@ int main(void)
 
 	nlohmann::json values;
 
-	values["from"]["x"] = ship->position.x;
-	values["from"]["y"] = ship->position.y;
-	values["from"]["z"] = ship->position.z;
+	values["from"]["x"] = plane->position.x;
+	values["from"]["y"] = plane->position.y;
+	values["from"]["z"] = plane->position.z;
 
 	values["to"]["x"] = 255.0f;
 	values["to"]["y"] = 0.0f;
@@ -280,7 +319,7 @@ int main(void)
 		//modelDrawInfo.meshFileName = "terrain_xyz_n.ply";
 		//cVAOMeshUtils::getInstance()->findDrawInfoByModelName(modelDrawInfo);
 
-		physics->PhysicsUpdate(deltaTime, program);
+		//physics->PhysicsUpdate(deltaTime, program);
 		//physics->addProjectileAim(deltaTime);
 
 		lastTime = currentTime;
