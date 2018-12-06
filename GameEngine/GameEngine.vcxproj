@@ -151,6 +151,7 @@
     <ClCompile Include="cGLFWUtils.cpp" />
     <ClCompile Include="cGoldCoins.cpp" />
     <ClCompile Include="cIsland.cpp" />
+    <ClCompile Include="cJet.cpp" />
     <ClCompile Include="cLight.cpp" />
     <ClCompile Include="cLightHelper.cpp" />
     <ClCompile Include="cLightsManager.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="cGLFWUtils.h" />
     <ClInclude Include="cGoldCoins.h" />
     <ClInclude Include="cIsland.h" />
+    <ClInclude Include="cJet.h" />
     <ClInclude Include="cLight.h" />
     <ClInclude Include="cLightHelper.h" />
     <ClInclude Include="cLightsManager.h" />

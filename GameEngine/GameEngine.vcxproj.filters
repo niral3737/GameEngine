@@ -192,6 +192,9 @@
     <ClCompile Include="smoothstep_Wikipedia.cpp">
       <Filter>Scripting</Filter>
     </ClCompile>
+    <ClCompile Include="cJet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cShaderUtils.h">
@@ -331,6 +334,9 @@
     </ClInclude>
     <ClInclude Include="smoothstep_Wikipedia.h">
       <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="cJet.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

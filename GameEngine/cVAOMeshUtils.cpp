@@ -51,7 +51,7 @@ bool cVAOMeshUtils::loadModels(GLuint program)
 	else
 	{
 		meshFileNames = cJsonUtils::getJsonInstance()["meshFileNames"].get<std::vector<std::string>>();
-		textures = cJsonUtils::getJsonInstance()["meshFileNames"].get<std::vector<std::string>>();
+		textures = cJsonUtils::getJsonInstance()["textures"].get<std::vector<std::string>>();
 	}
 
 	for (size_t i = 0; i < meshFileNames.size(); i++)
@@ -73,7 +73,7 @@ bool cVAOMeshUtils::loadModels(GLuint program)
 	{
 		if (!cBasicTextureManager::getInstance()->Create2DTextureFromBMPFile(textures[i], true))
 		{
-			std::cout << "Didn't load texture" << std::endl;
+			std::cout << "Didn't load texture " << textures[i] << std::endl;
 		}
 	}
 

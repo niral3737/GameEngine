@@ -28,6 +28,7 @@
 //#include "cGoldCoins.h"
 #include "cCommandGroup.h"
 #include "cMoveToCommand.h"
+#include "cJet.h"
 
 //extern "C" {
 //#include <Lua5.3.3\lua.h>
@@ -61,7 +62,7 @@ int main(void)
 	cSceneUtils::initializeCamera();
 	cSceneUtils::getInstance()->loadModelsIntoScene();
 
-	cMeshObject* stadium = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("stadium");
+	/*cMeshObject* stadium = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("stadium");
 	
 	sTextureInfo wood;
 	wood.name = "wood.bmp";
@@ -71,7 +72,7 @@ int main(void)
 	sTextureInfo trump;
 	trump.name = "trump.bmp";
 	trump.strength = 0.5f;
-	stadium->vecTextures.push_back(trump);
+	stadium->vecTextures.push_back(trump);*/
 
 	cMeshObject* terrain = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("terrain");
 
@@ -80,6 +81,13 @@ int main(void)
 	desert.strength = 1.0f;
 	terrain->vecTextures.push_back(desert);
 
+	cMeshObject* plane = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("plane");
+
+	sTextureInfo planeTexture;
+	planeTexture.name = "plane.bmp";
+	planeTexture.strength = 1.0f;
+	plane->vecTextures.push_back(planeTexture);
+
 	cMeshObject* ship = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("ship");
 	ship->setAlphaTransparency(0.5f);
 
@@ -87,7 +95,21 @@ int main(void)
 	fabric2.name = "fabric2.bmp";
 	fabric2.strength = 1.0f;
 	ship->vecTextures.push_back(fabric2);
-	
+
+	/*********Collision Points on Plane*********/
+	cEntityFactory* factory = new cEntityFactory();
+
+	cJet* jet = (cJet*) factory->createEntity("jet");
+	jet->setMesh(plane);
+
+	jet->getMesh()->position.y += 3.0f;
+	jet->collisionPointsModel.push_back(glm::vec4(36.3304214f, -11.0426798f, 8.0f, 1.0f));
+	jet->collisionPointsModel.push_back(glm::vec4(-36.3304214f, -11.0426798f, 8.0f, 1.0f));
+	jet->collisionPointsModel.push_back(glm::vec4(0.0f, -13.0426798f, 47.7284813f, 1.0f));
+	//jet->collisionPointsModel.push_back(glm::vec4(0.0f, -16.0426798f, 0.0f, 1.0f));
+
+	jet->showCollisionPoints = true;
+	/*******************************************/
 	lightsManager->loadAllLights(program);
 
 	//*****************************
@@ -103,6 +125,7 @@ int main(void)
 	camera->setOrientationEulerAngles(glm::vec3(25.0f, 0.0f, 0.0f), true);
 
 	cSceneUtils* sceneUtils = cSceneUtils::getInstance();
+	sceneUtils->jet = jet;
 
 	cShaderUtils::getInstance()->getUniformVariableLocation(program, "objectColour");
 
@@ -188,6 +211,8 @@ int main(void)
 		lightsManager->copyLightValuesToShader();
 		lightsManager->drawAttenuationSpheres(program);
 
+		jet->applyTransformationsToCollisionPoints();
+		jet->drawCollisionPoints(program);
 		cSceneUtils::getInstance()->drawSkyBox(camera->eye, program);
 
 		cSceneUtils::getInstance()->vecTrasparentObjects.clear();
@@ -255,7 +280,7 @@ int main(void)
 		//modelDrawInfo.meshFileName = "terrain_xyz_n.ply";
 		//cVAOMeshUtils::getInstance()->findDrawInfoByModelName(modelDrawInfo);
 
-		physics->PhysicsUpdate(deltaTime);
+		physics->PhysicsUpdate(deltaTime, program);
 		//physics->addProjectileAim(deltaTime);
 
 		lastTime = currentTime;

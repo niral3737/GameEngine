@@ -442,14 +442,15 @@
     ],
     "maxNumberOfLights": 10,
     "meshFileNames": [
-        "sphereInvertedNormals.ply",
+         "sphereInvertedNormals.ply",
         "sphere.ply",
         "cueBall.ply",
         "Desert.ply",
         "ship.ply",
         "stadium.ply",
         "ghost.ply",
-        "cube.ply"
+        "cube.ply",
+        "plane.ply"
     ],
     "textures": [
         "Justin.bmp",

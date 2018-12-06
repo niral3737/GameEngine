@@ -9,15 +9,16 @@
 #include "cVAOMeshUtils.h"
 #include "cCannonBall.h"
 #include "cBase.h" 
+#include "cAABB.h"
 
 class cPhysics
 {
 public:
-	void PhysicsUpdate(double deltaTime);
+	void PhysicsUpdate(double deltaTime, GLint program);
 
 	void PlayerPhysicsUpdate(cMeshObject* playerObject, double deltaTime);
 
-	void CalculateClosestPointsOnMesh(cModelDrawInfo theMeshDrawInfo, glm::vec3 pointToTest, std::vector<glm::vec3> &vecPoints);
+	void CalculateClosestPointsOnMesh(cAABB* aabb, glm::vec3 pointToTest, std::vector<glm::vec3> &vecPoints);
 
 	unsigned int FindClosestPointOfAll(const glm::vec3& pointToTest, const std::vector<glm::vec3>& vecPoints, glm::vec3& finalPoint);
 

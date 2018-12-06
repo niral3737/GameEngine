@@ -30,6 +30,7 @@ cSceneUtils::cSceneUtils()
 	this->selectedObjectIndex = -1;
 	this->terrainHierarchy = new cAABBHierarchy();
 	this->showAABBs = false;
+	this->jet = NULL;
 }
 
 cSceneUtils::~cSceneUtils()

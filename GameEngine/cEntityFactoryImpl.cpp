@@ -10,6 +10,7 @@
 #include "cBase.h"
 #include "cIsland.h"
 #include "cCannonBall.h"
+#include "cJet.h"
 
 cEntityFactoryImpl::cEntityFactoryImpl()
 {}
@@ -27,7 +28,8 @@ bool cEntityFactoryImpl::isEntityTypeValid(std::string entityType)
 		|| entityType == "gemStones"
 		|| entityType == "base"
 		|| entityType == "island"
-		|| entityType == "cannonBall";
+		|| entityType == "cannonBall"
+		|| entityType == "jet";
 }
 
 iEntity * cEntityFactoryImpl::createEntity(std::string entityType)
@@ -87,7 +89,12 @@ iEntity * cEntityFactoryImpl::createEntity(std::string entityType)
 		//ship->setMediator(mediator);
 		entity = ball;
 	}
-
+	else if (entityType == "jet")
+	{
+		cJet* jet = new cJet();
+		//ship->setMediator(mediator);
+		entity = jet;
+	}
 	return entity;
 }
 

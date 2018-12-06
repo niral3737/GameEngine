@@ -246,8 +246,11 @@ void cCamera::adjustOrientation(glm::quat adjOrient)
 
 void cCamera::lookAt(glm::vec3 objPosToLookAt)
 {
-	glm::vec3 direction = glm::normalize(objPosToLookAt - this->eye);
+	glm::vec3 direction = glm::normalize(this->eye - objPosToLookAt);
+	this->orientation = glm::quatLookAt(direction, glm::vec3(0.0f, 1.0f, 0.0f));
 
+	updateAtFromOrientation();
+	updateUpFromOrientation();
 }
 
 void cCamera::updateAtFromOrientation()

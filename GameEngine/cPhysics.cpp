@@ -9,15 +9,18 @@
 #include "cBase.h" 
 #include "cCannonBall.h" 
 #include "cRandomHelper.h"
+#include "cJet.h"
+#include "cAABB.h"
 
 const glm::vec3 cPhysics::ACCEL_GRAVITY = glm::vec3(0.0f, -5.0f, 0.0f);
 float const INITIAL_Y_VELOCITY = 10.0f;
 
 float cPhysics::initialProjectileVelocity = 10.0f;
 
-void cPhysics::PhysicsUpdate(double deltaTime)
+void cPhysics::PhysicsUpdate(double deltaTime, GLint program)
 {
-	cSceneUtils* scene = cSceneUtils::getInstance();
+	cSceneUtils* sceneUtils = cSceneUtils::getInstance();
+	cJet* jet = sceneUtils->jet;
 	//// BOX LOCK
 	//const float LIMIT_POS_X = collisionTest.max.x;			// Lowest the objects can go
 	//const float LIMIT_NEG_X = collisionTest.min.x;			// Lowest the objects can go
@@ -34,383 +37,84 @@ void cPhysics::PhysicsUpdate(double deltaTime)
 		deltaTime = largestDeltaTime;
 	}
 
+	jet->getMesh()->velocity += jet->getMesh()->acceleration * (float) deltaTime;
+	jet->getMesh()->position += jet->getMesh()->velocity * (float) deltaTime;
 
-	for (size_t i = 0; i < scene->vecIslands.size(); i++)
+
+
+	jet->applyTransformationsToCollisionPoints();
+	for (size_t i = 0; i < jet->collisionPointsWorld.size(); i++)
 	{
-		cIsland* island = scene->vecIslands[i];
-
-		if (island->highCannnonBall->getMesh()->isUpdatedByPhysics)
+		glm::vec3 currentPoint = jet->collisionPointsWorld[i];
+		cAABB* aabb =  sceneUtils->terrainHierarchy->mapAABBs[cAABB::generateId(jet->collisionPointsWorld[i], 10.0f)];
+		if (aabb == nullptr)
 		{
-			island->highCannnonBall->getMesh()->velocity.x += island->highCannnonBall->getMesh()->acceleration.x * deltaTime;
-			island->highCannnonBall->getMesh()->velocity.y += island->highCannnonBall->getMesh()->acceleration.y * deltaTime;
-			island->highCannnonBall->getMesh()->velocity.z += island->highCannnonBall->getMesh()->acceleration.z * deltaTime;
-
-			island->highCannnonBall->getMesh()->position.x += island->highCannnonBall->getMesh()->velocity.x * deltaTime;
-			island->highCannnonBall->getMesh()->position.y += island->highCannnonBall->getMesh()->velocity.y * deltaTime;
-			island->highCannnonBall->getMesh()->position.z += island->highCannnonBall->getMesh()->velocity.z * deltaTime;
+			//std::cout << "AABB Not Found for " << cAABB::generateId(jet->collisionPointsWorld[i], 10.0f) << std::endl;
+			return;
 		}
-		else
+		std::vector<glm::vec3> vecPoints;
+		CalculateClosestPointsOnMesh(aabb, jet->collisionPointsWorld[i], vecPoints);
+
+		glm::vec3 pointToTest = jet->collisionPointsWorld[i];
+		glm::vec3 closestPoint;
+		unsigned int triIndex = FindClosestPointOfAll(jet->collisionPointsWorld[i], vecPoints, closestPoint);
+
+		cAABB::sAABBTriangle triToTest = aabb->vecTriangles[triIndex];
+		float distance = glm::distance(closestPoint, pointToTest);
+		
+		if (distance <= jet->collisionPointRadius)
 		{
-			continue;
-		}
-		if (island->lowCannnonBall->getMesh()->isUpdatedByPhysics)
-		{
-			island->lowCannnonBall->getMesh()->velocity.x += island->lowCannnonBall->getMesh()->acceleration.x * deltaTime;
-			island->lowCannnonBall->getMesh()->velocity.y += island->lowCannnonBall->getMesh()->acceleration.y * deltaTime;
-			island->lowCannnonBall->getMesh()->velocity.z += island->lowCannnonBall->getMesh()->acceleration.z * deltaTime;
-
-			island->lowCannnonBall->getMesh()->position.x += island->lowCannnonBall->getMesh()->velocity.x * deltaTime;
-			island->lowCannnonBall->getMesh()->position.y += island->lowCannnonBall->getMesh()->velocity.y * deltaTime;
-			island->lowCannnonBall->getMesh()->position.z += island->lowCannnonBall->getMesh()->velocity.z * deltaTime;
-		}
-		else
-		{
-			continue;
-		}
-
-		cCannonBall* highCannonBall = island->highCannnonBall;
-		cCannonBall* lowCannonBall = island->lowCannnonBall;
-
-		addProjectileAim(deltaTime, highCannonBall, island->bases[highCannonBall->shootingBaseIndex]);
-		//collision logic
-		for (size_t j = 0; j < island->islandOnWhichRandomBaseIs->bases.size() ; j++)
-		{
-			cBase* baseUnderAttack = island->islandOnWhichRandomBaseIs->bases[j];
-
-			//check colision
-			float distance = glm::abs(glm::distance(baseUnderAttack->getMesh()->position, highCannonBall->getMesh()->position));
-			float totalRadius = baseUnderAttack->getMesh()->radius + highCannonBall->getMesh()->radius;
-			if (distance < totalRadius)
+			std::string collidedOn = "";
+			// colided
+			// collisionPointsWorld[0] = Left Wing 
+			// collisionPointsWorld[1] = Right Wing 
+			// collisionPointsWorld[2] = Nose 
+			switch (i)
 			{
-				//it's a hit
-				highCannonBall->baseThatHitIndex = highCannonBall->shootingBaseIndex;
-				highCannonBall->isHit = true;
-				//baseUnderAttack->getMesh()->materialDiffuse.r -= 0.05;
+			case 0:
+				collidedOn = "Left Wing";
+				jet->getMesh()->velocity.x = 0.0f;
+				break;
+			case 1:
+				collidedOn = "Right Wing";
+				jet->getMesh()->velocity.x = 0.0f;
+				break;
+			case 2:
+				collidedOn = "Nose";
+				jet->getMesh()->velocity.z = 0.0f;
+				break;
+			default:
+				break;
 			}
-
-			distance = glm::abs(glm::distance(baseUnderAttack->getMesh()->position, lowCannonBall->getMesh()->position));
-			totalRadius = baseUnderAttack->getMesh()->radius + lowCannonBall->getMesh()->radius;
-			if (distance < totalRadius)
-			{
-				//it's a hit
-				lowCannonBall->baseThatHitIndex = lowCannonBall->shootingBaseIndex;
-				lowCannonBall->isHit = true;
-				//baseUnderAttack->getMesh()->materialDiffuse.r -= 0.05;
-			}
-		}
-
-		if (highCannonBall->getMesh()->position.y <= 0.0f || 
-			highCannonBall->getMesh()->position.x >= 256.0f ||
-			highCannonBall->getMesh()->position.x <= -256.0f ||
-			highCannonBall->getMesh()->position.z >= 256.0f ||
-			highCannonBall->getMesh()->position.z <= -256.0f)
-		{
-
-			if (highCannonBall->isHit)
-			{
-				// adjust all the cannons to a point
-				std::cout << "high cannon ball hit" << std::endl;
-				if (island->randomBaseToDestroy->health <= 0)
-				{
-					//base is destroyed
-					island->randomBaseToDestroy->isDestroyed = true;
-					island->randomBaseToDestroy->getMesh()->setDiffuseColour(glm::vec3(0.7f, 0.7f, 0.7f));
-
-					//pick a randomBase to destroy
-					for (size_t j = 0; j < scene->vecIslands.size(); j++)
-					{
-						unsigned int randomIslandIndex = cRandomHelper::generateRandomIntInRange(0, 3);
-						while (randomIslandIndex == i)
-						{
-							randomIslandIndex = cRandomHelper::generateRandomIntInRange(0, 3);
-						}
-
-						unsigned int randomBaseOnThatIslandIndex = cRandomHelper::generateRandomIntInRange(0, 19);
-
-						while (scene->vecIslands[randomIslandIndex]->bases[randomBaseOnThatIslandIndex]->isDestroyed)
-						{
-							randomBaseOnThatIslandIndex = cRandomHelper::generateRandomIntInRange(0, 19);
-						}
-						island->randomBaseToDestroy = scene->vecIslands[randomIslandIndex]->bases[randomBaseOnThatIslandIndex];
-						island->islandOnWhichRandomBaseIs = scene->vecIslands[randomIslandIndex];
-					}
-
-					//set new velocity from old velocity
-					island->highCannnonBall->getMesh()->velocity.y = island->highCannnonBall->lastInitialVelocity.y;
-
-					island->highCannnonBall->lastInitialVelocity = island->highCannnonBall->getMesh()->velocity;
-
-					island->highCannnonBall->getMesh()->velocity.x = island->randomBaseToDestroy->getMesh()->position.x
-						- island->highCannnonBall->getMesh()->position.x;
-					island->highCannnonBall->getMesh()->velocity.z = island->randomBaseToDestroy->getMesh()->position.z
-						- island->highCannnonBall->getMesh()->position.z;
-
-				}
-				else
-				{
-					island->randomBaseToDestroy->health -= 5;
-					island->randomBaseToDestroy->getMesh()->materialDiffuse.r += 0.05f;
-					highCannonBall->getMesh()->velocity = highCannonBall->lastInitialVelocity;
-					highCannonBall->getMesh()->velocity.x = island->randomBaseToDestroy->getMesh()->position.x
-						- island->bases[highCannonBall->shootingBaseIndex]->getMesh()->position.x;
-					highCannonBall->getMesh()->velocity.z = island->randomBaseToDestroy->getMesh()->position.z
-						- island->bases[highCannonBall->shootingBaseIndex]->getMesh()->position.z;
-				}
-				highCannonBall->getMesh()->position = island->bases[highCannonBall->shootingBaseIndex]->getMesh()->position;
-			}
-			else
-			{
-				// turn over as it's going into oblivion
-				highCannonBall->getMesh()->velocity = highCannonBall->lastInitialVelocity;
-				highCannonBall->getMesh()->velocity.y -= 1.0f;
-				highCannonBall->increaseShootingBaseIndex(0, 2);
-				unsigned int counter = 0;
-				while (counter < 3 && island->bases[highCannonBall->shootingBaseIndex]->isDestroyed)
-				{
-					highCannonBall->increaseShootingBaseIndex(0, 2);
-					counter++;
-				}
-
-				//all bases destroyed
-				if (counter == 3)
-				{
-					highCannonBall->getMesh()->isUpdatedByPhysics = false;
-					island->isHighDestroyed = true;
-				}
-				highCannonBall->getMesh()->position = island->bases[highCannonBall->shootingBaseIndex]->getMesh()->position;
-				highCannonBall->getMesh()->velocity.x = island->randomBaseToDestroy->getMesh()->position.x
-					- island->bases[highCannonBall->shootingBaseIndex]->getMesh()->position.x;
-				highCannonBall->getMesh()->velocity.z = island->randomBaseToDestroy->getMesh()->position.z
-					- island->bases[highCannonBall->shootingBaseIndex]->getMesh()->position.z;
-
-			}
-		}
-
-		if (lowCannonBall->getMesh()->position.y <= 0.0f ||
-			lowCannonBall->getMesh()->position.x >= 256.0f ||
-			lowCannonBall->getMesh()->position.x <= -256.0f ||
-			lowCannonBall->getMesh()->position.z >= 256.0f ||
-			lowCannonBall->getMesh()->position.z <= -256.0f)
-		{
-			if (lowCannonBall->isHit)
-			{
-				// adjust all the cannons to a point
-				std::cout << "low cannon ball hit" << std::endl;
-				if (island->randomBaseToDestroy->health <= 0)
-				{
-					//base is destroyed
-					island->randomBaseToDestroy->isDestroyed = true;
-					island->randomBaseToDestroy->getMesh()->setDiffuseColour(glm::vec3(0.7f, 0.7f, 0.7f));
-
-					//pick a randomBase to destroy
-					for (size_t j = 0; j < scene->vecIslands.size(); j++)
-					{
-						unsigned int randomIslandIndex = cRandomHelper::generateRandomIntInRange(0, 3);
-						while (randomIslandIndex == i)
-						{
-							randomIslandIndex = cRandomHelper::generateRandomIntInRange(0, 3);
-						}
-
-						unsigned int randomBaseOnThatIslandIndex = cRandomHelper::generateRandomIntInRange(0, 19);
-
-						while (scene->vecIslands[randomIslandIndex]->bases[randomBaseOnThatIslandIndex]->isDestroyed)
-						{
-							randomBaseOnThatIslandIndex = cRandomHelper::generateRandomIntInRange(0, 19);
-						}
-						island->randomBaseToDestroy = scene->vecIslands[randomIslandIndex]->bases[randomBaseOnThatIslandIndex];
-						island->islandOnWhichRandomBaseIs = scene->vecIslands[randomIslandIndex];
-					}
-
-					//set new velocity from old velocity
-					island->lowCannnonBall->getMesh()->velocity.y = island->lowCannnonBall->lastInitialVelocity.y;
-
-					island->lowCannnonBall->lastInitialVelocity = island->lowCannnonBall->getMesh()->velocity;
-
-					island->lowCannnonBall->getMesh()->velocity.x = island->randomBaseToDestroy->getMesh()->position.x
-						- island->lowCannnonBall->getMesh()->position.x;
-					island->lowCannnonBall->getMesh()->velocity.z = island->randomBaseToDestroy->getMesh()->position.z
-						- island->lowCannnonBall->getMesh()->position.z;
-
-				}
-				else
-				{
-					island->randomBaseToDestroy->health -= 5;
-					island->randomBaseToDestroy->getMesh()->materialDiffuse.r += 0.05f;
-					lowCannonBall->getMesh()->velocity = lowCannonBall->lastInitialVelocity;
-					lowCannonBall->getMesh()->velocity.x = island->randomBaseToDestroy->getMesh()->position.x
-						- island->bases[lowCannonBall->shootingBaseIndex]->getMesh()->position.x;
-					lowCannonBall->getMesh()->velocity.z = island->randomBaseToDestroy->getMesh()->position.z
-						- island->bases[lowCannonBall->shootingBaseIndex]->getMesh()->position.z;
-				}
-				lowCannonBall->getMesh()->position = island->bases[lowCannonBall->shootingBaseIndex]->getMesh()->position;
-			}
-			else
-			{
-				lowCannonBall->getMesh()->velocity = lowCannonBall->lastInitialVelocity;
-				lowCannonBall->getMesh()->velocity.y -= 0.1;
-				lowCannonBall->increaseShootingBaseIndex(3, 19);
-				unsigned int counter = 0;
-				while (counter < 17 && island->bases[lowCannonBall->shootingBaseIndex]->isDestroyed)
-				{
-					lowCannonBall->increaseShootingBaseIndex(3, 19);
-					counter++;
-				}
-
-				//all bases destroyed
-				if (counter == 17)
-				{
-					lowCannonBall->getMesh()->isUpdatedByPhysics = false;
-					island->isLowDestroyed = true;
-				}
-
-				lowCannonBall->getMesh()->position = island->bases[lowCannonBall->shootingBaseIndex]->getMesh()->position;
-				lowCannonBall->getMesh()->velocity.x = island->randomBaseToDestroy->getMesh()->position.x
-					- island->bases[lowCannonBall->shootingBaseIndex]->getMesh()->position.x;
-				lowCannonBall->getMesh()->velocity.z = island->randomBaseToDestroy->getMesh()->position.z
-					- island->bases[lowCannonBall->shootingBaseIndex]->getMesh()->position.z;
-
-			}
+			jet->showCollisionPoint(i, program);
+			jet->getMesh()->velocity.y = 0.0f;
+			std::cout << "We have collision on " << collidedOn << std::endl;
 		}
 	}
 
-	// Look for objects to update physics
-	//for (std::vector<iMeshObject*>::iterator vecIter = scene->vecObjectsToDraw.begin(); vecIter != scene->vecObjectsToDraw.end(); vecIter++)
+
+	//std::vector<glm::vec3> vecPoints;
+
+	//CalculateClosestPointsOnMesh(modelDrawInfo, currentObject->position, vecPoints);
+	//glm::vec3 closestPoint;
+	//unsigned int triIndex = FindClosestPointOfAll(currentObject->position, vecPoints, closestPoint);
+	//glm::ivec3 CurTri = modelDrawInfo.pTriangles[triIndex];
+
+	//// ... call the ClosestPointToTriangle...
+	//// normal to one of it's corner
+	//glm::vec3 normal = glm::cross(modelDrawInfo.pVerticesFromFile[CurTri.y] - modelDrawInfo.pVerticesFromFile[CurTri.x],
+	//	modelDrawInfo.pVerticesFromFile[CurTri.z] - modelDrawInfo.pVerticesFromFile[CurTri.x]);
+
+	//float distance = glm::distance(closestPoint, currentObject->position);
+	//if (distance <= ((sSphere*)currentObject->theShape)->radius)
 	//{
-	//	cMeshObject* currentObject = (cMeshObject*) *vecIter;
-
-	//	// Is it updated by physics?
-	//	if (currentObject->isUpdatedByPhysics)
-	//	{
-	//		if (currentObject->friendlyName == "BlackPearl")
-	//		{
-	//			PlayerPhysicsUpdate(currentObject, deltaTime);
-	//		}
-	//		else
-	//		{
-	//			// EULER INTEGRATION
-	//			currentObject->velocity.x += currentObject->acceleration.x * deltaTime;
-	//			currentObject->velocity.y += currentObject->acceleration.y * deltaTime;
-	//			currentObject->velocity.z += currentObject->acceleration.z * deltaTime;
-
-	//			currentObject->position.x += currentObject->velocity.x * deltaTime;
-	//			currentObject->position.y += currentObject->velocity.y * deltaTime;
-	//			currentObject->position.z += currentObject->velocity.z * deltaTime;
-
-	//			// Check for the ground and bounce it back
-	//			//if (currentObject->position.y <= LIMIT_NEG_Y)
-	//			//{
-	//			//	// Normal to the ground is for now, just the Y vector (0, 1, 0)
-	//			//	glm::vec3 normalToGround = glm::vec3(0.0f, 1.0f, 0.0f);
-
-	//			//	// Invert the velocity downwards, simply by removing the negative
-	//			//	currentObject->velocity.y = fabs(currentObject->velocity.y);
-	//			//}
-
-	//			//// BOX LOCK
-	//			//if (currentObject->position.x >= LIMIT_POS_X)
-	//			//{
-	//			//	currentObject->velocity.x = -fabs(currentObject->velocity.x);
-	//			//}
-	//			//if (currentObject->position.x <= LIMIT_NEG_X)
-	//			//{
-	//			//	currentObject->velocity.x = fabs(currentObject->velocity.x);
-	//			//}
-	//			//if (currentObject->position.y >= LIMIT_POS_Y)
-	//			//{
-	//			//	currentObject->velocity.y = -fabs(currentObject->velocity.y);
-	//			//}
-	//			//if (currentObject->position.z >= LIMIT_POS_Z)
-	//			//{
-	//			//	currentObject->velocity.z = -fabs(currentObject->velocity.z);
-	//			//}
-	//			//if (currentObject->position.z <= LIMIT_NEG_Z)
-	//			//{
-	//			//	currentObject->velocity.z = fabs(currentObject->velocity.z);
-	//			//}
-	//		}
-	//		
-
-	//		// Collision stuff has been commented for now
-
-	//		// Check collisions with terrain
-	//		//if (currentObject->friendlyName == "box")
-	//		//{
-	//		//	std::vector<glm::vec3> vecClosestPoints;
-	//		//	glm::vec3 finalPoint = { 0.0f, 0.0f, 0.0f };
-	//		//	unsigned int finalIndex = 0;
-	//		//	CalculateClosestPointsOnMesh(collisionTest, currentObject->position, vecClosestPoints);
-	//		//	finalIndex = FindClosestPointOfAll(currentObject->position, vecClosestPoints, finalPoint);
-	//		//	if (abs(glm::distance(currentObject->position, finalPoint) < 6))
-	//		//	{
-	//		//		// Colliding, change colour
-	//		//		currentObject->velocity = glm::vec3(0.0f, 0.0f, 0.0f);
-	//		//	}
-	//		//	else
-	//		//	{
-	//		//		//currentObject->colour = glm::vec3(1.0f, 1.0f, 1.0f);
-	//		//	}
-	//		//}
-
-	//		for (std::vector<iMeshObject*>::iterator vecIter = scene->vecObjectsToDraw.begin(); vecIter != scene->vecObjectsToDraw.end(); vecIter++)
-	//		{
-	//			cMeshObject* obj = (cMeshObject*)*vecIter;
-
-	//			if (currentObject->friendlyName == "cueBall" && obj->friendlyName == "box")
-	//			{
-	//				//taking ball's radius as 1 and box's radius as 6
-	//				//collision if radius + radius > distance
-	//				if (abs(glm::distance(currentObject->position, obj->position) < (6 + 1)))
-	//				{
-	//					obj->setDiffuseColour(glm::vec3(0.0f, 1.0f, 0.0f));
-	//				}
-	//			}
-
-	//		}
-
-	//		// Check collisions
-	//		//for (std::vector<iEnemy*>::iterator enemyIter = vecpEnemiesToDraw.begin(); enemyIter != vecpEnemiesToDraw.end(); enemyIter++)
-	//		//{
-	//		//	// Dereference
-	//		//	iEnemy* currentEnemy = *enemyIter;
-
-	//		//	if (currentObject->name == "cube")
-	//		//	{
-	//		//		continue;
-	//		//	}
-
-	//		//	if (currentEnemy->bIsUpdatedByPhysics)
-	//		//	{
-	//		//		// Sphere collision
-	//		//		if (currentEnemy->GetEnemyType() == "Ball")
-	//		//		{
-	//		//			if (currentObject != currentEnemy)
-	//		//			{
-	//		//				if (SphereSphereCollision(currentObject, currentEnemy))
-	//		//				{
-	//		//					currentObject->colour = glm::vec3(1.0f, 1.0f, 0.0f);
-	//		//				}
-	//		//			}
-	//		//		}
-	//		//		// Cube collision
-	//		//		if (currentEnemy->GetEnemyType() == "Cube")
-	//		//		{
-	//		//			if (currentObject != currentEnemy)
-	//		//			{
-	//		//				//std::cout << "Cube testy" << std::endl;
-	//		//				sModelDrawInfo enemyInfo;
-	//		//				enemyInfo.meshFileName = currentEnemy->meshName;
-	//		//				vao->FindDrawInfoByModelName(enemyInfo);
-	//		//				if (SphereCubeCollision2(currentObject, currentEnemy, enemyInfo))
-	//		//				{
-	//		//					
-	//		//					currentObject->colour = glm::vec3(0.0f, 0.0f, 1.0f);
-	//		//				}
-	//		//			}
-	//		//		}
-	//		//	}
-	//		//}
-	//	}
+	//	// colided
+	//	std::cout << currentObject->friendlyName << " colided with " << objectThatCollides->friendlyName << std::endl;
+	//	normal = glm::normalize(normal);
+	//	currentObject->velocity = glm::reflect(currentObject->velocity, normal);
+	//	currentObject->velocity.y = 0.0f;
 	//}
+
 }
 
 void cPhysics::PlayerPhysicsUpdate(cMeshObject* playerObject, double deltaTime)
@@ -563,25 +267,18 @@ glm::vec3 cPhysics::ClosestPtPointTriangle(glm::vec3 p, glm::vec3 a, glm::vec3 b
 	return u * a + v * b + w * c;
 }
 
-void cPhysics::CalculateClosestPointsOnMesh(cModelDrawInfo theMeshDrawInfo, glm::vec3 pointToTest, std::vector<glm::vec3> &vecPoints)
+void cPhysics::CalculateClosestPointsOnMesh(cAABB* aabb, glm::vec3 pointToTest, std::vector<glm::vec3> &vecPoints)
 {
 	vecPoints.clear();
 
 	// For each triangle in the mesh information...
-	for (unsigned int triIndex = 0; triIndex != theMeshDrawInfo.numberOfTriangles; triIndex++)
+	for (unsigned int triIndex = 0; triIndex != aabb->vecTriangles.size(); triIndex++)
 	{
-		glm::ivec3 CurTri = theMeshDrawInfo.pTriangles[triIndex];
+		cAABB::sAABBTriangle CurTri = aabb->vecTriangles[triIndex];
 
-		// ... call the ClosestPointToTriangle...
-		// Need to get the 3 vertices of the triangle
-		glm::vec3 corner_1 = theMeshDrawInfo.pVerticesFromFile[CurTri.x];
-		glm::vec3 corner_2 = theMeshDrawInfo.pVerticesFromFile[CurTri.y];
-		glm::vec3 corner_3 = theMeshDrawInfo.pVerticesFromFile[CurTri.z];
-
-		// Convert this to glm::vec3
-		glm::vec3 vert_1 = glm::vec3(corner_1.x, corner_1.y, corner_1.z);
-		glm::vec3 vert_2 = glm::vec3(corner_2.x, corner_2.y, corner_2.z);
-		glm::vec3 vert_3 = glm::vec3(corner_3.x, corner_3.y, corner_3.z);
+		glm::vec3 vert_1 = CurTri.verts[0];
+		glm::vec3 vert_2 = CurTri.verts[1];
+		glm::vec3 vert_3 = CurTri.verts[2];
 
 		glm::vec3 closestPoint = ClosestPtPointTriangle(pointToTest, vert_1, vert_2, vert_3);
 
@@ -693,41 +390,3 @@ void cPhysics::addProjectileAim(double deltaTime, cCannonBall* cannonBall, cBase
 
 }
 
-//bool SphereSphereCollision(cMeshObject* pA, cMeshObject* pB)
-//{
-//	// Will be colliding if the size of their radius combined is higher than their distances.
-//	// Seeing that the position is in the middle, the only time that position will be smaller
-//	// is if the sphere radius are inside each other!
-//	if (glm::distance(pA->position, pB->position) < (pA->radius + pB->radius))
-//	{
-//		return true;
-//	}
-//	return false;
-//}
-//
-//bool SphereCubeCollision(cMeshObject* pSphere, cMeshObject* pCube, sModelDrawInfo& meshInfo)
-//{
-//	// We need to add the sphere radius to the extents of the cube.
-//	// WARNING: THE MESH EXTENTS IS CALCULATED BEFORE MOVING THE OBJECT.
-//	// THEREFORE, WE NEED TO TAKE THE MOVEMENT INTO ACCOUNT, ADDING THE POSITION
-//	float newMaxX = meshInfo.maxX + pCube->position.x + pSphere->radius;
-//	float newMaxY = meshInfo.maxY + pCube->position.y + pSphere->radius;
-//	float newMaxZ = meshInfo.maxZ + pCube->position.z + pSphere->radius;
-//	float newMinX = meshInfo.minX + pCube->position.x - pSphere->radius;
-//	float newMinY = meshInfo.minY + pCube->position.y - pSphere->radius;
-//	float newMinZ = meshInfo.minZ + pCube->position.z - pSphere->radius;
-//
-//	// Calculate the point to AABB, here the point is the center of the sphere.
-//	// By adding the radius of the sphere to the box's extents, we then calculate
-//	// if the sphere is inside the new created zone. That will only happen if the
-//	// radius is getting inside of the box
-//	if (pSphere->position.x > newMinX && pSphere->position.x < newMaxX &&
-//		pSphere->position.y > newMinY && pSphere->position.y < newMaxY &&
-//		pSphere->position.z > newMinZ && pSphere->position.z < newMaxZ)
-//	{
-//		
-//		return true;
-//	}
-//	
-//	return false;
-//}
