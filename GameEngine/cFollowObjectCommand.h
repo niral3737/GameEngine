@@ -4,6 +4,7 @@
 #include "iCommand.h"
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
+#include "cMeshObject.h"
 
 class cFollowObjectCommand : public iCommand
 {
@@ -18,6 +19,8 @@ public:
 	virtual bool isFinished(void);
 
 	glm::vec3 currentLocation;
+	cMeshObject* object;
+	void setObject(cMeshObject* object);
 private:
 	glm::vec3 idealCameraLocation;
 
@@ -28,6 +31,7 @@ private:
 	float maxSpeed;
 
 	bool m_bIsDone;
+	bool isCamera;
 
 	glm::vec3 m_adjustVelocity(glm::vec3 vVel);
 	glm::vec3 m_adjustVelocity_2(glm::vec3 vVel);

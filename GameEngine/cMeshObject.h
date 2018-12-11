@@ -51,6 +51,7 @@ public:
 	glm::vec3 acceleration;
 
 	glm::quat getOrientation(void);
+	void setOrientation(glm::quat orientation);
 	void setOrientationEulerAngles(glm::vec3 newEulerAngles, bool bIsDegrees = false);
 	void setOrientationEulerAngles(float x, float y, float z, bool bIsDegrees = false);
 	void adjustOrientationEulerAngles(glm::vec3 adjEulerAngle, bool bIsDegrees = false);

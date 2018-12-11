@@ -9,6 +9,7 @@
 #include "cMeshObject.h"
 #include "cAABB.h"
 #include "cJet.h"
+#include "cCommandGroup.h"
 
 class cSceneUtils
 {
@@ -24,7 +25,7 @@ public:
 	void bindTextures(cMeshObject* pCurrentMesh, GLuint shaderProgramID);
 	static glm::vec3 cameraEye;
 	static glm::vec3 cameraAt;
-	std::vector<iMeshObject*> vecObjectsToDraw;
+	std::vector<cMeshObject*> vecObjectsToDraw;
 	//cMeshObject* loadMeshInfoByFriendlyName( std::string friendlyName);
 	void selectNextMeshObject(bool includeInvisibleObject);
 	iMeshObject* selectedMeshObject;
@@ -37,6 +38,8 @@ public:
 	cJet* jet;
 	void drawSkyBox(glm::vec3 eye, GLuint program);
 	void drawAABBs(GLuint program);
+
+	cCommandGroup sceneCommandGroup;
 private:
 	static cSceneUtils* pSceneUtils;
 	int selectedObjectIndex;

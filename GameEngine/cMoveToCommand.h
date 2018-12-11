@@ -14,14 +14,16 @@ public:
 	virtual void initialize(nlohmann::json values);
 	virtual void update(double deltaTime);
 	virtual bool isFinished(void);
-	glm::vec3 currentLocation;
+	void setObject(cMeshObject* object);
+	cMeshObject* objectToMove;
 private:
 	double timeElapsed;
 	glm::vec3 from;
 	glm::vec3 to;
 	double time;
 	float minDistance;
-	float bIsDone;
+	bool bIsDone;
+	bool withCamera;
 	glm::vec3 direction;
 };
 

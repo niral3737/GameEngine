@@ -4,6 +4,7 @@
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 #include "cGLFWUtils.h"
 #include "cShaderUtils.h"
@@ -28,20 +29,13 @@
 //#include "cGoldCoins.h"
 #include "cCommandGroup.h"
 #include "cMoveToCommand.h"
-#include "cJet.h"
+#include "cLuaBrain.h"
 
-//extern "C" {
-//#include <Lua5.3.3\lua.h>
-//#include <Lua5.3.3\lua.h>
-//#include <Lua5.3.3\lauxlib.h>
-//#include <Lua5.3.3/lualib.h>
-//}
 
 int main(void)
 {
 	cGLFWUtils::setUpGLFW();
 	GLuint program = cShaderUtils::setUpShaders();
-	cCamera* camera = cCamera::getInstance();
 	//std::cout << "Load from previously saved file? (Y/y)" << std::endl;
 	char answer = 'y';
 	//std::cin >> answer;
@@ -61,110 +55,38 @@ int main(void)
 
 	cSceneUtils::initializeCamera();
 	cSceneUtils::getInstance()->loadModelsIntoScene();
-	{
-		cMeshObject* terrain = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("terrain");
-		sTextureInfo desert;
-		desert.name = "Desert_Road_Diffuse.bmp";
-		desert.strength = 1.0f;
-		terrain->vecTextures.push_back(desert);
-	}
-		cMeshObject* plane = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("plane");
-		sTextureInfo planeTexture;
-		planeTexture.name = "plane.bmp";
-		planeTexture.strength = 1.0f;
-		plane->vecTextures.push_back(planeTexture);
-	{
-		cMeshObject* tank = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("tank");
-		sTextureInfo texture1;
-		texture1.name = "tank1.bmp";
-		texture1.strength = 0.5f;
-		tank->vecTextures.push_back(texture1);
-
-		sTextureInfo texture2;
-		texture2.name = "tank2.bmp";
-		texture2.strength = 0.5f;
-		tank->vecTextures.push_back(texture2);
-	}
-
-	{
-		cMeshObject* bus = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("bus");
-		sTextureInfo texture1;
-		texture1.name = "bus1.bmp";
-		texture1.strength = 0.5f;
-		bus->vecTextures.push_back(texture1);
-
-		sTextureInfo texture2;
-		texture2.name = "bus2.bmp";
-		texture2.strength = 0.5f;
-		bus->vecTextures.push_back(texture2);
-	}
-
-	{
-		cMeshObject* BMW = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("BMW");
-		sTextureInfo texture1;
-		texture1.name = "bmw1.bmp";
-		texture1.strength = 0.5f;
-		BMW->vecTextures.push_back(texture1);
-
-		sTextureInfo texture2;
-		texture2.name = "bmw2.bmp";
-		texture2.strength = 0.5f;
-		BMW->vecTextures.push_back(texture2);
-	}
-
-	{
-		cMeshObject* houses = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("houses");
-		sTextureInfo texture1;
-		texture1.name = "wall.bmp";
-		texture1.strength = 1.0f;
-		houses->vecTextures.push_back(texture1);
-	}
-
-	{
-		cMeshObject* stadium = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("stadium");
-		sTextureInfo texture1;
-		texture1.name = "grass.bmp";
-		texture1.strength = 1.0f;
-		stadium->vecTextures.push_back(texture1);
-	}
-
-	{
-		cMeshObject* table = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("table");
-		sTextureInfo texture1;
-		texture1.name = "wood.bmp";
-		texture1.strength = 1.0f;
-		table->vecTextures.push_back(texture1);
-	}
 
 	/*********Collision Points on Plane*********/
 	cEntityFactory* factory = new cEntityFactory();
 
-	cJet* jet = (cJet*) factory->createEntity("jet");
+	/*cJet* jet = (cJet*) factory->createEntity("jet");
 	jet->setMesh(plane);
 
 	jet->getMesh()->position.y += 3.0f;
 	jet->collisionPointsModel.push_back(glm::vec4(36.3304214f, -11.0426798f, 8.0f, 1.0f));
 	jet->collisionPointsModel.push_back(glm::vec4(-36.3304214f, -11.0426798f, 8.0f, 1.0f));
-	jet->collisionPointsModel.push_back(glm::vec4(0.0f, -13.0426798f, 47.7284813f, 1.0f));
+	jet->collisionPointsModel.push_back(glm::vec4(0.0f, -13.0426798f, 47.7284813f, 1.0f));*/
 	//jet->collisionPointsModel.push_back(glm::vec4(0.0f, -16.0426798f, 0.0f, 1.0f));
 
 	/*******************************************/
 	lightsManager->loadAllLights(program);
 
 	//*****************************
-	cModelDrawInfo terrainMeshInfo;
+	/*cModelDrawInfo terrainMeshInfo;
 	terrainMeshInfo.meshFileName = "Desert.ply";
 	cVAOMeshUtils::getInstance()->findDrawInfoByModelName(terrainMeshInfo);
-	cSceneUtils::getInstance()->terrainHierarchy->loadTerrainAABB(terrainMeshInfo);
+	cSceneUtils::getInstance()->terrainHierarchy->loadTerrainAABB(terrainMeshInfo);*/
 	//*****************************
 
-	camera->eye.x = 0.0f;
+	/*camera->eye.x = 0.0f;
 	camera->eye.y = 300.0f;
 	camera->eye.z = -750.0f;
-	camera->setOrientationEulerAngles(glm::vec3(30.0f, 0.0f, 0.0f), true);
+	camera->setOrientationEulerAngles(glm::vec3(30.0f, 0.0f, 0.0f), true);*/
 
 	cSceneUtils* sceneUtils = cSceneUtils::getInstance();
-	sceneUtils->jet = jet;
+	//sceneUtils->jet = jet;
+	sceneUtils->initializeCamera();
+	cCamera* camera = cCamera::getInstance();
 
 	cShaderUtils::getInstance()->getUniformVariableLocation(program, "objectColour");
 
@@ -177,32 +99,39 @@ int main(void)
 
 	cPhysics* physics = new cPhysics();
 
-	/*******************Move to Command*****************************/
+	/*******************Orient to Command*****************************/
 
-	cCommandGroup sceneCommandGroup;
+	//cMoveToCommand* pMove = new cMoveToCommand();
 
-	cCommandGroup* pFollowCG = new cCommandGroup();
+	//nlohmann::json values;
 
-	cMoveToCommand* pMove = new cMoveToCommand();
+	//values["from"]["x"] = plane->position.x;
+	//values["from"]["y"] = plane->position.y;
+	//values["from"]["z"] = plane->position.z;
 
-	nlohmann::json values;
+	//values["to"]["x"] = 255.0f;
+	//values["to"]["y"] = 0.0f;
+	//values["to"]["z"] = 255.0f;
 
-	values["from"]["x"] = plane->position.x;
-	values["from"]["y"] = plane->position.y;
-	values["from"]["z"] = plane->position.z;
+	////time in seconds
+	//values["time"] = 30.0;
 
-	values["to"]["x"] = 255.0f;
-	values["to"]["y"] = 0.0f;
-	values["to"]["z"] = 255.0f;
-
-	//time in seconds
-	values["time"] = 30.0;
-
-	pMove->initialize(values);
-	pFollowCG->vecCommands.push_back(pMove);
-	sceneCommandGroup.vecCommandGroups.push_back(pFollowCG);
+	//pMove->initialize(values);
+	//pFollowCG->vecCommands.push_back(pMove);
+	//sceneCommandGroup.vecCommandGroups.push_back(pFollowCG);
 
 	/*****************************************************/
+
+	/*cLuaBrain* brain = new cLuaBrain();
+	brain->SetObjectVector(&sceneUtils->vecObjectsToDraw);
+
+	std::ifstream ifs("AnimScript.lua");
+	std::stringstream buffer;
+	buffer << ifs.rdbuf();
+
+	brain->LoadScript("AnimScript", buffer.str());
+	brain->Update(0.0f);*/
+
 	while (!glfwWindowShouldClose(window))
 	{
 		/*std::cout << "x: " << camera->orientation.x << std::endl;
@@ -218,11 +147,9 @@ int main(void)
 		glm::mat4x4 matProjection = glm::mat4(1.0f);
 		glm::mat4x4	matView = glm::mat4(1.0f);
 
-
 		glfwGetFramebufferSize(window, &width, &height);
 		ratio = width / (float)height;
 		glViewport(0, 0, width, height);
-
 
 		glEnable(GL_DEPTH);		// Enables the KEEPING of the depth information
 		glEnable(GL_DEPTH_TEST);	// When drawing, checked the existing depth
@@ -250,8 +177,8 @@ int main(void)
 		lightsManager->copyLightValuesToShader();
 		lightsManager->drawAttenuationSpheres(program);
 
-		jet->applyTransformationsToCollisionPoints();
-		jet->drawCollisionPoints(program);
+		//jet->applyTransformationsToCollisionPoints();
+		//jet->drawCollisionPoints(program);
 		cSceneUtils::getInstance()->drawSkyBox(camera->eye, program);
 
 		cSceneUtils::getInstance()->vecTrasparentObjects.clear();
@@ -303,7 +230,6 @@ int main(void)
 
 		sceneUtils->drawAABBs(program);
 		//std::cout << cAABB::generateId(ship->position, 10.0f) << std::endl;
-
 		double currentTime = glfwGetTime();
 		double deltaTime = currentTime - lastTime;
 		double MAX_DELTA_TIME = 0.1;	// 100 ms
@@ -311,9 +237,8 @@ int main(void)
 		{
 			deltaTime = MAX_DELTA_TIME;
 		}
+		//sceneUtils->sceneCommandGroup.Update(deltaTime);
 
-		//sceneCommandGroup.Update(deltaTime);
-		//ship->position = pMove->currentLocation;
 		//std::cout << ship->position.x <<" " << ship->position.z << std::endl;
 		//cModelDrawInfo modelDrawInfo;
 		//modelDrawInfo.meshFileName = "terrain_xyz_n.ply";

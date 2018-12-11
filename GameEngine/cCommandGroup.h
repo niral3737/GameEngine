@@ -14,6 +14,9 @@ public:
 
 	std::vector<iCommand*> vecCommands;
 	std::vector<cCommandGroup*> vecCommandGroups;
+	std::string friendlyName;
+	bool pause;
+	cCommandGroup* findCommandGroupByFrinedlyName(std::string friendlyName);
 private:
 	bool bIsFinished;
 };

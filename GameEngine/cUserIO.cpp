@@ -15,7 +15,6 @@
 #include "json.hpp"
 #include "cCamera.h"
 #include "cPhysics.h"
-#include "cJet.h"
 
 eSelectionMode cUserIO::selectionMode = eSelectionMode::MESH_SELECTION;
 bool cUserIO::includeInvisibleObjects = false;
@@ -43,7 +42,12 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 		}
 	}
 
-	if (key == GLFW_KEY_F3 && action == GLFW_PRESS)
+	/*if (key == GLFW_KEY_2 && action == GLFW_PRESS)
+	{
+		sceneUtils->sceneCommandGroup.pause = !sceneUtils->sceneCommandGroup.pause;
+	}*/
+
+	/*if (key == GLFW_KEY_F3 && action == GLFW_PRESS)
 	{
 		cMeshObject* bmw = (cMeshObject*) sceneUtils->findObjectByFriendlyName("BMW");
 		bmw->vecTextures[0].strength = bmw->vecTextures[0].strength >= 1.0f ? 1.0f : bmw->vecTextures[0].strength + 0.05;
@@ -54,7 +58,7 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 		cMeshObject* bmw = (cMeshObject*)sceneUtils->findObjectByFriendlyName("BMW");
 		bmw->vecTextures[0].strength = bmw->vecTextures[0].strength <= 0.0f ? 0.0f : bmw->vecTextures[0].strength - 0.05;
 		bmw->vecTextures[1].strength = 1.0f - bmw->vecTextures[0].strength; 
-	}
+	}*/
 
 	if (key == GLFW_KEY_M && action == GLFW_PRESS)
 	{
@@ -139,7 +143,7 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 	}*/
 	//}
 
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+	/*if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
 	{
 		cMeshObject* ball = (cMeshObject*) sceneUtils->findObjectByFriendlyName("cueBall");
 		ball->isUpdatedByPhysics = true;
@@ -147,7 +151,7 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 		ball->velocity = cCamera::getInstance()->getCameraDirection() * cPhysics::initialProjectileVelocity;
 		ball->acceleration = cPhysics::ACCEL_GRAVITY;
 
-	}
+	}*/
 
 	//save settings
 	if (glfwGetKey(window, GLFW_KEY_ENTER))

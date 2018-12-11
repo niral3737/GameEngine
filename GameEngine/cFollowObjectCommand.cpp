@@ -1,10 +1,11 @@
 #include "cFollowObjectCommand.h"
 
-
+#include "cCamera.h"
 
 cFollowObjectCommand::cFollowObjectCommand()
 {
 	this->m_bIsDone = false;
+	this->object = NULL;
 }
 
 
@@ -20,6 +21,8 @@ void cFollowObjectCommand::initialize(nlohmann::json values)
 	this->minDistance = values["minDistance"].get<float>();
 	this->maxSpeedDistance = values["maxSpeedDistance"].get<float>();
 	this->maxSpeed = values["maxSpeed"].get<float>();
+
+	this->isCamera = values["isCamera"].get<bool>();
 
 	this->currentLocation.x = values["currentLocation"]["x"].get<float>();
 	this->currentLocation.y = values["currentLocation"]["y"].get<float>();
@@ -54,8 +57,15 @@ void cFollowObjectCommand::update(double deltaTime)
 	// How far to move in THIS time step?
 	glm::vec3 deltaMove = vVel * (float)deltaTime;
 
-	currentLocation += deltaMove;
-
+	this->currentLocation += deltaMove;
+	if (!isCamera)
+	{
+		object->position = this->currentLocation;
+	}
+	else
+	{
+		cCamera::getInstance()->eye = this->currentLocation;
+	}
 	return;
 }
 
@@ -137,4 +147,10 @@ glm::vec3 cFollowObjectCommand::m_adjustVelocity_2(glm::vec3 vVel)
 	vVel *= (slowDownRatio * this->maxSpeed);
 
 	return vVel;
+}
+
+
+void cFollowObjectCommand::setObject(cMeshObject * object)
+{
+	this->object = object;
 }

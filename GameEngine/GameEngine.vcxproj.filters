@@ -195,6 +195,24 @@
     <ClCompile Include="cJet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cLuaBrain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cOrientToCommand.cpp">
+      <Filter>Scripting\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="cAnimationCurveCommand.cpp">
+      <Filter>Scripting\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="cMoveToEaseWithTime.cpp">
+      <Filter>Scripting\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="cMoveToLookAt.cpp">
+      <Filter>Scripting\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="cLocationTriggerMoveOrient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cShaderUtils.h">
@@ -338,6 +356,24 @@
     <ClInclude Include="cJet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cLuaBrain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cOrientToCommand.h">
+      <Filter>Scripting\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="cAnimationCurveCommand.h">
+      <Filter>Scripting\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="cMoveToEaseWithTime.h">
+      <Filter>Scripting\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="cMoveToLookAt.h">
+      <Filter>Scripting\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="cLocationTriggerMoveOrient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="settings.json" />
@@ -348,5 +384,10 @@
       <Filter>Shader\shaders</Filter>
     </None>
     <None Include="savefile.json" />
+    <None Include="AnimScript.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="oriWayPoints.txt" />
+    <Text Include="posWayPoints.txt" />
   </ItemGroup>
 </Project>

@@ -139,6 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cAABB.cpp" />
+    <ClCompile Include="cAnimationCurveCommand.cpp" />
     <ClCompile Include="cBase.cpp" />
     <ClCompile Include="cCamera.cpp" />
     <ClCompile Include="cCannonBall.cpp" />
@@ -155,13 +156,18 @@
     <ClCompile Include="cLight.cpp" />
     <ClCompile Include="cLightHelper.cpp" />
     <ClCompile Include="cLightsManager.cpp" />
+    <ClCompile Include="cLocationTriggerMoveOrient.cpp" />
+    <ClCompile Include="cLuaBrain.cpp" />
     <ClCompile Include="cMediator.cpp" />
     <ClCompile Include="cMeshObject.cpp" />
     <ClCompile Include="cMeshObjectFactory.cpp" />
     <ClCompile Include="cModelDrawInfo.cpp" />
     <ClCompile Include="cMoveToCommand.cpp" />
+    <ClCompile Include="cMoveToEaseWithTime.cpp" />
+    <ClCompile Include="cMoveToLookAt.cpp" />
     <ClCompile Include="cNormalShip.cpp" />
     <ClCompile Include="console.cpp" />
+    <ClCompile Include="cOrientToCommand.cpp" />
     <ClCompile Include="cPhysics.cpp" />
     <ClCompile Include="cPort.cpp" />
     <ClCompile Include="cRandomHelper.cpp" />
@@ -185,6 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cAABB.h" />
+    <ClInclude Include="cAnimationCurveCommand.h" />
     <ClInclude Include="cBase.h" />
     <ClInclude Include="cCamera.h" />
     <ClInclude Include="cCannonBall.h" />
@@ -201,13 +208,18 @@
     <ClInclude Include="cLight.h" />
     <ClInclude Include="cLightHelper.h" />
     <ClInclude Include="cLightsManager.h" />
+    <ClInclude Include="cLocationTriggerMoveOrient.h" />
+    <ClInclude Include="cLuaBrain.h" />
     <ClInclude Include="cMediator.h" />
     <ClInclude Include="cMeshObject.h" />
     <ClInclude Include="cMeshObjectFactory.h" />
     <ClInclude Include="cModelDrawInfo.h" />
     <ClInclude Include="cMoveToCommand.h" />
+    <ClInclude Include="cMoveToEaseWithTime.h" />
+    <ClInclude Include="cMoveToLookAt.h" />
     <ClInclude Include="cNormalShip.h" />
     <ClInclude Include="console.h" />
+    <ClInclude Include="cOrientToCommand.h" />
     <ClInclude Include="cPhysics.h" />
     <ClInclude Include="cPort.h" />
     <ClInclude Include="cRandomHelper.h" />
@@ -233,10 +245,15 @@
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AnimScript.lua" />
     <None Include="assets\shaders\fragment01.glsl" />
     <None Include="assets\shaders\vertex01.glsl" />
     <None Include="savefile.json" />
     <None Include="settings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="oriWayPoints.txt" />
+    <Text Include="posWayPoints.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

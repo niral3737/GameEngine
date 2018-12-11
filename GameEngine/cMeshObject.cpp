@@ -36,6 +36,10 @@ glm::quat cMeshObject::getOrientation(void)
 {
 	return this->orientation;
 }
+void cMeshObject::setOrientation(glm::quat orientation)
+{
+	this->orientation = orientation;
+}
 
 void cMeshObject::setOrientationEulerAngles(glm::vec3 newEulerAngles, bool bIsDegrees)
 {

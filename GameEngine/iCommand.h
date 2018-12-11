@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "json.hpp"
+#include "cMeshObject.h"
 #include "smoothstep_Wikipedia.h"
 
 class iCommand

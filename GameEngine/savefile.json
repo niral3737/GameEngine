@@ -5,19 +5,14 @@
     "backgroundSound2": "Puzzle-Game",
     "backgroundSound3": "Fantasy_Game_Background",
     "cameraAt": {
-        "x": -221.6547393798828,
-        "y": 125.53041076660156,
-        "z": -2.9976718425750732
+        "x": -5.5,
+        "y": 77.5,
+        "z": 38.0
     },
     "cameraEye": {
-        "x": -221.62197875976563,
-        "y": 126.15057373046875,
-        "z": -3.7814688682556152
-    },
-    "cameraUp": {
-        "x": 0.0,
-        "y": 1.0,
-        "z": 0.0
+        "x": 116.97097778320313,
+        "y": 77.5,
+        "z": -206.72027587890625
     },
     "compressedFileExt": ".mp3",
     "fireSound": "fire",
@@ -721,21 +716,17 @@
         "sphereInvertedNormals.ply",
         "sphere.ply",
         "cueBall.ply",
-        "Desert.ply",
-        "ship.ply",
-        "stadium.ply",
-        "ghost.ply",
         "cube.ply",
-        "plane.ply",
-        "sphereSmall1r.ply",
-        "table.ply",
-        "glass.ply",
-        "Bottle.ply",
-        "street_light.ply",
-        "houses.ply",
-        "tank.ply",
-        "bus.ply",
-        "BMW.ply"
+        "Lighthouse_Combined_xyz_n.ply",
+        "Old_House_Combined_xyz_n.ply",
+        "palm-centred_xyz_n.ply",
+        "Sky_Pirate_Decimated_Cannons_Combined_xyz_n.ply",
+        "Small_Factory_3d_model_xyz_n.ply",
+        "terain.ply",
+        "tree1_xyz_n.ply",
+        "tree3_xyz_n.ply",
+        "Trees_xyz_n.ply",
+        "Wood_House_xyz_n.ply"
     ],
     "meshes": [
         {
@@ -761,7 +752,7 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "Desert.ply",
+            "meshName": "terain.ply",
             "position": {
                 "x": 0.0,
                 "y": 0.0,
@@ -787,7 +778,7 @@
                 "z": 0.0
             },
             "dontLight": false,
-            "friendlyName": "tank",
+            "friendlyName": "factory",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -803,18 +794,18 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "tank.ply",
+            "meshName": "Small_Factory_3d_model_xyz_n.ply",
             "position": {
-                "x": 18.0,
-                "y": -16.5,
-                "z": -194.0
+                "x": 13.0,
+                "y": 78.0,
+                "z": 38.5
             },
             "postRotation": {
                 "x": 0.0,
                 "y": -0.0,
                 "z": 0.0
             },
-            "scale": 14.360560417175293,
+            "scale": 3.477937936782837,
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,
@@ -829,7 +820,7 @@
                 "z": 0.0
             },
             "dontLight": false,
-            "friendlyName": "BMW",
+            "friendlyName": "defender",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -845,268 +836,16 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "BMW.ply",
+            "meshName": "Sky_Pirate_Decimated_Cannons_Combined_xyz_n.ply",
             "position": {
-                "x": 47.0,
-                "y": -12.0,
-                "z": -397.5
+                "x": -5.5,
+                "y": 77.5,
+                "z": 38.0
             },
             "postRotation": {
-                "x": -3.141592502593994,
-                "y": -1.483502745628357,
-                "z": -3.141592502593994
-            },
-            "scale": 0.5258326530456543,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "bus",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "bus.ply",
-            "position": {
-                "x": 34.0,
-                "y": 0.5,
-                "z": -727.0
-            },
-            "postRotation": {
-                "x": 0.0,
-                "y": -0.0,
-                "z": 0.0
-            },
-            "scale": 9.795989990234375,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "street_light1",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "street_light.ply",
-            "position": {
-                "x": -266.0,
-                "y": 0.0,
-                "z": 81.0
-            },
-            "postRotation": {
-                "x": 0.0,
-                "y": -0.0,
-                "z": 0.0
-            },
-            "scale": 4.7588210105896,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "street_light2",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "street_light.ply",
-            "position": {
-                "x": -191.0,
-                "y": 0.0,
-                "z": 85.0
-            },
-            "postRotation": {
-                "x": -3.141592502593994,
-                "y": -0.331611692905426,
-                "z": -3.141592502593994
-            },
-            "scale": 4.7588210105896,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "street_light3",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "street_light.ply",
-            "position": {
-                "x": -267.0,
-                "y": 0.0,
-                "z": 203.0
-            },
-            "postRotation": {
-                "x": 0.0,
-                "y": -0.0,
-                "z": 0.0
-            },
-            "scale": 4.7588210105896,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "houses",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "houses.ply",
-            "position": {
-                "x": -224.0,
-                "y": 13.5,
-                "z": 160.0
-            },
-            "postRotation": {
-                "x": 0.0,
-                "y": -0.0,
-                "z": 0.0
-            },
-            "scale": 3.2353515625,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "glass1",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 0.7499999403953552,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "glass.ply",
-            "position": {
-                "x": -230.0,
-                "y": 27.0,
-                "z": 137.0
-            },
-            "postRotation": {
-                "x": -1.413716197013855,
-                "y": 0.0,
-                "z": 0.0
+                "x": -2.1364118651945319e-07,
+                "y": 1.518460988998413,
+                "z": -0.017453713342547417
             },
             "scale": 1.0,
             "useVertexColor": false,
@@ -1123,133 +862,7 @@
                 "z": 0.0
             },
             "dontLight": false,
-            "friendlyName": "glass2",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 0.6499999165534973,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "glass.ply",
-            "position": {
-                "x": -227.0,
-                "y": 27.0,
-                "z": 133.0
-            },
-            "postRotation": {
-                "x": -1.413716197013855,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "scale": 1.0,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "bottle",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 0.6499999165534973,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "Bottle.ply",
-            "position": {
-                "x": -233.0,
-                "y": 35.0,
-                "z": 132.5
-            },
-            "postRotation": {
-                "x": -1.065999984741211,
-                "y": 0.9417483806610107,
-                "z": -1.9515624046325684
-            },
-            "scale": 0.0206627044826746,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "table",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 0.8999999761581421,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "table.ply",
-            "position": {
-                "x": -230.5,
-                "y": 14.0,
-                "z": 135.0
-            },
-            "postRotation": {
-                "x": 0.0,
-                "y": -0.0,
-                "z": 0.0
-            },
-            "scale": 9.647250175476074,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "plane",
+            "friendlyName": "attacker",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -1265,60 +878,18 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "plane.ply",
+            "meshName": "Sky_Pirate_Decimated_Cannons_Combined_xyz_n.ply",
             "position": {
-                "x": 253.5,
-                "y": 282.0,
-                "z": 15.0
+                "x": 115.0,
+                "y": 77.5,
+                "z": -146.5
             },
             "postRotation": {
-                "x": 0.0,
-                "y": -0.0,
-                "z": 0.0
+                "x": -2.1095751812083563e-09,
+                "y": -0.48869138956069946,
+                "z": 0.10471981018781662
             },
             "scale": 1.0,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
-            "friendlyName": "stadium",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 0.30000001192092896,
-                "g": 0.30000001192092896,
-                "r": 0.30000001192092896
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "stadium.ply",
-            "position": {
-                "x": 179.0,
-                "y": -9.0,
-                "z": 41.5
-            },
-            "postRotation": {
-                "x": 0.0,
-                "y": -0.0,
-                "z": 0.0
-            },
-            "scale": 0.05650973320007324,
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,
@@ -1351,9 +922,9 @@
             },
             "meshName": "sphereInvertedNormals.ply",
             "position": {
-                "x": -221.62197875976563,
-                "y": 126.15057373046875,
-                "z": -3.7814688682556152
+                "x": 112.6680908203125,
+                "y": 85.9468994140625,
+                "z": -214.82432556152344
             },
             "postRotation": {
                 "x": 0.0,
@@ -1463,24 +1034,7 @@
     "splashSound": "splash",
     "textureBasePath": "assets/textures",
     "textures": [
-        "plane.bmp",
-        "Desert_Road_Diffuse.bmp",
-        "Justin.bmp",
-        "grass.bmp",
-        "brick-wall.bmp",
-        "220px-Emma_Watson_2013.bmp",
-        "wood.bmp",
-        "trump.bmp",
-        "fabric.bmp",
-        "fabric2.bmp",
-        "wall.bmp",
-        "water.bmp",
-        "bus1.bmp",
-        "bus2.bmp",
-        "bmw1.bmp",
-        "bmw2.bmp",
-        "tank1.bmp",
-        "tank2.bmp"
+        "plane.bmp"
     ],
     "uncompressedFileExt": ".wav",
     "vertexShaderFileName": "vertex01.glsl"

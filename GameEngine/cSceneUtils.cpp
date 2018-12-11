@@ -31,6 +31,7 @@ cSceneUtils::cSceneUtils()
 	this->terrainHierarchy = new cAABBHierarchy();
 	this->showAABBs = false;
 	this->jet = NULL;
+	this->sceneCommandGroup.pause = true;
 }
 
 cSceneUtils::~cSceneUtils()
@@ -140,6 +141,18 @@ void cSceneUtils::initializeCamera()
 	{
 		json = cJsonUtils::getJsonInstance();
 	}
+
+	cCamera* camera = cCamera::getInstance();
+	camera->eye.x = json["cameraEye"]["x"].get<float>();
+	camera->eye.y = json["cameraEye"]["y"].get<float>();
+	camera->eye.z = json["cameraEye"]["z"].get<float>();
+
+	glm::vec3 lookAt;
+	lookAt.x = json["cameraAt"]["x"].get<float>();
+	lookAt.y = json["cameraAt"]["y"].get<float>();
+	lookAt.z = json["cameraAt"]["z"].get<float>();
+
+	camera->lookAt(lookAt);
 }
 
 void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, GLuint shaderProgramID)

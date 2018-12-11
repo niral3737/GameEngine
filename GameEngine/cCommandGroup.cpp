@@ -3,10 +3,16 @@
 cCommandGroup::cCommandGroup()
 {
 	this->bIsFinished = false;
+	this->pause = false;
+	this->friendlyName = "";
 }
 
 void cCommandGroup::Update(double deltaTime)
 {
+	if (this->pause)
+	{
+		return;
+	}
 	// Assume everything is done...
 	bool bAllCommandsAreFinished = true;
 	bool bAllCommandGroupsAreFinished = true;
@@ -26,7 +32,7 @@ void cCommandGroup::Update(double deltaTime)
 		}
 	}
 
-	// Find the 1st command that is NOT done and run that
+	// Find the 1st command group that is NOT done and run that
 	for (std::vector<cCommandGroup*>::iterator itCurComGrp = this->vecCommandGroups.begin();
 		itCurComGrp != this->vecCommandGroups.end(); itCurComGrp++)
 	{
@@ -55,4 +61,16 @@ void cCommandGroup::Update(double deltaTime)
 bool cCommandGroup::isFinished(void)
 {
 	return this->bIsFinished;
+}
+
+cCommandGroup* cCommandGroup::findCommandGroupByFrinedlyName(std::string friendlyName)
+{
+	for (size_t i = 0; i < vecCommandGroups.size(); i++)
+	{
+		if (vecCommandGroups[i]->friendlyName == friendlyName)
+		{
+			return vecCommandGroups[i];
+		}
+	}
+	return NULL;
 }
