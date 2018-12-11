@@ -9,6 +9,7 @@ public:
 
 	//this generates the number including the range
 	static unsigned int generateRandomIntInRange(unsigned int start, unsigned int end);
+	static float generateRandomfloatInRange(float start, float end);
 };
 
 #endif // !_RANDOM_HELPER_HG_

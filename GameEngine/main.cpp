@@ -59,35 +59,17 @@ int main(void)
 	/*********Collision Points on Plane*********/
 	cEntityFactory* factory = new cEntityFactory();
 
-	/*cJet* jet = (cJet*) factory->createEntity("jet");
-	jet->setMesh(plane);
-
-	jet->getMesh()->position.y += 3.0f;
-	jet->collisionPointsModel.push_back(glm::vec4(36.3304214f, -11.0426798f, 8.0f, 1.0f));
-	jet->collisionPointsModel.push_back(glm::vec4(-36.3304214f, -11.0426798f, 8.0f, 1.0f));
-	jet->collisionPointsModel.push_back(glm::vec4(0.0f, -13.0426798f, 47.7284813f, 1.0f));*/
-	//jet->collisionPointsModel.push_back(glm::vec4(0.0f, -16.0426798f, 0.0f, 1.0f));
 
 	/*******************************************/
 	lightsManager->loadAllLights(program);
 
-	//*****************************
-	/*cModelDrawInfo terrainMeshInfo;
-	terrainMeshInfo.meshFileName = "Desert.ply";
-	cVAOMeshUtils::getInstance()->findDrawInfoByModelName(terrainMeshInfo);
-	cSceneUtils::getInstance()->terrainHierarchy->loadTerrainAABB(terrainMeshInfo);*/
-	//*****************************
-
-	/*camera->eye.x = 0.0f;
-	camera->eye.y = 300.0f;
-	camera->eye.z = -750.0f;
-	camera->setOrientationEulerAngles(glm::vec3(30.0f, 0.0f, 0.0f), true);*/
-
 	cSceneUtils* sceneUtils = cSceneUtils::getInstance();
-	//sceneUtils->jet = jet;
 	sceneUtils->initializeCamera();
 	cCamera* camera = cCamera::getInstance();
-
+	glm::vec4 waterOffset = glm::vec4(0.0f);
+	GLint waterOffset_location = glGetUniformLocation(program, "waterOffset");
+	GLint dayMix_location = glGetUniformLocation(program, "dayMix");
+	
 	cShaderUtils::getInstance()->getUniformVariableLocation(program, "objectColour");
 
 	GLint matView_location = glGetUniformLocation(program, "matView");
@@ -99,49 +81,8 @@ int main(void)
 
 	cPhysics* physics = new cPhysics();
 
-	/*******************Orient to Command*****************************/
-
-	//cMoveToCommand* pMove = new cMoveToCommand();
-
-	//nlohmann::json values;
-
-	//values["from"]["x"] = plane->position.x;
-	//values["from"]["y"] = plane->position.y;
-	//values["from"]["z"] = plane->position.z;
-
-	//values["to"]["x"] = 255.0f;
-	//values["to"]["y"] = 0.0f;
-	//values["to"]["z"] = 255.0f;
-
-	////time in seconds
-	//values["time"] = 30.0;
-
-	//pMove->initialize(values);
-	//pFollowCG->vecCommands.push_back(pMove);
-	//sceneCommandGroup.vecCommandGroups.push_back(pFollowCG);
-
-	/*****************************************************/
-
-	/*cLuaBrain* brain = new cLuaBrain();
-	brain->SetObjectVector(&sceneUtils->vecObjectsToDraw);
-
-	std::ifstream ifs("AnimScript.lua");
-	std::stringstream buffer;
-	buffer << ifs.rdbuf();
-
-	brain->LoadScript("AnimScript", buffer.str());
-	brain->Update(0.0f);*/
-
 	while (!glfwWindowShouldClose(window))
 	{
-		/*std::cout << "x: " << camera->orientation.x << std::endl;
-		std::cout << camera->orientation.y << std::endl;
-		std::cout << camera->orientation.z << std::endl;
-		std::cout << camera->orientation.w << std::endl;
-
-		std::cout << "eye: " << camera->eye.x << std::endl;
-		std::cout << camera->eye.y << std::endl;
-		std::cout << camera->eye.z << std::endl;*/
 		float ratio;
 		int width, height;
 		glm::mat4x4 matProjection = glm::mat4(1.0f);
@@ -171,12 +112,17 @@ int main(void)
 
 		glUniform3f(eyeLocation_location, cCamera::getInstance()->eye.x, cCamera::getInstance()->eye.y, cCamera::getInstance()->eye.z);
 
+		glUniform1f(dayMix_location, sceneUtils->dayMix);
+
 		glUniformMatrix4fv(matView_location, 1, GL_FALSE, glm::value_ptr(matView));
 		glUniformMatrix4fv(matProj_location, 1, GL_FALSE, glm::value_ptr(matProjection));
 
 		lightsManager->copyLightValuesToShader();
 		lightsManager->drawAttenuationSpheres(program);
 
+		lightsManager->dimLights(sceneUtils->dayMix);
+		lightsManager->flickerLight("light3");
+		lightsManager->flickerLight("light5");
 		//jet->applyTransformationsToCollisionPoints();
 		//jet->drawCollisionPoints(program);
 		cSceneUtils::getInstance()->drawSkyBox(camera->eye, program);
@@ -246,6 +192,12 @@ int main(void)
 
 		//physics->PhysicsUpdate(deltaTime, program);
 		//physics->addProjectileAim(deltaTime);
+		waterOffset.x += (0.1f * deltaTime);
+		waterOffset.y += (0.017f * deltaTime);
+		waterOffset.z -= (0.13f * deltaTime);
+		waterOffset.w -= (0.013f * deltaTime);
+
+		glUniform4f(waterOffset_location, waterOffset.x, waterOffset.y, waterOffset.z, waterOffset.w);
 
 		lastTime = currentTime;
 

@@ -5,14 +5,14 @@
     "backgroundSound2": "Puzzle-Game",
     "backgroundSound3": "Fantasy_Game_Background",
     "cameraAt": {
-        "x": -5.5,
-        "y": 77.5,
-        "z": 38.0
+        "x": 3.4261841773986816,
+        "y": 60.434696197509766,
+        "z": -238.05490112304688
     },
     "cameraEye": {
-        "x": 116.97097778320313,
-        "y": 77.5,
-        "z": -206.72027587890625
+        "x": 3.45511531829834,
+        "y": 60.652687072753906,
+        "z": -239.03042602539063
     },
     "compressedFileExt": ".mp3",
     "fireSound": "fire",
@@ -116,14 +116,14 @@
             "attenuation": {
                 "const": 0.0,
                 "distanceCutOff": 0.0,
-                "linear": -0.043999966233968735,
-                "quad": 0.004350014962255955
+                "linear": 4.792835235595703,
+                "quad": 0.02223009429872036
             },
             "diffuse": {
                 "a": 1.0,
-                "b": 0.9885250329971313,
-                "g": 0.1658986210823059,
-                "r": 0.14731284976005554
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
             },
             "direction": {
                 "w": 0.0,
@@ -146,9 +146,9 @@
             },
             "position": {
                 "w": 1.0,
-                "x": 178.5,
-                "y": 176.0,
-                "z": 124.5
+                "x": 49.5,
+                "y": 6.0,
+                "z": 6.0
             },
             "specular": {
                 "a": 1.0,
@@ -208,8 +208,8 @@
             "attenuation": {
                 "const": 0.0,
                 "distanceCutOff": 0.0,
-                "linear": -0.011999998241662979,
-                "quad": 0.001209999667480588
+                "linear": 3.3959362506866455,
+                "quad": 0.005600024480372667
             },
             "diffuse": {
                 "a": 1.0,
@@ -238,9 +238,9 @@
             },
             "position": {
                 "w": 1.0,
-                "x": -257.5,
-                "y": 88.5,
-                "z": 280.0
+                "x": 46.0,
+                "y": 6.5,
+                "z": 5.5
             },
             "specular": {
                 "a": 1.0,
@@ -433,282 +433,6 @@
                 "r": 1.0
             },
             "useDebugSphere": false
-        },
-        {
-            "attenuation": {
-                "const": 0.0,
-                "distanceCutOff": 0.0,
-                "linear": 0.32699933648109436,
-                "quad": 0.0011799994390457869
-            },
-            "diffuse": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "direction": {
-                "w": 0.0,
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "friendlyName": "light10",
-            "param1": {
-                "innerAngle": 0.0,
-                "lightType": 0.0,
-                "outerAngle": 0.0,
-                "w": 0.0
-            },
-            "param2": {
-                "on": 1.0,
-                "w": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "position": {
-                "w": 1.0,
-                "x": 61.5,
-                "y": 8.0,
-                "z": -442.5
-            },
-            "specular": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "useDebugSphere": false
-        },
-        {
-            "attenuation": {
-                "const": 0.0,
-                "distanceCutOff": 0.0,
-                "linear": 0.26000022888183594,
-                "quad": 0.004960019141435623
-            },
-            "diffuse": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "direction": {
-                "w": 0.0,
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "friendlyName": "light11",
-            "param1": {
-                "innerAngle": 0.0,
-                "lightType": 0.0,
-                "outerAngle": 0.0,
-                "w": 0.0
-            },
-            "param2": {
-                "on": 1.0,
-                "w": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "position": {
-                "w": 1.0,
-                "x": 38.0,
-                "y": 18.0,
-                "z": -468.5
-            },
-            "specular": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "useDebugSphere": false
-        },
-        {
-            "attenuation": {
-                "const": 0.0,
-                "distanceCutOff": 0.0,
-                "linear": 0.944991409778595,
-                "quad": 0.021320044994354248
-            },
-            "diffuse": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "direction": {
-                "w": 0.0,
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "friendlyName": "light12",
-            "param1": {
-                "innerAngle": 0.0,
-                "lightType": 0.0,
-                "outerAngle": 0.0,
-                "w": 0.0
-            },
-            "param2": {
-                "on": 1.0,
-                "w": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "position": {
-                "w": 1.0,
-                "x": 2.5,
-                "y": -81.0,
-                "z": -970.0
-            },
-            "specular": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "useDebugSphere": false
-        },
-        {
-            "attenuation": {
-                "const": 0.0,
-                "distanceCutOff": 0.0,
-                "linear": 0.03157208487391472,
-                "quad": 9.999999747378752e-06
-            },
-            "diffuse": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "direction": {
-                "w": 0.0,
-                "x": 0.0,
-                "y": -1.0,
-                "z": 0.0
-            },
-            "friendlyName": "light13",
-            "param1": {
-                "innerAngle": 15.0,
-                "lightType": 1.0,
-                "outerAngle": 18.0,
-                "w": 0.0
-            },
-            "param2": {
-                "on": 1.0,
-                "w": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "position": {
-                "w": 1.0,
-                "x": -247.29998779296875,
-                "y": 62.0,
-                "z": 209.8000030517578
-            },
-            "specular": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "useDebugSphere": false
-        },
-        {
-            "attenuation": {
-                "const": 0.0,
-                "distanceCutOff": 0.0,
-                "linear": 0.03157208487391472,
-                "quad": 9.999999747378752e-06
-            },
-            "diffuse": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "direction": {
-                "w": 0.0,
-                "x": 0.0,
-                "y": -1.0,
-                "z": 0.0
-            },
-            "friendlyName": "light14",
-            "param1": {
-                "innerAngle": 38.0,
-                "lightType": 1.0,
-                "outerAngle": 40.0,
-                "w": 0.0
-            },
-            "param2": {
-                "on": 1.0,
-                "w": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "position": {
-                "w": 1.0,
-                "x": -233.3000030517578,
-                "y": 145.5,
-                "z": 139.8000030517578
-            },
-            "specular": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "useDebugSphere": false
-        },
-        {
-            "attenuation": {
-                "const": 0.0,
-                "distanceCutOff": 0.0,
-                "linear": 0.03157208487391472,
-                "quad": 9.999999747378752e-06
-            },
-            "diffuse": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "direction": {
-                "w": 0.0,
-                "x": 0.0,
-                "y": -1.0,
-                "z": 0.0
-            },
-            "friendlyName": "light15",
-            "param1": {
-                "innerAngle": 38.0,
-                "lightType": 1.0,
-                "outerAngle": 40.0,
-                "w": 0.0
-            },
-            "param2": {
-                "on": 1.0,
-                "w": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "position": {
-                "w": 1.0,
-                "x": 172.1999969482422,
-                "y": 33.0,
-                "z": 38.79999923706055
-            },
-            "specular": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "useDebugSphere": false
         }
     ],
     "maxNumberOfLights": 10,
@@ -717,16 +441,35 @@
         "sphere.ply",
         "cueBall.ply",
         "cube.ply",
-        "Lighthouse_Combined_xyz_n.ply",
-        "Old_House_Combined_xyz_n.ply",
-        "palm-centred_xyz_n.ply",
-        "Sky_Pirate_Decimated_Cannons_Combined_xyz_n.ply",
-        "Small_Factory_3d_model_xyz_n.ply",
-        "terain.ply",
-        "tree1_xyz_n.ply",
-        "tree3_xyz_n.ply",
-        "Trees_xyz_n.ply",
-        "Wood_House_xyz_n.ply"
+        "SM_Env_Background_Hills_01.ply",
+        "water1.ply",
+        "water2.ply",
+        "SM_Env_Rock_01.ply",
+        "SM_Env_Rock_02.ply",
+        "SM_Env_Rock_03.ply",
+        "SM_Env_Rock_Arch_01.ply",
+        "SM_Env_Rock_Huge_01.ply",
+        "SM_Env_Rock_Huge_02.ply",
+        "SM_Env_Rock_Huge_03.ply",
+        "SM_Env_Rock_Huge_04.ply",
+        "SM_Env_Rock_Large_01.ply",
+        "SM_Env_Rock_Large_02.ply",
+        "SM_Env_Rock_Large_03.ply",
+        "SM_Env_Rock_Large_04.ply",
+        "SM_Env_Rock_Large_05.ply",
+        "SM_Env_Rock_Large_06.ply",
+        "SM_Env_Rock_Large_07.ply",
+        "SM_Env_Rock_Large_08.ply",
+        "SM_Env_Rock_Large_09.ply",
+        "SM_Env_Rock_Large_010.ply",
+        "SM_Env_Rock_Large_011.ply",
+        "SM_Env_Rock_Skull_01.ply",
+        "SM_Env_Tree_Base_01.ply",
+        "SM_Env_Tree_Base_02.ply",
+        "SM_Env_Tree_Canopy_01.ply",
+        "SM_Env_Tree_Canopy_02.ply",
+        "SM_Env_Tree_Canopy_03.ply",
+        "SM_Env_Tree_Canopy_04.ply"
     ],
     "meshes": [
         {
@@ -736,12 +479,12 @@
                 "z": 0.0
             },
             "dontLight": false,
-            "friendlyName": "terrain",
+            "friendlyName": "water1",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
             "materialDiffuse": {
-                "a": 1.0,
+                "a": 0.5,
                 "b": 1.0,
                 "g": 1.0,
                 "r": 1.0
@@ -752,7 +495,7 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "terain.ply",
+            "meshName": "water1.ply",
             "position": {
                 "x": 0.0,
                 "y": 0.0,
@@ -764,6 +507,12 @@
                 "z": 0.0
             },
             "scale": 1.0,
+            "textures": [
+                {
+                    "name": "water-caustic.bmp",
+                    "strength": 1.0
+                }
+            ],
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,
@@ -778,7 +527,7 @@
                 "z": 0.0
             },
             "dontLight": false,
-            "friendlyName": "factory",
+            "friendlyName": "water2",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -794,18 +543,24 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "Small_Factory_3d_model_xyz_n.ply",
+            "meshName": "water2.ply",
             "position": {
-                "x": 13.0,
-                "y": 78.0,
-                "z": 38.5
+                "x": 0.0,
+                "y": -4.0,
+                "z": 0.0
             },
             "postRotation": {
                 "x": 0.0,
                 "y": -0.0,
                 "z": 0.0
             },
-            "scale": 3.477937936782837,
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "classic_water_texture.bmp",
+                    "strength": 1.0
+                }
+            ],
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,
@@ -820,7 +575,7 @@
                 "z": 0.0
             },
             "dontLight": false,
-            "friendlyName": "defender",
+            "friendlyName": "island",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -836,18 +591,24 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "Sky_Pirate_Decimated_Cannons_Combined_xyz_n.ply",
+            "meshName": "SM_Env_Background_Hills_01.ply",
             "position": {
-                "x": -5.5,
-                "y": 77.5,
-                "z": 38.0
+                "x": 9.39999771118164,
+                "y": 1.9371509552001953e-07,
+                "z": 62.699615478515625
             },
             "postRotation": {
-                "x": -2.1364118651945319e-07,
-                "y": 1.518460988998413,
-                "z": -0.017453713342547417
+                "x": 0.0,
+                "y": -1.466056227684021,
+                "z": 0.0
             },
-            "scale": 1.0,
+            "scale": 3.9390649795532227,
+            "textures": [
+                {
+                    "name": "sand_texture.bmp",
+                    "strength": 1.0
+                }
+            ],
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,
@@ -862,7 +623,7 @@
                 "z": 0.0
             },
             "dontLight": false,
-            "friendlyName": "attacker",
+            "friendlyName": "largeRock1",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
@@ -878,18 +639,936 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "Sky_Pirate_Decimated_Cannons_Combined_xyz_n.ply",
+            "meshName": "SM_Env_Rock_Large_01.ply",
             "position": {
-                "x": 115.0,
-                "y": 77.5,
-                "z": -146.5
+                "x": 76.39940643310547,
+                "y": 1.100607991218567,
+                "z": -8.199993133544922
             },
             "postRotation": {
-                "x": -2.1095751812083563e-09,
-                "y": -0.48869138956069946,
-                "z": 0.10471981018781662
+                "x": -0.2617993950843811,
+                "y": 0.01745326817035675,
+                "z": 2.328661152795064e-10
             },
             "scale": 1.0,
+            "textures": [
+                {
+                    "name": "rock_texture.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "largeRock2",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Rock_Large_02.ply",
+            "position": {
+                "x": 12.90001106262207,
+                "y": 0.10060816258192062,
+                "z": 22.00005340576172
+            },
+            "postRotation": {
+                "x": -0.1601298600435257,
+                "y": -0.015587002970278263,
+                "z": 0.12067621946334839
+            },
+            "scale": 2.842782974243164,
+            "textures": [
+                {
+                    "name": "rock_texture.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "largeRock3",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Rock_Large_03.ply",
+            "position": {
+                "x": -54.69974136352539,
+                "y": -1.0993919372558594,
+                "z": 27.400074005126953
+            },
+            "postRotation": {
+                "x": -0.139435276389122,
+                "y": -0.003647994715720415,
+                "z": -0.10465642064809799
+            },
+            "scale": 3.7865021228790283,
+            "textures": [
+                {
+                    "name": "rock_texture.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "caveRock",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Rock_Arch_01.ply",
+            "position": {
+                "x": 48.49983215332031,
+                "y": 9.099998474121094,
+                "z": 27.000064849853516
+            },
+            "postRotation": {
+                "x": -1.1442110157271234e-16,
+                "y": 0.24434590339660645,
+                "z": 9.313228410690044e-09
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "rock_texture.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "skullRock",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Rock_Skull_01.ply",
+            "position": {
+                "x": 47.39984893798828,
+                "y": 0.0,
+                "z": 7.0999956130981445
+            },
+            "postRotation": {
+                "x": 3.133967638015747,
+                "y": 0.08693305402994156,
+                "z": 3.1063547134399414
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "rock_texture.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "smallRock1",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Rock_01.ply",
+            "position": {
+                "x": 25.50006103515625,
+                "y": 7.199995517730713,
+                "z": 27.400068283081055
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "rock_texture.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "smallRock2",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Rock_02.ply",
+            "position": {
+                "x": -26.200063705444336,
+                "y": 3.399998903274536,
+                "z": 25.50006103515625
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "rock_texture.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "smallRock3",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Rock_03.ply",
+            "position": {
+                "x": 93.5991439819336,
+                "y": 4.499998092651367,
+                "z": -5.499997138977051
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "rock_texture.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "treeTrunk1",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Tree_Base_01.ply",
+            "position": {
+                "x": -64.5995864868164,
+                "y": 34.700042724609375,
+                "z": 71.39948272705078
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "wood_bark.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "treeTrunk2",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Tree_Base_01.ply",
+            "position": {
+                "x": -39.0999755859375,
+                "y": 28.600072860717773,
+                "z": 53.399757385253906
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "wood_bark.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "treeTrunk3",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Tree_Base_01.ply",
+            "position": {
+                "x": -5.499997138977051,
+                "y": 6.699995994567871,
+                "z": 29.30007553100586
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "wood_bark.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "treeTrunk4",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Tree_Base_02.ply",
+            "position": {
+                "x": 18.20003318786621,
+                "y": 42.199928283691406,
+                "z": 61.79962921142578
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "wood_bark.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "treeTrunk5",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Tree_Base_02.ply",
+            "position": {
+                "x": 53.29975891113281,
+                "y": 32.300079345703125,
+                "z": 53.29975891113281
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "wood_bark.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "treeTrunk6",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Tree_Base_02.ply",
+            "position": {
+                "x": 74.69943237304688,
+                "y": 15.800024032592773,
+                "z": 8.89999771118164
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.10471973568201065
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "wood_bark.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "treeCanopy1",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Tree_Canopy_01.ply",
+            "position": {
+                "x": -64.99958038330078,
+                "y": 41.69993591308594,
+                "z": 74.49943542480469
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "Bumpy_Textured_Leaves_seamless.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "treeCanopy2",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Tree_Canopy_02.ply",
+            "position": {
+                "x": -40.89994812011719,
+                "y": 36.50001525878906,
+                "z": 57.99968719482422
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "Bumpy_Textured_Leaves_seamless.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "treeCanopy3",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Tree_Canopy_03.ply",
+            "position": {
+                "x": -7.699995040893555,
+                "y": 13.100013732910156,
+                "z": 31.80008316040039
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "Bumpy_Textured_Leaves_seamless.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "treeCanopy4",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Tree_Canopy_04.ply",
+            "position": {
+                "x": 18.600034713745117,
+                "y": 48.89982604980469,
+                "z": 62.89961242675781
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "Bumpy_Textured_Leaves_seamless.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "treeCanopy5",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Tree_Canopy_01.ply",
+            "position": {
+                "x": 52.69976806640625,
+                "y": 40.39995574951172,
+                "z": 56.09971618652344
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "Bumpy_Textured_Leaves_seamless.bmp",
+                    "strength": 1.0
+                }
+            ],
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "treeCanopy6",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "SM_Env_Tree_Canopy_02.ply",
+            "position": {
+                "x": 76.29940795898438,
+                "y": 23.20005226135254,
+                "z": 8.699996948242188
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "textures": [
+                {
+                    "name": "Bumpy_Textured_Leaves_seamless.bmp",
+                    "strength": 1.0
+                }
+            ],
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,
@@ -922,9 +1601,9 @@
             },
             "meshName": "sphereInvertedNormals.ply",
             "position": {
-                "x": 112.6680908203125,
-                "y": 85.9468994140625,
-                "z": -214.82432556152344
+                "x": 3.45511531829834,
+                "y": 60.652687072753906,
+                "z": -239.03042602539063
             },
             "postRotation": {
                 "x": 0.0,
@@ -994,9 +1673,9 @@
             "isWireFrame": true,
             "materialDiffuse": {
                 "a": 1.0,
-                "b": 0.0,
+                "b": 1.0,
                 "g": 0.0,
-                "r": 1.0
+                "r": 0.0
             },
             "materialSpecular": {
                 "b": 1.0,
@@ -1006,16 +1685,16 @@
             },
             "meshName": "sphere.ply",
             "position": {
-                "x": 253.5,
-                "y": 265.9573059082031,
-                "z": 62.72848129272461
+                "x": 46.0,
+                "y": 6.5,
+                "z": 5.5
             },
             "postRotation": {
                 "x": 0.0,
                 "y": -0.0,
                 "z": 0.0
             },
-            "scale": 0.375,
+            "scale": 29.296875,
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,
@@ -1034,7 +1713,12 @@
     "splashSound": "splash",
     "textureBasePath": "assets/textures",
     "textures": [
-        "plane.bmp"
+        "Bumpy_Textured_Leaves_seamless.bmp",
+        "classic_water_texture.bmp",
+        "rock_texture.bmp",
+        "sand_texture.bmp",
+        "water-caustic.bmp",
+        "wood_bark.bmp"
     ],
     "uncompressedFileExt": ".wav",
     "vertexShaderFileName": "vertex01.glsl"

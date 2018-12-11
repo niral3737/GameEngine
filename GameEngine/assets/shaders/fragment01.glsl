@@ -7,6 +7,9 @@ in vec4 vertPosWorld;
 in vec3 vertNormal;	// "Model space" (only rotation)
 in vec4 vertUV_x2;		// Texture coordinates
 
+uniform bool isWater1;
+uniform bool isWater2;
+
 uniform vec4 objectDiffuse;
 uniform vec4 objectSpecular;
 
@@ -15,6 +18,8 @@ uniform vec3 eyeLocation;
 // Set this to true (1), and the vertex colour is used
 uniform bool useVertexColour;
 uniform bool bDontUseLighting;	
+
+uniform vec4 waterOffset;
 
 //vec4 gl_FragColor
 out vec4 finalOutputColour;		// Any name, but must be vec4
@@ -54,6 +59,9 @@ uniform vec4 texBlendWeights[2];	// x is 0, y is 1, z is 2
 
 // Cube map texture (NOT a sampler3D)
 uniform samplerCube textureSkyBox;
+uniform samplerCube textureSpace;
+uniform float dayMix;
+
 uniform bool useSkyBoxTexture;
 
 //alpha transperancy
@@ -73,8 +81,11 @@ void main()
 		// (so here we are using the normal on the surface 
 		//  of the sphere, like a "ray cast" really)
 		vec3 skyPixelColour = texture( textureSkyBox, vertNormal.xyz ).rgb;
+		vec3 skyBoxSpace = texture(textureSpace, vertNormal.xyz).rgb;
+
+		vec3 skyBoxColor = (skyPixelColour * dayMix) + (skyBoxSpace * (1.0f - dayMix));
 		
-		finalOutputColour.rgb = skyPixelColour;
+		finalOutputColour.rgb = skyBoxColor;
 		finalOutputColour.a = 1.0f;
 		return;
 	}
@@ -86,14 +97,23 @@ void main()
 	}
 	else
 	{
-		vec4 tex0Col = texture( texture00, vertUV_x2.st ).rgba;
-		vec4 tex1Col = texture( texture01, vertUV_x2.st ).rgba;
-		vec4 tex2Col = texture( texture02, vertUV_x2.st ).rgba;
-		vec4 tex3Col = texture( texture03, vertUV_x2.st ).rgba;
-		vec4 tex4Col = texture( texture04, vertUV_x2.st ).rgba;
-		vec4 tex5Col = texture( texture05, vertUV_x2.st ).rgba;
-		vec4 tex6Col = texture( texture06, vertUV_x2.st ).rgba;
-		vec4 tex7Col = texture( texture07, vertUV_x2.st ).rgba;
+		vec4 vertUV = vertUV_x2;
+		if(isWater1){
+			vertUV.s += waterOffset.x;
+			vertUV.t += waterOffset.y;
+		}
+		if(isWater2){
+			vertUV.s += waterOffset.z;
+			vertUV.t += waterOffset.w;
+		}
+		vec4 tex0Col = texture( texture00, vertUV.st ).rgba;
+		vec4 tex1Col = texture( texture01, vertUV.st ).rgba;
+		vec4 tex2Col = texture( texture02, vertUV.st ).rgba;
+		vec4 tex3Col = texture( texture03, vertUV.st ).rgba;
+		vec4 tex4Col = texture( texture04, vertUV.st ).rgba;
+		vec4 tex5Col = texture( texture05, vertUV.st ).rgba;
+		vec4 tex6Col = texture( texture06, vertUV.st ).rgba;
+		vec4 tex7Col = texture( texture07, vertUV.st ).rgba;
 		
 		materialDiffuse =  objectDiffuse
 						  + (tex0Col * texBlendWeights[0].x) 	 // 0
@@ -255,6 +275,5 @@ void main()
 
 	finalOutputColour.rgb = finalObjectColour.rgb;
 	finalOutputColour.a = wholeObjectAlphaTransparency;
-
 	
 }

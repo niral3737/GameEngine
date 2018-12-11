@@ -7,6 +7,7 @@
 #include "cJsonUtils.h"
 #include "cMeshObject.h"
 #include "cSceneUtils.h"
+#include "cRandomHelper.h"
 
 cLightsManager* cLightsManager::instance = NULL;
 bool cLightsManager::loadFromSaveFile = false;
@@ -254,4 +255,36 @@ void cLightsManager::drawAttenuationSpheres(GLuint program)
 		cSceneUtils::getInstance()->drawObject(attenSphere, matBall, program);
 	}
 	attenSphere->isVisible = false;
+}
+
+void cLightsManager::dimLights(float dayMix)
+{
+	float dimValue = 0.0f;
+	const float UP = 1.0f;
+	const float DOWN = 0.1f;
+
+	if (dayMix < DOWN)
+		dimValue = DOWN;
+	else
+		dimValue = dayMix;
+
+	for (size_t i = 0; i < vecLights.size(); i++)
+	{
+		cLight* light = vecLights[i];
+		if (light->friendlyName == "light3" || light->friendlyName == "light5")
+		{
+			continue;
+		}
+		light->diffuse = glm::vec4(dimValue, dimValue, dimValue, dimValue);
+	}
+}
+
+void cLightsManager::flickerLight(std::string friendlyName)
+{
+	cLight* light = this->getLightByFriendlyName(friendlyName);
+
+	if (light != NULL)
+	{
+		light->atten.y = cRandomHelper::generateRandomfloatInRange(4.792835235595703f, 8.0f);
+	}
 }

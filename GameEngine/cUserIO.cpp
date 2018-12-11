@@ -164,6 +164,7 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 
 void cUserIO::processAsynKeys(GLFWwindow* window)
 {
+	const float MOVE_SPEED = 0.1;
 	const float CAMERA_SPEED_SLOW = 0.03f;
 	const float CAMERA_SPEED_FAST = 1.0f;
 
@@ -225,6 +226,18 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		}
 
 	}//if(AreAllModifiersUp(window)
+
+	if (mIsCtrlDown(window) && mIsAltDown(window))
+	{
+		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)	// "up"
+		{
+			cSceneUtils::getInstance()->dayMix += (cSceneUtils::getInstance()->dayMix >= 1.0f) ? 0.0f : 0.002f;
+		}
+		if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)	// "up"
+		{
+			cSceneUtils::getInstance()->dayMix -= (cSceneUtils::getInstance()->dayMix <= 0.0f) ? 0.0f : 0.002f;
+		}
+	}
 
 	if (mIsShiftDown(window))
 	{
@@ -350,27 +363,27 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		{
 			if (glfwGetKey(window, GLFW_KEY_W))
 			{
-				((cMeshObject*)cSceneUtils::getInstance()->selectedMeshObject)->position.z += 0.5f;
+				selectedMeshObject->position.z += MOVE_SPEED;
 			}
 			if (glfwGetKey(window, GLFW_KEY_S))
 			{
-				selectedMeshObject->position.z -= 0.5f;
+				selectedMeshObject->position.z -= MOVE_SPEED;
 			}
 			if (glfwGetKey(window, GLFW_KEY_A))
 			{
-				selectedMeshObject->position.x += 0.5f;
+				selectedMeshObject->position.x += MOVE_SPEED;
 			}
 			if (glfwGetKey(window, GLFW_KEY_D))
 			{
-				selectedMeshObject->position.x -= 0.5f;
+				selectedMeshObject->position.x -= MOVE_SPEED;
 			}
 			if (glfwGetKey(window, GLFW_KEY_Q))
 			{
-				selectedMeshObject->position.y += 0.5f;
+				selectedMeshObject->position.y += MOVE_SPEED;
 			}
 			if (glfwGetKey(window, GLFW_KEY_E))
 			{
-				selectedMeshObject->position.y -= 0.5f;
+				selectedMeshObject->position.y -= MOVE_SPEED;
 			}
 			if (glfwGetKey(window, GLFW_KEY_EQUAL))
 			{
@@ -661,6 +674,12 @@ void cUserIO::mSaveSettings()
 		json["meshes"][index]["acceleration"]["x"] = object->acceleration.x;
 		json["meshes"][index]["acceleration"]["y"] = object->acceleration.y;
 		json["meshes"][index]["acceleration"]["z"] = object->acceleration.z;
+
+		for (size_t j = 0; j < object->vecTextures.size(); j++)
+		{
+			json["meshes"][index]["textures"][j]["name"] = object->vecTextures[j].name;
+			json["meshes"][index]["textures"][j]["strength"] = object->vecTextures[j].strength;
+		}
 	}
 
 	ofs << std::setw(4) << json << std::endl;

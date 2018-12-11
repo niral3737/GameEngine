@@ -92,6 +92,18 @@ bool cVAOMeshUtils::loadModels(GLuint program)
 		std::cout << "Error: city cube map DIDN't load. On no!" << std::endl;
 	}
 
+	if (cBasicTextureManager::getInstance()->CreateCubeTextureFromBMPFiles("SpaceCubeMap",
+		"SpaceBox_left2_negX.bmp", "SpaceBox_right1_posX.bmp",				// reverse these
+		"SpaceBox_bottom4_negY.bmp", "SpaceBox_top3_posY.bmp",				// Rotate the image "right 90 degrees")
+		"SpaceBox_front5_posZ.bmp", "SpaceBox_back6_negZ.bmp", true, errorString))
+	{
+		std::cout << "Loaded the space cube map OK" << std::endl;
+	}
+	else
+	{
+		std::cout << "Error: city cube map DIDN't load. On no!" << std::endl;
+	}
+
 	return true;
 }
 

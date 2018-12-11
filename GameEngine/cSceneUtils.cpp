@@ -32,6 +32,7 @@ cSceneUtils::cSceneUtils()
 	this->showAABBs = false;
 	this->jet = NULL;
 	this->sceneCommandGroup.pause = true;
+	this->dayMix = 1.0f;
 }
 
 cSceneUtils::~cSceneUtils()
@@ -123,6 +124,17 @@ void cSceneUtils::loadModelsIntoScene()
 		meshObject->acceleration.y = meshes[i]["acceleration"]["y"].get<float>();
 		meshObject->acceleration.z = meshes[i]["acceleration"]["z"].get<float>();
 
+		if (meshes[i].find("textures") != meshes[i].end())
+		{
+			std::vector<nlohmann::json> textures = meshes[i]["textures"].get<std::vector<nlohmann::json>>();
+			for (size_t j = 0; j < textures.size(); j++)
+			{
+				sTextureInfo texture;
+				texture.name = textures[j]["name"].get<std::string>();
+				texture.strength = textures[j]["strength"].get<float>();
+				meshObject->vecTextures.push_back(texture);
+			}
+		}
 		vecObjectsToDraw.push_back(meshObject);
 	}
 }
@@ -170,6 +182,8 @@ void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, G
 
 	glUseProgram(shaderProgramID);
 
+	GLint water1_Uniloc = glGetUniformLocation(shaderProgramID, "isWater1");
+	GLint water2_Uniloc = glGetUniformLocation(shaderProgramID, "isWater2");
 
 	GLint objectDiffuse_UniLoc = glGetUniformLocation(shaderProgramID, "objectDiffuse");
 	GLint objectSpecular_UniLoc = glGetUniformLocation(shaderProgramID, "objectSpecular");
@@ -218,6 +232,24 @@ void cSceneUtils::drawObject(iMeshObject* pCurrentMesh, glm::mat4x4& matModel, G
 		currentMesh->materialSpecular.g,
 		currentMesh->materialSpecular.b,
 		currentMesh->materialSpecular.a);
+
+	if (currentMesh->friendlyName == "water1")
+	{
+		glUniform1f(water1_Uniloc, (float)GL_TRUE);
+	}
+	else
+	{
+		glUniform1f(water1_Uniloc, (float)GL_FALSE);
+	}
+
+	if (currentMesh->friendlyName == "water2")
+	{
+		glUniform1f(water2_Uniloc, (float)GL_TRUE);
+	}
+	else
+	{
+		glUniform1f(water2_Uniloc, (float)GL_FALSE);
+	}
 
 	if (currentMesh->useVertexColor)
 	{
@@ -432,7 +464,6 @@ void cSceneUtils::drawSkyBox(glm::vec3 eye, GLuint program)
 	glActiveTexture(cityTextureUNIT_ID + GL_TEXTURE0);	// GL_TEXTURE0 = 33984
 
 	int cubeMapTextureID = cBasicTextureManager::getInstance()->getTextureIDFromName("CityCubeMap");
-
 	// Cube map is now bound to texture unit 30
 	//		glBindTexture( GL_TEXTURE_2D, cubeMapTextureID );
 	glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapTextureID);
@@ -440,6 +471,14 @@ void cSceneUtils::drawSkyBox(glm::vec3 eye, GLuint program)
 	//uniform samplerCube textureSkyBox;
 	GLint skyBoxCubeMap_UniLoc = glGetUniformLocation(program, "textureSkyBox");
 	glUniform1i(skyBoxCubeMap_UniLoc, cityTextureUNIT_ID);
+
+	cityTextureUNIT_ID++;
+	glActiveTexture(cityTextureUNIT_ID + GL_TEXTURE0);
+	int cubeMapTextureID2 = cBasicTextureManager::getInstance()->getTextureIDFromName("SpaceCubeMap");
+	glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapTextureID2);
+
+	GLint spaceSkyBoxCubeMap_UniLoc = glGetUniformLocation(program, "textureSpace");
+	glUniform1i(spaceSkyBoxCubeMap_UniLoc, cityTextureUNIT_ID);
 
 	//uniform bool useSkyBoxTexture;
 	GLint useSkyBoxTexture_UniLoc = glGetUniformLocation(program, "useSkyBoxTexture");

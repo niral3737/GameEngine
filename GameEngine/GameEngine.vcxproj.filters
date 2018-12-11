@@ -211,7 +211,7 @@
       <Filter>Scripting\Commands</Filter>
     </ClCompile>
     <ClCompile Include="cLocationTriggerMoveOrient.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Scripting\Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -372,7 +372,7 @@
       <Filter>Scripting\Commands</Filter>
     </ClInclude>
     <ClInclude Include="cLocationTriggerMoveOrient.h">
-      <Filter>Header Files</Filter>
+      <Filter>Scripting\Commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

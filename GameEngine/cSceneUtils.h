@@ -40,6 +40,8 @@ public:
 	void drawAABBs(GLuint program);
 
 	cCommandGroup sceneCommandGroup;
+
+	float dayMix;
 private:
 	static cSceneUtils* pSceneUtils;
 	int selectedObjectIndex;

@@ -36,6 +36,8 @@ public:
 	void selectNextLight();
 	
 	void drawAttenuationSpheres(GLuint program);
+	void dimLights(float dayMix);
+	void flickerLight(std::string friendlyName);
 
 	cLightHelper* pLightHelper;
 
