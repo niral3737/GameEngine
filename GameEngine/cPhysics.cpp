@@ -20,7 +20,6 @@ float cPhysics::initialProjectileVelocity = 10.0f;
 void cPhysics::PhysicsUpdate(double deltaTime, GLint program)
 {
 	cSceneUtils* sceneUtils = cSceneUtils::getInstance();
-	cJet* jet = sceneUtils->jet;
 	//// BOX LOCK
 	//const float LIMIT_POS_X = collisionTest.max.x;			// Lowest the objects can go
 	//const float LIMIT_NEG_X = collisionTest.min.x;			// Lowest the objects can go
@@ -37,60 +36,85 @@ void cPhysics::PhysicsUpdate(double deltaTime, GLint program)
 		deltaTime = largestDeltaTime;
 	}
 
-	jet->getMesh()->velocity += jet->getMesh()->acceleration * (float) deltaTime;
-	jet->getMesh()->position += jet->getMesh()->velocity * (float) deltaTime;
+	cMeshObject* ship = (cMeshObject*) sceneUtils->findObjectByFriendlyName("ship");
+	cMeshObject* house = (cMeshObject*)sceneUtils->findObjectByFriendlyName("house");
+
+	glm::vec3 shipPointBellow = adjustHeight(ship, program);
+	glm::vec3 housePointBellow = adjustHeight(house, program);
+
+	cMeshObject* sphere = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("sphere3");
+	sphere->isVisible = true;
+	sphere->isWireFrame = true;
+	sphere->dontLight = true;
+	sphere->scale = 1.0f / 8.0f;
+
+	glm::mat4 matIdentity = glm::mat4(1.0f);
+
+	sphere->materialDiffuse = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
+	sphere->position = shipPointBellow;
+	cSceneUtils::getInstance()->drawObject(sphere, matIdentity, program);
+
+	sphere->position = housePointBellow;
+	cSceneUtils::getInstance()->drawObject(sphere, matIdentity, program);
+
+	sphere->isVisible = false;
+	
+
+	drawPath(program);
+	//jet->getMesh()->velocity += jet->getMesh()->acceleration * (float) deltaTime;
+	//jet->getMesh()->position += jet->getMesh()->velocity * (float) deltaTime;
 
 
 
-	jet->applyTransformationsToCollisionPoints();
-	for (size_t i = 0; i < jet->collisionPointsWorld.size(); i++)
-	{
-		glm::vec3 currentPoint = jet->collisionPointsWorld[i];
-		cAABB* aabb =  sceneUtils->terrainHierarchy->mapAABBs[cAABB::generateId(jet->collisionPointsWorld[i], 10.0f)];
-		if (aabb == nullptr)
-		{
-			//std::cout << "AABB Not Found for " << cAABB::generateId(jet->collisionPointsWorld[i], 10.0f) << std::endl;
-			return;
-		}
-		std::vector<glm::vec3> vecPoints;
-		CalculateClosestPointsOnMesh(aabb, jet->collisionPointsWorld[i], vecPoints);
+	//jet->applyTransformationsToCollisionPoints();
+	//for (size_t i = 0; i < jet->collisionPointsWorld.size(); i++)
+	//{
+	//	glm::vec3 currentPoint = jet->collisionPointsWorld[i];
+	//	cAABB* aabb =  sceneUtils->terrainHierarchy->mapAABBs[cAABB::generateId(jet->collisionPointsWorld[i], 10.0f)];
+	//	if (aabb == nullptr)
+	//	{
+	//		//std::cout << "AABB Not Found for " << cAABB::generateId(jet->collisionPointsWorld[i], 10.0f) << std::endl;
+	//		return;
+	//	}
+	//	std::vector<glm::vec3> vecPoints;
+	//	CalculateClosestPointsOnMesh(aabb, jet->collisionPointsWorld[i], vecPoints);
 
-		glm::vec3 pointToTest = jet->collisionPointsWorld[i];
-		glm::vec3 closestPoint;
-		unsigned int triIndex = FindClosestPointOfAll(jet->collisionPointsWorld[i], vecPoints, closestPoint);
+	//	glm::vec3 pointToTest = jet->collisionPointsWorld[i];
+	//	glm::vec3 closestPoint;
+	//	unsigned int triIndex = FindClosestPointOfAll(jet->collisionPointsWorld[i], vecPoints, closestPoint);
 
-		cAABB::sAABBTriangle triToTest = aabb->vecTriangles[triIndex];
-		float distance = glm::distance(closestPoint, pointToTest);
-		
-		if (distance <= jet->collisionPointRadius)
-		{
-			std::string collidedOn = "";
-			// colided
-			// collisionPointsWorld[0] = Left Wing 
-			// collisionPointsWorld[1] = Right Wing 
-			// collisionPointsWorld[2] = Nose 
-			switch (i)
-			{
-			case 0:
-				collidedOn = "Left Wing";
-				jet->getMesh()->velocity.x = 0.0f;
-				break;
-			case 1:
-				collidedOn = "Right Wing";
-				jet->getMesh()->velocity.x = 0.0f;
-				break;
-			case 2:
-				collidedOn = "Nose";
-				jet->getMesh()->velocity.z = 0.0f;
-				break;
-			default:
-				break;
-			}
-			jet->showCollisionPoint(i, program);
-			jet->getMesh()->velocity.y = 0.0f;
-			std::cout << "We have collision on " << collidedOn << std::endl;
-		}
-	}
+	//	cAABB::sAABBTriangle triToTest = aabb->vecTriangles[triIndex];
+	//	float distance = glm::distance(closestPoint, pointToTest);
+	//	
+	//	if (distance <= jet->collisionPointRadius)
+	//	{
+	//		std::string collidedOn = "";
+	//		// colided
+	//		// collisionPointsWorld[0] = Left Wing 
+	//		// collisionPointsWorld[1] = Right Wing 
+	//		// collisionPointsWorld[2] = Nose 
+	//		switch (i)
+	//		{
+	//		case 0:
+	//			collidedOn = "Left Wing";
+	//			jet->getMesh()->velocity.x = 0.0f;
+	//			break;
+	//		case 1:
+	//			collidedOn = "Right Wing";
+	//			jet->getMesh()->velocity.x = 0.0f;
+	//			break;
+	//		case 2:
+	//			collidedOn = "Nose";
+	//			jet->getMesh()->velocity.z = 0.0f;
+	//			break;
+	//		default:
+	//			break;
+	//		}
+	//		jet->showCollisionPoint(i, program);
+	//		jet->getMesh()->velocity.y = 0.0f;
+	//		std::cout << "We have collision on " << collidedOn << std::endl;
+	//	}
+	//}
 
 
 	//std::vector<glm::vec3> vecPoints;
@@ -115,6 +139,64 @@ void cPhysics::PhysicsUpdate(double deltaTime, GLint program)
 	//	currentObject->velocity.y = 0.0f;
 	//}
 
+}
+
+glm::vec3 cPhysics::adjustHeight(cMeshObject* object, GLint program)
+{
+	cSceneUtils* sceneUtils = cSceneUtils::getInstance();
+	cAABB* aabb = sceneUtils->terrainHierarchy->mapAABBs[cAABB::generateId(object->position, 30.0f)];
+	if (aabb == nullptr)
+	{
+		std::cout << "AABB Not Found for " << cAABB::generateId(object->position, 30.0f) << std::endl;
+		object->position.y = 18.0f;
+		glm::vec3 belowPoint = object->position.y - glm::vec3(0.0f, 18.0f, 0.0f);
+		return belowPoint;
+	}
+
+	std::vector<glm::vec3> vecPoints;
+	CalculateClosestPointsOnMesh(aabb, object->position, vecPoints);
+
+	glm::vec3 pointToTest = object->position;
+	glm::vec3 pointBelow;
+	unsigned int triIndex = FindClosestPointOfAll(object->position, vecPoints, pointBelow);
+
+	cAABB::sAABBTriangle triToTest = aabb->vecTriangles[triIndex];
+	//float distance = glm::distance(closestPoint, pointToTest);
+		
+	//18.0f is 1/4 of the height of middle island 
+	object->position.y = pointBelow.y + 18.0f;
+
+	return pointBelow;
+}
+
+void cPhysics::drawPath(GLint program)
+{
+	const unsigned int NUM_OF_BALLS = 75;
+	cMeshObject* ship = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("ship");
+	cMeshObject* house = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("house");
+
+	glm::vec3 direction = house->position - ship->position;
+	glm::vec3 stepInDirection = direction / (float) NUM_OF_BALLS;
+	glm::vec3 pathTravelled = ship->position;
+
+	cMeshObject* sphere = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("sphere");
+	sphere->isVisible = true;
+	sphere->isWireFrame = true;
+	sphere->dontLight = true;
+	sphere->scale = 2.0f / 8.0f;
+
+	glm::mat4 matIdentity = glm::mat4(1.0f);
+
+	sphere->materialDiffuse = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);
+
+	for (size_t i = 0; i < NUM_OF_BALLS - 1; i++)
+	{
+		pathTravelled += stepInDirection;
+		sphere->position = pathTravelled; 
+		adjustHeight(sphere, program);
+		cSceneUtils::getInstance()->drawObject(sphere, matIdentity, program);
+	}
+	sphere->isVisible = false;
 }
 
 void cPhysics::PlayerPhysicsUpdate(cMeshObject* playerObject, double deltaTime)
@@ -290,22 +372,33 @@ void cPhysics::CalculateClosestPointsOnMesh(cAABB* aabb, glm::vec3 pointToTest, 
 unsigned int cPhysics::FindClosestPointOfAll(const glm::vec3& pointToTest, const std::vector<glm::vec3>& vecPoints, glm::vec3& finalPoint)
 {
 	glm::vec3 closestPoint = vecPoints[0]; // Begin assuming that the closes point is the first one
-	float currentDist = glm::distance(pointToTest, closestPoint); // Check the distance with first assumed point
+	float currentYDist = glm::abs(pointToTest.y - closestPoint.y);
 
 	unsigned int finalIndex = 0;
 	for (unsigned int index = 1; index != vecPoints.size(); index++)
 	{
+
+		float xDistance = glm::abs(pointToTest.x - vecPoints[index].x);
+		float zDistance = glm::abs(pointToTest.z - vecPoints[index].z);
+		float yDistance = glm::abs(pointToTest.y - vecPoints[index].y);
+
+		if (xDistance <= 1.0f && zDistance <= 1.0f && yDistance <= currentYDist)
+		{
+			currentYDist = yDistance;
+			finalIndex = index;
+			closestPoint = vecPoints[index];
+		}
 		// Check next point distance
 		// Should we set it to absolute?
-		float nextDist = glm::distance(pointToTest, vecPoints[index]);
-		if (nextDist < currentDist)
-		{
-			// If the distance checked now is smaller, this is the current smallest distanced point
-			currentDist = nextDist;
-			// And this is then our new closest point
-			closestPoint = vecPoints[index];
-			finalIndex = index;
-		}
+		//float nextDist = glm::distance(pointToTest, vecPoints[index]);
+		//if (nextDist < currentDist)
+		//{
+		//	// If the distance checked now is smaller, this is the current smallest distanced point
+		//	currentDist = nextDist;
+		//	// And this is then our new closest point
+		//	closestPoint = vecPoints[index];
+		//	finalIndex = index;
+		//}
 	}
 
 	// In the end, pass the new closest point

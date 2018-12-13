@@ -35,6 +35,9 @@ public:
 	static const glm::vec3 ACCEL_GRAVITY;
 
 	static float initialProjectileVelocity;
+
+	glm::vec3 adjustHeight(cMeshObject* object, GLint program);
+	void drawPath(GLint program);
 };
 
 #endif // !_cPhysics_HG_

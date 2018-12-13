@@ -514,6 +514,7 @@ void cSceneUtils::drawAABBs(GLuint program)
 	for (std::map<unsigned long long, cAABB*>::iterator it = terrainHierarchy->mapAABBs.begin(); it != terrainHierarchy->mapAABBs.end(); it++)
 	{
 		 aabbCube->position = it->second->getCentre();
+		 aabbCube->scale = it->second->getHalfSideLength() / 10.0f;
 		 drawObject(aabbCube, matCube, program);
 	}
 

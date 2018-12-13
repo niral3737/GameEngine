@@ -49,6 +49,12 @@ int main(void)
 
 	cVAOMeshUtils::getInstance()->loadModels(program);
 
+	/*******************AABBs*********************/
+	cModelDrawInfo terrainMeshInfo;
+	terrainMeshInfo.meshFileName = "islands.ply";
+	cVAOMeshUtils::getInstance()->findDrawInfoByModelName(terrainMeshInfo);
+	cSceneUtils::getInstance()->terrainHierarchy->loadTerrainAABB(terrainMeshInfo);
+	/*********************************************/
 	double lastTime = glfwGetTime();
 
 	cLightsManager* lightsManager = cLightsManager::getInstance();
@@ -56,11 +62,6 @@ int main(void)
 	cSceneUtils::initializeCamera();
 	cSceneUtils::getInstance()->loadModelsIntoScene();
 
-	/*********Collision Points on Plane*********/
-	cEntityFactory* factory = new cEntityFactory();
-
-
-	/*******************************************/
 	lightsManager->loadAllLights(program);
 
 	cSceneUtils* sceneUtils = cSceneUtils::getInstance();
@@ -190,7 +191,7 @@ int main(void)
 		//modelDrawInfo.meshFileName = "terrain_xyz_n.ply";
 		//cVAOMeshUtils::getInstance()->findDrawInfoByModelName(modelDrawInfo);
 
-		//physics->PhysicsUpdate(deltaTime, program);
+		physics->PhysicsUpdate(deltaTime, program);
 		//physics->addProjectileAim(deltaTime);
 		waterOffset.x += (0.1f * deltaTime);
 		waterOffset.y += (0.017f * deltaTime);

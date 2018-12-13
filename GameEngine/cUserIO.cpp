@@ -164,7 +164,7 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 
 void cUserIO::processAsynKeys(GLFWwindow* window)
 {
-	const float MOVE_SPEED = 0.1;
+	const float MOVE_SPEED = 0.4f;
 	const float CAMERA_SPEED_SLOW = 0.03f;
 	const float CAMERA_SPEED_FAST = 1.0f;
 
@@ -227,15 +227,45 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 
 	}//if(AreAllModifiersUp(window)
 
-	if (mIsCtrlDown(window) && mIsAltDown(window))
+	cMeshObject* ship = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("ship");
+	cMeshObject* house = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("house");
+	if (mAreAllModifiersUp(window))
 	{
 		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)	// "up"
 		{
-			cSceneUtils::getInstance()->dayMix += (cSceneUtils::getInstance()->dayMix >= 1.0f) ? 0.0f : 0.002f;
+			ship->position.z += MOVE_SPEED;
 		}
 		if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)	// "up"
 		{
-			cSceneUtils::getInstance()->dayMix -= (cSceneUtils::getInstance()->dayMix <= 0.0f) ? 0.0f : 0.002f;
+			ship->position.z -= MOVE_SPEED;
+		}
+		if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)	// "up"
+		{
+			ship->position.x += MOVE_SPEED;
+		}
+		if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)	// "up"
+		{
+			ship->position.x -= MOVE_SPEED;
+		}
+	}
+
+	if (mIsShiftDown(window))
+	{
+		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)	// "up"
+		{
+			house->position.z += MOVE_SPEED;
+		}
+		if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)	// "up"
+		{
+			house->position.z -= MOVE_SPEED;
+		}
+		if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)	// "up"
+		{
+			house->position.x += MOVE_SPEED;
+		}
+		if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)	// "up"
+		{
+			house->position.x -= MOVE_SPEED;
 		}
 	}
 

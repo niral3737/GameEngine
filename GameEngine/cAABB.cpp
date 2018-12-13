@@ -96,7 +96,7 @@ unsigned long long cAABB::generateId(glm::vec3 objectLocation, float halfSideLen
 void cAABBHierarchy::loadTerrainAABB(cModelDrawInfo& terrainMeshInfo)
 {
 	// How big is our AABBs? Side length?
-	float halfSideLength = 10.0f;		// Play with this lenght
+	float halfSideLength = 30.0f;		// Play with this lenght
 									// Smaller --> more AABBs, fewer triangles per AABB
 									// Larger --> More triangles per AABB
 
