@@ -93,9 +93,6 @@ void cSceneUtils::loadModelsIntoScene()
 		meshObject->position.z = meshes[i]["position"]["z"].get<float>();
 
 		glm::vec3 eularAngles;
-		/*meshObject->postRotation.x = meshes[i]["postRotation"]["x"].get<float>();
-		meshObject->postRotation.y = meshes[i]["postRotation"]["y"].get<float>();
-		meshObject->postRotation.z = meshes[i]["postRotation"]["z"].get<float>();*/
 		eularAngles.x = meshes[i]["postRotation"]["x"].get<float>();
 		eularAngles.y = meshes[i]["postRotation"]["y"].get<float>();
 		eularAngles.z = meshes[i]["postRotation"]["z"].get<float>();

@@ -1,3 +1,6 @@
+#define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
@@ -31,9 +34,41 @@
 #include "cMoveToCommand.h"
 #include "cLuaBrain.h"
 
+//#include <gtest/gtest.h>
 
-int main(void)
+//GLint get_fectorial(GLint input_number)
+//{
+//	GLint factorial = 1;
+//
+//	if (input_number < 0)
+//	{
+//		factorial = -1;
+//	}
+//	else if (input_number == 0)
+//	{
+//		factorial = 1;
+//	}
+//	else if (input_number > 0)
+//	{
+//		for (GLint i = 1; i <= input_number; i++)
+//		{
+//			factorial *= i;
+//		}
+//	}
+//	return factorial;
+//}
+
+////test cases
+//TEST(FactorialTest, Negative)
+//{
+//	EXPECT_EQ(-1, get_fectorial(-1));
+//}
+
+int main(int argc, char** argv)
 {
+	/*::testing::InitGoogleTest(&argc, argv);
+	RUN_ALL_TESTS();*/
+
 	cGLFWUtils::setUpGLFW();
 	GLuint program = cShaderUtils::setUpShaders();
 	//std::cout << "Load from previously saved file? (Y/y)" << std::endl;

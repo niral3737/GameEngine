@@ -29,38 +29,38 @@ void cPhysics::PhysicsUpdate(double deltaTime, GLint program)
 	//const float LIMIT_NEG_Z = collisionTest.min.z;			// Lowest the objects can go
 
 	// The longest deltatime to wait before another update
-	const double largestDeltaTime = 0.10; // 10Hz
+	//const double largestDeltaTime = 0.10; // 10Hz
 
-	if (deltaTime > largestDeltaTime)
-	{
-		deltaTime = largestDeltaTime;
-	}
+	//if (deltaTime > largestDeltaTime)
+	//{
+	//	deltaTime = largestDeltaTime;
+	//}
 
-	cMeshObject* ship = (cMeshObject*) sceneUtils->findObjectByFriendlyName("ship");
-	cMeshObject* house = (cMeshObject*)sceneUtils->findObjectByFriendlyName("house");
+	//cMeshObject* ship = (cMeshObject*) sceneUtils->findObjectByFriendlyName("ship");
+	//cMeshObject* house = (cMeshObject*)sceneUtils->findObjectByFriendlyName("house");
 
-	glm::vec3 shipPointBellow = adjustHeight(ship, program);
-	glm::vec3 housePointBellow = adjustHeight(house, program);
+	//glm::vec3 shipPointBellow = adjustHeight(ship, program);
+	//glm::vec3 housePointBellow = adjustHeight(house, program);
 
-	cMeshObject* sphere = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("sphere3");
-	sphere->isVisible = true;
-	sphere->isWireFrame = true;
-	sphere->dontLight = true;
-	sphere->scale = 1.0f / 8.0f;
+	//cMeshObject* sphere = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("sphere3");
+	//sphere->isVisible = true;
+	//sphere->isWireFrame = true;
+	//sphere->dontLight = true;
+	//sphere->scale = 1.0f / 8.0f;
 
-	glm::mat4 matIdentity = glm::mat4(1.0f);
+	//glm::mat4 matIdentity = glm::mat4(1.0f);
 
-	sphere->materialDiffuse = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
-	sphere->position = shipPointBellow;
-	cSceneUtils::getInstance()->drawObject(sphere, matIdentity, program);
+	//sphere->materialDiffuse = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
+	//sphere->position = shipPointBellow;
+	//cSceneUtils::getInstance()->drawObject(sphere, matIdentity, program);
 
-	sphere->position = housePointBellow;
-	cSceneUtils::getInstance()->drawObject(sphere, matIdentity, program);
+	//sphere->position = housePointBellow;
+	//cSceneUtils::getInstance()->drawObject(sphere, matIdentity, program);
 
-	sphere->isVisible = false;
-	
+	//sphere->isVisible = false;
+	//
 
-	drawPath(program);
+	//drawPath(program);
 	//jet->getMesh()->velocity += jet->getMesh()->acceleration * (float) deltaTime;
 	//jet->getMesh()->position += jet->getMesh()->velocity * (float) deltaTime;
 
