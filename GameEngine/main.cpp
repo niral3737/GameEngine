@@ -34,40 +34,40 @@
 #include "cMoveToCommand.h"
 #include "cLuaBrain.h"
 
-//#include <gtest/gtest.h>
+#include <gtest/gtest.h>
 
-//GLint get_fectorial(GLint input_number)
-//{
-//	GLint factorial = 1;
-//
-//	if (input_number < 0)
-//	{
-//		factorial = -1;
-//	}
-//	else if (input_number == 0)
-//	{
-//		factorial = 1;
-//	}
-//	else if (input_number > 0)
-//	{
-//		for (GLint i = 1; i <= input_number; i++)
-//		{
-//			factorial *= i;
-//		}
-//	}
-//	return factorial;
-//}
+GLint get_fectorial(GLint input_number)
+{
+	GLint factorial = 1;
 
-////test cases
-//TEST(FactorialTest, Negative)
-//{
-//	EXPECT_EQ(-1, get_fectorial(-1));
-//}
+	if (input_number < 0)
+	{
+		factorial = -1;
+	}
+	else if (input_number == 0)
+	{
+		factorial = 1;
+	}
+	else if (input_number > 0)
+	{
+		for (GLint i = 1; i <= input_number; i++)
+		{
+			factorial *= i;
+		}
+	}
+	return factorial;
+}
+
+//test cases
+TEST(FactorialTest, Negative)
+{
+	EXPECT_EQ(-1, get_fectorial(-1));
+}
 
 int main(int argc, char** argv)
 {
-	/*::testing::InitGoogleTest(&argc, argv);
-	RUN_ALL_TESTS();*/
+	::testing::InitGoogleTest(&argc, argv);
+	RUN_ALL_TESTS();
 
 	cGLFWUtils::setUpGLFW();
 	GLuint program = cShaderUtils::setUpShaders();
