@@ -5,7 +5,8 @@
 cCannonBall::cCannonBall()
 {
 	this->isHit = false;
-	this->lastInitialVelocity = glm::vec3(0.0f);
+	this->lastInitialVelocity = glm::vec3(1.0f);
+	this->shootingBaseIndex = 0;
 }
 
 

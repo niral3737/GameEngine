@@ -32,6 +32,20 @@ cShaderUtils* cShaderUtils::getInstance(void)
 	return pShaderUtils;
 }
 
+void cShaderUtils::setUpTextRenderUniLoc(GLuint program)
+{
+	// deployment project
+	attribute_coord = glGetAttribLocation(program, "coord");
+	uniform_tex = glGetUniformLocation(program, "tex");
+	uniform_color = glGetUniformLocation(program, "colorDep");
+
+	if (attribute_coord == -1 || uniform_tex == -1 || uniform_color == -1)
+	{
+		std::cout << "unable to get attribute or uniform from shader\n" <<std::endl;
+	}
+	//!deployment project
+}
+
 GLuint cShaderUtils::setUpShaders()
 {
 	cShaderUtils* pShaderUtils = getInstance();
@@ -61,7 +75,7 @@ GLuint cShaderUtils::setUpShaders()
 	}
 
 	// Load the uniform location values (some of them, anyway)
-	cShaderUtils::cShaderProgram* pSP = cShaderUtils::getInstance()->getShaderProgramFromFriendlyName(shaderProgramName);
+	/*cShaderUtils::cShaderProgram* pSP = cShaderUtils::getInstance()->getShaderProgramFromFriendlyName(shaderProgramName);
 	pSP->loadUniformLocation("texture00");
 	pSP->loadUniformLocation("texture01");
 	pSP->loadUniformLocation("texture02");
@@ -71,9 +85,11 @@ GLuint cShaderUtils::setUpShaders()
 	pSP->loadUniformLocation("texture06");
 	pSP->loadUniformLocation("texture07");
 	pSP->loadUniformLocation("texBlendWeights[0]");
-	pSP->loadUniformLocation("texBlendWeights[1]");
+	pSP->loadUniformLocation("texBlendWeights[1]");*/
 
 	GLuint program = pShaderUtils->getIdFromFriendlyName(shaderProgramName);
+
+	getInstance()->setUpTextRenderUniLoc(program);
 
 	return program;
 }

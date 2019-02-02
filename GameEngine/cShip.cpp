@@ -213,5 +213,8 @@ void cShip::upgradeToSuperShip()
 	this->isSuperShip = true;
 	this->treasureCapacity = 75;
 	this->percentGoldToSpendWaiting = 5;
-	this->getMesh()->setDiffuseColour(glm::vec3(1.0f, 1.0f, 0.0f));
+	if (this->getMesh() != NULL)
+	{
+		this->getMesh()->setDiffuseColour(glm::vec3(1.0f, 1.0f, 0.0f));
+	}
 }

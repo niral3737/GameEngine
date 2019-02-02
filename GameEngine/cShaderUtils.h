@@ -9,6 +9,12 @@
 class cShaderUtils
 {
 public:
+	// deployment project
+	GLint attribute_coord;
+	GLint uniform_tex;
+	GLint uniform_color;
+	//!deployment project
+
 	class cShader
 	{
 	public:
@@ -49,6 +55,8 @@ public:
 
 	static GLuint setUpShaders();
 	static cShaderUtils* getInstance(void);
+
+	void setUpTextRenderUniLoc(GLuint program);
 
 	bool useShaderProgram(unsigned int id);
 	bool useShaderProgram(std::string friendlyName);

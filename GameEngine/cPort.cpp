@@ -4,7 +4,7 @@ cPort::cPort()
 {
 	this->treasureGold = NULL;
 	this->ship = NULL;
-	this->isShipDocked = true;
+	this->isShipDocked = false;
 	this->mesh = NULL;
 }
 

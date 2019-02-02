@@ -11,11 +11,15 @@
 #include "cJet.h"
 #include "cCommandGroup.h"
 
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
 class cSceneUtils
 {
 public:
 	~cSceneUtils();
 	static cSceneUtils* getInstance(void);
+
 
 	void loadModelsIntoScene();
 	static void initializeCamera();
@@ -38,6 +42,11 @@ public:
 	cJet* jet;
 	void drawSkyBox(glm::vec3 eye, GLuint program);
 	void drawAABBs(GLuint program);
+
+	FT_Library mft;
+	FT_Face mface;
+	void render_text(const char *text, float x, float y, float sx, float sy);
+	GLboolean initfreetype();
 
 	cCommandGroup sceneCommandGroup;
 

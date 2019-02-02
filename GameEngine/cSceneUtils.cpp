@@ -15,6 +15,15 @@
 #include "cCamera.h"
 #include "TextureManager/cBasicTextureManager.h"
 #include <map>
+#include "cShaderUtils.h"
+
+struct point
+{
+	GLfloat x;
+	GLfloat y;
+	GLfloat s;
+	GLfloat t;
+};
 
 cSceneUtils* cSceneUtils::pSceneUtils = 0;
 
@@ -516,4 +525,110 @@ void cSceneUtils::drawAABBs(GLuint program)
 	}
 
 	aabbCube->isVisible = false;
+}
+
+void cSceneUtils::render_text(const char *text, float x, float y, float sx, float sy)
+{
+	const char *p;
+	FT_GlyphSlot g = mface->glyph;
+
+	GLuint tex;
+	glActiveTexture(GL_TEXTURE0);
+	glGenTextures(1, &tex);
+	glBindTexture(GL_TEXTURE_2D, tex);
+	glUniform1i(cShaderUtils::getInstance()->uniform_tex, 0);
+
+	/* We require 1 byte alignment when uploading texture data */
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+	/* Clamping to edges is important to prevent artifacts when scaling */
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	/* Linear filtering usually looks best for text */
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	/* Set up the VBO for our vertex data */
+	glEnableVertexAttribArray(cShaderUtils::getInstance()->attribute_coord);
+	glBindBuffer(GL_ARRAY_BUFFER, cVAOMeshUtils::getInstance()->mdp_vbo);
+	glVertexAttribPointer(cShaderUtils::getInstance()->attribute_coord, 4, GL_FLOAT, GL_FALSE, 0, 0);
+
+
+	/* Loop through all characters */
+	for (p = text; *p; p++)
+	{
+		/* Try to load and render the character */
+		if (FT_Load_Char(mface, *p, FT_LOAD_RENDER))
+			continue;
+
+		/* Upload the "bitmap", which contains an 8-bit grayscale image, as an alpha texture */
+		//glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, g->bitmap.width, g->bitmap.rows, 0, GL_ALPHA, GL_UNSIGNED_BYTE, g->bitmap.buffer);
+		//glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, g->bitmap.width, g->bitmap.rows, 0, GL_RED, GL_UNSIGNED_BYTE, g->bitmap.buffer);
+		glTexImage2D(
+			GL_TEXTURE_2D,
+			0,
+			GL_RED,
+			g->bitmap.width,
+			g->bitmap.rows,
+			0,
+			GL_RED,
+			GL_UNSIGNED_BYTE,
+			g->bitmap.buffer
+		);
+
+		/* Calculate the vertex and texture coordinates */
+		float x2 = x + g->bitmap_left * sx;
+		float y2 = -y - g->bitmap_top * sy;
+		float w = g->bitmap.width * sx;
+		float h = g->bitmap.rows * sy;
+
+		point box[4] = {
+			{ x2, -y2, 0, 0 },
+		{ x2 + w, -y2, 1, 0 },
+		{ x2, -y2 - h, 0, 1 },
+		{ x2 + w, -y2 - h, 1, 1 },
+		};
+
+		//glBindVertexArray(mvao);
+		/* Draw the character on the screen */
+		glBufferData(GL_ARRAY_BUFFER, sizeof(box), box, GL_DYNAMIC_DRAW);
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+		/* Advance the cursor to the start of the next character */
+		x += (g->advance.x >> 6) * sx;
+		y += (g->advance.y >> 6) * sy;
+	}
+
+	glDisableVertexAttribArray(cShaderUtils::getInstance()->attribute_coord);
+	glDeleteTextures(1, &tex);
+}
+
+GLboolean cSceneUtils::initfreetype()
+{
+
+	if (FT_Init_FreeType(&mft))
+	{
+		fprintf(stderr, "unable to init free type\n");
+		return GL_FALSE;
+	}
+
+	if (FT_New_Face(mft, ".\\assets\\fonts\\FreeSans.ttf", 0, &mface))
+	{
+		fprintf(stderr, "unable to open font\n");
+		return GL_FALSE;
+	}
+
+	//set font size
+	FT_Set_Pixel_Sizes(mface, 0, 48);
+
+
+	if (FT_Load_Char(mface, 'X', FT_LOAD_RENDER))
+	{
+		fprintf(stderr, "unable to load character\n");
+		return GL_FALSE;
+	}
+
+
+	return GL_TRUE;
 }

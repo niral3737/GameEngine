@@ -33,36 +33,191 @@
 #include "cCommandGroup.h"
 #include "cMoveToCommand.h"
 #include "cLuaBrain.h"
+#include "cShip.h"
+#include "cCannonBall.h"
+#include "cPort.h"
 
+#include "Menu.h"
 #include <gtest/gtest.h>
+#include <MathLib.h>
 
-GLint get_fectorial(GLint input_number)
+
+//EXPECT TESTS
+//Random helper tests
+TEST(RandomHelperTest, Int)
 {
-	GLint factorial = 1;
+	unsigned int start = 1;
+	unsigned int end = 2;
 
-	if (input_number < 0)
-	{
-		factorial = -1;
-	}
-	else if (input_number == 0)
-	{
-		factorial = 1;
-	}
-	else if (input_number > 0)
-	{
-		for (GLint i = 1; i <= input_number; i++)
-		{
-			factorial *= i;
-		}
-	}
-	return factorial;
+	EXPECT_TRUE(cRandomHelper::generateRandomIntInRange(start, end) == start
+	|| cRandomHelper::generateRandomIntInRange(start, end) == end);
 }
 
-//test cases
-TEST(FactorialTest, Negative)
+TEST(RandomHelperTest, Float)
 {
-	EXPECT_EQ(-1, get_fectorial(-1));
+	unsigned int start = 1.0f;
+	unsigned int end = 2.0f;
+
+	EXPECT_GE(cRandomHelper::generateRandomfloatInRange(start, end), start);
+	EXPECT_LE(cRandomHelper::generateRandomfloatInRange(start, end), end);
 }
+
+
+//cShip tests
+TEST(Ship, constructor)
+{
+	cShip* ship = new cShip();
+
+	EXPECT_EQ(0.0f, ship->timeToWait);
+	EXPECT_EQ(0.0f, ship->timeWaited);
+	EXPECT_EQ(3, ship->percentGoldToSpendWaiting);
+}
+
+TEST(Ship, isSuperShip)
+{
+	cShip* ship = new cShip();
+
+	EXPECT_FALSE(ship->isSuperShip);
+}
+
+TEST(Ship, upgradeToSuperShip)
+{
+	cShip* ship = new cShip();
+	ship->upgradeToSuperShip();
+
+	EXPECT_TRUE(ship->isSuperShip);
+	EXPECT_EQ(75, ship->treasureCapacity);
+	EXPECT_EQ(5, ship->percentGoldToSpendWaiting);
+}
+//!EXPECT
+
+
+//ASSERT TESTS
+
+TEST(CannonBall, isHit)
+{
+	cCannonBall* cannonBall = new cCannonBall();
+
+	ASSERT_FALSE(cannonBall->isHit);
+}
+
+TEST(CannonBall, lastInitialVelocity)
+{
+	cCannonBall* cannonBall = new cCannonBall();
+
+	ASSERT_EQ(cannonBall->lastInitialVelocity, glm::vec3(0.0f));
+	ASSERT_EQ(cannonBall->shootingBaseIndex, 0);
+}
+
+TEST(CannonBall, shootingBaseIndex)
+{
+	cCannonBall* cannonBall = new cCannonBall();
+
+	ASSERT_EQ(cannonBall->shootingBaseIndex, 0);
+
+	cannonBall->increaseShootingBaseIndex(1, 10);
+
+	ASSERT_NE(cannonBall->shootingBaseIndex, 0);
+}
+
+TEST(CannonBall, increaseShootingBaseIndex)
+{
+	cCannonBall* cannonBall = new cCannonBall();
+	cannonBall->shootingBaseIndex = 10;
+
+	size_t start = 5;
+	size_t end = 10;
+
+	cannonBall->increaseShootingBaseIndex(start, end);
+
+	ASSERT_GE(cannonBall->shootingBaseIndex, start);
+	ASSERT_LE(cannonBall->shootingBaseIndex, end);
+}
+
+TEST(Port, isShipDocked)
+{
+	cPort* port = new cPort();
+
+	ASSERT_TRUE(port->isShipDocked);
+}
+//!ASSERT TESTS
+
+
+//BLACK BOX TESTS
+TEST(MathLib, average)
+{
+	std::vector<int> values = { 1, 2 };
+
+	EXPECT_EQ(nMath::Functions::average(values), 1.5f);
+}
+
+TEST(MathLib, isEven)
+{
+	EXPECT_TRUE(nMath::Functions::isEven(2));
+}
+
+TEST(MathLib, isOdd)
+{
+	EXPECT_FALSE(nMath::Functions::isOdd(2));
+}
+
+TEST(MathLib, max)
+{
+	std::vector<int> values = { 2, 5 };
+
+	EXPECT_NE(nMath::Functions::max(values), 2);
+	EXPECT_EQ(nMath::Functions::max(values), 5);
+}
+
+TEST(MathLib, min)
+{
+	std::vector<int> values = { 2, 5, 4, 1 };
+	int min = nMath::Functions::min(values);
+	for (size_t i = 0; i < values.size(); i++)
+	{
+		EXPECT_LE(min, values[i]);
+	}
+}
+
+
+//ASSERT TESTS
+
+TEST(MathLib, average_zero_size_vector)
+{
+	std::vector<int> values;
+
+	ASSERT_EQ(nMath::Functions::average(values), -1.0f);
+}
+
+TEST(MathLib, min_zero_size_vector)
+{
+	std::vector<int> values;
+
+	ASSERT_LT(nMath::Functions::min(values) , 0);
+}
+
+TEST(MathLib, max_of_3_values)
+{
+	std::vector<int> values = { 2, 5, 4};
+	int max = nMath::Functions::max(values);
+	for (size_t i = 0; i < values.size(); i++)
+	{
+		ASSERT_GE(max, values[i]);
+	}
+}
+
+TEST(MathLib, isOdd_zero)
+{
+	ASSERT_FALSE(nMath::Functions::isOdd(0));
+}
+
+TEST(MathLib, isEven_zero)
+{
+	ASSERT_TRUE(nMath::Functions::isEven(0));
+}
+
+
+//!BLACK BOX TESTS
 
 int main(int argc, char** argv)
 {
@@ -71,6 +226,11 @@ int main(int argc, char** argv)
 
 	cGLFWUtils::setUpGLFW();
 	GLuint program = cShaderUtils::setUpShaders();
+
+	if (!cSceneUtils::getInstance()->initfreetype())
+	{
+		std::cout << "cannnot init freetype" << std::endl;
+	}
 	//std::cout << "Load from previously saved file? (Y/y)" << std::endl;
 	char answer = 'y';
 	//std::cin >> answer;
@@ -82,6 +242,11 @@ int main(int argc, char** argv)
 		cSceneUtils::loadFromSaveFile = true;
 	}
 
+	/*****************Load Menu From XML********************/
+
+	Menu::getInstance()->loadLanguageFromXml(".\\assets\\xml\\localization.xml");
+
+	/*******************************************************/
 	cVAOMeshUtils::getInstance()->loadModels(program);
 
 	/*******************AABBs*********************/
@@ -119,6 +284,29 @@ int main(int argc, char** argv)
 
 	while (!glfwWindowShouldClose(window))
 	{
+
+		//glClearColor(1, 1, 1, 1);
+		glUseProgram(program);
+
+		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		glDepthMask(GL_TRUE);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		GLfloat yellow[4] = { 1, 1, 0, 1 };
+		glUniform4fv(cShaderUtils::getInstance()->uniform_color, 1, yellow);
+
+
+		glBindVertexArray(cVAOMeshUtils::getInstance()->mvao);
+
+		Menu::getInstance()->renderSelectedMenu();
+
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+
+		continue;
 		float ratio;
 		int width, height;
 		glm::mat4x4 matProjection = glm::mat4(1.0f);
@@ -232,9 +420,7 @@ int main(int argc, char** argv)
 		waterOffset.y += (0.017f * deltaTime);
 		waterOffset.z -= (0.13f * deltaTime);
 		waterOffset.w -= (0.013f * deltaTime);
-
-		glUniform4f(waterOffset_location, waterOffset.x, waterOffset.y, waterOffset.z, waterOffset.w);
-
+		
 		lastTime = currentTime;
 
 		/*cSceneUtils::getInstance()->drawEquipment(cueRack, program);
@@ -242,6 +428,8 @@ int main(int argc, char** argv)
 		{
 			cSceneUtils::getInstance()->drawEquipment(((cCueRack*)cueRack)->cues[i], program);
 		}*/
+
+		Menu::getInstance()->renderSelectedMenu();
 
 		glfwSwapBuffers(window);		// Shows what we drew
 

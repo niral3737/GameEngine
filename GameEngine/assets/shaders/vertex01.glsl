@@ -17,13 +17,20 @@ out vec4 vertPosWorld;  // "World space"
 out vec3 vertNormal;    // "Model space"
 out vec4 vertUV_x2;		// To the next shader stage
 
+// this is for deployment project 1
+attribute vec4 coord;
+varying vec2 texpos;
+
 void main()
 {
 	vec3 posTemp = vPosition;
 	
 	// Note these are 'backwards'
 	mat4 MVP = matProj * matView * matModel;
-    gl_Position = MVP * vec4(posTemp, 1.0); // ON SCREEN
+	gl_Position = vec4(coord.xy, 0, 1);
+	texpos = coord.zw;
+	return;
+//    gl_Position = MVP * vec4(posTemp, 1.0); // ON SCREEN
 	
 	vertPosWorld = matModel * vec4(posTemp, 1.0);
 	

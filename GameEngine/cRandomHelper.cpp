@@ -2,8 +2,6 @@
 #include <cstdlib>
 #include <iostream>
 
-
-
 cRandomHelper::cRandomHelper()
 {}
 

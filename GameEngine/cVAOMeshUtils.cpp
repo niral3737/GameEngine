@@ -38,6 +38,12 @@ cVAOMeshUtils* cVAOMeshUtils::getInstance(void)
 
 bool cVAOMeshUtils::loadModels(GLuint program)
 {
+
+	glGenBuffers(1, &mdp_vbo);
+
+	//generate and bind vao
+	glGenVertexArrays(1, &mvao);
+
 	std::vector<std::string> meshFileNames;
 	std::vector<std::string> textures;
 	if (loadFromSaveFile)

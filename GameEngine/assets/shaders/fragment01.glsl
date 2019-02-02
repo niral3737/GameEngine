@@ -67,8 +67,15 @@ uniform bool useSkyBoxTexture;
 //alpha transperancy
 uniform float wholeObjectAlphaTransparency;
 
+// this is for deployment project 1
+varying vec2 texpos;
+uniform sampler2D tex;
+uniform vec4 colorDep;
+
 void main()
 {
+	gl_FragColor = vec4(1, 1, 1, texture2D(tex, texpos).r) * colorDep;
+	return;
 	vec4 materialDiffuse = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 	vec4 materialSpecular = objectSpecular;
 

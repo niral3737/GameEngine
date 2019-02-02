@@ -30,6 +30,9 @@ public:
 	//   (will copy ENTIRE vertex buffer, OVERWRITING what's there)
 	void updateModelVertexInformation(cModelDrawInfo &drawInfo);
 
+	GLuint mdp_vbo;
+	GLuint mvao;
+
 private:
 	cVAOMeshUtils();
 	static cVAOMeshUtils* pVAOMeshUtils;

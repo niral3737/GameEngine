@@ -15,6 +15,7 @@
 #include "json.hpp"
 #include "cCamera.h"
 #include "cPhysics.h"
+#include "Menu.h"
 
 eSelectionMode cUserIO::selectionMode = eSelectionMode::MESH_SELECTION;
 bool cUserIO::includeInvisibleObjects = false;
@@ -41,6 +42,34 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 			lightManager->selectNextLight();
 		}
 	}
+
+	// Menu Language Selection
+	if (key == GLFW_KEY_1 && action == GLFW_PRESS)
+	{
+		Menu::getInstance()->_current_language = ENGLISH;
+		Menu::getInstance()->renderSelectedMenu();
+	}
+	if (key == GLFW_KEY_2 && action == GLFW_PRESS)
+	{
+		Menu::getInstance()->_current_language = FRENCH;
+		Menu::getInstance()->renderSelectedMenu();
+	}
+	if (key == GLFW_KEY_3 && action == GLFW_PRESS)
+	{
+		Menu::getInstance()->_current_language = SPANISH;
+		Menu::getInstance()->renderSelectedMenu();
+	}
+	if (key == GLFW_KEY_4 && action == GLFW_PRESS)
+	{
+		Menu::getInstance()->_current_language = GERMAN;
+		Menu::getInstance()->renderSelectedMenu();
+	}
+	if (key == GLFW_KEY_5 && action == GLFW_PRESS)
+	{
+		Menu::getInstance()->_current_language = ITALIAN;
+		Menu::getInstance()->renderSelectedMenu();
+	}
+	// !Menu Language Selection
 
 	/*if (key == GLFW_KEY_2 && action == GLFW_PRESS)
 	{
