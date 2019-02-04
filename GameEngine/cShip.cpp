@@ -10,6 +10,7 @@ cShip::cShip()
 	timeWaited = 0.0f;
 	this->mesh = NULL;
 	this->percentGoldToSpendWaiting = 3;
+	this->isSuperShip = false;
 }
 
 cShip::~cShip()

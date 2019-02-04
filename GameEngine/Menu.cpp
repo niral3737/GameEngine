@@ -32,9 +32,6 @@ void Menu::loadLanguageFromXml(std::string inputFile)
 		pugi::xml_node_iterator it2 = it->children().begin();
 		for (it2; it2 != it->children().end(); it2++)
 		{
-			std::cout << "it name: " << it->name() << std::endl;
-			std::cout << "it2 name: " << it2->name() << std::endl; //CTRL + KK
-
 			pugi::xml_node_iterator it3 = it2->children().begin();
 			for (it3; it3 != it2->children().end(); it3++)
 			{
