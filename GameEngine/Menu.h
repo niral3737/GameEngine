@@ -19,6 +19,7 @@ public:
 	Menu();
 	~Menu();
 	void loadLanguageFromXml(std::string inputFile);
+	void loadLanguageFromJson(std::string inputFile);
 	void renderSelectedMenu();
 
 	std::map<std::string, std::vector<std::string>> _map_languages;

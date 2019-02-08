@@ -44,13 +44,14 @@
 
 //EXPECT TESTS
 //Random helper tests
+
 TEST(RandomHelperTest, Int)
 {
 	unsigned int start = 1;
 	unsigned int end = 2;
 
 	EXPECT_TRUE(cRandomHelper::generateRandomIntInRange(start, end) == start
-	|| cRandomHelper::generateRandomIntInRange(start, end) == end);
+		|| cRandomHelper::generateRandomIntInRange(start, end) == end);
 }
 
 TEST(RandomHelperTest, Float)
@@ -61,7 +62,6 @@ TEST(RandomHelperTest, Float)
 	EXPECT_GE(cRandomHelper::generateRandomfloatInRange(start, end), start);
 	EXPECT_LE(cRandomHelper::generateRandomfloatInRange(start, end), end);
 }
-
 
 //cShip tests
 TEST(Ship, constructor)
@@ -243,8 +243,8 @@ int main(int argc, char** argv)
 	}
 
 	/*****************Load Menu From XML********************/
-
-	Menu::getInstance()->loadLanguageFromXml(".\\assets\\xml\\localization.xml");
+	//Menu::getInstance()->loadLanguageFromXml(".\\assets\\xml\\localization.xml");
+	Menu::getInstance()->loadLanguageFromJson("./assets/xml/localization.json");
 
 	/*******************************************************/
 	cVAOMeshUtils::getInstance()->loadModels(program);

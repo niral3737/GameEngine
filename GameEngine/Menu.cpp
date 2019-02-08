@@ -2,6 +2,8 @@
 #include "pugixml.hpp"
 #include <iostream>
 #include "cSceneUtils.h"
+#include <fstream>
+#include "cJsonUtils.h"
 
 Menu::Menu()
 {}
@@ -35,11 +37,27 @@ void Menu::loadLanguageFromXml(std::string inputFile)
 			pugi::xml_node_iterator it3 = it2->children().begin();
 			for (it3; it3 != it2->children().end(); it3++)
 			{
-
 				_map_languages[it2->first_attribute().value()].push_back(it3->child_value());
 			}
 
 		}
+	}
+}
+
+void Menu::loadLanguageFromJson(std::string inputFile)
+{
+	std::ifstream ifs(inputFile);
+	nlohmann::json j = nlohmann::json::parse(ifs);
+	ifs.close();
+	std::vector<std::string> languages  = j["languageCodes"].get<std::vector<std::string>>();
+
+	_map_languages["IN"] = j["Menu"].get<std::vector<std::string>>();
+	for (size_t i = 0; i < languages.size(); i++)
+	{
+		std::string language = languages[i];
+
+		std::vector<std::string> menu = j[language].get<std::vector<std::string>>();
+		_map_languages[language] = menu;
 	}
 }
 

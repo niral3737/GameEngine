@@ -1,0 +1,76 @@
+{
+    "Menu": [
+        "1 English",
+        "2 French",
+        "3 Spanish",
+        "4 German",
+        "5 Italian"
+    ],
+    "languageCodes": [
+        "EN",
+        "FR",
+        "SP",
+        "GE",
+        "IT"
+    ],
+    "EN": [
+        "1 New Game",
+        "2 Load Game",
+        "3 Options",
+        "4 Gameplay Settings",
+        "5 Video Settings",
+        "6 Audio Settings",
+        "7 Help",
+        "8 Tutorial",
+        "9 Social",
+        "10 Exit"
+    ],
+    "FR": [
+        "1 nouveau jeu",
+        "2 jeu de charge",
+        "3 options",
+        "4 parametres de jeu",
+        "5 parametres video",
+        "6 reglages audio",
+        "7 Aide",
+        "8 tutoriel",
+        "9 social",
+        "10 sortie"
+    ],
+    "SP": [
+        "1 nuevo juego",
+        "2 juegos de carga",
+        "3 opciones",
+        "4 Configuraciones de juego",
+        "5 ajustes de video",
+        "6 configuraciones de audio",
+        "7 ayuda",
+        "8 Tutorial",
+        "9 sociales",
+        "10 Salir"
+    ],
+    "GE": [
+        "1 Neues Spiel",
+        "2 Spiel laden",
+        "3 Optionen",
+        "4 Gameplay-Einstellungen",
+        "5 Videoeinstellungen",
+        "6 Audioeinstellungen",
+        "7 Hilfe",
+        "8 Lernprogramm",
+        "9 Soziales",
+        "10 Beenden"
+    ],
+    "IT": [
+        "1 nuovo gioco",
+        "2 Carica partita",
+        "3 opzioni",
+        "4 impostazioni di gioco",
+        "5 impostazioni video",
+        "6 Impostazioni audio",
+        "7 Aiuto",
+        "8 tutorial",
+        "9 sociale",
+        "10 Uscita"
+    ]
+}
