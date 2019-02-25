@@ -448,7 +448,8 @@ void cPhysics::addProjectileAim(double deltaTime, cCannonBall* cannonBall, cBase
 	std::string shaderProgramName = cJsonUtils::getJsonInstance()["shaderProgramName"].get<std::string>();
 //	cSceneUtils::getInstance()->drawObject(debugSphere, matWorld, cShaderUtils::getInstance()->getIdFromFriendlyName(shaderProgramName));
 
-	glm::vec3 projVelWorldSpace = cannonBall->lastInitialVelocity;
+	//glm::vec3 projVelWorldSpace = cannonBall->lastInitialVelocity;
+	glm::vec3 projVelWorldSpace = glm::vec3(0.0f, 0.0f, 0.0f);
 	glm::vec3 projPosition = shootingBase->getMesh()->position;
 	glm::vec3 projAccel = ACCEL_GRAVITY;
 

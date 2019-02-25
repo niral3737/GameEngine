@@ -33,6 +33,16 @@
 #include "cCommandGroup.h"
 #include "cMoveToCommand.h"
 #include "cLuaBrain.h"
+#include "cPlayer.h"
+#include "cAgent.h"
+#include "BehaviourManager.h"
+#include "Behaviour.h"
+#include "SeekBehaviour.h"
+#include "FleeBehaviour.h"
+#include "PersueBehaviour.h"
+#include "EvadeBehaviour.h"
+#include "ApproachBehaviour.h"
+#include "WanderAndIdleBehaviour.h"
 
 //#include <gtest/gtest.h>
 
@@ -84,12 +94,6 @@ int main(int argc, char** argv)
 
 	cVAOMeshUtils::getInstance()->loadModels(program);
 
-	/*******************AABBs*********************/
-	cModelDrawInfo terrainMeshInfo;
-	terrainMeshInfo.meshFileName = "islands.ply";
-	cVAOMeshUtils::getInstance()->findDrawInfoByModelName(terrainMeshInfo);
-	cSceneUtils::getInstance()->terrainHierarchy->loadTerrainAABB(terrainMeshInfo);
-	/*********************************************/
 	double lastTime = glfwGetTime();
 
 	cLightsManager* lightsManager = cLightsManager::getInstance();
@@ -102,6 +106,29 @@ int main(int argc, char** argv)
 	cSceneUtils* sceneUtils = cSceneUtils::getInstance();
 	sceneUtils->initializeCamera();
 	cCamera* camera = cCamera::getInstance();
+
+	sceneUtils->g_pFBOMain = new cFBO();
+	std::string FBOErrorString;
+	// This is a 16x9 aspect ratio
+	if (sceneUtils->g_pFBOMain->init(1080, 1080, FBOErrorString))
+		//	if ( ::g_pFBOMain->init( 256, 256, FBOErrorString ) )
+	{
+		std::cout << "Framebuffer is good to go!" << std::endl;
+	}
+	else
+	{
+		std::cout << "Framebuffer is NOT complete" << std::endl;
+	}
+
+	// Point back to default frame buffer
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	int renderPassNumber = 1;
+	// 1 = 1st pass (the actual scene)
+	// 2 = 2nd pass (rendering what we drew to the output)
+	GLint renderPassNumber_UniLoc = glGetUniformLocation(program, "renderPassNumber");
+	std::cout << renderPassNumber_UniLoc << std::endl;
+
 	glm::vec4 waterOffset = glm::vec4(0.0f);
 	GLint waterOffset_location = glGetUniformLocation(program, "waterOffset");
 	GLint dayMix_location = glGetUniformLocation(program, "dayMix");
@@ -117,16 +144,90 @@ int main(int argc, char** argv)
 
 	cPhysics* physics = new cPhysics();
 
+	// AI
+	BehaviourManager behaviourManager;
+
+	cPlayer* player = new cPlayer();
+	player->mesh = (cMeshObject*)sceneUtils->findObjectByFriendlyName("ship");
+	sceneUtils->aiEntities.push_back(player);
+
+	/*cAgent* seekAgent = new cAgent();
+	seekAgent->mesh = (cMeshObject*)sceneUtils->findObjectByFriendlyName("boat");
+	sceneUtils->aiEntities.push_back(seekAgent);*/
+
+	cAgent* fleeAgent = new cAgent();
+	fleeAgent->mesh = (cMeshObject*)sceneUtils->findObjectByFriendlyName("eagle");
+	sceneUtils->aiEntities.push_back(fleeAgent);
+
+	cAgent* persueAgent = new cAgent();
+	persueAgent->mesh = (cMeshObject*)sceneUtils->findObjectByFriendlyName("bunny");
+	sceneUtils->aiEntities.push_back(persueAgent);
+
+	cAgent* evadeAgent = new cAgent();
+	evadeAgent->mesh = (cMeshObject*)sceneUtils->findObjectByFriendlyName("donut");
+	sceneUtils->aiEntities.push_back(evadeAgent);
+
+	cAgent* approachAgent = new cAgent();
+	approachAgent->mesh = (cMeshObject*)sceneUtils->findObjectByFriendlyName("tenker");
+	cCannonBall* cannonBall = new cCannonBall();
+	cannonBall->mesh = (cMeshObject*)sceneUtils->findObjectByFriendlyName("cueBall5");
+	approachAgent->cannonBall = cannonBall;
+	sceneUtils->aiEntities.push_back(approachAgent);
+
+	cAgent* wanderAgent = new cAgent();
+	wanderAgent->mesh = (cMeshObject*)sceneUtils->findObjectByFriendlyName("box");
+	sceneUtils->aiEntities.push_back(wanderAgent);
+
+	for (size_t i = 0; i < 4; i++)
+	{
+		cCannonBall* cannonBall = new cCannonBall();
+		cannonBall->mesh = (cMeshObject*)sceneUtils->findObjectByFriendlyName("cueBall" + std::to_string(i + 1));
+		player->cannonBalls.push_back(cannonBall);
+	}
+
+	WanderAndIdleBehaviour* wanderBehaviour = new WanderAndIdleBehaviour(wanderAgent);
+	//behaviourManager.SetBehaviour(seekAgent, new SeekBehaviour(seekAgent, player));
+	behaviourManager.SetBehaviour(fleeAgent, new FleeBehaviour(fleeAgent, player));
+	behaviourManager.SetBehaviour(persueAgent, new PersueBehaviour(persueAgent, player));
+	behaviourManager.SetBehaviour(evadeAgent, new EvadeBehaviour(evadeAgent, player->cannonBalls[0]));
+	behaviourManager.SetBehaviour(approachAgent, new ApproachBehaviour(approachAgent, player));
+	behaviourManager.SetBehaviour(wanderAgent, wanderBehaviour);
+	// !AI
 	while (!glfwWindowShouldClose(window))
 	{
+		cShaderUtils::getInstance()->useShaderProgram("myShader");
+		glBindFramebuffer(GL_FRAMEBUFFER, sceneUtils->g_pFBOMain->ID);
+
+		//**********************************************************
+		//     ___ _                _   _          ___ ___  ___  
+		//    / __| |___ __ _ _ _  | |_| |_  ___  | __| _ )/ _ \ 
+		//   | (__| / -_) _` | '_| |  _| ' \/ -_) | _|| _ \ (_) |
+		//    \___|_\___\__,_|_|    \__|_||_\___| |_| |___/\___/ 
+		//                                                       		
+		// Clear the offscreen frame buffer
+//		glViewport( 0, 0, g_FBO_SizeInPixes, g_FBO_SizeInPixes );
+//		GLfloat	zero = 0.0f;
+//		GLfloat one = 1.0f;
+//		glClearBufferfv( GL_COLOR, 0, &zero );
+//		glClearBufferfv( GL_DEPTH, 0, &one );
+
+		// Clear colour and depth buffers
+		sceneUtils->g_pFBOMain->clearBuffers(true, true);
+		//**********************************************************
+
+		glUniform1f(renderPassNumber_UniLoc, 1.0f);	// Tell shader it's the 1st pass
+
 		float ratio;
 		int width, height;
 		glm::mat4x4 matProjection = glm::mat4(1.0f);
 		glm::mat4x4	matView = glm::mat4(1.0f);
 
-		glfwGetFramebufferSize(window, &width, &height);
-		ratio = width / (float)height;
-		glViewport(0, 0, width, height);
+		//glfwGetFramebufferSize(window, &width, &height);
+		//ratio = width / (float)height;
+		//glViewport(0, 0, width, height);
+
+		ratio = 1080 / (float)1080;
+		glViewport(0, 0, 1080, 1080);
 
 		glEnable(GL_DEPTH);		// Enables the KEEPING of the depth information
 		glEnable(GL_DEPTH_TEST);	// When drawing, checked the existing depth
@@ -134,7 +235,7 @@ int main(int argc, char** argv)
 
 		// Colour and depth buffers are TWO DIFF THINGS.
 		//glClearColor(0.4f, 0.7f, 1.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
 
 		//mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
@@ -197,7 +298,6 @@ int main(int argc, char** argv)
 				}
 				continue;
 			}
-
 			glm::mat4x4 matModel = glm::mat4(1.0f);			// mat4x4 m, p, mvp;
 
 			cSceneUtils::getInstance()->drawObject(pCurrentMesh, matModel, program);
@@ -210,6 +310,119 @@ int main(int argc, char** argv)
 			cSceneUtils::getInstance()->drawObject(cSceneUtils::getInstance()->vecTrasparentObjects[i], matModel, program);
 		}
 
+		/*if (player->mesh->position.x < -120.0f ||
+			player->mesh->position.x > 600.0f ||
+			player->mesh->position.z < -660.0f ||
+			player->mesh->position.z > -330.0f)
+		{
+			player->GetMesh()->position = glm::vec3(240.0f, 0.0f, -512.0f);
+		}
+
+		for (size_t i = 1; i < sceneUtils->aiEntities.size(); i++)
+		{
+			if (sceneUtils->aiEntities[i]->GetMesh()->position.x < -120.0f ||
+				sceneUtils->aiEntities[i]->GetMesh()->position.x > 600.0f ||
+				sceneUtils->aiEntities[i]->GetMesh()->position.z < -660.0f ||
+				sceneUtils->aiEntities[i]->GetMesh()->position.z > -330.0f)
+			{
+				sceneUtils->aiEntities[i]->GetMesh()->position.x = cRandomHelper::generateRandomfloatInRange(-120.0f, 600.0f);
+				sceneUtils->aiEntities[i]->GetMesh()->position.z = cRandomHelper::generateRandomfloatInRange(-660.0f, -330.0f);
+				if (sceneUtils->aiEntities[i]->GetMesh()->friendlyName == "box")
+				{
+					wanderBehaviour->initialize();
+				}
+			}
+			float distance = glm::distance(player->GetMesh()->position, sceneUtils->aiEntities[i]->GetMesh()->position);
+			if (distance < 20.0f)
+			{
+				player->GetMesh()->position = glm::vec3(240.0f, 0.0f, -512.0f);
+			}
+
+			float distanceToCannonBall = glm::distance(player->cannonBalls[0]->GetMesh()->position, sceneUtils->aiEntities[i]->GetMesh()->position);
+
+			if (distanceToCannonBall < 8.0f)
+			{
+				sceneUtils->aiEntities[i]->GetMesh()->position.x = cRandomHelper::generateRandomfloatInRange(-120.0f, 600.0f);
+				sceneUtils->aiEntities[i]->GetMesh()->position.z = cRandomHelper::generateRandomfloatInRange(-660.0f, -330.0f);
+				player->cannonBalls[0]->GetMesh()->position = player->GetMesh()->position;
+				player->cannonBalls[0]->isShot = false;
+				if (sceneUtils->aiEntities[i]->GetMesh()->friendlyName == "box")
+				{
+					wanderBehaviour->initialize();
+				}
+			}
+
+			if (sceneUtils->aiEntities[i]->GetMesh()->friendlyName == "tenker")
+			{
+				cAgent* agent = (cAgent*) sceneUtils->aiEntities[i];
+				float distanceToCannonBall = glm::distance(player->GetMesh()->position, agent->cannonBall->GetMesh()->position);
+				if (distanceToCannonBall < 8.0f)
+				{
+					player->GetMesh()->position = glm::vec3(240.0f, 0.0f, -512.0f);
+				}
+			}
+		}*/
+
+		// ****************************************
+		// Now the entire scene has been drawn 
+		// ****************************************
+
+		// *****************************************
+		// 2nd pass
+		// *****************************************
+
+		// 1. Set the Framebuffer output to the main framebuffer
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);		// Points to the "regular" frame buffer
+
+		// Get the size of the actual (screen) frame buffer
+		glfwGetFramebufferSize(window, &width, &height);
+		ratio = width / (float)height;
+		glViewport(0, 0, width, height);
+
+		glEnable(GL_DEPTH);		// Enables the KEEPING of the depth information
+		glEnable(GL_DEPTH_TEST);	// When drawing, checked the existing depth
+		glEnable(GL_CULL_FACE);	// Discared "back facing" triangles
+
+		// 2. Clear everything **ON THE MAIN FRAME BUFFER** 
+		//     (NOT the offscreen buffer)
+		// This clears the ACTUAL screen framebuffer
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		cMeshObject* p2SidedQuad = (cMeshObject*) sceneUtils->findObjectByFriendlyName("2SidedQuad");
+		p2SidedQuad->isVisible = true;
+		p2SidedQuad->b_HACK_UsesOffscreenFBO = true;
+		p2SidedQuad->dontLight = true;
+		p2SidedQuad->useVertexColor = false;
+		//p2SidedQuad->materialDiffuse = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
+		p2SidedQuad->materialDiffuse = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+		//p2SidedQuad->bIsWireFrame = true;
+		// Rotate it so it's "up and down"
+		p2SidedQuad->setOrientationEulerAngles(90.0f, 0.0f, 90.0f, true);
+		p2SidedQuad->position.z = 1.0f;
+
+		// Tell the shader this is the 2nd pass...
+		// This will run a very simple shader, which
+		//  does NOT lighting, and only samples from a single texture
+		//  (for now: soon there will be multiple textures)
+		glUniform1f(renderPassNumber_UniLoc, 2.0f);	// Tell shader it's the 1st pass
+
+		// Set the view transform so that the camera movement isn't impacted 
+
+		glm::vec3 cameraFullScreenQuad = glm::vec3(0.0, 0.0, -3.0f);
+
+		glUniform3f(eyeLocation_location, cameraFullScreenQuad.x, cameraFullScreenQuad.y, cameraFullScreenQuad.z);
+		matView = glm::lookAt(cameraFullScreenQuad,	// Eye
+			glm::vec3(0.0f, 0.0f, 0.0f),		// At
+			glm::vec3(0.0f, 1.0f, 0.0f));// Up
+
+		glUniformMatrix4fv(matView_location, 1, GL_FALSE, glm::value_ptr(matView));
+
+		// 4. Draw a single quad		
+		glm::mat4 matModel = glm::mat4(1.0f);	// identity
+		sceneUtils->drawObject(p2SidedQuad, matModel, program);
+		p2SidedQuad->isVisible = false;
+		/*************************************/
+
 		sceneUtils->drawAABBs(program);
 		//std::cout << cAABB::generateId(ship->position, 10.0f) << std::endl;
 		double currentTime = glfwGetTime();
@@ -219,6 +432,9 @@ int main(int argc, char** argv)
 		{
 			deltaTime = MAX_DELTA_TIME;
 		}
+
+		player->update(deltaTime);
+		behaviourManager.Update(deltaTime);
 		//sceneUtils->sceneCommandGroup.Update(deltaTime);
 
 		//std::cout << ship->position.x <<" " << ship->position.z << std::endl;

@@ -61,6 +61,12 @@
     <Filter Include="Scripting\Commands">
       <UniqueIdentifier>{88fb32d4-db16-4b0c-b653-d0919aa60d3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Behaviour">
+      <UniqueIdentifier>{0bba2371-51ae-4bdc-aee5-6d983b56186e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FBO">
+      <UniqueIdentifier>{5cc13392-3ce7-4cd3-ae66-c81fef736227}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -212,6 +218,36 @@
     </ClCompile>
     <ClCompile Include="cLocationTriggerMoveOrient.cpp">
       <Filter>Scripting\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="cPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SeekBehaviour.cpp">
+      <Filter>Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourManager.cpp">
+      <Filter>Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="cAgent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FleeBehaviour.cpp">
+      <Filter>Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="PersueBehaviour.cpp">
+      <Filter>Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="EvadeBehaviour.cpp">
+      <Filter>Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="WanderAndIdleBehaviour.cpp">
+      <Filter>Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="ApproachBehaviour.cpp">
+      <Filter>Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="cFBO.cpp">
+      <Filter>FBO</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -373,6 +409,39 @@
     </ClInclude>
     <ClInclude Include="cLocationTriggerMoveOrient.h">
       <Filter>Scripting\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="cPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviour.h">
+      <Filter>Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourManager.h">
+      <Filter>Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="SeekBehaviour.h">
+      <Filter>Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="cAgent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FleeBehaviour.h">
+      <Filter>Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="PersueBehaviour.h">
+      <Filter>Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="EvadeBehaviour.h">
+      <Filter>Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="WanderAndIdleBehaviour.h">
+      <Filter>Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="ApproachBehaviour.h">
+      <Filter>Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="cFBO.h">
+      <Filter>FBO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -26,6 +26,9 @@ cMeshObject::cMeshObject()
 	this->mUniqueID = cMeshObject::mNextID;
 	cMeshObject::mNextID++;
 
+	// HACK: See class definition for why this is a hack
+	this->b_HACK_UsesOffscreenFBO = false;
+
 	return;
 }
 

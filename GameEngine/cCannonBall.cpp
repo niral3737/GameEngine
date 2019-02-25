@@ -1,45 +1,31 @@
 #include "cCannonBall.h"
 
-
-
 cCannonBall::cCannonBall()
 {
-	this->isHit = false;
-	this->lastInitialVelocity = glm::vec3(0.0f);
+	this->isShot = false;
+	this->direction = glm::vec3(0.0f, 0.0f, 1.0f);
 }
 
 
 cCannonBall::~cCannonBall()
 {}
 
-cMeshObject* cCannonBall::getMesh()
+cMeshObject * cCannonBall::GetMesh()
 {
-	return (cMeshObject*)mesh;
+	return this->mesh;
 }
 
-void cCannonBall::setMesh(iMeshObject * mesh)
-{
-	this->mesh = mesh;
-
-}
-
-void cCannonBall::increaseShootingBaseIndex(size_t start, size_t end)
-{
-	if (shootingBaseIndex >= end)
-	{
-		shootingBaseIndex = start;
-	}
-	else
-	{
-		shootingBaseIndex++;
-	}
-}
 
 std::string cCannonBall::getName()
 {
 	if (this->mesh != NULL)
 	{
-		return this->getMesh()->friendlyName;
+		return this->mesh->friendlyName;
 	}
 	return "";
+}
+
+glm::vec3 cCannonBall::getPreviousPos()
+{
+	return this->previousPos;
 }

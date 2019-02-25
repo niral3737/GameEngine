@@ -5,14 +5,14 @@
     "backgroundSound2": "Puzzle-Game",
     "backgroundSound3": "Fantasy_Game_Background",
     "cameraAt": {
-        "x": 92.81871032714844,
-        "y": 363.5584716796875,
-        "z": -695.94384765625
+        "x": 240.0,
+        "y": 0.0,
+        "z": -510.0
     },
     "cameraEye": {
-        "x": 92.91358184814453,
-        "y": 364.0943603515625,
-        "z": -696.7827758789063
+        "x": 240.0,
+        "y": 600.0,
+        "z": -512.0
     },
     "compressedFileExt": ".mp3",
     "fireSound": "fire",
@@ -442,9 +442,14 @@
         "sphere3.ply",
         "cueBall.ply",
         "cube.ply",
-        "islands.ply",
         "Sky_Pirate_Decimated_Cannons_Combined.ply",
-        "Wood_House.ply"
+        "boat.ply",
+        "eagle.ply",
+        "bunny.ply",
+        "donut.ply",
+        "tenker.ply",
+        "box.ply",
+        "1x1_2Tri_Quad_2_Sided_xyz_n_uv.ply"
     ],
     "meshes": [
         {
@@ -453,58 +458,16 @@
                 "y": 0.0,
                 "z": 0.0
             },
-            "dontLight": false,
-            "friendlyName": "islands",
-            "isUpdatedByPhysics": false,
-            "isVisible": true,
-            "isWireFrame": false,
-            "materialDiffuse": {
-                "a": 1.0,
-                "b": 1.0,
-                "g": 1.0,
-                "r": 1.0
-            },
-            "materialSpecular": {
-                "b": 1.0,
-                "g": 1.0,
-                "power": 1.0,
-                "r": 1.0
-            },
-            "meshName": "islands.ply",
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "postRotation": {
-                "x": 0.0,
-                "y": -0.0,
-                "z": 0.0
-            },
-            "scale": 1.0,
-            "useVertexColor": false,
-            "velocity": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "acceleration": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "dontLight": false,
+            "dontLight": true,
             "friendlyName": "ship",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
             "materialDiffuse": {
                 "a": 1.0,
-                "b": 0.0,
-                "g": 1.0,
-                "r": 0.0
+                "b": 0.5,
+                "g": 0.1,
+                "r": 0.2
             },
             "materialSpecular": {
                 "b": 1.0,
@@ -514,9 +477,261 @@
             },
             "meshName": "Sky_Pirate_Decimated_Cannons_Combined.ply",
             "position": {
-                "x": 70.0,
+                "x": 240.0,
                 "y": 0.0,
-                "z": -70.0
+                "z": -512.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "boat",
+            "isUpdatedByPhysics": false,
+            "isVisible": false,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "boat.ply",
+            "position": {
+                "x": 200.0,
+                "y": 0.0,
+                "z": -600.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "eagle",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "eagle.ply",
+            "position": {
+                "x": 450.0,
+                "y": 0.0,
+                "z": -600.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "bunny",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 0.10,
+                "g": 0.30,
+                "r": 0.80
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "bunny.ply",
+            "position": {
+                "x": 200.0,
+                "y": 0.0,
+                "z": -400.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "donut",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 0.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "donut.ply",
+            "position": {
+                "x": 400.0,
+                "y": 0.0,
+                "z": -400.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "tenker",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 0.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "tenker.ply",
+            "position": {
+                "x": 400.0,
+                "y": 0.0,
+                "z": -600.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "box",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "box.ply",
+            "position": {
+                "x": 600.0,
+                "y": 0.0,
+                "z": -600.0
             },
             "postRotation": {
                 "x": 0.0,
@@ -538,15 +753,15 @@
                 "z": 0.0
             },
             "dontLight": false,
-            "friendlyName": "house",
+            "friendlyName": "cueBall1",
             "isUpdatedByPhysics": false,
             "isVisible": true,
             "isWireFrame": false,
             "materialDiffuse": {
                 "a": 1.0,
-                "b": 0.0,
-                "g": 0.0,
-                "r": 1.0
+                "b": 1.0,
+                "g": 1.0,
+                "r": 0.0
             },
             "materialSpecular": {
                 "b": 1.0,
@@ -554,18 +769,186 @@
                 "power": 1.0,
                 "r": 1.0
             },
-            "meshName": "Wood_House.ply",
+            "meshName": "cueBall.ply",
             "position": {
-                "x": 70.0,
+                "x": 240.0,
                 "y": 0.0,
-                "z": -70.0
+                "z": -512.0
             },
             "postRotation": {
                 "x": 0.0,
                 "y": -0.0,
                 "z": 0.0
             },
-            "scale": 1.5,
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "cueBall2",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 0.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "cueBall.ply",
+            "position": {
+                "x": 240.0,
+                "y": 0.0,
+                "z": -512.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "cueBall3",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 0.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "cueBall.ply",
+            "position": {
+                "x": 240.0,
+                "y": 0.0,
+                "z": -512.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "cueBall4",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 0.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "cueBall.ply",
+            "position": {
+                "x": 240.0,
+                "y": 0.0,
+                "z": -512.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": false,
+            "friendlyName": "cueBall5",
+            "isUpdatedByPhysics": false,
+            "isVisible": true,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 0.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "cueBall.ply",
+            "position": {
+                "x": 240.0,
+                "y": 0.0,
+                "z": -512.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,
@@ -734,6 +1117,48 @@
                 "z": 0.0
             },
             "scale": 332.03125,
+            "useVertexColor": false,
+            "velocity": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "acceleration": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "dontLight": true,
+            "friendlyName": "2SidedQuad",
+            "isUpdatedByPhysics": false,
+            "isVisible": false,
+            "isWireFrame": false,
+            "materialDiffuse": {
+                "a": 1.0,
+                "b": 1.0,
+                "g": 1.0,
+                "r": 1.0
+            },
+            "materialSpecular": {
+                "b": 1.0,
+                "g": 1.0,
+                "power": 1.0,
+                "r": 1.0
+            },
+            "meshName": "1x1_2Tri_Quad_2_Sided_xyz_n_uv.ply",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "postRotation": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 0.0
+            },
+            "scale": 1.0,
             "useVertexColor": false,
             "velocity": {
                 "x": 0.0,

@@ -10,6 +10,7 @@
 #include "cAABB.h"
 #include "cJet.h"
 #include "cCommandGroup.h"
+#include "cFBO.h"
 
 class cSceneUtils
 {
@@ -30,6 +31,8 @@ public:
 	void selectNextMeshObject(bool includeInvisibleObject);
 	iMeshObject* selectedMeshObject;
 	static bool loadFromSaveFile;
+	
+	void moveShip(float amount);
 
 	std::vector<cMeshObject*> vecTrasparentObjects;
 	cAABBHierarchy* terrainHierarchy;
@@ -40,8 +43,12 @@ public:
 	void drawAABBs(GLuint program);
 
 	cCommandGroup sceneCommandGroup;
-
 	float dayMix;
+
+	std::vector<iEntity*> aiEntities;
+	iEntity* findEntityByFriendlyName(std::string name);
+
+	cFBO* g_pFBOMain;
 private:
 	static cSceneUtils* pSceneUtils;
 	int selectedObjectIndex;
@@ -56,6 +63,9 @@ private:
 	GLint tex05_UniLoc = -1;
 	GLint tex06_UniLoc = -1;
 	GLint tex07_UniLoc = -1;
+
+	// Texture sampler for off screen texture
+	GLint texPass1OutputTexture_UniLoc = -1;
 
 	GLint texBW_0_UniLoc = -1;
 	GLint texBW_1_UniLoc = -1;

@@ -74,9 +74,14 @@
         "sphere3.ply",
         "cueBall.ply",
         "cube.ply",
-        "islands.ply",
         "Sky_Pirate_Decimated_Cannons_Combined.ply",
-        "Wood_House.ply"
+        "boat.ply",
+        "eagle.ply",
+        "bunny.ply",
+        "donut.ply",
+        "tenker.ply",
+        "box.ply",
+        "1x1_2Tri_Quad_2_Sided_xyz_n_uv.ply"
     ],
     "textures": [
         "Bumpy_Textured_Leaves_seamless.bmp"

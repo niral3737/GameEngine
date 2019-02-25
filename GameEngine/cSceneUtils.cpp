@@ -4,7 +4,7 @@
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 #define GLM_ENABLE_EXPERIMENTAL		// To get glm quaternion stuff to compile
 #include <glm/gtx/quaternion.hpp>
-
+#include <glm/gtx/rotate_vector.hpp>
 #include <fstream>
 #include <iostream>
 #include "json.hpp"
@@ -329,6 +329,9 @@ void cSceneUtils::bindTextures(cMeshObject* pCurrentMesh, GLuint shaderProgramID
 		texBW_0_UniLoc = glGetUniformLocation(shaderProgramID, "texBlendWeights[0]");	// uniform vec4 texBlendWeights[2];
 		texBW_1_UniLoc = glGetUniformLocation(shaderProgramID, "texBlendWeights[1]");	// uniform vec4 texBlendWeights[2];
 
+
+		texPass1OutputTexture_UniLoc = glGetUniformLocation(shaderProgramID, "texPass1OutputTexture");
+
 		HACK_bTextureUniformLocationsLoaded = true;
 
 	}//if(!HACK_bTextureUniformLocationsLoaded )
@@ -339,6 +342,44 @@ void cSceneUtils::bindTextures(cMeshObject* pCurrentMesh, GLuint shaderProgramID
 	// ....
 
 	// Set all the blend weights (strengths) to zero
+
+	if (pCurrentMesh->b_HACK_UsesOffscreenFBO)
+	{
+		// Connect the texture for this object to the FBO texture
+		// Pick texture unit 16 (just because - I randomly picked that)
+
+		int FBO_Texture_Unit_Michael_Picked = 1;
+
+		// 0x84C0  (or 33984)		
+		// Please bind to texture unit 34,000. Why gawd, why?
+		glActiveTexture(GL_TEXTURE0 + FBO_Texture_Unit_Michael_Picked);
+
+		// Connect the specific texture to THIS texture unit
+//		glBindTexture( GL_TEXTURE_2D, g_FBO_colourTexture );
+		glBindTexture(GL_TEXTURE_2D, g_pFBOMain->colourTexture_0_ID);
+
+		// Now pick to read from the normal (output from the 1st pass):
+//		glBindTexture( GL_TEXTURE_2D, ::g_pFBOMain->normalTexture_1_ID );
+//		glBindTexture( GL_TEXTURE_2D, ::g_pFBOMain->depthTexture_ID );
+//		glBindTexture( GL_TEXTURE_2D, ::g_pFBOMain->vertexWorldPos_2_ID );
+
+
+		// Set the sampler (in the shader) to ALSO point to texture unit 16
+		// This one takes the unchanged texture unit numbers 
+//		glUniform1i( tex00_UniLoc, FBO_Texture_Unit_Michael_Picked );
+		glUniform1i(texPass1OutputTexture_UniLoc, FBO_Texture_Unit_Michael_Picked);
+
+
+		// Set the blending to that it's 0th texture sampler
+		// NOTE: it's only the 0th (1st) texture that we are mixing from
+//		glUniform4f( texBW_0_UniLoc, 1.0f, 0.0f, 0.0f, 0.0f );		// <---- Note the 1.0f
+//		glUniform4f( texBW_1_UniLoc, 0.0f, 0.0f, 0.0f, 0.0f );
+
+		// NOTE: Early return (so we don't set any other textures
+		// Again; HACK!!
+		return;
+	}//if ( pCurrentMesh->b_HACK_UsesOffscreenFBO )
+
 	float blendWeights[8] = { 0 };
 
 
@@ -516,4 +557,35 @@ void cSceneUtils::drawAABBs(GLuint program)
 	}
 
 	aabbCube->isVisible = false;
+}
+
+void cSceneUtils::moveShip(float amount)
+{
+	cMeshObject* ship = (cMeshObject*)findObjectByFriendlyName("ship");
+
+	glm::vec3 forward = glm::vec3(0.0f, 0.0f, 1.0f);
+	glm::mat4 matRotation = glm::mat4(ship->getOrientation());
+	glm::vec4 frontOfShip = glm::vec4(forward, 1.0f);
+	glm::vec4 newAt = matRotation * frontOfShip;
+	
+
+	glm::vec3 direction = glm::vec3(newAt);
+	direction = glm::normalize(direction);
+	glm::vec3 amountToMove = direction * amount;
+	ship->position += amountToMove;
+}
+
+iEntity* cSceneUtils::findEntityByFriendlyName(std::string name)
+{
+	for (unsigned int index = 0; index != aiEntities.size(); index++)
+	{
+		iEntity* object = (iEntity*)aiEntities[index];
+
+		if (object->getName() == name)
+		{
+			return aiEntities[index];
+		}
+	}
+
+	return NULL;
 }

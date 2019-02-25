@@ -22,7 +22,15 @@ uniform bool bDontUseLighting;
 uniform vec4 waterOffset;
 
 //vec4 gl_FragColor
-out vec4 finalOutputColour;		// Any name, but must be vec4
+//out vec4 finalOutputColour;		// Any name, but must be vec4
+//out vec4 finalOutputColour[3];		// Any name, but must be vec4
+	// Colour was #0
+	// Normal was #1
+	// Vertex World Location #2
+// Or list them in the order that they will be used
+out vec4 finalOutputColour;			// GL_COLOR_ATTACHMENT0
+out vec4 finalOutputNormal;			// GL_COLOR_ATTACHMENT1
+out vec4 finalOutputVertWorldPos;	// GL_COLOR_ATTACHMENT2
 
 struct sLight
 {
@@ -67,8 +75,26 @@ uniform bool useSkyBoxTexture;
 //alpha transperancy
 uniform float wholeObjectAlphaTransparency;
 
+// For the 2 pass rendering
+uniform float renderPassNumber;	// 1 = 1st pass, 2nd for offscreen to quad
+uniform sampler2D texPass1OutputTexture;
+
+
 void main()
 {
+	// output black to all layers
+	finalOutputColour = vec4( 0.0f, 0.0f, 0.0f, 1.0f );
+	finalOutputNormal = vec4( 0.0f, 0.0f, 0.0f, 1.0f );
+	finalOutputVertWorldPos = vertPosWorld;
+
+	if ( int(renderPassNumber) == 2 )
+	{ 
+		// 2nd pass (very simple)
+		finalOutputColour.rgb = texture( texPass1OutputTexture, vertUV_x2.st ).rgb;
+		finalOutputColour.a = 1.0f;
+		return;
+	}
+
 	vec4 materialDiffuse = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 	vec4 materialSpecular = objectSpecular;
 
@@ -87,6 +113,9 @@ void main()
 		
 		finalOutputColour.rgb = skyBoxColor;
 		finalOutputColour.a = 1.0f;
+
+		finalOutputNormal.rgb = vertNormal.xyz;
+		finalOutputNormal.a = 1.0f;
 		return;
 	}
 	
@@ -133,6 +162,9 @@ void main()
 	{
 		// Just exit early
 		finalOutputColour = objectDiffuse;
+
+		finalOutputNormal.rgb = vertNormal.xyz;
+		finalOutputNormal.a = 1.0f;
 		return;
 	}
 
@@ -179,6 +211,10 @@ void main()
 			finalOutputColour.rgb = finalObjectColour.rgb;
 			finalOutputColour.a = wholeObjectAlphaTransparency;
 
+			// Also output the normal to colour #1
+			finalOutputNormal.rgb = vertNormal.xyz;
+			finalOutputNormal.r = 1.0f;
+			finalOutputNormal.a = 1.0f;
 			return;		
 		}
 		
@@ -275,5 +311,10 @@ void main()
 
 	finalOutputColour.rgb = finalObjectColour.rgb;
 	finalOutputColour.a = wholeObjectAlphaTransparency;
+
+	// Also output the normal to colour #1
+	finalOutputNormal.rgb = vertNormal.xyz;
+//	finalOutputNormal.r = 1.0f;
+	finalOutputNormal.a = 1.0f;
 	
 }

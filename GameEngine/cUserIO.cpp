@@ -15,6 +15,9 @@
 #include "json.hpp"
 #include "cCamera.h"
 #include "cPhysics.h"
+#include <glm/gtx/vector_angle.hpp>
+#include "iEntity.h"
+#include "cPlayer.h"
 
 eSelectionMode cUserIO::selectionMode = eSelectionMode::MESH_SELECTION;
 bool cUserIO::includeInvisibleObjects = false;
@@ -40,6 +43,18 @@ void cUserIO::key_callback(GLFWwindow * window, int key, int scancode, int actio
 		{
 			lightManager->selectNextLight();
 		}
+	}
+
+	if (key == GLFW_KEY_L && action == GLFW_PRESS)
+	{
+		cMeshObject* islands= (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("islands");
+		cCamera::getInstance()->lookAt(islands->position);
+	}
+
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+	{
+		cPlayer* player = (cPlayer*)cSceneUtils::getInstance()->findEntityByFriendlyName("ship");
+		player->shootCannonBall();
 	}
 
 	/*if (key == GLFW_KEY_2 && action == GLFW_PRESS)
@@ -178,6 +193,8 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 
 	cCamera* camera = cCamera::getInstance();
 
+	cPlayer* player = (cPlayer*) cSceneUtils::getInstance()->findEntityByFriendlyName("ship");
+
 	float cameraMoveSpeed = camera->movementSpeed;
 	// If no keys are down, move the camera
 	if (mAreAllModifiersUp(window))
@@ -197,22 +214,28 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		{
 			//cSceneUtils::cameraEye.z += cameraSpeed;
-			camera->moveForwardZ(+cameraMoveSpeed);
+			//camera->moveForwardZ(+cameraMoveSpeed);
+			player->move(1.0f);
+			std::cout << "position: "
+				<< player->GetMesh()->position.x << " "
+				<< player->GetMesh()->position.z << " "
+				<< std::endl;
 		}
 		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)	// "backwards"
 		{
 			//cSceneUtils::cameraEye.z -= cameraSpeed;
-			camera->moveForwardZ(-cameraMoveSpeed);
+			//camera->moveForwardZ(-cameraMoveSpeed);
+			player->move(-1.0f);
 		}
 		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)	// "left"
 		{
 			//cSceneUtils::cameraEye.x += cameraSpeed;
-			camera->moveLeftRightX(-cameraMoveSpeed);
+			player->mesh ->adjustOrientationEulerAngles(0.0f, 1.5f, 0.0f, true);
 		}
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)	// "right"
 		{
 			//cSceneUtils::cameraEye.x -= cameraSpeed;
-			camera->moveLeftRightX(+cameraMoveSpeed);
+			player->mesh->adjustOrientationEulerAngles(0.0f, -1.5f, 0.0f, true);
 		}
 		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)	// "up"
 		{
@@ -226,48 +249,6 @@ void cUserIO::processAsynKeys(GLFWwindow* window)
 		}
 
 	}//if(AreAllModifiersUp(window)
-
-	cMeshObject* ship = (cMeshObject*) cSceneUtils::getInstance()->findObjectByFriendlyName("ship");
-	cMeshObject* house = (cMeshObject*)cSceneUtils::getInstance()->findObjectByFriendlyName("house");
-	if (mAreAllModifiersUp(window))
-	{
-		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)	// "up"
-		{
-			ship->position.z += MOVE_SPEED;
-		}
-		if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)	// "up"
-		{
-			ship->position.z -= MOVE_SPEED;
-		}
-		if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)	// "up"
-		{
-			ship->position.x += MOVE_SPEED;
-		}
-		if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)	// "up"
-		{
-			ship->position.x -= MOVE_SPEED;
-		}
-	}
-
-	if (mIsShiftDown(window))
-	{
-		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)	// "up"
-		{
-			house->position.z += MOVE_SPEED;
-		}
-		if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)	// "up"
-		{
-			house->position.z -= MOVE_SPEED;
-		}
-		if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)	// "up"
-		{
-			house->position.x += MOVE_SPEED;
-		}
-		if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)	// "up"
-		{
-			house->position.x -= MOVE_SPEED;
-		}
-	}
 
 	if (mIsShiftDown(window))
 	{
@@ -531,7 +512,6 @@ void cUserIO::processAsynMouse(GLFWwindow * window)
 	const float MOUSE_SENSITIVITY = 0.1f;
 
 	//std::cout << camera->getMouseX() << ", " << camera->getMouseY() << std::endl;
-
 		// Mouse left (primary?) button pressed? 
 		// AND the mouse is inside the window...
 	if ((glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)

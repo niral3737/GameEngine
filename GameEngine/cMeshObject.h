@@ -68,6 +68,10 @@ public:
 
 	// Textures...
 	std::vector<sTextureInfo> vecTextures;
+
+	//HACK: This will be replaced with something more sophisticated, later
+	// For now, there is only one off screen FBO
+	bool b_HACK_UsesOffscreenFBO;
 private:
 	cMeshObject();
 	unsigned int mUniqueID;			// Number that's unique to this instance

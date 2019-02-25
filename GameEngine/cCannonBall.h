@@ -2,7 +2,6 @@
 #define _CANNON_BALL_HG_
 
 #include "iEntity.h"
-#include "iMeshObject.h"
 #include "cMeshObject.h"
 
 class cCannonBall :
@@ -11,18 +10,14 @@ class cCannonBall :
 public:
 	cCannonBall();
 	virtual ~cCannonBall();
+	virtual cMeshObject* GetMesh();
+	virtual glm::vec3 getPreviousPos();
+	bool isShot;
 
-	bool isHit;
-	size_t shootingBaseIndex;
-	size_t baseThatHitIndex;
-
-	iMeshObject* mesh;
+	cMeshObject* mesh;
+	glm::vec3 direction;
 	virtual std::string getName();
-	cMeshObject* getMesh();
-	void setMesh(iMeshObject* mesh);
-	glm::vec3 lastInitialVelocity;
-
-	void increaseShootingBaseIndex(size_t start, size_t end);
+	glm::vec3 previousPos;
 };
 
 
